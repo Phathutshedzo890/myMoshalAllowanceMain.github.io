@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         messageElement.innerText = message;
         chatMessages.appendChild(messageElement);
         
-        // Optionally, scroll to bottom
+        
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 });
