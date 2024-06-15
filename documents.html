@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documents</title>
+    <link rel="stylesheet" href="document.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">About Us</a></li>
+          <li class="nav-item"><a href="#">Our Services</a></li>
+          <li class="nav-item"><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <a href="#">Home</a>
+        <a href="#">Profile</a>
+        <a href="#">Documents</a>
+        <a href="#">Query</a>
+        <a href="#">Notification</a>
+        <a href="#">Browse</a>
+      </div>
+      <span class="menu-btn" onclick="openNav()">&#9776;</span>
+      <section class="documents-section">
+        <h1>Documents</h1>
+        <p class="subtitle">Submit your respective documents</p>
+        <div class="tabs">
+          <button class="tab-button active">Monthly plans</button>
+          <button class="tab-button">Annual plans</button>
+        </div>
+        <div class="document-cards">
+          <div class="card">
+            <h2>Submit your fee statement</h2>
+            <p>Type of document</p>
+            <ul>
+              <li>PDF</li>
+              <li>Word</li>
+              <li>Image</li>
+            </ul>
+            <button class="submit-button">Submit</button>
+          </div>
+          <div class="card">
+            <h2>Submit proof of Funding</h2>
+            <p>Type of document</p>
+            <ul>
+              <li>PDF</li>
+              <li>Word</li>
+              <li>Image</li>
+            </ul>
+            <button class="submit-button">Submit</button>
+          </div>
+        </div>
+        <div class="notice">
+          <h3>Important Notice:</h3>
+          <p>
+            It is essential that you submit a document that's up to date and
+            valid. Documents that are not valid or not up to date will result in
+            miscalculation of allowance.
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p>
+        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights
+        reserved
+      </p>
+    </footer>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.body.style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.body.style.marginLeft = "0";
+      }
+    </script>
+    <script src="documents.js"></script>
+  </body>
+</html>

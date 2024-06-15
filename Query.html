@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat System</title>
+    <link rel="stylesheet" href="Query.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Chat System</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <div id="chat-messages" class="chat-messages">
+        <!-- Messages will be dynamically added here -->
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <form id="chat-form" class="chat-form">
+          <input
+            type="text"
+            id="message-input"
+            placeholder="Type your message..."
+          />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </footer>
+
+    <script src="Query.js"></script>
+  </body>
+</html>
