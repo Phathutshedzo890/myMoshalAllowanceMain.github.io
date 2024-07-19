@@ -33,7 +33,7 @@ header {
 }
 
 h1 {
-    color: rgb(73, 73, 239);
+    color: #3f62af;
     margin-top: 20px;
 }
 
@@ -100,7 +100,7 @@ button {
     padding: 10px 20px;
     margin-top: 10px;
     cursor: pointer;
-    background: rgb(73, 73, 239);
+    background: #3f62af;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -111,7 +111,7 @@ button {
     margin: 0 auto 20px auto;
     padding: 10px 20px;
     cursor: pointer;
-    background: rgb(73, 73, 239);
+    background: #3f62af;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -131,5 +131,6 @@ footer p {
 footer a {
     margin: 0 10px;
     text-decoration: none;
-    color: rgb(73, 73, 239);
+    color: #3f62af;
+    /*Moshal blue*/
 }

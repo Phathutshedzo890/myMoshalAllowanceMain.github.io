@@ -10,7 +10,8 @@ body {
 }
 
 header {
-    background: #fff;
+    background: #3f62af;
+    color: #000000
     border-bottom: 1px solid #ddd;
     transition: margin-left 0.5s;
 }
@@ -133,7 +134,7 @@ h1.main-title {
 
 .summary-table th,
 .details-table th {
-    background-color: rgb(73, 73, 239);
+    background-color: #3f62af;
     color: #fff;
 }
 
@@ -194,7 +195,7 @@ button:hover {
     margin: 0 auto 20px auto;
     padding: 10px 20px;
     cursor: pointer;
-    background: rgb(73, 73, 239);
+    background: #3f62af;
     color: #fff;
     border: none;
     border-radius: 5px;

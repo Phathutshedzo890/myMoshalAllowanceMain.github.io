@@ -21,7 +21,7 @@ body {
 }
 
 header {
-    background-color: #3498db; /* Blue color */
+    background-color: #3f62af; /* Blue color */ /*changed to Moshal blue*/
     color: #fff;
     text-align: center;
     padding: 10px 0;
@@ -52,7 +52,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3498db; /* Blue color */
+    background-color: #3f62af; /* Blue color */
     padding: 10px;
     border-radius: 5px;
 }
@@ -83,7 +83,8 @@ main {
 }
 
 footer {
-    background-color: #3498db; /* Blue color */
+    background-color: #3f62af; /* Blue color */
+    /*changed to Moshal blue*/
     color: #fff;
     text-align: center;
     padding: 10px 0;

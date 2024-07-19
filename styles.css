@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    background: #fff;
+    background: #3f62af;
     border-bottom: 1px solid #ddd;
     padding: 0 20px;
     box-shadow: 0 4px 2px -2px gray;
@@ -37,7 +37,7 @@ header {
 }
 
 h1.main-title {
-    color: rgb(73, 73, 239);
+    color: #ffffff;
 }
 
 .sidenav {
@@ -131,9 +131,9 @@ main.container.right-panel-active .overlay-section {
 }
 
 .overlay {
-    background: #007bff;
-    background: -webkit-linear-gradient(to right, #007bff, #0056b3);
-    background: linear-gradient(to right, #007bff, #0056b3);
+    background: #3f62af;
+    /*background: -webkit-linear-gradient(to right, #007bff, #0056b3);
+    background: linear-gradient(to right, #007bff, #0056b3);*/
     color: #ffffff;
     position: relative;
     left: -100%;
