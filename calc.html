@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
     <style>
       /* Style.css */
       body {
@@ -19,51 +18,48 @@
 
       header {
         background: #3f62af;
-        color: #000;
+        color: white;
         border-bottom: 1px solid #ddd;
         transition: margin-left 0.5s;
+        padding: 10px 20px;
       }
 
       .navbar {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 70px;
-        box-shadow: 0px 4px 2px -2px gray;
-        padding: 0 20px;
       }
 
       ul.nav-links {
         list-style: none;
         padding: 0;
         display: flex;
-        justify-content: flex-end;
         margin: 0;
       }
 
       ul.nav-links li.nav-item {
-        padding: 15px;
+        margin: 0 10px;
+        padding: 10px 15px;
         font-size: 16px;
+        color: white;
+        transition: background-color 0.3s;
       }
 
       ul.nav-links li.nav-item:hover {
-        background-color: #e0e0e0;
+        background-color: #5757d1;
         border-radius: 5px;
       }
 
       img {
-        height: 60px; /* Adjusted the height to make the image smaller */
-        width: 100px; /* Ensures the image is square */
+        height: 50px;
         border-radius: 10px;
-        margin-right: 20px;
       }
 
       h1.main-title {
-        color: rgb(73, 73, 239);
+        color: #3f62af;
         margin: 40px 0;
         font-size: 36px;
         text-align: center;
-        transition: margin-left 0.5s;
       }
 
       .sidenav {
@@ -81,17 +77,17 @@
       }
 
       .sidenav a {
-        padding: 8px 8px 8px 32px;
+        padding: 10px 20px;
         text-decoration: none;
-        font-size: 20px;
-        color: #818181;
+        font-size: 18px;
+        color: #333;
         display: block;
         transition: 0.3s;
       }
 
       .sidenav a:hover {
-        color: rgb(73, 73, 239);
-        background-color: #e0e0e0;
+        color: white;
+        background-color: #3f62af;
         border-radius: 5px;
       }
 
@@ -107,17 +103,21 @@
         font-size: 30px;
         cursor: pointer;
         position: absolute;
-        top: 80px;
+        top: 20px;
         left: 20px;
       }
 
-      @media screen and (max-height: 450px) {
-        .sidenav {
-          padding-top: 15px;
+      @media screen and (max-width: 600px) {
+        .navbar ul.nav-links {
+          display: none;
         }
 
-        .sidenav a {
-          font-size: 18px;
+        .menu-btn {
+          display: block;
+        }
+
+        .navbar img {
+          height: 40px;
         }
       }
 
@@ -149,17 +149,14 @@
       }
 
       .content {
-        transition: margin-left 0.5s;
         padding: 16px;
         max-width: 1000px;
         margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
       }
 
       .form-section {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         margin-bottom: 20px;
       }
@@ -169,7 +166,7 @@
         padding: 20px;
         border: 1px solid #ddd;
         border-radius: 10px;
-        margin: 0 10px;
+        margin: 10px;
         text-align: center;
         background-color: #fff;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -189,7 +186,7 @@
         padding: 10px 20px;
         margin-top: 10px;
         cursor: pointer;
-        background: rgb(73, 73, 239);
+        background: #3f62af;
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -219,8 +216,8 @@
       footer {
         text-align: center;
         padding: 20px;
-        background: #f8f8f8;
-        border-top: 1px solid #ddd;
+        background: #3f62af;
+        color: white;
         margin-top: 20px;
       }
 
@@ -232,12 +229,22 @@
       footer a {
         margin: 0 10px;
         text-decoration: none;
-        color: rgb(73, 73, 239);
+        color: white;
         transition: color 0.3s;
       }
 
       footer a:hover {
-        color: #5757d1;
+        color: #ddd;
+      }
+
+      @media screen and (max-width: 600px) {
+        .form-section {
+          flex-direction: column;
+        }
+
+        article {
+          margin: 10px 0;
+        }
       }
     </style>
   </head>
@@ -253,6 +260,7 @@
           <li class="nav-item">Query</li>
           <li class="nav-item">Calculate</li>
         </ul>
+        <span class="menu-btn" onclick="openNav()">&#9776;</span>
       </nav>
     </header>
     <main>
@@ -269,7 +277,6 @@
           <a href="#">Notification</a>
           <a href="#">Browse</a>
         </div>
-        <span class="menu-btn" onclick="openNav()">&#9776;</span>
       </section>
       <section class="content">
         <h2>Summary overview of allowance allocation.</h2>
@@ -396,6 +403,5 @@
         document.body.style.marginLeft = "0";
       }
     </script>
-    <script src="script.js"></script>
   </body>
 </html>
