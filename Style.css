@@ -11,7 +11,7 @@ body {
 
 header {
     background: #3f62af;
-    color: #000000
+    color: #000;
     border-bottom: 1px solid #ddd;
     transition: margin-left 0.5s;
 }
@@ -44,8 +44,10 @@ ul.nav-links li.nav-item:hover {
 }
 
 img {
-    height: 70px;
-    border-radius: 50%;
+    height: 60px; /* Adjusted the height to make the image smaller */
+    width: 100px;  /* Ensures the image is square */
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
 h1.main-title {

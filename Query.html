@@ -3,35 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat System</title>
-    <link rel="stylesheet" href="Query.css" />
+    <title>Admin-Student Chat System</title>
+    <link rel="stylesheet" href="query1.css" />
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"
+    ></script>
+    <script
+      defer
+      src="https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js"
+    ></script>
+    <script defer src="Query.js"></script>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <h1>Chat System</h1>
+    <div class="chat-container">
+      <div class="chat-header">
+        <h2>Chat System</h2>
+        <div class="notification" id="notification">
+          <span class="badge" id="badge">0</span>
+        </div>
       </div>
-    </header>
-
-    <main class="container">
-      <div id="chat-messages" class="chat-messages">
-        <!-- Messages will be dynamically added here -->
+      <div class="chat-box" id="chat-box">
+        <!-- Messages will appear here -->
       </div>
-    </main>
-
-    <footer>
-      <div class="container">
-        <form id="chat-form" class="chat-form">
-          <input
-            type="text"
-            id="message-input"
-            placeholder="Type your message..."
-          />
-          <button type="submit">Send</button>
-        </form>
+      <div class="message-box">
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="send-button">Send</button>
       </div>
-    </footer>
-
-    <script src="Query.js"></script>
+    </div>
   </body>
 </html>
