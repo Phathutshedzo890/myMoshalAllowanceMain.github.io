@@ -9,7 +9,10 @@
   <body>
     <header class="header">
       <nav class="navbar">
-        <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        <div class="logo-container">
+          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
+          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        </div>
         <ul class="nav-links">
           <li class="nav-item"><a href="#">Home</a></li>
           <li class="nav-item"><a href="#">About Us</a></li>
@@ -20,7 +23,7 @@
     </header>
     <main>
       <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
           >&times;</a
         >
         <a href="#">Home</a>
@@ -30,29 +33,23 @@
         <a href="#">Notification</a>
         <a href="#">Browse</a>
       </div>
-      <span class="menu-btn" onclick="openNav()">&#9776;</span>
       <section class="documents-section">
         <h1>Documents</h1>
         <p class="subtitle">Submit your respective documents</p>
-        <div class="tabs">
-          <button class="tab-button active">Monthly plans</button>
-          <button class="tab-button">Annual plans</button>
-        </div>
         <div class="document-cards">
           <div class="card">
             <h2>Submit your fee statement</h2>
             <h3>Select a File</h3>
-            <input type="file" id="fileInput" />
-            <div id="fileInfo"></div>
-            <button class="submit-button">Submit</button>
+            <input type="file" id="fileInput1" accept=".pdf" required />
+            <div id="fileInfo1"></div>
+            <button class="submit-button" type="submit">Submit</button>
           </div>
-          <div class="card">
+          <div class="card2">
             <h2>Submit proof of Funding</h2>
             <h3>Select a File</h3>
-            <input type="file" id="fileInput" />
-            <div id="fileInfo"></div>
-
-            <button class="submit-button">Submit</button>
+            <input type="file" id="fileInput2" accept=".pdf" />
+            <div id="fileInfo2"></div>
+            <button class="submit-button" type="submit">Submit</button>
           </div>
         </div>
         <div class="notice">
@@ -77,16 +74,18 @@
       </p>
     </footer>
     <script>
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.body.style.marginLeft = "250px";
-      }
-
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.body.style.marginLeft = "0";
+      function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        const body = document.body;
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          body.style.marginLeft = "0";
+        } else {
+          sidenav.style.width = "250px";
+          body.style.marginLeft = "250px";
+        }
       }
     </script>
-    <script src="documents.js"></script>
+    <script type="module" src="documents.js"></script>
   </body>
 </html>

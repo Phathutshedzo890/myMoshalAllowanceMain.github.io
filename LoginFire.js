@@ -2,16 +2,6 @@ const signInButton = document.getElementById('signIn');
 const signUpButton = document.getElementById('signUp');
 const container = document.getElementById('container');
 
-// signInButton.addEventListener('click', () => {
-//     container.classList.remove('right-panel-active');
-//     //window.location.href = "/calc.html";
-//  });
-
-// signUpButton.addEventListener('click', () => {
-//     container.classList.add('right-panel-active');
-// });
-
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import{getAuth,connectAuthEmulator,signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import{createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
@@ -28,8 +18,8 @@ const firebaseConfig = {
   measurementId: "G-NCTW2CSPR8"
 };
 const firebaseApp= initializeApp(firebaseConfig);
-const auth= getAuth(firebaseApp);
-const database= getFirestore(firebaseApp);
+//const auth= getAuth(firebaseApp);
+//const database= getFirestore(firebaseApp);
 // connectAuthEmulator(auth,"http://localhost:9099/");
 
 // const loginEmailPassword = async()=>{
@@ -51,43 +41,45 @@ document.getElementById('registerForm').addEventListener('submit', function(even
   const name= document.getElementById("Fname").value;
   const Surname= document.getElementById("Lname").value;
 
+  const auth=getAuth();
+  const db= getFirestore();
 
-  function writeUserData(userId,name,Lastname,email){
-    const db= getDatabase();
-    const reference= ref(db,'users/'+ userId);
-    
-    set(reference,{
-        username:name,
-        Surname:Lastname,
-        email:email,
-    });
 
-  }
+  
+
   createUserWithEmailAndPassword(auth,email, password)
       .then((userCredential) => {
           // Signed up
-          console.log('Signup successful:', userCredential.user);
           const user= userCredential.user;
-          //var uid = user.uid;
-          const db= getDatabase();
-          const reference= ref(db,'users/'+ user.uid);
-          
-          set(reference,{
-              username:name,
-              Surname:Surname,
-              email:email,
-          });
-      
-          // container.classList.remove('right-panel-active');
-             window.location.href = "/calc.html";
+          const userData={
+            email:email,
+            name:name,
+            Surname:Surname
+          };
+
+          //console.log('Signup successful:', userCredential.user);
+          const docRef= doc(db,"users",user.uid);
+          setDoc(docRef,userData)
+            .then(() => {
+                window.location.href = "/calc.html"; 
+            })
+            .catch((error) =>{
+                console.error("error writing document",error);
+            });
+             //window.location.href = "/calc.html";
       })
       .catch((error) => {
+          const errorCode = error.code;
+          if(errorCode=='auth/email-already-in-use'){
+            alert(error.message);
+          }
           console.error('Signup error:', error);
       });
 });
 
 document.getElementById("loginForm").addEventListener('submit', function(event) {
   event.preventDefault();
+  const auth= getAuth();
   const email = document.getElementById("LoginEmail").value;
   const password = document.getElementById("LoginPassword").value;
 

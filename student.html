@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Messages</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo-container">
+          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
+          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        </div>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">Profile</a></li>
+          <li class="nav-item"><a href="#">Documents</a></li>
+          <li class="nav-item"><a href="#">Messages</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="content">
+      <div class="messages-container">
+        <h1>Messages</h1>
+        <div id="messageHistory" class="message-history"></div>
+        <div class="message-input">
+          <input
+            type="text"
+            id="userMessage"
+            placeholder="Type your message here..."
+          />
+          <button id="sendMessageBtn" class="submit-button">Send</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p>
+        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights
+        reserved
+      </p>
+    </footer>
+
+    <script type="module" src="student.js"></script>
+  </body>
+</html>

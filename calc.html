@@ -22,6 +22,7 @@
         border-bottom: 1px solid #ddd;
         transition: margin-left 0.5s;
         padding: 10px 20px;
+        position: relative;
       }
 
       .navbar {
@@ -53,6 +54,7 @@
       img {
         height: 50px;
         border-radius: 10px;
+        margin-left: 50px; /* Added margin to move the image to the right */
       }
 
       h1.main-title {
@@ -84,6 +86,14 @@
         display: block;
         transition: 0.3s;
       }
+      .nav-links a {
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #fefafa;
+        display: block;
+        transition: 0.3s;
+      }
 
       .sidenav a:hover {
         color: white;
@@ -105,11 +115,24 @@
         position: absolute;
         top: 20px;
         left: 20px;
+        z-index: 2;
+        color: white;
       }
 
       @media screen and (max-width: 600px) {
         .navbar ul.nav-links {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 60px;
+          left: 0;
+          background-color: #3f62af;
+          width: 100%;
           display: none;
+        }
+
+        .navbar ul.nav-links.show {
+          display: block;
         }
 
         .menu-btn {
@@ -251,29 +274,29 @@
   <body>
     <header class="header">
       <nav class="navbar">
+        <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
         <img src="images/Morshal.jpg" alt="Morshal Logo" />
         <ul class="nav-links">
-          <li class="nav-item">Profile</li>
-          <li class="nav-item">About Us</li>
-          <li class="nav-item">Contact Us</li>
-          <li class="nav-item">Document</li>
-          <li class="nav-item">Query</li>
-          <li class="nav-item">Calculate</li>
+          <li class="nav-item"><a href="profile.html">Profile</a></li>
+          <li class="nav-item"><a href="">About Us</a></li>
+          <li class="nav-item"><a href="">Contact Us</a></li>
+          <li class="nav-item"><a href="">Document</a></li>
+          <!-- <li class="nav-item"><a href="">Query</a></li>
+          <li class="nav-item"><a href="">Calculate</a></li> -->
         </ul>
-        <span class="menu-btn" onclick="openNav()">&#9776;</span>
       </nav>
     </header>
     <main>
       <h1 class="main-title">My Moshal Allowance</h1>
       <section>
         <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
             >&times;</a
           >
           <a href="#">Home</a>
-          <a href="#">Profile</a>
-          <a href="#">Documents</a>
-          <a href="#">Query</a>
+          <a href="profile.html">Profile</a>
+          <a href="documents.html">Documents</a>
+          <a href="student.html">Query</a>
           <a href="#">Notification</a>
           <a href="#">Browse</a>
         </div>
@@ -393,15 +416,24 @@
       </p>
     </footer>
     <script>
-      function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.body.style.marginLeft = "250px";
+      function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          document.body.style.marginLeft = "0";
+        } else {
+          sidenav.style.width = "250px";
+          document.body.style.marginLeft = "250px";
+        }
       }
+      // signInButton.addEventListener("click", () => {
+      //   container.classList.remove("right-panel-active");
+      //   window.location.href = "/calc.html";
+      // });
 
-      function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
-        document.body.style.marginLeft = "0";
-      }
+      document.querySelector(".menu-btn").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("show");
+      });
     </script>
   </body>
 </html>

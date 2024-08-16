@@ -5,132 +5,148 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: #f4f4f9;
-    color:  #000000;
+    color: #000000;
     transition: margin-left 0.5s;
-}
-
-header {
+  }
+  
+  header {
     background: #3f62af;
     border-bottom: 1px solid #ddd;
     box-shadow: 0 4px 2px -2px gray;
     transition: margin-left 0.5s;
-}
-
-.navbar {
+  }
+  
+  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
     padding: 0 20px;
-}
-
-.logo {
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
     height: 50px;
-}
-
-.nav-links {
+    margin-left: 20px; /* Added margin-left to separate the logo from the menu button */
+  }
+  
+  .nav-links {
     list-style: none;
     padding: 0;
     display: flex;
     justify-content: flex-end;
     margin: 0;
-}
-
-.nav-links li {
+  }
+  
+  .nav-links li {
     padding: 15px;
     font-size: 16px;
-}
-
-.nav-links li a {
+  }
+  
+  .nav-links li a {
     text-decoration: none;
     color: #333;
-}
-
-.nav-links li:hover {
+  }
+  
+  .nav-links li:hover {
     background-color: #e0e0e0;
     border-radius: 5px;
-}
-
-main {
+  }
+  
+  main {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     transition: margin-left 0.5s;
-}
-
-.documents-section {
+  }
+  
+  .documents-section {
     text-align: center;
-}
-
-.documents-section h1 {
+  }
+  
+  .documents-section h1 {
     font-size: 36px;
     color: #3f62af;
-}
-
-.subtitle {
+  }
+  
+  .subtitle {
     font-size: 18px;
     color: #555;
     margin-bottom: 20px;
-}
-
-.tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.tab-button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    background-color: #f4f4f9;
-    font-size: 16px;
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-}
-
-.tab-button.active {
-    border-bottom: 2px solid rgb(73, 73, 239);
-}
-
-.document-cards {
+  }
+  
+  .document-cards {
     display: flex;
     justify-content: center;
     gap: 40px;
     margin-bottom: 40px;
-}
-
-.card {
+  }
+  
+  .card {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
     width: 300px;
     text-align: left;
-}
-
-.card h2 {
+  }
+  
+  .card h2 {
     font-size: 20px;
     color: #3f62af;
-}
-
-.card p {
+  }
+  
+  .card p {
     font-size: 14px;
     color: #555;
-}
-
-.card ul {
+  }
+  
+  .card ul {
     list-style: none;
     padding: 0;
     font-size: 14px;
     color: #555;
-}
-
-.card ul li {
+  }
+  
+  .card ul li {
     margin: 5px 0;
-}
+  }
 
-.submit-button {
+  .card2 {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+  }
+  
+  .card2 h2 {
+    font-size: 20px;
+    color: #3f62af;
+  }
+  
+  .card2 p {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .card2 ul {
+    list-style: none;
+    padding: 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .card2 ul li {
+    margin: 5px 0;
+  }
+  
+  .submit-button {
     padding: 10px 20px;
     margin-top: 10px;
     cursor: pointer;
@@ -139,13 +155,13 @@ main {
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-}
-
-.submit-button:hover {
+  }
+  
+  .submit-button:hover {
     background-color: #5757d1;
-}
-
-.notice {
+  }
+  
+  .notice {
     text-align: left;
     max-width: 800px;
     margin: 0 auto;
@@ -153,44 +169,44 @@ main {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.notice h3 {
+  }
+  
+  .notice h3 {
     font-size: 18px;
     color: #3f62af;
     margin-bottom: 10px;
-}
-
-.notice p {
+  }
+  
+  .notice p {
     font-size: 14px;
     color: #555;
-}
-
-footer {
+  }
+  
+  footer {
     text-align: center;
     padding: 20px;
     background: #f8f8f8;
     border-top: 1px solid #ddd;
-}
-
-footer .social-links a {
+  }
+  
+  footer .social-links a {
     margin: 0 10px;
     text-decoration: none;
     color: rgb(73, 73, 239);
     transition: color 0.3s;
-}
-
-footer .social-links a:hover {
+  }
+  
+  footer .social-links a:hover {
     color: #5757d1;
-}
-
-footer p {
+  }
+  
+  footer p {
     margin: 10px 0;
     font-size: 14px;
-}
-
-/* Side navigation bar */
-.sidenav {
+  }
+  
+  /* Side navigation bar */
+  .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
@@ -201,43 +217,53 @@ footer p {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
-}
-
-.sidenav a {
+  }
+  
+  .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;
-}
-
-.sidenav a:hover {
+  }
+  
+  .sidenav a:hover {
     color: #f1f1f1;
-}
-
-.sidenav .closebtn {
+  }
+  
+  .sidenav .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
-}
-
-.menu-btn {
+  }
+  
+  .menu-btn {
     font-size: 30px;
     cursor: pointer;
-    position: absolute;
-    top: 80px; /* Adjusted to be just below the header */
-    left: 20px;
-}
-
-@media screen and (max-height: 450px) {
-    .sidenav {
-        padding-top: 15px;
+    color: #fff;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
     }
-
     .sidenav a {
-        font-size: 18px;
+      font-size: 18px;
     }
-}
+  }
+  
+  @media (max-width: 576px) {
+    .documents-section h1 {
+      font-size: 28px;
+    }
+    .card {
+      width: 100%;
+    }
+    .notice {
+      padding: 10px;
+    }
+  }
+  
