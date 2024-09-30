@@ -37,7 +37,26 @@
             required
           />
           <!-- Varsity -->
-          <input type="text" id="Varsity" placeholder="University" required />
+          <!-- <input type="text" id="Varsity" placeholder="University" required /> -->
+          <!-- Varsity (University) Drop-down -->
+          <div class="select-container">
+            <select id="Varsity" required>
+              <option value="" disabled selected>Select University</option>
+              <option value="University of Witwatersrand">
+                University of Witwatersrand
+              </option>
+              <option value="University of Johannesburg">
+                University of Johannesburg
+              </option>
+              <option value="University of Pretoria">
+                University of Pretoria
+              </option>
+              <option value="University of Cape Town">
+                University of Cape Town
+              </option>
+            </select>
+          </div>
+
           <!-- Phone Number -->
           <input type="tel" id="PhoneNo" placeholder="Phone Number" required />
           <!-- Email -->
@@ -67,6 +86,7 @@
             required
           />
           <button type="submit" id="Addbtn">Sign In</button>
+          <a class="admin-link" href="admin_login.html">Admin</a>
         </form>
       </section>
 
@@ -196,6 +216,21 @@
 
   .sidenav a:hover {
     color: #f1f1f1;
+  }
+  /* Style the select drop-down to match the input fields */
+  .select-container {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .select-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 5px;
+    background-color: #eee;
+    border: none;
+    /* font-size: 16px; */
+    color: gray;
   }
 
   .sidenav .closebtn {
@@ -401,5 +436,31 @@
     main.container {
       width: 90%;
     }
+  }
+  /* Admin link style */
+  .admin-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: #3f62af; /* Matches the main button color */
+    color: white; /* White text for contrast */
+    border-radius: 20px; /* Rounded corners to match button */
+    font-size: 14px; /* Similar font size */
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 80ms ease-in, background-color 0.3s ease; /* Smooth transition */
+    cursor: pointer;
+  }
+
+  /* Admin link hover and active effects */
+  .admin-link:hover {
+    background-color: #2f4e8a; /* Darker shade on hover */
+  }
+
+  .admin-link:active {
+    transform: scale(0.95); /* Slight shrink effect on click */
   }
 </style>

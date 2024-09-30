@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="admin-styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h1 class="main-title">Admin Dashboard</h1>
+      </nav>
+    </header>
+
+    <main class="container">
+      <!-- Admin Login Form -->
+      <section class="form-section">
+        <form id="adminLoginForm">
+          <h1>Admin Sign In</h1>
+          <!-- Admin Email -->
+          <input type="email" id="AdminEmail" placeholder="Email" required />
+          <!-- Admin Password -->
+          <input
+            type="password"
+            id="AdminPassword"
+            placeholder="Password"
+            required
+          />
+          <button class="adminbtn" id="adminbtn">Sign In</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Admin Dashboard. All rights reserved.</p>
+    </footer>
+    <script>
+      document.getElementById("adminbtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        const password = document.getElementById("AdminPassword").value;
+        const email = document.getElementById("AdminEmail").value;
+        if (password != "123456" || email != "admin@example.com") {
+          alert("Please enter correct details");
+        } else {
+          window.location.href = "/calc.html";
+        }
+        console.log(password);
+        console.log(email);
+
+        // window.location.href = "/calc.html";
+      });
+    </script>
+  </body>
+</html>

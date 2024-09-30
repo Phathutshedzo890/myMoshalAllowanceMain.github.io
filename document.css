@@ -91,18 +91,24 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 300px;
+    padding: 20px;
+    margin: 20px; /* Spacing between cards */
+    max-width: 400px; /* Define a maximum width */
+    min-width: 300px; /* Define a minimum width */
     text-align: left;
+    flex-grow: 1;
   }
   
   .card h2 {
     font-size: 20px;
     color: #3f62af;
+    margin-bottom: 10px;
   }
   
   .card p {
     font-size: 14px;
     color: #555;
+    margin: 5px 0;
   }
   
   .card ul {
@@ -266,4 +272,82 @@ body {
       padding: 10px;
     }
   }
+  /* Admin document list styling */
+.document-item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.document-item h3 {
+  font-size: 20px;
+  color: #3f62af;
+}
+
+.document-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.document-item a {
+  color: #3f62af;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.document-item a:hover {
+  text-decoration: underline;
+}
+.view-button {
+  padding: 10px 15px;
+  background-color: #3f62af;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  display: inline-block;
+}
+
+.view-button:hover {
+  background-color: #5757d1;
+}
+
+/* Container for the document cards */
+#documents-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  justify-content: center; /* Center the cards horizontally */
+  gap: 30px; /* Add space between cards */
+  padding: 40px; /* Padding around the container */
+
+}
+.spinner {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3f62af;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@media screen and (max-width: 768px) {
+  #documents-list {
+      flex-direction: column; /* Stack cards vertically on smaller screens */
+      align-items: center; /* Align items in the center */
+  }
+}
+
   

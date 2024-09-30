@@ -41,8 +41,10 @@ document.getElementById('registerForm').addEventListener('submit', function(even
   const password = document.getElementById("RegisterPassword").value;
   const firstName = document.getElementById("Fname").value;
   const lastName = document.getElementById("Lname").value;
-  const varsity = document.getElementById("Varsity").value;
+  // const varsity = document.getElementById("Varsity").value;
   const phoneNo = document.getElementById("PhoneNo").value;
+  const selectedUniversity = document.getElementById('Varsity').value;
+  console.log('Selected University:', selectedUniversity);
 
   const auth=getAuth();
   const db= getFirestore();
@@ -59,7 +61,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
             Student_email: email,             // Student's email address
             Student_FName: firstName,         // Student's first name
             Student_LName: lastName,          // Student's last name
-            Student_Varsity: varsity,         // Student's university
+            Student_Varsity: selectedUniversity,         // Student's university
             Student_PhoneNo: phoneNo          // Student's phone number
           };
 
@@ -67,7 +69,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
           const docRef= doc(db,"Student",user.uid);
           setDoc(docRef,userData)
             .then(() => {
-                window.location.href = "/calc.html"; 
+                 window.location.href = "/calc.html"; 
             })
             .catch((error) =>{
                 console.error("error writing document",error);
