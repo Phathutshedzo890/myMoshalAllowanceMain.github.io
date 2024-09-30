@@ -2,20 +2,10 @@ const signInButton = document.getElementById('signIn');
 const signUpButton = document.getElementById('signUp');
 const container = document.getElementById('container');
 
-// signInButton.addEventListener('click', () => {
-//     container.classList.remove('right-panel-active');
-//     //window.location.href = "/calc.html";
-//  });
-
-// signUpButton.addEventListener('click', () => {
-//     container.classList.add('right-panel-active');
-// });
-
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import{getAuth,connectAuthEmulator,signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import{createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-import{getFirestore,doc,setDoc,collection} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
+import{getFirestore,doc,setDoc,collection,addDoc,query,where,getDocs} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
 import { getDatabase,ref,set } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
@@ -28,77 +18,98 @@ const firebaseConfig = {
   measurementId: "G-NCTW2CSPR8"
 };
 const firebaseApp= initializeApp(firebaseConfig);
-const auth= getAuth(firebaseApp);
-const database= getFirestore(firebaseApp);
-// connectAuthEmulator(auth,"http://localhost:9099/");
-
-// const loginEmailPassword = async()=>{
-//   const loginEmail= document.getElementById("loginEmail").value;
-//   const LoginPassword= document.getElementById("loginPassword").value;
-
-//   const userCredential = await signInWithEmailAndPassword(auth, loginEmail, LoginPassword);
-//   console.log(userCredential.user);
-// }
-// signInButton.addEventListener('click', () => {
-//   container.classList.remove('right-panel-active');
-//   window.location.href = "/calc.html";
-// });
 
 document.getElementById('registerForm').addEventListener('submit', function(event) {
   event.preventDefault();
+  const student_number = document.getElementById("Student Number").value;
   const email = document.getElementById("RegisterEmail").value;
   const password = document.getElementById("RegisterPassword").value;
-  const name= document.getElementById("Fname").value;
-  const Surname= document.getElementById("Lname").value;
+  const firstName = document.getElementById("Fname").value;
+  const lastName = document.getElementById("Lname").value;
+  const varsity = document.getElementById("Varsity").value;
+  const phoneNo = document.getElementById("PhoneNo").value;
 
+  const auth = getAuth();
+  const db = getFirestore();
 
-  function writeUserData(userId,name,Lastname,email){
-    const db= getDatabase();
-    const reference= ref(db,'users/'+ userId);
-    
-    set(reference,{
-        username:name,
-        Surname:Lastname,
-        email:email,
-    });
-
-  }
-  createUserWithEmailAndPassword(auth,email, password)
+  createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-          // Signed up
-          console.log('Signup successful:', userCredential.user);
-          const user= userCredential.user;
-          //var uid = user.uid;
-          const db= getDatabase();
-          const reference= ref(db,'users/'+ user.uid);
-          
-          set(reference,{
-              username:name,
-              Surname:Surname,
-              email:email,
-          });
-      
-          // container.classList.remove('right-panel-active');
-             window.location.href = "/calc.html";
+          const user = userCredential.user;
+          const userData = {
+            Student_ID: student_number,             // Primary key
+            Student_email: email,             // Student's email address
+            Student_FName: firstName,         // Student's first name
+            Student_LName: lastName,          // Student's last name
+            Student_Varsity: varsity,         // Student's university
+            Student_PhoneNo: phoneNo          // Student's phone number
+          };
+
+          // Adding the document to the "Student" collection and let Firestore generate the document ID
+      addDoc(collection(db, "Studant"), userData)
+            .then(() => {
+                const user = auth.currentUser; // Use auth.currentUser instead of firebase.auth().currentUser
+                const email = user.email;
+                localStorage.setItem(email, student_number);
+                window.location.href = "calc.html"; 
+            })
+            .catch((error) => {
+                console.error("Error writing document:", error);
+            });
       })
       .catch((error) => {
+          const errorCode = error.code;
+          if (errorCode == 'auth/email-already-in-use') {
+            alert(error.message);
+          }
           console.error('Signup error:', error);
       });
 });
 
+
 document.getElementById("loginForm").addEventListener('submit', function(event) {
   event.preventDefault();
+  const auth = getAuth();
   const email = document.getElementById("LoginEmail").value;
   const password = document.getElementById("LoginPassword").value;
+  const db = getFirestore();
 
-  signInWithEmailAndPassword(auth,email, password)
+  auth.signOut().then(() => {
+    console.log('Previous user signed out.');
+
+    // Now proceed with signing in the new user
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-          // Logged in
-          
-          window.location.href = "/calc.html";
-          console.log('Login successful:', userCredential.user);
+        console.log('Logged in UID:', userCredential.user.uid);
+
+        // Fetch student number from Firestore using the user's email
+        const userDocRef = collection(db, "Studant");
+        const q = query(userDocRef, where("Student_email", "==", email));
+        
+        getDocs(q)
+          .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+              querySnapshot.forEach((doc) => {
+                const studentNumber = doc.data().Student_ID;
+                console.log('Student number:', studentNumber);
+                
+                // Store student number in localStorage
+                localStorage.setItem(email, studentNumber);
+                
+                // Redirect to documents page
+                window.location.href = "calc.html";
+              });
+            } else {
+              console.error('No matching student document found for this email:', email);
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching student document from Firestore:', error);
+          });
       })
       .catch((error) => {
-          console.error('Login error:', error);
+        console.error('Login error:', error);
       });
+  }).catch((error) => {
+    console.error('Sign-out error:', error);
+  });
 });

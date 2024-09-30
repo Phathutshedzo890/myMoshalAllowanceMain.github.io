@@ -19,17 +19,30 @@
         >&times;</a
       >
       <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Services</a>
-      <a href="#">Contact</a>
     </aside>
     <main class="container" id="container">
+      <!-- Registration Form -->
       <section class="form-section sign-up-section">
         <form id="registerForm">
           <h1>Create Account</h1>
-          <input type="text" id="Fname" placeholder="Name" required />
-          <input type="text" id="Lname" placeholder="Surname" required />
+          <!-- First Name -->
+          <input type="text" id="Fname" placeholder="First Name" required />
+          <!-- Last Name -->
+          <input type="text" id="Lname" placeholder="Last Name" required />
+          <!-- Student Number -->
+          <input
+            type="number"
+            id="Student Number"
+            placeholder="Student Number"
+            required
+          />
+          <!-- Varsity -->
+          <input type="text" id="Varsity" placeholder="University" required />
+          <!-- Phone Number -->
+          <input type="tel" id="PhoneNo" placeholder="Phone Number" required />
+          <!-- Email -->
           <input type="email" id="RegisterEmail" placeholder="Email" required />
+          <!-- Password -->
           <input
             type="password"
             id="RegisterPassword"
@@ -39,10 +52,14 @@
           <button type="submit">Sign Up</button>
         </form>
       </section>
+
+      <!-- Login Form -->
       <section class="form-section sign-in-section">
         <form id="loginForm">
           <h1>Sign In</h1>
+          <!-- Email -->
           <input type="email" id="LoginEmail" placeholder="Email" required />
+          <!-- Password -->
           <input
             type="password"
             id="LoginPassword"
@@ -52,6 +69,7 @@
           <button type="submit" id="Addbtn">Sign In</button>
         </form>
       </section>
+
       <aside class="overlay-section">
         <article class="overlay">
           <section class="overlay-panel overlay-left">

@@ -36,10 +36,13 @@ const firebaseApp= initializeApp(firebaseConfig);
 
 document.getElementById('registerForm').addEventListener('submit', function(event) {
   event.preventDefault();
+  const student_number = document.getElementById("Student Number").value;
   const email = document.getElementById("RegisterEmail").value;
   const password = document.getElementById("RegisterPassword").value;
-  const name= document.getElementById("Fname").value;
-  const Surname= document.getElementById("Lname").value;
+  const firstName = document.getElementById("Fname").value;
+  const lastName = document.getElementById("Lname").value;
+  const varsity = document.getElementById("Varsity").value;
+  const phoneNo = document.getElementById("PhoneNo").value;
 
   const auth=getAuth();
   const db= getFirestore();
@@ -52,13 +55,16 @@ document.getElementById('registerForm').addEventListener('submit', function(even
           // Signed up
           const user= userCredential.user;
           const userData={
-            email:email,
-            name:name,
-            Surname:Surname
+            Student_ID: student_number,             // Primary key
+            Student_email: email,             // Student's email address
+            Student_FName: firstName,         // Student's first name
+            Student_LName: lastName,          // Student's last name
+            Student_Varsity: varsity,         // Student's university
+            Student_PhoneNo: phoneNo          // Student's phone number
           };
 
           //console.log('Signup successful:', userCredential.user);
-          const docRef= doc(db,"users",user.uid);
+          const docRef= doc(db,"Student",user.uid);
           setDoc(docRef,userData)
             .then(() => {
                 window.location.href = "/calc.html"; 

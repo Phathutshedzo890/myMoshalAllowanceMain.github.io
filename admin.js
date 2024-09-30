@@ -17,7 +17,7 @@ const db = getFirestore(app);
 
 
 function loadAdminMessages() {
-    const messageQuery = collection(db, "messages");
+    const messageQuery = collection(db, "Create_Query");
     onSnapshot(messageQuery, (querySnapshot) => {
         const adminMessageHistory = document.getElementById("adminMessageHistory");
         adminMessageHistory.innerHTML = ""; // Clear previous messages
@@ -50,14 +50,14 @@ function loadAdminMessages() {
 
 async function sendResponse(messageId, response) {
     if (response.trim()) {
-        await updateDoc(doc(db, "messages", messageId), {
+        await updateDoc(doc(db, "Create_Query", messageId), {
             adminResponse: response,
         });
     }
 }
 
 async function deleteMessage(messageId) {
-    await deleteDoc(doc(db, "messages", messageId));
+    await deleteDoc(doc(db, "Create_Query", messageId));
 }
 
 loadAdminMessages();

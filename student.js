@@ -23,13 +23,13 @@ let name;
 onAuthStateChanged(auth, async (user) => {
     const loggedInUserId = user.uid;
         if(loggedInUserId){
-        const docRef=doc(db,"users",loggedInUserId);
+        const docRef=doc(db,"Student",loggedInUserId);
         getDoc(docRef)
         .then((docSnap)=>{
             if(docSnap.exists()){
                 const userData = docSnap.data();
                 //console.log(userData);
-                 name=userData.name;
+                 name=userData.Student_FName;
                 // const email=userData.email;
                 // const Lastname=userData.Surname;
                 // console.log(name,email,Lastname);
@@ -53,7 +53,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 async function loadMessages() {
-    const messageQuery = query(collection(db, "messages"), where("userId", "==", currentUser.uid));
+    const messageQuery = query(collection(db, "Create_Query"), where("userId", "==", currentUser.uid));
     onSnapshot(messageQuery, (querySnapshot) => {
         const messageHistory = document.getElementById("messageHistory");
         messageHistory.innerHTML = ""; // Clear previous messages
@@ -74,7 +74,7 @@ async function sendMessage() {
     const messageInput = document.getElementById("userMessage");
     const userMessage = messageInput.value;
     if (userMessage.trim()) {
-        await addDoc(collection(db, "messages"), {
+        await addDoc(collection(db, "Create_Query"), {
             userId: currentUser.uid,
             userName: name || "Anonymous",
             userMessage: userMessage,
@@ -86,7 +86,7 @@ async function sendMessage() {
 }
 
 async function deleteMessage(messageId) {
-    await deleteDoc(doc(db, "messages", messageId));
+    await deleteDoc(doc(db, "Create_Query", messageId));
 }
 
 document.getElementById("sendMessageBtn").addEventListener("click", sendMessage);
