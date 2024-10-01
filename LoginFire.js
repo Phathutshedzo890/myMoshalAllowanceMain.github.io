@@ -95,7 +95,7 @@ document.getElementById("loginForm").addEventListener('submit', function(event) 
       .then((userCredential) => {
           // Logged in
           
-          window.location.href = "/calc.html";
+          window.location.href = "/calculate_allowance.html";
           console.log('Login successful:', userCredential.user);
       })
       .catch((error) => {
