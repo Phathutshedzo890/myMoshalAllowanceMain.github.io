@@ -183,3 +183,64 @@ footer p {
         width: 80%;
     }
 }
+/* Search and Notifications Container */
+.search-container {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .search-container input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+  }
+  
+  .search-container button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #3f62af;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .notifications-container {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .notifications-container h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Student Table */
+  .student-list {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  table {
+    margin: 0 auto;
+    width: 80%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #3f62af;
+    color: white;
+  }
+  
+  tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
