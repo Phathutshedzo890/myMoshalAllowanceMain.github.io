@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="admin.css" />
   </head>
   <body>
+    <!-- Side Navigation Bar -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
+        >&times;</a
+      >
+      <a href="calculate_allowance_page.html">Update Allowance</a>
+      <a href="profile.html">Profile</a>
+      <a href="documents.html">Documents</a>
+      <a href="student.html">Query</a>
+    </div>
     <header class="header">
       <nav class="navbar">
         <div class="logo-container">
@@ -40,7 +50,19 @@
         reserved
       </p>
     </footer>
-
+    <script>
+      function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        const container = document.querySelector(".container");
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          container.style.marginLeft = "0";
+        } else {
+          sidenav.style.width = "250px";
+          container.style.marginLeft = "250px";
+        }
+      }
+    </script>
     <script type="module" src="admin.js"></script>
   </body>
 </html>
