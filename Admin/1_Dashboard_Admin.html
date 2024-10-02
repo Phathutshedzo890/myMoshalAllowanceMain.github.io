@@ -418,49 +418,78 @@
                     <div class="col-lg-8 col-4-xxxl col-xl-12">
                         <div class="card dashboard-card-six">
                             <div class="card-body">
-                                <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
                                 <div class="heading-layout1">
                                     <div class="item-title">
-                                        <h3>Students</h3>
-                                        <br>
+                                        <h3>Message Board</h3>
                                     </div>
-                                    <div class="dropdown">
+                                     <div class="dropdown">
                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
+                
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="ri-close-line text-orange-red"></i>Close</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-edit-2-line text-dark-pastel-green"></i>Edit</a>
-                                            <a class="dropdown-item" href="#"><i class="ri-refresh-line text-orange-peel"></i>Refresh</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="swiper-container">
-                                    <div class="swiper-wrapper">
-                                        
-                                        <div class="swiper-slide">
-                                            <div class="doughnut-chart-wrap">
-                                                <h4 class="item-title">Gender</h4>
-                                                <canvas id="student-doughnut-chart" width="200" height="300"></canvas>
-                                            </div>
+                                <form class="mg-b-20">
+                                    <div class="row gutters-8">
+                                        <div class="col-lg-5 col-12 form-group">
+                                            <input type="text" placeholder="Search by Date ..." class="form-control" fdprocessedid="9a2ury">
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="doughnut-chart-wrap">
-                                                <h4 class="item-title">Degree</h4>
-                                                <canvas id="degree-doughnut-chart" width="200" height="300"></canvas>
-                                            </div>
-                                            
+                                        <div class="col-lg-5 col-12 form-group">
+                                            <input type="text" placeholder="Search by Title ..." class="form-control" fdprocessedid="r8c2xd">
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="doughnut-chart-wrap">
-                                                <h4 class="item-title">Funding Status</h4>
-                                                <canvas id="fund-doughnut-chart" width="200" height="300"></canvas>
-                                            </div>
+                                        <div class="col-lg-2 col-12 form-group">
+                                            <button type="submit" class="fw-btn-fill btn-gradient-yellow" fdprocessedid="odpdjr">Find</button>
                                         </div>
                                     </div>
-                                    <!-- Add Pagination -->
-                                    <div class="swiper-pagination"></div>
-                                    <!-- Add Navigation -->
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
+                                </form>
+                                <div class="item-content">
+                                    <div class="media">
+                                        <div class="item-img bg-skyblue author-online">
+                                            <img src="data:image/jpeg;base64,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" alt="img">
+                                        </div>
+                                        <div class="media-body space-sm">
+                                            <div class="item-title">
+                                                <a href="#">
+                                                    <span class="item-name">Maria Zaman</span> 
+                                                    <span class="item-time">18:30</span> 
+                                                </a>  
+                                            </div>
+                                            <p>Which documents should be submitted?</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="item-img bg-yellow author-online">
+                                            <img src="data:image/jpeg;base64,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" alt="img">
+                                        </div>
+                                        <div class="media-body space-sm">
+                                            <div class="item-title">
+                                                <a href="#">
+                                                    <span class="item-name">Benny Roy</span> 
+                                                    <span class="item-time">10:35</span> 
+                                                </a>  
+                                            </div>
+                                            <p>I disagree with my allowance</p>
+                                        </div>
+                                    </div>
+                                    <div class="media">
+                                        <div class="item-img bg-pink">
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_jp734uUQttQZSABqWm7SF8yQxhVmDe0Uw&s" alt="img">
+                                        </div>
+                                        <div class="media-body space-sm">
+                                            <div class="item-title">
+                                                <a href="#">
+                                                    <span class="item-name">Steven</span> 
+                                                    <span class="item-time">02:35</span> 
+                                                </a>  
+                                            </div>
+                                            <p>Everything is okay, I agree.</p>
+                                        </div>
+                                    </div>
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -774,78 +803,6 @@
                                                                     
                                                                     <td>(678) 901-2345</td>
                                                                     <td>davidl@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">2666876</label>
-                                                                        </div>
-                                                                    </td>
-                                                                
-                                                                    <td>Linda Green</td>
-                                                                
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Commerce</td>
-                                                                    <td>Moshal</td>
-                                                                    
-                                                                    <td>(789) 012-3456</td>
-                                                                    <td>lindag@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">2806357</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    
-                                                                    <td>Thando Zulu</td>
-                                                                    
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Engineering</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    
-                                                                    <td>(890) 123-4567</td>
-                                                                    <td>jamest@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">2583707</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    
-                                                                    <td>Patricia Khumalo</td>
-                                                                
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Science</td>
-                                                                    <td>Moshal</td>
-                                                                
-                                                                    <td>(901) 234-5678</td>
-                                                                    <td>patriciaw@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">2836924</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    
-                                                                    <td>Robert Black</td>
-                                                                
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Arts</td>
-                                                                    <td>Partially-External</td>
-                                                                
-                                                                    <td>(012) 345-6789</td>
-                                                                    <td>robertb@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                             </tbody>
@@ -1234,55 +1191,7 @@
                                                                     <td>lebo.phiri@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
-                                                                
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">223104226</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>Bontle Mokoena</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Law</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>(031) 345-6789</td>
-                                                                    <td>bontle.mokoena@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">223104227</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>Thando Khumalo</td>
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Engineering</td>
-                                                                    <td>External Bursary</td>
-                                                                    <td>(041) 456-7890</td>
-                                                                    <td>thando.khumalo@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">223104228</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>Nomzamo Mthembu</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Science in Agriculture</td>
-                                                                    <td>NSFAS</td>
-                                                                    <td>(012) 567-8901</td>
-                                                                    <td>nomzamo.mthembu@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
-                                                                </tr>
-                                                                
+
                                                                 <!-- Pagination could be implemented here -->
                                                             </tbody>
                                                         </table>
@@ -1435,66 +1344,202 @@
                                                                     <td>mandisa.sibeko@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
+                                                                
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                    
+                                            </div>
+                                            <div id="Tab5" class="tab-content">
+                                                <div class="heading-layout1">
+                                                    <div class="item-title">
+                                                        <h3>Students</h3>
+                                                    </div>
+                                                <div class="dropdown">
+                                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
+                                
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="ri-close-line text-orange-red"></i>Close</a>
+                                                            <a class="dropdown-item" href="#"><i class="ri-edit-2-line text-dark-pastel-green"></i>Edit</a>
+                                                            <a class="dropdown-item" href="#"><i class="ri-refresh-line text-orange-peel"></i>Refresh</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="table-box-wrap">
+                                                    <form class="search-form-box">
+                                                        <div class="row gutters-8">
+                                                            <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                                                                <input type="text" placeholder="Search by Roll ..." class="form-control">
+                                                            </div>
+                                                            <div class="col-4-xxxl col-xl-4 col-lg-4 col-12 form-group">
+                                                                <input type="text" placeholder="Search by Name ..." class="form-control">
+                                                            </div>
+                                                            <div class="col-4-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                                                                <input type="text" placeholder="Search by Class ..." class="form-control">
+                                                            </div>
+                                                            <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
+                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Search</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <div class="table-responsive student-table-box">
+                                                        <table class="table display data-table text-nowrap">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td>
+                                                                    <th> 
                                                                         <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">32984567</label>
+                                                                            <input type="checkbox" class="form-check-input checkAll">
+                                                                            <label class="form-check-label">StudentID</label>
                                                                         </div>
-                                                                    </td>
-                                                                    <td>Jabu Ndlovu</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Science in Computer Science</td>
-                                                                    <td>NSFAS</td>
-                                                                    <td>(078) 901-2345</td>
-                                                                    <td>jabu.ndlovu@example.com</td>
-                                                                    <td><button class="tab-button active">View</button></td>
+                                                                    </th>
+                                                                   
+                                                                    <th>Name</th>
+                                                                    
+                                                                    <th>Year of Study</th>
+                                                                    <th>Degree</th>
+                                                                    <th>Funding Status</th>
+                                                                    
+                                                                    <th>Phone</th>
+                                                                    <th>E-mail</th>
+                                                                    <th></th>
                                                                 </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">23985761</label>
+                                                                            <label class="form-check-label">2666876</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td>Buhle Moyo</td>
+                                                                
+                                                                    <td>Linda Green</td>
+                                                                
                                                                     <td>1</td>
-                                                                    <td>Bachelor of Science in Environmental Science</td>
+                                                                    <td>Bachelor of Commerce</td>
                                                                     <td>Moshal</td>
-                                                                    <td>(079) 012-3456</td>
-                                                                    <td>buhle.moyo@example.com</td>
+                                                                    
+                                                                    <td>(789) 012-3456</td>
+                                                                    <td>lindag@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">21987543</label>
+                                                                            <label class="form-check-label">2806357</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td>Nomusa Zulu</td>
+                                                                    
+                                                                    <td>Thando Zulu</td>
+                                                                    
                                                                     <td>4</td>
-                                                                    <td>Bachelor of Medicine</td>
+                                                                    <td>Bachelor of Engineering</td>
                                                                     <td>Partially-NSFAS</td>
-                                                                    <td>(082) 345-6789</td>
-                                                                    <td>nomusa.zulu@example.com</td>
+                                                                    
+                                                                    <td>(890) 123-4567</td>
+                                                                    <td>jamest@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">23479812</label>
+                                                                            <label class="form-check-label">2583707</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td>Thato Mokoena</td>
+                                                                    
+                                                                    <td>Patricia Khumalo</td>
+                                                                
                                                                     <td>2</td>
-                                                                    <td>Bachelor of Business Administration</td>
-                                                                    <td>External Funding</td>
-                                                                    <td>(073) 456-7890</td>
-                                                                    <td>thato.mokoena@example.com</td>
+                                                                    <td>Bachelor of Science</td>
+                                                                    <td>Moshal</td>
+                                                                
+                                                                    <td>(901) 234-5678</td>
+                                                                    <td>patriciaw@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input">
+                                                                            <label class="form-check-label">2836924</label>
+                                                                        </div>
+                                                                    </td>
+                                                                    
+                                                                    <td>Robert Black</td>
+                                                                
+                                                                    <td>3</td>
+                                                                    <td>Bachelor of Arts</td>
+                                                                    <td>Partially-External</td>
+                                                                
+                                                                    <td>(012) 345-6789</td>
+                                                                    <td>robertb@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                    
+                                            </div>
+                                            <div id="Tab6" class="tab-content">
+                                                <div class="heading-layout1">
+                                                    <div class="item-title">
+                                                        <h3>Students</h3>
+                                                    </div>
+                                                <div class="dropdown">
+                                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
+                                
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#"><i class="ri-close-line text-orange-red"></i>Close</a>
+                                                            <a class="dropdown-item" href="#"><i class="ri-edit-2-line text-dark-pastel-green"></i>Edit</a>
+                                                            <a class="dropdown-item" href="#"><i class="ri-refresh-line text-orange-peel"></i>Refresh</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="table-box-wrap">
+                                                    <form class="search-form-box">
+                                                        <div class="row gutters-8">
+                                                            <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                                                                <input type="text" placeholder="Search by Roll ..." class="form-control">
+                                                            </div>
+                                                            <div class="col-4-xxxl col-xl-4 col-lg-4 col-12 form-group">
+                                                                <input type="text" placeholder="Search by Name ..." class="form-control">
+                                                            </div>
+                                                            <div class="col-4-xxxl col-xl-3 col-lg-3 col-12 form-group">
+                                                                <input type="text" placeholder="Search by Class ..." class="form-control">
+                                                            </div>
+                                                            <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
+                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Search</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                    <div class="table-responsive student-table-box">
+                                                        <table class="table display data-table text-nowrap">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th> 
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input checkAll">
+                                                                            <label class="form-check-label">StudentID</label>
+                                                                        </div>
+                                                                    </th>
+                                                                   
+                                                                    <th>Name</th>
+                                                                    
+                                                                    <th>Year of Study</th>
+                                                                    <th>Degree</th>
+                                                                    <th>Funding Status</th>
+                                                                    
+                                                                    <th>Phone</th>
+                                                                    <th>E-mail</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
@@ -1570,511 +1615,6 @@
                                                                     <td>mandla.ngubane@example.com</td>
                                                                     <td><button class="tab-button active">View</button></td>
                                                                 </tr>
-                                                                
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                    
-                                            </div>
-                                            <div id="Tab5" class="tab-content">
-                                                <div class="heading-layout1">
-                                                    <div class="item-title">
-                                                        <h3>My Students</h3>
-                                                    </div>
-                                                <div class="dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
-                                
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i class="ri-close-line text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i class="ri-edit-2-line text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i class="ri-refresh-line text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="table-box-wrap">
-                                                    <form class="search-form-box">
-                                                        <div class="row gutters-8">
-                                                            <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
-                                                                <input type="text" placeholder="Search by Roll ..." class="form-control">
-                                                            </div>
-                                                            <div class="col-4-xxxl col-xl-4 col-lg-4 col-12 form-group">
-                                                                <input type="text" placeholder="Search by Name ..." class="form-control">
-                                                            </div>
-                                                            <div class="col-4-xxxl col-xl-3 col-lg-3 col-12 form-group">
-                                                                <input type="text" placeholder="Search by Class ..." class="form-control">
-                                                            </div>
-                                                            <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    <div class="table-responsive student-table-box">
-                                                        <table class="table display data-table text-nowrap">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th> 
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input checkAll">
-                                                                            <label class="form-check-label">StudentID</label>
-                                                                        </div>
-                                                                    </th>
-                                                                    <th>Photo</th>
-                                                                    <th>Name</th>
-                                                                    <th>Gender</th>
-                                                                    <th>Year of Study</th>
-                                                                    <th>Degree</th>
-                                                                    <th>Funding Status</th>
-                                                                    <th>Address</th>
-                                                                    <th>Date Of Birth</th>
-                                                                    <th>Phone</th>
-                                                                    <th>E-mail</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">22723286</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo1.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Thandiwe Nkosi</td>
-                                                                    <td>Female</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Science</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>123 Main St, Johannesburg</td>
-                                                                    <td>1998-05-14</td>
-                                                                    <td>0712345678</td>
-                                                                    <td>thandiwe.nkosi@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">24670562</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo2.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Sipho Dlamini</td>
-                                                                    <td>Male</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Commerce</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>456 Elm St, Cape Town</td>
-                                                                    <td>1997-08-22</td>
-                                                                    <td>0834567890</td>
-                                                                    <td>sipho.dlamini@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">24630625</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo3.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Nomvula Mthembu</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Arts</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>789 Pine St, Durban</td>
-                                                                    <td>1999-11-30</td>
-                                                                    <td>0723456789</td>
-                                                                    <td>nomvula.mthembu@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">23652382</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo4.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Andile Khumalo</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Engineering</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>321 Oak St, Pretoria</td>
-                                                                    <td>1996-03-15</td>
-                                                                    <td>0791234567</td>
-                                                                    <td>andile.khumalo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">24015939</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo5.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Lebohang Mokoena</td>
-                                                                    <td>Female</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Education</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>654 Maple St, Bloemfontein</td>
-                                                                    <td>1998-01-20</td>
-                                                                    <td>0765432109</td>
-                                                                    <td>lebohang.mokoena@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">22765353</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo6.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Tshepo Modise</td>
-                                                                    <td>Male</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Laws</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>987 Cedar St, Port Elizabeth</td>
-                                                                    <td>1997-07-11</td>
-                                                                    <td>0712345670</td>
-                                                                    <td>tshepo.modise@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">21694282</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo7.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Karabo Mkhize</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Social Work</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>135 Birch St, Kimberley</td>
-                                                                    <td>1999-09-09</td>
-                                                                    <td>0789012345</td>
-                                                                    <td>karabo.mkhize@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">23630907</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo8.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Fikile Ngcobo</td>
-                                                                    <td>Female</td>
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Science in Nursing</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>246 Spruce St, East London</td>
-                                                                    <td>1996-12-25</td>
-                                                                    <td>0712345671</td>
-                                                                    <td>fikile.ngcobo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">22945319</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo9.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Linda Pheto</td>
-                                                                    <td>Female</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Business Administration</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>369 Willow St, Nelspruit</td>
-                                                                    <td>1998-04-18</td>
-                                                                    <td>0823456789</td>
-                                                                    <td>linda.pheto@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">20594438</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo10.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Gugulethu Mthethwa</td>
-                                                                    <td>Female</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Science in Computer Science</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>852 Cherry St, Pretoria</td>
-                                                                    <td>1997-02-14</td>
-                                                                    <td>0798765432</td>
-                                                                    <td>gugulethu.mthethwa@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                    
-                                            </div>
-                                            <div id="Tab6" class="tab-content">
-                                                <div class="heading-layout1">
-                                                    <div class="item-title">
-                                                        <h3>My Students</h3>
-                                                    </div>
-                                                <div class="dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
-                                
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i class="ri-close-line text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i class="ri-edit-2-line text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i class="ri-refresh-line text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="table-box-wrap">
-                                                    <form class="search-form-box">
-                                                        <div class="row gutters-8">
-                                                            <div class="col-3-xxxl col-xl-3 col-lg-3 col-12 form-group">
-                                                                <input type="text" placeholder="Search by Roll ..." class="form-control">
-                                                            </div>
-                                                            <div class="col-4-xxxl col-xl-4 col-lg-4 col-12 form-group">
-                                                                <input type="text" placeholder="Search by Name ..." class="form-control">
-                                                            </div>
-                                                            <div class="col-4-xxxl col-xl-3 col-lg-3 col-12 form-group">
-                                                                <input type="text" placeholder="Search by Class ..." class="form-control">
-                                                            </div>
-                                                            <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                    <div class="table-responsive student-table-box">
-                                                        <table class="table display data-table text-nowrap">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th> 
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input checkAll">
-                                                                            <label class="form-check-label">StudentID</label>
-                                                                        </div>
-                                                                    </th>
-                                                                    <th>Photo</th>
-                                                                    <th>Name</th>
-                                                                    <th>Gender</th>
-                                                                    <th>Year of Study</th>
-                                                                    <th>Degree</th>
-                                                                    <th>Funding Status</th>
-                                                                    <th>Address</th>
-                                                                    <th>Date Of Birth</th>
-                                                                    <th>Phone</th>
-                                                                    <th>E-mail</th>
-                                                                    <th></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student1">
-                                                                            <label class="form-check-label" for="student1">2025247244</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo1.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Thandiwe Nkosi</td>
-                                                                    <td>Female</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Science</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>123 Main St, Johannesburg</td>
-                                                                    <td>1998-05-14</td>
-                                                                    <td>0712345678</td>
-                                                                    <td>thandiwe.nkosi@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student2">
-                                                                            <label class="form-check-label" for="student2">2025177292</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo2.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Sipho Dlamini</td>
-                                                                    <td>Male</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Commerce</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>456 Oak Ave, Durban</td>
-                                                                    <td>1997-09-22</td>
-                                                                    <td>0823456789</td>
-                                                                    <td>sipho.dlamini@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student3">
-                                                                            <label class="form-check-label" for="student3">2020067985</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo3.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Lebogang Mokoena</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Arts</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>789 Pine St, Cape Town</td>
-                                                                    <td>2000-12-01</td>
-                                                                    <td>0734567890</td>
-                                                                    <td>lebogang.mokoena@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student4">
-                                                                            <label class="form-check-label" for="student4">2020119877</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo4.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Kgosi Mathe</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Engineering</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>321 Maple Rd, Pretoria</td>
-                                                                    <td>1996-03-15</td>
-                                                                    <td>0719876543</td>
-                                                                    <td>kgosi.mathe@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student5">
-                                                                            <label class="form-check-label" for="student5">2026288262</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo5.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Nomvula Khumalo</td>
-                                                                    <td>Female</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Education</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>654 Cedar St, Bloemfontein</td>
-                                                                    <td>1999-07-20</td>
-                                                                    <td>0821234567</td>
-                                                                    <td>nomvula.khumalo@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student6">
-                                                                            <label class="form-check-label" for="student6">2018192647</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo6.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Thabo Mthembu</td>
-                                                                    <td>Male</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Information Technology</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>987 Birch St, Port Elizabeth</td>
-                                                                    <td>1998-11-30</td>
-                                                                    <td>0712345679</td>
-                                                                    <td>thabo.mthembu@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student7">
-                                                                            <label class="form-check-label" for="student7">2023163484</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo7.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Petunia Ndlovu</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Social Work</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>135 Spruce St, East London</td>
-                                                                    <td>2001-04-25</td>
-                                                                    <td>0834567891</td>
-                                                                    <td>petunia.ndlovu@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student8">
-                                                                            <label class="form-check-label" for="student8">2019096649</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo8.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Andile Zulu</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Arts in Music</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>246 Willow St, Kimberley</td>
-                                                                    <td>1995-08-19</td>
-                                                                    <td>0712345670</td>
-                                                                    <td>andile.zulu@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student9">
-                                                                            <label class="form-check-label" for="student9">2020016388</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo9.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Fikile Mkhize</td>
-                                                                    <td>Female</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Business Administration</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>369 Palm St, Pretoria</td>
-                                                                    <td>1999-02-28</td>
-                                                                    <td>0834567892</td>
-                                                                    <td>fikile.mkhize@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input" id="student10">
-                                                                            <label class="form-check-label" for="student10">2020024705</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo10.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Jabulani Mthethwa</td>
-                                                                    <td>Male</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Science in Engineering</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>852 Cherry St, Bloemfontein</td>
-                                                                    <td>1997-10-05</td>
-                                                                    <td>0712345671</td>
-                                                                    <td>jabulani.mthethwa@example.com</td>
-                                                                    <td><button class="btn btn-primary">Edit</button></td>
-                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -2084,7 +1624,7 @@
                                             <div id="Tab7" class="tab-content">
                                                 <div class="heading-layout1">
                                                     <div class="item-title">
-                                                        <h3>My Students</h3>
+                                                        <h3>Students</h3>
                                                     </div>
                                                 <div class="dropdown">
                                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
@@ -2109,7 +1649,7 @@
                                                                 <input type="text" placeholder="Search by Class ..." class="form-control">
                                                             </div>
                                                             <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Search</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -2123,133 +1663,79 @@
                                                                             <label class="form-check-label">StudentID</label>
                                                                         </div>
                                                                     </th>
-                                                                    <th>Photo</th>
+                                                                   
                                                                     <th>Name</th>
-                                                                    <th>Gender</th>
+                                                                    
                                                                     <th>Year of Study</th>
                                                                     <th>Degree</th>
                                                                     <th>Funding Status</th>
-                                                                    <th>Address</th>
-                                                                    <th>Date Of Birth</th>
+                                                                    
                                                                     <th>Phone</th>
                                                                     <th>E-mail</th>
                                                                     <th></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">221013151</label>
+                                                                            <label class="form-check-label">32984567</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo1.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Thandiwe Nkosi</td>
-                                                                    <td>Female</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Science</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>123 Main St, Johannesburg</td>
-                                                                    <td>2001-05-15</td>
-                                                                    <td>071-123-4567</td>
-                                                                    <td>thandiwe.nkosi@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">222006574</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo2.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Sipho Mthembu</td>
-                                                                    <td>Male</td>
+                                                                    <td>Jabu Ndlovu</td>
                                                                     <td>3</td>
-                                                                    <td>Bachelor of Commerce</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>456 Second Ave, Cape Town</td>
-                                                                    <td>2000-08-20</td>
-                                                                    <td>082-234-5678</td>
-                                                                    <td>sipho.mthembu@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>Bachelor of Science in Computer Science</td>
+                                                                    <td>NSFAS</td>
+                                                                    <td>(078) 901-2345</td>
+                                                                    <td>jabu.ndlovu@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">222002742</label>
+                                                                            <label class="form-check-label">23985761</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo3.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Nomsa Dlamini</td>
-                                                                    <td>Female</td>
+                                                                    <td>Buhle Moyo</td>
                                                                     <td>1</td>
-                                                                    <td>Bachelor of Arts</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>789 Third Blvd, Durban</td>
-                                                                    <td>2002-12-01</td>
-                                                                    <td>061-345-6789</td>
-                                                                    <td>nomsa.dlamini@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">224024996</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo4.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Andile Khumalo</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Engineering</td>
+                                                                    <td>Bachelor of Science in Environmental Science</td>
                                                                     <td>Moshal</td>
-                                                                    <td>321 Fourth St, Pretoria</td>
-                                                                    <td>1999-03-10</td>
-                                                                    <td>073-456-7890</td>
-                                                                    <td>andile.khumalo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>(079) 012-3456</td>
+                                                                    <td>buhle.moyo@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">224034172</label>
+                                                                            <label class="form-check-label">21987543</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo5.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Kgothatso Modise</td>
-                                                                    <td>Female</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Education</td>
+                                                                    <td>Nomusa Zulu</td>
+                                                                    <td>4</td>
+                                                                    <td>Bachelor of Medicine</td>
                                                                     <td>Partially-NSFAS</td>
-                                                                    <td>654 Fifth Ave, Bloemfontein</td>
-                                                                    <td>2001-07-25</td>
-                                                                    <td>079-567-8901</td>
-                                                                    <td>kgothatso.modise@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>(082) 345-6789</td>
+                                                                    <td>nomusa.zulu@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">220001735</label>
+                                                                            <label class="form-check-label">23479812</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo6.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Lebogang Ndlovu</td>
-                                                                    <td>Male</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Law</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>987 Sixth Rd, Port Elizabeth</td>
-                                                                    <td>2000-11-30</td>
-                                                                    <td>071-678-9012</td>
-                                                                    <td>lebogang.ndlovu@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>Thato Mokoena</td>
+                                                                    <td>2</td>
+                                                                    <td>Bachelor of Business Administration</td>
+                                                                    <td>External Funding</td>
+                                                                    <td>(073) 456-7890</td>
+                                                                    <td>thato.mokoena@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -2260,7 +1746,7 @@
                                             <div id="Tab8" class="tab-content">
                                                 <div class="heading-layout1">
                                                     <div class="item-title">
-                                                        <h3>My Students</h3>
+                                                        <h3>Students</h3>
                                                     </div>
                                                 <div class="dropdown">
                                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
@@ -2285,7 +1771,7 @@
                                                                 <input type="text" placeholder="Search by Class ..." class="form-control">
                                                             </div>
                                                             <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Search</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -2299,14 +1785,13 @@
                                                                             <label class="form-check-label">StudentID</label>
                                                                         </div>
                                                                     </th>
-                                                                    <th>Photo</th>
+                                                                    
                                                                     <th>Name</th>
-                                                                    <th>Gender</th>
+                                                                   
                                                                     <th>Year of Study</th>
                                                                     <th>Degree</th>
                                                                     <th>Funding Status</th>
-                                                                    <th>Address</th>
-                                                                    <th>Date Of Birth</th>
+                                                                    
                                                                     <th>Phone</th>
                                                                     <th>E-mail</th>
                                                                     <th></th>
@@ -2317,210 +1802,48 @@
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">224370197</label>
+                                                                            <label class="form-check-label">223104226</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo1.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Thandiwe Nkosi</td>
-                                                                    <td>Female</td>
-                                                                    <td>2nd Year</td>
-                                                                    <td>Bachelor of Science</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>123 Main St, Johannesburg</td>
-                                                                    <td>1999-05-12</td>
-                                                                    <td>071-123-4567</td>
-                                                                    <td>thandiwe@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">216432308</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo2.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Sipho Dlamini</td>
-                                                                    <td>Male</td>
-                                                                    <td>3rd Year</td>
-                                                                    <td>Bachelor of Arts</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>456 Elm St, Cape Town</td>
-                                                                    <td>1998-08-22</td>
-                                                                    <td>082-234-5678</td>
-                                                                    <td>sipho@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">225628007</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo3.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Nomvula Mthembu</td>
-                                                                    <td>Female</td>
-                                                                    <td>1st Year</td>
-                                                                    <td>Bachelor of Commerce</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>789 Pine St, Durban</td>
-                                                                    <td>2000-03-15</td>
-                                                                    <td>071-345-6789</td>
-                                                                    <td>nomvula@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">227582012</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo4.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Andile Khumalo</td>
-                                                                    <td>Male</td>
-                                                                    <td>4th Year</td>
-                                                                    <td>Bachelor of Engineering</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>321 Cedar St, Pretoria</td>
-                                                                    <td>1997-11-30</td>
-                                                                    <td>083-456-7890</td>
-                                                                    <td>andile@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">217753558</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo5.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Lebohang Molefe</td>
-                                                                    <td>Female</td>
-                                                                    <td>2nd Year</td>
-                                                                    <td>Bachelor of Education</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>654 Birch St, Bloemfontein</td>
-                                                                    <td>1999-07-19</td>
-                                                                    <td>072-567-8901</td>
-                                                                    <td>leboghang@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">221508031</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo6.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Tshepo Ramaphosa</td>
-                                                                    <td>Male</td>
-                                                                    <td>3rd Year</td>
+                                                                    <td>Bontle Mokoena</td>
+                                                                    <td>3</td>
                                                                     <td>Bachelor of Law</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>987 Maple St, Port Elizabeth</td>
-                                                                    <td>1998-12-25</td>
-                                                                    <td>079-678-9012</td>
-                                                                    <td>tshepo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">221445331</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo7.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Karabo Mokoena</td>
-                                                                    <td>Female</td>
-                                                                    <td>1st Year</td>
-                                                                    <td>Bachelor of Social Science</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>135 Cherry St, Kimberley</td>
-                                                                    <td>2001-02-14</td>
-                                                                    <td>071-789-0123</td>
-                                                                    <td>karabo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">224226991</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo8.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Mapaseka Mkhize</td>
-                                                                    <td>Female</td>
-                                                                    <td>4th Year</td>
-                                                                    <td>Bachelor of Pharmacy</td>
                                                                     <td>Partially-NSFAS</td>
-                                                                    <td>258 Olive St, Nelspruit</td>
-                                                                    <td>1996-09-09</td>
-                                                                    <td>082-345-6789</td>
-                                                                    <td>mapaseka@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>(031) 345-6789</td>
+                                                                    <td>bontle.mokoena@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
+                                                                
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">221520236</label>
+                                                                            <label class="form-check-label">223104227</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo9.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Fikile Ngcobo</td>
-                                                                    <td>Female</td>
-                                                                    <td>2nd Year</td>
-                                                                    <td>Bachelor of Information Technology</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>369 Lemon St, East London</td>
-                                                                    <td>1999-04-20</td>
-                                                                    <td>071-234-5678</td>
-                                                                    <td>fikile@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>Thando Khumalo</td>
+                                                                    <td>4</td>
+                                                                    <td>Bachelor of Engineering</td>
+                                                                    <td>External Bursary</td>
+                                                                    <td>(041) 456-7890</td>
+                                                                    <td>thando.khumalo@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
+                                                                
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">220051593</label>
+                                                                            <label class="form-check-label">223104228</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo10.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Vusimuzi Ndlovu</td>
-                                                                    <td>Male</td>
-                                                                    <td>3rd Year</td>
-                                                                    <td>Bachelor of Architecture</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>147 Grape St, Polokwane</td>
-                                                                    <td>1998-06-30</td>
-                                                                    <td>083-456-7890</td>
-                                                                    <td>vusimuzi@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">227633539</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo11.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Lesedi Tshabalala</td>
-                                                                    <td>Female</td>
-                                                                    <td>1st Year</td>
-                                                                    <td>Bachelor of Music</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>258 Water St, Bloemfontein</td>
-                                                                    <td>2000-10-05</td>
-                                                                    <td>071-987-6543</td>
-                                                                    <td>lesedi@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    <td>Nomzamo Mthembu</td>
+                                                                    <td>1</td>
+                                                                    <td>Bachelor of Science in Agriculture</td>
+                                                                    <td>NSFAS</td>
+                                                                    <td>(012) 567-8901</td>
+                                                                    <td>nomzamo.mthembu@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -2531,7 +1854,7 @@
                                             <div id="Tab9" class="tab-content">
                                                 <div class="heading-layout1">
                                                     <div class="item-title">
-                                                        <h3>My Students</h3>
+                                                        <h3>tudents</h3>
                                                     </div>
                                                 <div class="dropdown">
                                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
@@ -2556,7 +1879,7 @@
                                                                 <input type="text" placeholder="Search by Class ..." class="form-control">
                                                             </div>
                                                             <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Search</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -2570,171 +1893,91 @@
                                                                             <label class="form-check-label">StudentID</label>
                                                                         </div>
                                                                     </th>
-                                                                    <th>Photo</th>
+                                                                   
                                                                     <th>Name</th>
-                                                                    <th>Gender</th>
+                                                                   
                                                                     <th>Year of Study</th>
                                                                     <th>Degree</th>
                                                                     <th>Funding Status</th>
-                                                                    <th>Address</th>
-                                                                    <th>Date Of Birth</th>
+                                                                    
                                                                     <th>Phone</th>
                                                                     <th>E-mail</th>
                                                                     <th></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4428366</label>
+                                                                            <label class="form-check-label">2666876</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo1.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Thandiwe Nkosi</td>
-                                                                    <td>Female</td>
+                                                                
+                                                                    <td>Linda Green</td>
+                                                                
+                                                                    <td>1</td>
+                                                                    <td>Bachelor of Commerce</td>
+                                                                    <td>Moshal</td>
+                                                                    
+                                                                    <td>(789) 012-3456</td>
+                                                                    <td>lindag@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input">
+                                                                            <label class="form-check-label">2806357</label>
+                                                                        </div>
+                                                                    </td>
+                                                                    
+                                                                    <td>Thando Zulu</td>
+                                                                    
+                                                                    <td>4</td>
+                                                                    <td>Bachelor of Engineering</td>
+                                                                    <td>Partially-NSFAS</td>
+                                                                    
+                                                                    <td>(890) 123-4567</td>
+                                                                    <td>jamest@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input">
+                                                                            <label class="form-check-label">2583707</label>
+                                                                        </div>
+                                                                    </td>
+                                                                    
+                                                                    <td>Patricia Khumalo</td>
+                                                                
                                                                     <td>2</td>
                                                                     <td>Bachelor of Science</td>
                                                                     <td>Moshal</td>
-                                                                    <td>123 Main St, Johannesburg</td>
-                                                                    <td>1998-05-12</td>
-                                                                    <td>(011) 123-4567</td>
-                                                                    <td>thandiwe@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                
+                                                                    <td>(901) 234-5678</td>
+                                                                    <td>patriciaw@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4492543</label>
+                                                                            <label class="form-check-label">2836924</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo2.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Sipho Dlamini</td>
-                                                                    <td>Male</td>
+                                                                    
+                                                                    <td>Robert Black</td>
+                                                                
                                                                     <td>3</td>
                                                                     <td>Bachelor of Arts</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>456 Oak Rd, Cape Town</td>
-                                                                    <td>1997-09-23</td>
-                                                                    <td>(021) 234-5678</td>
-                                                                    <td>sipho@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4462904</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo3.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Nomsa Mthembu</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Commerce</td>
                                                                     <td>Partially-External</td>
-                                                                    <td>789 Pine St, Durban</td>
-                                                                    <td>1999-01-15</td>
-                                                                    <td>(031) 345-6789</td>
-                                                                    <td>nomsa@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4461098</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo4.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Thabo Khumalo</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Engineering</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>321 Elm St, Pretoria</td>
-                                                                    <td>1996-11-30</td>
-                                                                    <td>(012) 456-7890</td>
-                                                                    <td>thabo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4453347</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo5.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Kgosi Molapo</td>
-                                                                    <td>Male</td>
-                                                                    <td>2</td>
-                                                                    <td>Bachelor of Information Technology</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>654 Birch St, Bloemfontein</td>
-                                                                    <td>1998-07-22</td>
-                                                                    <td>(051) 567-8901</td>
-                                                                    <td>kgosi@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4428990</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo6.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Linda Hlongwane</td>
-                                                                    <td>Female</td>
-                                                                    <td>3</td>
-                                                                    <td>Bachelor of Education</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>987 Cedar St, Port Elizabeth</td>
-                                                                    <td>1997-03-18</td>
-                                                                    <td>(041) 678-9012</td>
-                                                                    <td>linda@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4453232</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo7.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Nomfundo Sibiya</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Bachelor of Social Science</td>
-                                                                    <td>Moshal</td>
-                                                                    <td>159 Willow St, East London</td>
-                                                                    <td>1999-04-05</td>
-                                                                    <td>(043) 789-0123</td>
-                                                                    <td>nomfundo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">4460205</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo8.jpg" alt="Student Photo" width="50" height="50"></td>
-                                                                    <td>Andile Mkhize</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Bachelor of Pharmacy</td>
-                                                                    <td>Partially-NSFAS</td>
-                                                                    <td>753 Maple St, Kimberley</td>
-                                                                    <td>1995-12-29</td>
-                                                                    <td>(053) 890-1234</td>
-                                                                    <td>andile@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                
+                                                                    <td>(012) 345-6789</td>
+                                                                    <td>robertb@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -2745,7 +1988,7 @@
                                             <div id="Tab10" class="tab-content">
                                                 <div class="heading-layout1">
                                                     <div class="item-title">
-                                                        <h3>My Students</h3>
+                                                        <h3>Students</h3>
                                                     </div>
                                                 <div class="dropdown">
                                                         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">...</a>
@@ -2770,7 +2013,7 @@
                                                                 <input type="text" placeholder="Search by Class ..." class="form-control">
                                                             </div>
                                                             <div class="col-1-xxxl col-xl-2 col-lg-2 col-12 form-group">
-                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">SEARCH</button>
+                                                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Search</button>
                                                             </div>
                                                         </div>
                                                     </form>
@@ -2784,14 +2027,13 @@
                                                                             <label class="form-check-label">StudentID</label>
                                                                         </div>
                                                                     </th>
-                                                                    <th>Photo</th>
+                                                                   
                                                                     <th>Name</th>
-                                                                    <th>Gender</th>
+                                                                   
                                                                     <th>Year of Study</th>
                                                                     <th>Degree</th>
                                                                     <th>Funding Status</th>
-                                                                    <th>Address</th>
-                                                                    <th>Date Of Birth</th>
+                                                                    
                                                                     <th>Phone</th>
                                                                     <th>E-mail</th>
                                                                     <th></th>
@@ -2802,172 +2044,180 @@
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">g22b9077</label>
+                                                                            <label class="form-check-label">ABXROB001</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo1.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Thandiwe Nkosi</td>
-                                                                    <td>Female</td>
+                                                                
+                                                                    <td>Mihle Dube</td>
+                                                                    
                                                                     <td>2</td>
                                                                     <td>Bachelor of Science</td>
                                                                     <td>Moshal</td>
-                                                                    <td>123 Main St, Johannesburg</td>
-                                                                    <td>1999-05-10</td>
-                                                                    <td>012-345-6789</td>
-                                                                    <td>thandiwe@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    
+                                                                    <td>(123) 456-7890</td>
+                                                                    <td>john.doe@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">21d9952</label>
+                                                                            <label class="form-check-label">BLNSAK003</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo2.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Sipho Dlamini</td>
-                                                                    <td>Male</td>
+                                                                    
+                                                                    <td>Nkateko Mhlangu</td>
+                                                                    
                                                                     <td>3</td>
                                                                     <td>Bachelor of Arts</td>
                                                                     <td>Partially-NSFAS</td>
-                                                                    <td>456 Oak Ave, Pretoria</td>
-                                                                    <td>1998-08-15</td>
-                                                                    <td>012-987-6543</td>
-                                                                    <td>sipho@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                
+                                                                    <td>(234) 567-8901</td>
+                                                                    <td>jane.smith@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">21J6638</label>
+                                                                            <label class="form-check-label">BDFZAY001</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo3.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Nomvula Mthembu</td>
-                                                                    <td>Female</td>
+                                                                    
+                                                                    <td>Emily Johnson</td>
+                                                                
                                                                     <td>1</td>
+                                                                    <td>Bachelor of Engineering</td>
+                                                                    <td>Partially-External</td>
+                                                                
+                                                                    <td>(345) 678-9012</td>
+                                                                    <td>emily.johnson@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input">
+                                                                            <label class="form-check-label">BHKNTL001</label>
+                                                                        </div>
+                                                                    </td>
+                                                                    
+                                                                    <td>Michael Brown</td>
+                                                                    
+                                                                    <td>4</td>
                                                                     <td>Bachelor of Commerce</td>
-                                                                    <td>Partially-External</td>
-                                                                    <td>789 Pine Rd, Durban</td>
-                                                                    <td>2000-01-20</td>
-                                                                    <td>031-123-4567</td>
-                                                                    <td>nomvula@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <div class="form-check">
-                                                                            <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">21k6350</label>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td><img src="path/to/photo4.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Thabo Kgosi</td>
-                                                                    <td>Male</td>
-                                                                    <td>4</td>
-                                                                    <td>Engineering</td>
                                                                     <td>Moshal</td>
-                                                                    <td>321 Maple St, Cape Town</td>
-                                                                    <td>1999-11-30</td>
-                                                                    <td>021-654-3210</td>
-                                                                    <td>thabo@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    
+                                                                    <td>(456) 789-0123</td>
+                                                                    <td>michael.brown@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">20M9491</label>
+                                                                            <label class="form-check-label">BLXNAR001</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo5.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Jessica Molefe</td>
-                                                                    <td>Female</td>
+                                                                    
+                                                                    <td>Ntando Davis</td>
+                                                                
                                                                     <td>2</td>
-                                                                    <td>Information Technology</td>
+                                                                    <td>Bachelor of Science</td>
                                                                     <td>Partially-NSFAS</td>
-                                                                    <td>654 Birch St, Bloemfontein</td>
-                                                                    <td>1998-07-25</td>
-                                                                    <td>051-234-5678</td>
-                                                                    <td>jessica@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    
+                                                                    <td>(567) 890-1234</td>
+                                                                    <td>sarah.davis@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">20M5848</label>
+                                                                            <label class="form-check-label">BBXLEL001</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo6.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Andile Ndlovu</td>
-                                                                    <td>Male</td>
+                                                                    
+                                                                    <td>David Wilson</td>
+                                                                
                                                                     <td>3</td>
-                                                                    <td>Mathematics</td>
+                                                                    <td>Bachelor of Arts</td>
                                                                     <td>Partially-External</td>
-                                                                    <td>987 Cedar Rd, Port Elizabeth</td>
-                                                                    <td>1997-03-12</td>
-                                                                    <td>041-345-6789</td>
-                                                                    <td>andile@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                
+                                                                    <td>(678) 901-2345</td>
+                                                                    <td>david.wilson@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">20N7340</label>
+                                                                            <label class="form-check-label">BTHMOE002</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo7.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Lebohang Sithole</td>
-                                                                    <td>Female</td>
-                                                                    <td>1</td>
-                                                                    <td>Social Sciences</td>
+                                                                    <td>Laura Martinez</td>
+                                                                
+                                                                    <td>3</td>
+                                                                    <td>Bachelor of Engineering</td>
                                                                     <td>Moshal</td>
-                                                                    <td>135 Willow St, East London</td>
-                                                                    <td>1999-09-05</td>
-                                                                    <td>043-678-9012</td>
-                                                                    <td>lebohang@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                
+                                                                    <td>(789) 012-3456</td>
+                                                                    <td>laura.martinez@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">19P1263</label>
+                                                                            <label class="form-check-label">CLXTHO013</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo8.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Kgosi Matlala</td>
-                                                                    <td>Male</td>
+                                                                    
+                                                                    <td>Loyiso Mdala</td>
+                                                                    
                                                                     <td>4</td>
-                                                                    <td>Law</td>
+                                                                    <td>Bachelor of Commerce</td>
                                                                     <td>Partially-NSFAS</td>
-                                                                    <td>246 Spruce St, Kimberley</td>
-                                                                    <td>1996-02-14</td>
-                                                                    <td>053-456-7890</td>
-                                                                    <td>kgosi@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    
+                                                                    <td>(890) 123-4567</td>
+                                                                    <td>james.anderson@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>
                                                                         <div class="form-check">
                                                                             <input type="checkbox" class="form-check-input">
-                                                                            <label class="form-check-label">21T7174</label>
+                                                                            <label class="form-check-label">CHTGAB002</label>
                                                                         </div>
                                                                     </td>
-                                                                    <td><img src="path/to/photo9.jpg" alt="Student Photo" width="50"></td>
-                                                                    <td>Nonhlanhla Zulu</td>
-                                                                    <td>Female</td>
+                                                                    
+                                                                    <td>Olivia Taylor</td>
+                                                                    
                                                                     <td>2</td>
-                                                                    <td>Environmental Science</td>
+                                                                    <td>Bachelor of Science</td>
+                                                                    <td>Moshal</td>
+                                                                    
+                                                                    <td>(901) 234-5678</td>
+                                                                    <td>olivia.taylor@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="form-check">
+                                                                            <input type="checkbox" class="form-check-input">
+                                                                            <label class="form-check-label">CHMKEA002</label>
+                                                                        </div>
+                                                                    </td>
+                                                                
+                                                                    <td>William Harris</td>
+                                                                    
+                                                                    <td>3</td>
+                                                                    <td>Bachelor of Arts</td>
                                                                     <td>Partially-External</td>
-                                                                    <td>369 Fir St, Nelspruit</td>
-                                                                    <td>1998-12-22</td>
-                                                                    <td>013-789-0123</td>
-                                                                    <td>nonhlanhla@example.com</td>
-                                                                    <td><button class="btn btn-danger">Delete</button></td>
+                                                                    
+                                                                    <td>(012) 345-6789</td>
+                                                                    <td>william.harris@example.com</td>
+                                                                    <td><button class="tab-button active">View</button></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -3081,6 +2331,7 @@
                                         <div class="copyright">© Moshal Scholarship Program 2024 <br>Designed and Developed by INFOSYNC <br> All rights reserved</div>
                                     </footer>
                                 </div>
+
                         </div>
                     </div>
                     <!-- Student Stats End Here -->
