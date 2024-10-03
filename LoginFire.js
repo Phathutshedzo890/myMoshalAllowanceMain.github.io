@@ -69,7 +69,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
           const docRef= doc(db,"Student",user.uid);
           setDoc(docRef,userData)
             .then(() => {
-                 window.location.href = "/calc.html"; 
+                 window.location.href = "/calculate_allowance.html"; 
             })
             .catch((error) =>{
                 console.error("error writing document",error);
@@ -95,7 +95,7 @@ document.getElementById("loginForm").addEventListener('submit', function(event) 
       .then((userCredential) => {
           // Logged in
           
-          window.location.href = "/calc.html";
+          window.location.href = "/calculate_allowance.html";
           console.log('Login successful:', userCredential.user);
       })
       .catch((error) => {
