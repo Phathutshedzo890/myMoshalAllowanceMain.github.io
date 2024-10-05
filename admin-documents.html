@@ -87,18 +87,19 @@
                     }
                 
                     .sidebar-main.expanded {
-                        width: 50px; 
-                        margin-top: -2px; 
-                        margin-left: -150px;
-                        height: calc(100vh - 20px); /* Adjusted to account for both top and bottom margins */
-                        top: 10px; /* Aligns with the margin */
-                        left: 10px; /* Aligns with the margin */
-                        overflow-y: auto; /* Enables scrolling if content exceeds height */
-                        background-color: #3f62af; /* Set a background color */
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-                        z-index: 1000; /* Ensure it's on top of other elements */
-                        transition: all 0.5s linear;
-                    }
+    width: 220px; 
+    margin-top: -2px; 
+    margin-left: -150px; 
+    height: calc(100vh - 20px); 
+    top: 10px; 
+    left: 10px; 
+    overflow: hidden; 
+    background-color: #3f62af; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    z-index: 1000; 
+    transition: all 0.5s linear; 
+}
+
 
                     .nav-sidebar-menu li a {
                         display: flex;
@@ -167,6 +168,11 @@
                       display: flex;
                       justify-content: center;
                     }
+                    .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
+    margin-right: 0;
+    margin-left: -40px;
+    margin-bottom: -30px;
+}
                     
                     /* Responsive adjustments */
                     @media (max-width: 768px) {
@@ -319,6 +325,7 @@
                     display: inline-block;
                     padding: 10px 20px;
                     background-color: #3f62af;
+                    border: none;
                     color: white;
                     border-radius: 20px;
                     font-size: 12px;
@@ -573,52 +580,6 @@
         </div>
     </div>
       <script type="module" src="admin-documents.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-
-<<<<<<< HEAD
-=======
-    <main>
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
-          >&times;</a
-        >
-        <a href="admin_dashboard.html">Dashboard</a>
-        <a href="admin_query_response.html">Queries</a>
-        <a href="Reports.html">Reports</a>
-      </div>
-
-      <section class="admin-section">
-        <h1>Uploaded Documents by Students</h1>
-        <div id="documents-container"></div>
-        <div class="documents-list" id="documentsList"></div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
-      </div>
-      <p>
-        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights
-        reserved
-      </p>
-    </footer>
-    <script>
-      function toggleNav() {
-        const sidenav = document.getElementById("mySidenav");
-        const container = document.querySelector(".container");
-        if (sidenav.style.width === "250px") {
-          sidenav.style.width = "0";
-          container.style.marginLeft = "0";
-        } else {
-          sidenav.style.width = "250px";
-          container.style.marginLeft = "250px";
-        }
-      }
-    </script>
-    <script type="module" src="admin-documents.js"></script>
->>>>>>> 30431363e7eeed6cdac1eb115e89e0778ed9066e
+      
   </body>
 </html>
