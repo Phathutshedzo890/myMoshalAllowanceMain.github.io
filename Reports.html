@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reports</title>
+    <link rel="stylesheet" href="documents_page.css" />
+    <style>
+      /* General Styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f6f5f7;
+      }
+
+      .header {
+        background-color: #3f62af;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .logo {
+        height: 50px;
+        margin-left: 10px;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+      }
+
+      .nav-item a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        font-weight: bold;
+      }
+
+      .nav-item a:hover {
+        background-color: #173e7a;
+        border-radius: 5px;
+      }
+
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #3f62af;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #fff;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        background-color: #173e7a;
+      }
+
+      .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+      }
+
+      .menu-btn {
+        font-size: 30px;
+        cursor: pointer;
+        color: #fff;
+      }
+
+      main {
+        margin-left: 250px;
+        padding: 20px;
+      }
+
+      .report-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .report-header h1 {
+        font-size: 3rem;
+        color: #3f62af;
+        margin-bottom: 20px;
+      }
+
+      .button-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+      }
+
+      .report-button {
+        display: inline-block;
+        padding: 20px 40px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #ffffff;
+        background-color: #3f62af;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .report-button:hover {
+        background-color: #173e7a;
+      }
+
+      footer {
+        background-color: #f8f8f8;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+        border-top: 1px solid #ddd;
+      }
+
+      footer .social-links a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3f62af;
+      }
+
+      footer p {
+        margin-top: 10px;
+        color: #3f62af;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo-container">
+          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
+          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        </div>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">About Us</a></li>
+          <li class="nav-item"><a href="#">Our Services</a></li>
+          <li class="nav-item"><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
+        <a href="#">Reports</a>
+        <a href="admin_query_page.html">Query</a>
+      </div>
+
+      <!-- Reports Section with Buttons -->
+      <div class="report-header">
+        <h1>Reports</h1>
+      </div>
+      <div class="button-container">
+        <a href="outstanding_queries.html" class="report-button">Outstanding Queries Report</a>
+        <a href="outstanding_students_updates.html" class="report-button">Outstanding Updates Report</a>
+        <a href="University_batch.html" class="report-button">University Report</a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p>
+        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights reserved
+      </p>
+    </footer>
+
+    <script>
+      function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        const body = document.body;
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          body.style.marginLeft = "0";
+        } else {
+          sidenav.style.width = "250px";
+          body.style.marginLeft = "250px";
+        }
+      }
+    </script>
+    <script type="module" src="documents_page.js"></script>
+  </body>
+</html>

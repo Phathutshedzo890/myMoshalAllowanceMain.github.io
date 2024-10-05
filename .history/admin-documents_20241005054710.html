@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Uploaded Documents</title>
+    <link rel="stylesheet" href="document.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo-container">
+          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
+          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        </div>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="admin_dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a href="#">About Us</a></li>
+          <li class="nav-item"><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
+          >&times;</a
+        >
+        <a href="admin_dashboard.html">Dashboard</a>
+        <a href="admin_query_response.html">Queries</a>
+        <a href="#">Reports</a>
+      </div>
+
+      <section class="admin-section">
+        <h1>Uploaded Documents by Students</h1>
+        <div id="documents-container"></div>
+        <div class="documents-list" id="documentsList"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p>
+        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights
+        reserved
+      </p>
+    </footer>
+    <script>
+      function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        const container = document.querySelector(".container");
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          container.style.marginLeft = "0";
+        } else {
+          sidenav.style.width = "250px";
+          container.style.marginLeft = "250px";
+        }
+      }
+    </script>
+    <script type="module" src="admin-documents.js"></script>
+  </body>
+</html>
