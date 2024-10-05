@@ -6,331 +6,447 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="admin.css" />
     <!--=============== REMIXICONS ===============-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
   </head>
-  <body> 
+  <body>
     <div class="container">
-        <nav class="sidebar">
-            <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color collapsed">
-                
-                <div class="sidebar-menu-content">
-                   
-                  <ul class="nav nav-sidebar-menu sidebar-toggle-view">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-menu-line"></i><span>Menu</span></a>
-                    </li> 
-                    <li class="nav-item">
-                      <a href="#" class="nav-link"><i class="ri-graduation-cap-line"></i>Dashboard</a>
-                  </li> 
-                  
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-graduation-cap-line"></i>Dashboard</a>
-                    </li> 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-currency-line"></i>Allowance</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i>Document</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-file-copy-2-line"></i>Message</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-draft-line"></i>Notice</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-file-chart-line"></i>Reports</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-shield-user-line"></i>Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-settings-5-line"></i>Settings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link"><i class="ri-logout-box-line"></i>Logout</a>
-                    </li>
-                </ul>   
+      <nav class="sidebar">
+        <div
+          class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color collapsed"
+        >
+          <div class="sidebar-menu-content">
+            <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-menu-line"></i><span>Menu</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-graduation-cap-line"></i>Dashboard</a
+                >
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-graduation-cap-line"></i>Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-currency-line"></i>Allowance</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="admin-documents.html" class="nav-link"
+                  ><i class="ri-book-2-line"></i>Document</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="admin_query_response.html" class="nav-link"
+                  ><i class="ri-file-copy-2-line"></i>Message</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-draft-line"></i>Notice</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-file-chart-line"></i>Reports</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-shield-user-line"></i>Account</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-settings-5-line"></i>Settings</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                  ><i class="ri-logout-box-line"></i>Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const sidebar = document.querySelector(".sidebar-main");
+
+              sidebar.addEventListener("mouseenter", () => {
+                sidebar.classList.add("expanded");
+                sidebar.classList.remove("collapsed");
+              });
+
+              sidebar.addEventListener("mouseleave", () => {
+                sidebar.classList.remove("expanded");
+                sidebar.classList.add("collapsed");
+              });
+            });
+          </script>
+          <style>
+            /* Sidebar collapsed style */
+            .sidebar-main {
+              margin-top: 10px;
+              margin-left: 15px;
+              position: relative;
+              padding: 36px;
+              background-color: #3f62af;
+              color: #fff;
+              transition: all 0.5s linear;
+              scrollbar-width: none;
+              border-radius: 10px;
+              width: 60px; /* Collapsed width */
+              height: 60px; /* Fixed height to align with icon */
+              display: flex;
+              align-items: center; /* Center items vertically */
+              justify-content: center;
+              flex-wrap: wrap;
+              align-items: flex-start;
+              flex-direction: row;
+              align-content: flex-end;
+            }
+
+            .sidebar-main.expanded {
+              width: 250px;
+              margin-top: -2px;
+              margin-left: 10px;
+              height: calc(
+                100vh - 20px
+              ); /* Adjusted to account for both top and bottom margins */
+              top: 10px; /* Aligns with the margin */
+              left: 10px; /* Aligns with the margin */
+              overflow-y: auto; /* Enables scrolling if content exceeds height */
+              background-color: #3f62af; /* Set a background color */
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+              z-index: 1000; /* Ensure it's on top of other elements */
+            }
+
+            .nav-sidebar-menu li a {
+              display: flex;
+              align-items: center;
+              padding: 10px;
+              text-decoration: none;
+              color: #fff;
+              transition: background 0.3s; /* Smooth hover effect */
+            }
+
+            .nav-sidebar-menu li a:hover {
+              background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
+            }
+
+            .nav-sidebar-menu li a i {
+              /* Updated icon size */
+              margin-right: 10px;
+              transition: transform 0.3s; /* Smooth icon effect */
+            }
+
+            .nav-sidebar-menu li a span {
+              display: none;
+              transition: all 0.3s;
+            }
+
+            .sidebar-main.expanded .nav-sidebar-menu li a span {
+              display: inline-block;
+              opacity: 1;
+            }
+
+            /* Only show first icon when collapsed */
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a span {
+              display: none;
+            }
+
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child,
+            .sidebar-main.collapsed .nav-sidebar-menu li:nth-child(1) {
+              /* This assumes Dashboard is the second item */
+              display: flex; /* Change from none to flex */
+            }
+
+            .sidebar-main.collapsed .nav-sidebar-menu li:not(:first-child) {
+              display: none; /* Hide all items except Dashboard */
+            }
+
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a {
+              justify-content: center; /* Center icon in collapsed state */
+            }
+
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
+              margin-right: 0;
+            }
+            .nav-item .nav-link i {
+              font-size: 20px;
+              background-color: #3f62af;
+              overflow: hidden; /* Prevent overflow when collapsed */
+              display: flex;
+              align-items: center; /* Center items vertically */
+              justify-content: center;
+            }
+            .nav-item {
+              padding: 1rem;
+              margin: 0 0;
+              border-radius: 8px;
+              transition: background 0.3s ease-in-out;
+              display: flex;
+              justify-content: center;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+              .sidebar-main {
+                width: 50px; /* Smaller width on mobile */
+              }
+
+              .sidebar-main.expanded {
+                width: 200px; /* Adjust expanded width on mobile */
+              }
+            }
+
+            .message-board {
+              padding: 20px;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #adminMessageHistory {
+              padding: 20px;
+            }
+
+            #adminMessageHistory div {
+              margin-bottom: 10px;
+              padding: 10px;
+              border-bottom: 1px solid #ddd;
+            }
+
+            #adminMessageHistory div:last-child {
+              border-bottom: none;
+            }
+
+            #adminMessageHistory div button {
+              margin-top: 0px;
+            }
+
+            #adminMessageHistory div input[type="text"] {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 10px;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+            }
+          </style>
+        </div>
+      </nav>
+
+      <div class="main-content">
+        <header class="header">
+          <div class="header-container">
+            <!-- Search Section -->
+            <div class="header-search">
+              <input type="text" placeholder="Search..." />
+            </div>
+            <div class="header-search">
+              <button type="submit" class="header-searchbtn">Search</button>
+            </div>
+          </div>
+
+          <div class="header-items">
+            <!-- Profile Section -->
+            <div class="header-profile">
+              <a href="#" id="profile-icon">
+                <i class="ri-user-line"></i> Profile
+              </a>
+              <div
+                class="profile-dropdown-menu"
+                id="profile-dropdown"
+                style="display: none"
+              >
+                <div class="item-header">
+                  <h6 class="item-title">Val Jansen</h6>
                 </div>
-                   <script>
-                   document.addEventListener('DOMContentLoaded', function() {
-                      const sidebar = document.querySelector('.sidebar-main');
-
-                      sidebar.addEventListener('mouseenter', () => {
-                          sidebar.classList.add('expanded');
-                          sidebar.classList.remove('collapsed');
-                      });
-
-                      sidebar.addEventListener('mouseleave', () => {
-                          sidebar.classList.remove('expanded');
-                          sidebar.classList.add('collapsed');
-                      });
-                  });
-
-                   </script>
-                   <style>
-                    /* Sidebar collapsed style */
-                    .sidebar-main {
-                      margin-top: 10px;
-                      margin-left: 15px;
-                      position: relative;
-                      padding: 36px;
-                      background-color: #3f62af; 
-                      color: #fff;
-                      transition: all 0.5s linear;
-                      scrollbar-width: none;
-                      border-radius: 10px;
-                      width: 60px; /* Collapsed width */
-                      height: 60px; /* Fixed height to align with icon */
-                      display: flex;
-                      align-items: center; /* Center items vertically */
-                      justify-content: center;
-                      flex-wrap: wrap;
-                      align-items: flex-start;
-                      flex-direction: row;
-                      align-content: flex-end;
-                    }
-                
-                    .sidebar-main.expanded {
-                        width: 250px; 
-                        margin-top: -2px; 
-                        margin-left: 10px; 
-                        height: calc(100vh - 20px); /* Adjusted to account for both top and bottom margins */
-                        top: 10px; /* Aligns with the margin */
-                        left: 10px; /* Aligns with the margin */
-                        overflow-y: auto; /* Enables scrolling if content exceeds height */
-                        background-color: #3f62af; /* Set a background color */
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
-                        z-index: 1000; /* Ensure it's on top of other elements */
-                    }
-
-                    .nav-sidebar-menu li a {
-                        display: flex;
-                        align-items: center;
-                        padding: 10px;
-                        text-decoration: none;
-                        color: #fff;
-                        transition: background 0.3s; /* Smooth hover effect */
-                    }
-                
-                    .nav-sidebar-menu li a:hover {
-                        background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
-                    }
-                
-                    .nav-sidebar-menu li a i {
-                         /* Updated icon size */
-                        margin-right: 10px;
-                        transition: transform 0.3s; /* Smooth icon effect */
-                    }
-                
-                    .nav-sidebar-menu li a span {
-                        display: none;
-                        transition: all 0.3s;
-                    }
-                
-                    .sidebar-main.expanded .nav-sidebar-menu li a span {
-                        display: inline-block;
-                        opacity: 1;
-                    }
-                
-                    /* Only show first icon when collapsed */
-                    .sidebar-main.collapsed .nav-sidebar-menu li:first-child a span {
-                        display: none;
-                    }
-                    
-                    .sidebar-main.collapsed .nav-sidebar-menu li:first-child,
-                    .sidebar-main.collapsed .nav-sidebar-menu li:nth-child(1) { /* This assumes Dashboard is the second item */
-                        display: flex; /* Change from none to flex */
-                    }
-
-                
-                    .sidebar-main.collapsed .nav-sidebar-menu li:not(:first-child) {
-                        display: none; /* Hide all items except Dashboard */
-                    }
-                
-                    .sidebar-main.collapsed .nav-sidebar-menu li:first-child a {
-                        justify-content: center; /* Center icon in collapsed state */
-                    }
-                
-                    .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
-                        margin-right: 0;
-                    }
-                    .nav-item .nav-link i{
-                      font-size: 20px;
-                      background-color: #3f62af;
-                      overflow: hidden; /* Prevent overflow when collapsed */
-                      display: flex;
-                      align-items: center; /* Center items vertically */
-                      justify-content: center;
-                    }
-                    .nav-item {
-                      padding: 1rem;
-                      margin: 0 0;
-                      border-radius: 8px;
-                      transition: background 0.3s ease-in-out;
-                      display: flex;
-                      justify-content: center;
-                    }
-                    
-                    /* Responsive adjustments */
-                    @media (max-width: 768px) {
-                        .sidebar-main {
-                            width: 50px; /* Smaller width on mobile */
-                        }
-                
-                        .sidebar-main.expanded {
-                            width: 200px; /* Adjust expanded width on mobile */
-                        }
-                    }
-                </style>    
-           </div>
-        </nav>
-      
-        <div class="main-content">
-          <header class="header">
-            <div class="header-container">
-                <!-- Search Section -->
-                <div class="header-search">
-                    <input type="text" placeholder="Search..." />
+                <div class="item-content">
+                  <ul class="settings-list">
+                    <li>
+                      <a href="#"><i class="ri-user-line"></i> My Profile</a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="ri-list-check-2"></i> Task</a>
+                    </li>
+                    <li>
+                      <a href="#"
+                        ><i class="ri-settings-2-line"></i> Admin Settings</a
+                      >
+                    </li>
+                  </ul>
                 </div>
-                <div class="header-search">
-                    <button type="submit" class="header-searchbtn">Search</button>
-                </div>
+              </div>
             </div>
 
-            <div class="header-items">
-                <!-- Profile Section -->
-                <div class="header-profile">
-                    <a href="#" id="profile-icon">
-                        <i class="ri-user-line"></i> Profile
-                    </a>
-                    <div class="profile-dropdown-menu" id="profile-dropdown" style="display: none;">
-                        <div class="item-header">
-                            <h6 class="item-title">Val Jansen</h6>
-                        </div>
-                        <div class="item-content">
-                            <ul class="settings-list">
-                                <li><a href="#"><i class="ri-user-line"></i> My Profile</a></li>
-                                <li><a href="#"><i class="ri-list-check-2"></i> Task</a></li>
-                                <li><a href="#"><i class="ri-settings-2-line"></i> Admin Settings</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Notifications Section -->
-                <div class="header-notifications">
-                    <a href="#"  id="notifications-icon">
-                        <i class="ri-notification-3-line"></i>Notification
-                    </a>
-                    
-                    <div class="notifications-dropdown-menu" id="notifications-dropdown" style="display: none;">
-                        <div class="item-header">
-                            <h6 class="item-title">Notifications</h6>
-                        </div>
-                        <div class="item-content">
-                            <ul class="notifications">
-                                <div class="media">
-                                    <li><a href="#"><i class="ri-notification-3-fill"></i> Complete Today Task</a><span>1 min ago</span></li>        
-                                </div>
-                                <div class="media">
-                                    <li><a href="#"><i class="ri-notification-3-fill"></i> Updated Office No.</a><span>5 min ago</span></li>        
-                                </div>
-                                <div class="media">
-                                    <li><a href="#"><i class="ri-notification-3-fill"></i> Document Edited</a><span>10 min ago</span></li>        
-                                </div>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Dark Mode Toggle Section -->
-                <div class="header-dark">
-                    <a href="#" id="darkModeToggle">
-                        <i class="ri-moon-line"></i> Dark
-                    </a>
-                </div>
-            
-                <!-- Logout Section -->
-                <div class="header-logout">
-                    <a href="#" id="logout-icon">
-                        <i class="ri-logout-box-line"></i> Logout
-                    </a>
-                    <div class="logout-dropdown-menu" id="logout-dropdown" style="display: none;">
-                        <div class="item-header">
-                            <h6 class="item-title">Are you sure you want to log out?</h6>
-                        </div>
-                        <div class="item-content">
-                            <ul class="settings-list">
-                                <li><a href="admin_login.html"><i class="ri-check-line"></i> Yes</a></li>
-                                <li><a href="#" id="cancel-logout"><i class="ri-close-line"></i> No</a></li>
-                            </ul>
-                            <div id="logout-message" style="display:none; color: green;">You have logged out successfully.</div>
+            <!-- Notifications Section -->
+            <div class="header-notifications">
+              <a href="#" id="notifications-icon">
+                <i class="ri-notification-3-line"></i>Notification
+              </a>
 
-                        </div>
-                    </div>
+              <div
+                class="notifications-dropdown-menu"
+                id="notifications-dropdown"
+                style="display: none"
+              >
+                <div class="item-header">
+                  <h6 class="item-title">Notifications</h6>
                 </div>
+                <div class="item-content">
+                  <ul class="notifications">
+                    <div class="media">
+                      <li>
+                        <a href="#"
+                          ><i class="ri-notification-3-fill"></i> Complete Today
+                          Task</a
+                        ><span>1 min ago</span>
+                      </li>
+                    </div>
+                    <div class="media">
+                      <li>
+                        <a href="#"
+                          ><i class="ri-notification-3-fill"></i> Updated Office
+                          No.</a
+                        ><span>5 min ago</span>
+                      </li>
+                    </div>
+                    <div class="media">
+                      <li>
+                        <a href="#"
+                          ><i class="ri-notification-3-fill"></i> Document
+                          Edited</a
+                        ><span>10 min ago</span>
+                      </li>
+                    </div>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </header>
 
-              <!-- Page Content Area Start Here -->
-              <div class="content">
-            <div class="container">
-              <div class="flex-col">
-                <div class="flex-row">
-                    <!-- Welcome section -->
-                    <div class="welcome-section">
-                        <div class="welcome-container">
-                          <h1>Welcome Back, Val!</h1>
-                          <p>We hope you're having a productive day. Here's a quick overview of the system's recent activity.</p>
-                          <ul>
-                              <li>
-                                  <i class="ri-file-chart-line"></i> 
-                                  <strong>Reports Available:</strong> We've generated new reports; review them to stay informed about key metrics.
-                              </li>
-                              <li>
-                                  <i class="ri-loop-right-line"></i> 
-                                  <strong>System Updates:</strong> The system was updated yesterday to improve, check the update log for details.
-                              </li>
-                          </ul>
-                      </div>
-                      
-                        <div class="actions">
-                            <button>View Reports</button>
-                            <button>Manage Users</button>
-                            <button>System Settings</button>
-                        </div>
-                    </div>
-                    <!-- Overview cards section -->
-                    <div class="overview-cards">
-                        <div class="card">
-                            <div class="icon students-icon"> <i class="ri-team-line"></i></div>
-                            <h3>600+</h3>
-                            <p>Students</p>
-                        </div>
-                        <div class="card">
-                            <div class="icon universities-icon"><i class="ri-school-line"></i></div>
-                            <h3>10+</h3>
-                            <p>Universities</p>
-                        </div>
-                        <div class="card">
-                            <div class="icon expenses-icon"><i class="ri-layout-grid-line"></i></div>
-                            <h3>5+</h3>
-                            <p>Expenses</p>
-                        </div>
-                    </div>
+            <!-- Dark Mode Toggle Section -->
+            <div class="header-dark">
+              <a href="#" id="darkModeToggle">
+                <i class="ri-moon-line"></i> Dark
+              </a>
+            </div>
+
+            <!-- Logout Section -->
+            <div class="header-logout">
+              <a href="#" id="logout-icon">
+                <i class="ri-logout-box-line"></i> Logout
+              </a>
+              <div
+                class="logout-dropdown-menu"
+                id="logout-dropdown"
+                style="display: none"
+              >
+                <div class="item-header">
+                  <h6 class="item-title">Are you sure you want to log out?</h6>
                 </div>
-                    <!-- Message board section -->
-                      <div class="message-board">
-                          <h3>Message Board</h3>
-                          <div class="search">
-                              <input type="text" placeholder="Search by Date ..." />
-                              <input type="text" placeholder="Search by Title ..." />
-                              <button class="message-searchbtn">Find</button>
-                          </div>
-  
-                          <!-- Messages list -->
-                          <div class="messages">
+                <div class="item-content">
+                  <ul class="settings-list">
+                    <li>
+                      <a href="admin_login.html"
+                        ><i class="ri-check-line"></i> Yes</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#" id="cancel-logout"
+                        ><i class="ri-close-line"></i> No</a
+                      >
+                    </li>
+                  </ul>
+                  <div id="logout-message" style="display: none; color: green">
+                    You have logged out successfully.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Page Content Area Start Here -->
+        <div class="content">
+          <div class="container">
+            <div class="flex-col">
+              <div class="flex-row">
+                <!-- Welcome section -->
+                <div class="welcome-section">
+                  <div class="welcome-container">
+                    <h1>Welcome Back, Val!</h1>
+                    <p>
+                      We hope you're having a productive day. Here's a quick
+                      overview of the system's recent activity.
+                    </p>
+                    <ul>
+                      <li>
+                        <i class="ri-file-chart-line"></i>
+                        <strong>Reports Available:</strong> We've generated new
+                        reports; review them to stay informed about key metrics.
+                      </li>
+                      <li>
+                        <i class="ri-loop-right-line"></i>
+                        <strong>System Updates:</strong> The system was updated
+                        yesterday to improve, check the update log for details.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="actions">
+                    <button>View Reports</button>
+                    <button>Manage Users</button>
+                    <button>System Settings</button>
+                  </div>
+                </div>
+                <!-- Overview cards section -->
+                <div class="overview-cards">
+                  <div class="card">
+                    <div class="icon students-icon">
+                      <i class="ri-team-line"></i>
+                    </div>
+                    <h3>600+</h3>
+                    <p>Students</p>
+                  </div>
+                  <div class="card">
+                    <div class="icon universities-icon">
+                      <i class="ri-school-line"></i>
+                    </div>
+                    <h3>10+</h3>
+                    <p>Universities</p>
+                  </div>
+                  <div class="card">
+                    <div class="icon expenses-icon">
+                      <i class="ri-layout-grid-line"></i>
+                    </div>
+                    <h3>5+</h3>
+                    <p>Expenses</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Message board section -->
+              <div class="message-board">
+                <h3>Message Board</h3>
+                <div class="search">
+                  <input type="text" placeholder="Search by Date ..." />
+                  <input type="text" placeholder="Search by Title ..." />
+                  <button class="message-searchbtn">Find</button>
+                </div>
+                <div id="adminMessageHistory"></div>
+              </div>
+
+              <!-- Messages list -->
+              <!-- <div class="messages">
                             <div class="message">
                               <div class="avatar">
                                   <img src="https://images.pexels.com/photos/17904661/pexels-photo-17904661/free-photo-of-beautiful-girl.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Profile Picture">
@@ -382,26 +498,86 @@
                                       <p>Yes, I recieved the stationary allowance.</p>
                                       <button class="message-chatbtn">Message</button>
                                   </div>
-                              </div>
-                              
-                          </div>
-                      </div>
-                </div>
+                              </div> -->
+
+              <!-- </div>
+                      </div> -->
             </div>
-        
-            <!-- Student List -->
-            <div class="student-list">
-              <div class="tabs">
-                <button class="tab-button active" onclick="openTab(event, 'Tab1')" fdprocessedid="66ovj8">WITS</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab2')" fdprocessedid="m4ybj">UCT</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab3')" fdprocessedid="c9s3jt">UJ</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab4')" fdprocessedid="sgalkf">SUN</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab5')" fdprocessedid="erct7">UP</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab6')" fdprocessedid="lm5vhm">UFS</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab7')" fdprocessedid="70ng2y">UKZN</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab8')" fdprocessedid="sslvso">NMU</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab9')" fdprocessedid="0mnkm">UWC</button>
-                <button class="tab-button" onclick="openTab(event, 'Tab10')" fdprocessedid="d7q24x">RHODES</button>
+          </div>
+
+          <!-- Student List -->
+          <div class="student-list">
+            <div class="tabs">
+              <button
+                class="tab-button active"
+                onclick="openTab(event, 'Tab1')"
+                fdprocessedid="66ovj8"
+              >
+                WITS
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab2')"
+                fdprocessedid="m4ybj"
+              >
+                UCT
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab3')"
+                fdprocessedid="c9s3jt"
+              >
+                UJ
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab4')"
+                fdprocessedid="sgalkf"
+              >
+                SUN
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab5')"
+                fdprocessedid="erct7"
+              >
+                UP
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab6')"
+                fdprocessedid="lm5vhm"
+              >
+                UFS
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab7')"
+                fdprocessedid="70ng2y"
+              >
+                UKZN
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab8')"
+                fdprocessedid="sslvso"
+              >
+                NMU
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab9')"
+                fdprocessedid="0mnkm"
+              >
+                UWC
+              </button>
+              <button
+                class="tab-button"
+                onclick="openTab(event, 'Tab10')"
+                fdprocessedid="d7q24x"
+              >
+                RHODES
+              </button>
             </div>
             <div id="Tab1" class="tab-content active">
               <h3>List of Students</h3>
@@ -438,455 +614,462 @@
               </table>
               <!-- Pagination Controls -->
               <div class="pagination">
-                  <button id="prevBtn" disabled>Previous</button>
-                  <span id="pageNumber">1</span>
-                  <button id="nextBtn">Next</button>
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
               </div>
             </div>
-          
-              <div id="Tab2" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                      <thead>
-                        <tr>
-                          <th>First Name</th>
-                          <th>Last Name</th>
-                          <th>Email</th>
-                          <th>University</th>
-                        </tr>
-                      </thead>
-                      <tbody id="studentTableBody">
-                        <!-- Dynamic student rows will be added here -->
-                      </tbody>
-                    </table>
-                  
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-                
-  
-              <div id="Tab3" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>  
-              
-              <div id="Tab4" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <div id="Tab5" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <div id="Tab6" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <div id="Tab7" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <div id="Tab8" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <div id="Tab9" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <div id="Tab10" class="tab-content">
-                  <h3>List of Students</h3>
-                  <div class="search-container">
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search StudentID..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Name..."
-                    />
-                    <input
-                      type="text"
-                      id="searchInput"
-                      placeholder="Search by Phone..."
-                    />
-                    <button id="searchBtn" class="table-searchbtn">Search</button>
-                  </div>
-                  <table id="studentTable">
-                    <thead>
-                      <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>University</th>
-                      </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                      <!-- Dynamic student rows will be added here -->
-                    </tbody>
-                  </table>
-                  <!-- Pagination Controls -->
-                  <div class="pagination">
-                      <button id="prevBtn" disabled>Previous</button>
-                      <span id="pageNumber">1</span>
-                      <button id="nextBtn">Next</button>
-                  </div>
-                </div>
-  
-                <script>
-                  //Notify
-                  const openModalButtons = document.querySelectorAll('[data-modal-target]')
-                  const closeModalButtons = document.querySelectorAll('[data-close-button]')
-                  const overlay = document.getElementById('overlay')
-          
-                  openModalButtons.forEach(button => {
-                  button.addEventListener('click', () => {
-                      const modal = document.querySelector(button.dataset.modalTarget)
-                      openModal(modal)
-                  })
-                  })
-          
-                  overlay.addEventListener('click', () => {
-                  const modals = document.querySelectorAll('.modal.active')
-                  modals.forEach(modal => {
-                      closeModal(modal)
-                  })
-                  })
-          
-                  closeModalButtons.forEach(button => {
-                  button.addEventListener('click', () => {
-                      const modal = button.closest('.modal')
-                      closeModal(modal)
-                  })
-                  })
-          
-                  function openModal(modal) {
-                  if (modal == null) return
-                  modal.classList.add('active')
-                  overlay.classList.add('active')
-                  }
-          
-                  function closeModal(modal) {
-                  if (modal == null) return
-                  modal.classList.remove('active')
-                  overlay.classList.remove('active')
-                  }
-                  function openTab(evt, tabName) {
-                  // Hide all tab contents
-                  const tabContents = document.querySelectorAll('.tab-content');
-                  tabContents.forEach(content => {
-                  content.classList.remove('active');
-                  });
-          
-                  // Remove active class from all tab buttons
-                  const tabButtons = document.querySelectorAll('.tab-button');
-                  tabButtons.forEach(button => {
-                  button.classList.remove('active');
-                  });
-          
-                  // Show the current tab content and add active class to the button
-                  document.getElementById(tabName).classList.add('active');
-                  evt.currentTarget.classList.add('active');
-                  }
-              </script>
-              
-            </div>
-  
-      <!-- Footer -->
-            <footer>
-                <p>&copy; Moshal Scholarship Program 2024 <br> Developed by INFOSYNC <br> All rights reserved</p>
-                <p>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
-                </p>
-            </footer>
-          
+
+            <div id="Tab2" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
               </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab3" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab4" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab5" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab6" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab7" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab8" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab9" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <div id="Tab10" class="tab-content">
+              <h3>List of Students</h3>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search StudentID..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Name..."
+                />
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search by Phone..."
+                />
+                <button id="searchBtn" class="table-searchbtn">Search</button>
+              </div>
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              <!-- Pagination Controls -->
+              <div class="pagination">
+                <button id="prevBtn" disabled>Previous</button>
+                <span id="pageNumber">1</span>
+                <button id="nextBtn">Next</button>
+              </div>
+            </div>
+
+            <script>
+              //Notify
+              const openModalButtons = document.querySelectorAll(
+                "[data-modal-target]"
+              );
+              const closeModalButtons = document.querySelectorAll(
+                "[data-close-button]"
+              );
+              const overlay = document.getElementById("overlay");
+
+              openModalButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                  const modal = document.querySelector(
+                    button.dataset.modalTarget
+                  );
+                  openModal(modal);
+                });
+              });
+
+              overlay.addEventListener("click", () => {
+                const modals = document.querySelectorAll(".modal.active");
+                modals.forEach((modal) => {
+                  closeModal(modal);
+                });
+              });
+
+              closeModalButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                  const modal = button.closest(".modal");
+                  closeModal(modal);
+                });
+              });
+
+              function openModal(modal) {
+                if (modal == null) return;
+                modal.classList.add("active");
+                overlay.classList.add("active");
+              }
+
+              function closeModal(modal) {
+                if (modal == null) return;
+                modal.classList.remove("active");
+                overlay.classList.remove("active");
+              }
+              function openTab(evt, tabName) {
+                // Hide all tab contents
+                const tabContents = document.querySelectorAll(".tab-content");
+                tabContents.forEach((content) => {
+                  content.classList.remove("active");
+                });
+
+                // Remove active class from all tab buttons
+                const tabButtons = document.querySelectorAll(".tab-button");
+                tabButtons.forEach((button) => {
+                  button.classList.remove("active");
+                });
+
+                // Show the current tab content and add active class to the button
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
+              }
+            </script>
+          </div>
+
+          <!-- Footer -->
+          <footer>
+            <p>
+              &copy; Moshal Scholarship Program 2024 <br />
+              Developed by INFOSYNC <br />
+              All rights reserved
+            </p>
+            <p>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+            </p>
+          </footer>
         </div>
       </div>
-      
+    </div>
+
     <script type="module" src="admin-dashboard.js"></script>
   </body>
 </html>

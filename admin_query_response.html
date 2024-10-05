@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Messages</title>
-    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="admin_query.css" />
   </head>
   <body>
     <!-- Side Navigation Bar -->
@@ -14,9 +14,9 @@
       >
       <a href="admin_dashboard.html">Dashboard</a>
       <a href="admin-documents.html">Documents</a>
-      <!-- <a href="student.html">Queries</a> -->
       <a href="#">Reports</a>
     </div>
+
     <header class="header">
       <nav class="navbar">
         <div class="logo-container">
@@ -25,11 +25,15 @@
         </div>
         <ul class="nav-links">
           <li class="nav-item"><a href="admin_dashboard.html">Dashboard</a></li>
-          <!-- <li class="nav-item">
-            <a href="admin_query_response.html">Queries</a>
-          </li> -->
           <li class="nav-item"><a href="#">Users</a></li>
           <li class="nav-item"><a href="#">Settings</a></li>
+          <li class="nav-item" id="profile-icon">
+            <a href="#">Profile</a>
+            <div id="profile-dropdown" class="dropdown-content">
+              <a href="#">My Account</a>
+              <a href="#">Logout</a>
+            </div>
+          </li>
         </ul>
       </nav>
     </header>
@@ -52,10 +56,11 @@
         reserved
       </p>
     </footer>
+
     <script>
       function toggleNav() {
         const sidenav = document.getElementById("mySidenav");
-        const container = document.querySelector(".container");
+        const container = document.querySelector(".content");
         if (sidenav.style.width === "250px") {
           sidenav.style.width = "0";
           container.style.marginLeft = "0";

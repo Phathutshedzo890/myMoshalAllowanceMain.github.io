@@ -784,6 +784,34 @@ body {
                       width: 80%; /* Full width on mobile */
                   }
                 }
+                .messages-list {
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  }
+                  
+                  .messages-list div {
+                    margin-bottom: 10px;
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                  }
+                  
+                  .messages-list div:last-child {
+                    border-bottom: none;
+                  }
+                  
+                  .messages-list div button {
+                    margin-top: 10px;
+                  }
+                  
+                  .messages-list div input[type="text"] {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                  }
               
 
         
