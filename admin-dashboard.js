@@ -88,6 +88,9 @@ async function sendResponse(messageId, response) {
 async function deleteMessage(messageId) {
   await deleteDoc(doc(db, "Create_Query", messageId));
 }
+const messageBoard = document.getElementById("adminMessageHistory");
+messageBoard.style.overflowY = "auto";
+messageBoard.style.maxHeight = "500px"; // adjust the height as needed
 
 // Load admin messages on page load
 loadAdminMessages();
