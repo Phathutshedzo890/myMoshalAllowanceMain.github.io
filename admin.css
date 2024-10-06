@@ -1,4 +1,9 @@
 /* General Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -10,237 +15,803 @@ body {
     min-height: 100vh;
 }
 
-header {
-    background: #3f62af;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 4px 2px -2px gray;
-    padding: 0 20px;
-}
-.sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1001;
-    top: 0;
-    left: 0;
-    background-color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
+            .container {
+            display: flex;
+            min-height: 100vh; 
+            
+            }
+                
+            .main-content {
+            flex-grow: 1; /* Takes up the remaining space */
+            background-color: #f4f4f4; /* Background color */
+            padding: 20px;
+            margin-top: 20px;
+            }
 
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
+          /* General Styles */
+              .header {
+                background-color: #ffffff; /* Keep the background color white */
+                color: #000; /* Change text color to black or any visible color */
+                padding: 0;
+                text-align: center;
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+                width: 98%;
+                position: relative; /* Make header sticky */
+                top: 0; /* Position it at the top */
+                margin: 70px 0 10px 0;
 
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
+              }
 
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
+              .header-container {
+                    margin-top: -100px;
+                    display: flex;
+                    align-items: center;
+                    margin-top: -100px;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    justify-content: flex-start;
+                    
+                }
+
+                .header-search {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 10px;
+                }
+
+                .header-search input {
+                    flex: 1;
+                    padding: 12px 15px;
+                    margin-bottom: 15px;
+                    margin-left: 10px;
+                    color: #000;
+                    background-color: #ffffff;
+                    border: none;
+                    border-bottom: 1px solid black;
+                    box-sizing: border-box;
+                    width: 50%;
+                }
+
+                .header-searchbtn {
+                  margin-top: -35px;
+                  margin-bottom: -50px;
+                    display: inline-block;
+                    padding: 10px 20px;
+                    background-color: #3f62af;
+                    color: white;
+                    border-radius: 20px;
+                    font-size: 12px;
+                    text-align: center;
+                    letter-spacing: 1px;
+                    transition: transform 80ms ease-in, background-color 0.3s ease;
+                    cursor: pointer;
+                }
+
+              .header-container div {
+                  margin: 0 10px; 
+              }
+
+              .header-container a {
+                  text-decoration: none; /* Remove underline */
+                  color: #000; /* Change to your preferred color */
+              }
+
+              .header-items {
+                display: flex; /* This already ensures the icon and text are side by side */
+                margin-left: 800px;
+                margin-top: -40px;
+                justify-content: flex-start; /* Align items to the start (icon and text together) */
+                align-items: center; /* Vertically center the icon and text */
+                gap: 20px; /* Space between the icon and text */
+                padding: 10px 20px;
+                background-color: #ffffff;
+                width: 40%;  
+                flex-wrap: nowrap;
+                align-items: center;
+                flex-direction: row;
+                }
+
+                .header-items a i {
+                    margin-right: 8px;
+                    font-size: 18px;
+                }
+
+                .header-items a:hover {
+                    color: #3f62af;
+                }
+
+                .header-dark a {
+                    cursor: pointer;
+                }
+
+                .header-logout a {
+                    font-weight: bold;
+                    
+                }
+          
+                .header-items a {
+                    text-decoration: none;
+                    color: #333; /* Default link color */
+                    padding: 10px 15px; /* Padding around links */
+                    transition: color 0.3s ease; /* Smooth transition for hover effect */
+                }
+
+                /* Profile, Notifications, Logout sections */
+                .header-profile,
+                .header-notifications,
+                .header-logout,
+                .header-dark {
+                    position: relative; /* Needed for dropdown positioning */
+                    margin-right: 20px; /* Space between sections */
+                }
+
+                /* Dropdown menu styles */
+                .profile-dropdown-menu,
+                .notifications-dropdown-menu,
+                .logout-dropdown-menu {
+                    position: absolute;
+                    top: 100%; /* Positioning below the header item */
+                    left: 0; /* Align to the left */
+                    background: white; /* Background color for dropdown */
+                    border-radius: 10px; /* Rounded corners */
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+                    z-index: 1000; /* Ensure dropdown is above other content */
+                    width: 300px; /* Set a width for the dropdown */
+                }
+
+                /* Header dropdown item header styles */
+                .item-header {
+                    padding: 10px 15px; /* Padding for header */
+                    background: #f7f7f7; /* Light gray background */
+                }
+
+                /* Item title styles */
+                .item-title {
+                    margin: 0; /* Remove default margin */
+                    font-size: 16px; /* Font size */
+                }
+
+                /* Dropdown item content styles */
+                .item-content {
+                    padding: 10px 0; /* Padding for item content */
+                }
+
+                /* List styles */
+                .settings-list,
+                .notifications {
+                    list-style: none; /* Remove default list styling */
+                    padding: 10px; /* Remove default padding */
+                    margin: 0; /* Remove default margin */
+                }
+
+                /* Individual dropdown item styles */
+                .settings-list li,
+                .notifications li {
+                    padding: 8px 15px; /* Padding for dropdown items */
+                    transition: background 0.3s ease; /* Smooth transition for hover */
+                }
+
+                /* Hover effect for dropdown items */
+                .settings-list li:hover,
+                .notifications li:hover {
+                    background: #f0f0f0; /* Change background on hover */
+                }
+
+                /* Media styles */
+                .media {
+                    display: flex; /* Flexbox for media items */
+                    align-items: center; /* Center items vertically */
+                    margin-bottom: 5px; /* Space between media items */
+                }
+
+                /* Media body styles */
+                .media-body {
+                    margin-left: 10px; /* Space between icon and text */
+                }
+
+                /* Notification icon styles */
+                .item-icon {
+                    width: 30px; /* Width for notification icon */
+                    height: 30px; /* Height for notification icon */
+                    display: flex; /* Flexbox for center alignment */
+                    align-items: center; /* Center align */
+                    justify-content: center; /* Center align */
+                    border-radius: 50%; /* Round icon */
+                }
 
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-}
+                /* Dark mode toggle styles */
+                
+                body.dark-mode {
+                    background-color: #000000; /* Dark mode background */
+                    color: #ffffff; /* Dark mode text color */
+                }
 
-.logo-container {
-    display: flex;
-    align-items: center;
-}
+                /* Universal element styles in dark mode */
+                body.dark-mode * {
+                    background-color: #1e1e1e; /* Dark background for all elements */
+                    color: #ddd; /* Light text for all elements */
+                  
+                }
 
-.logo {
-    height: 50px;
-    margin-left: 20px;
-}
+                /* Links in dark mode */
+                body.dark-mode a {
+                    color: #ffffff; /* Light text for links */
+                }
 
-.nav-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-}
+                body.dark-mode a:hover {
+                    color: #3f62af; /* Hover color for links in dark mode */
+                }
 
-.nav-links li {
-    padding: 15px;
-    font-size: 16px;
-}
+                /* Input fields in dark mode */
+                body.dark-mode input {
+                    background-color: #333; /* Dark background for input fields */
+                    color: #ffffff; /* Light text for input fields */
+                    border-bottom : 1px solid #ddd; /* Dark border for input fields */
+              }
 
-.nav-links li a {
-    text-decoration: none;
-    color: #fff;
-}
+              /* Buttons in dark mode */
+              body.dark-mode button {
+                  background-color: #333; /* Dark background for buttons */
+                  color: #ffffff; /* Light text for buttons */
+                  border: 1px solid #ddd; /* Dark border for buttons */
+              }
 
-.nav-links li:hover {
-    background-color: #2c3e90;
-    border-radius: 5px;
-}
-.menu-btn {
-    font-size: 30px;
-    cursor: pointer;
-    color: #fff;
-    margin-right: 15px;
-  }
+              body.dark-mode button:hover {
+                  background-color: #ddd; /* Darker background on hover */
+              }
 
-.main {
-    flex: 1;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+              /* Optional specific sections */
+              body.dark-mode .header,
+              body.dark-mode .header-items,
+              body.dark-mode .welcome-sections,
+              body.dark-mode .welcome-container,
+              body.dark-mode .actions, body.dark-mode #SearchInput
+              {
+                  background-color: #1e1e1e; /* Apply dark background */
+                  color: #ffffff; /* Apply light text */
+                  
+              }
+              .content {
+                  flex-grow: 1; /* Take the remaining space */
+                  padding: 10px; /* Add padding */
+              }
+              .flex-col {
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 20px;
+                  width: 100%;
+              }
+              .flex-row {
+                display: flex;
+                flex-direction: column; /* Change to column to stack elements vertically */
+                gap: 20px;
+                width: 60%;
+                margin-bottom: 100px;
+              }
+              .welcome-section {
+                  text-align: center;
+                  width: 98%;
+                  background-color: #ffffff;
+                  margin:20px 130px 0 -10px;
+                  padding: 1.5rem;
+                  border-radius: 10px;
+                  box-shadow: 0px 10px 20px 0px rgba(229, 229, 229, 0.7);
+                  flex: 1;
+                  
+              }
 
-.messages-container {
-    text-align: center;
-    margin-top: 20px;
-}
+              .welcome-section h2 {
+                  font-size: 1.8rem;
+                  margin-bottom: 0.5rem;
+              }
 
-.message-history {
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
+              .welcome-section p {
+                  color: #666;
+                  margin-bottom: 1.5rem;
+              }
+              ul {
+                list-style-type: none; /* Remove default list styling */
+                padding: 0; /* Remove padding */
+                margin-bottom: -60px;
+            }
 
-.message-history div {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #e9f0ff;
-}
+            li {
+                display: flex; /* Use flexbox for alignment */
+                align-items: center; /* Center items vertically */
+                margin-bottom: 10px; /* Space between items */
+            }
 
-.message-input {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
+            li i {
+                margin-right: 10px; /* Space between icon and text */
+                font-size: 20px; /* Icon size */
+                color: #ffffff; /* Icon color */
+                background-color:#ddd;
+                padding: 10px;
+                border-radius: 20px;
 
-.message-input input {
-    padding: 10px;
-    width: 60%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+            }
+              .overview-cards {
+                  display: flex;
+                  justify-content: space-between;
+                  width: 100%;
+              }
 
-.submit-button {
-    padding: 10px 20px;
-    background-color: #3f62af;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+              .card {
+                  background-color: #ffffff;
+                  text-align: center;
+                  padding: 1.5rem;
+                  border-radius: 8px;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  flex: 1;
+                  margin: 0 30px 35px -10px;
+                
+              }
 
-.submit-button:hover {
-    background-color: #2c3e90;
-}
+              .card h3 {
+                  font-size: 2rem;
+                  margin: 0.5rem 0;
+              }
 
-footer {
-    background: #f8f8f8;
-    border-top: 1px solid #ddd;
-    text-align: center;
-    padding: 10px;
-    margin-top: auto;
-}
+              .card p {
+                  color: #666;
+              }
 
-footer .social-links a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: rgb(73, 73, 239);
-    transition: color 0.3s;
-}
+              .icon {
+                  width: 50px;
+                  height: 50px;
+                  background-size: contain;
+                  margin: 0 auto 1rem;
+              }
 
-footer .social-links a:hover {
-    color: #5757d1;
-}
+              .students-icon {
+                position: relative;
+                height: 65px; 
+                width: 65px; 
+                line-height: 100px; 
+                border-radius: 50%; 
+                text-align: center; 
+                margin: 0 auto 6px;
+                background-color: #40dfcd; 
+            }
 
-footer p {
-    margin: 10px 0;
-    font-size: 14px;
-}
+            .students-icon i {
+                font-size: 35px; /* Increase the icon size */
+                color: white; /* Change icon color */
+                vertical-align: middle; /* Ensure proper vertical alignment */
+                position: absolute; /* Position the icon absolutely */
+                top: 50%; /* Position from the top */
+                left: 50%; /* Position from the left */
+                transform: translate(-50%, -50%);
+            }
+              .universities-icon {
+                position: relative;
+                height: 65px; 
+                width: 65px; 
+                line-height: 100px; 
+                border-radius: 50%; 
+                text-align: center; 
+                margin: 0 auto 6px;
+                background-color: #fbd540; 
+            }
+              
+              .universities-icon i {
+                font-size: 35px; /* Increase the icon size */
+                color: white; /* Change icon color */
+                vertical-align: middle; /* Ensure proper vertical alignment */
+                position: absolute; /* Position the icon absolutely */
+                top: 50%; /* Position from the top */
+                left: 50%; /* Position from the left */
+                transform: translate(-50%, -50%);
+            }
+              .expenses-icon {
+                height: 65px; 
+                width: 65px; 
+                line-height: 100px; 
+                border-radius: 50%; 
+                text-align: center; 
+                margin: 0 auto 6px;
+                background-color: #ff4081;
+            }
+            .expenses-icon i {
+                font-size: 35px; /* Increase the icon size */
+                color: #ffffff; /* Change icon color */
+                vertical-align: middle; /* Ensure proper vertical alignment */
+                position: absolute; /* Position the icon absolutely */
+                margin-top: -18px;
+                margin-left: -18px;
+                
+            }
+              
+              .message-board {
+                background-color: #ffffff;
+                padding: 1rem; /* Reduced padding */
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 38%; 
+                max-width: 526px;
+                margin-top: 20px;
+                margin-bottom: 135px;
+                
+            }
+            .message-board h3 {
+                margin-bottom: -10px; /* Reduced margin */
+            }
 
-/* For responsive design */
-@media (max-width: 768px) {
-    .message-input input {
-        width: 80%;
-    }
-}
-/* Search and Notifications Container */
-.search-container {
-    margin: 20px 0;
-    text-align: center;
-  }
-  
-  .search-container input {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-  }
-  
-  .search-container button {
-    padding: 10px;
-    font-size: 16px;
-    background-color: #3f62af;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .notifications-container {
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  .notifications-container h2 {
-    margin-bottom: 10px;
-  }
-  
-  /* Student Table */
-  .student-list {
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  table {
-    margin: 0 auto;
-    width: 80%;
-    border-collapse: collapse;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #3f62af;
-    color: white;
-  }
-  
-  tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
+
+            .search {
+                display: flex;
+                align-items: center;
+                margin-top: 10px;
+                margin-bottom: -20px;
+            }
+
+            .search input {
+                padding: 12px 15px; /* Keep small padding */
+                margin-right: 5px; /* Keep small margin */
+                background-color: #ffffff;
+                border: none;
+                border-bottom: 1px solid black;
+                width: 100%; /* Full width for inputs */
+            }
+
+            .message-searchbtn {
+                margin-top: 10px;
+                padding: 10px 15px; /* Adjusted button size */
+                background-color: #3f62af;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+            .message-chatbtn {
+                margin-top: -35px; /* Keeps your existing top margin */
+                margin-left: 300px; /* Shift the button right */
+                padding: 10px 15px; /* Adjusted button size */
+                background-color: #3f62af;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+            .messages {
+                display: flex;
+                flex-direction: column;
+                margin-top: 40px;
+            }
+            .message {
+                display: flex; /* Keep elements aligned in a row */
+                align-items: flex-start; /* Align items to the start for better text alignment */
+                margin-bottom: 0.5rem; /* Space between messages */
+                padding: 10px; /* Add padding for better spacing */
+                /* Optional: add a border around each message */
+                border-radius: 5px; /* Optional: rounded corners */
+                background-color: #f9f9f9; /* Optional: background color for messages */
+            }
+
+            .message .avatar {
+                margin-top: 15px; /* Space between avatar and message details */
+            }
+
+            .message .avatar img {
+                max-width: 100%; /* Ensures it doesn't exceed the width of its container */
+                width: 40px; /* Set width to 40px */
+                height: 40px; /* Set height to 40px */
+                border-radius: 50%; /* Circular shape */
+                object-fit: cover; /* Ensures the image covers the area without distortion */
+            }
+
+            .message-details {
+                display: flex; /* Aligns text items in a row */
+                flex-direction: column; /* Stack the text elements */
+                justify-content: center; /* Center vertically */
+                margin-left: 20px;
+                margin-top: 8px;
+            }
+
+            .message-details p {
+                margin: 0; /* Remove default margin */
+            }
+
+            .message-details p span {
+                color: #666; /* Color for the timestamp */
+                font-size: 0.9rem; /* Keep span font size */
+            }
+
+            .message-details p:first-child {
+                font-weight: bold; /* Make the name bold */
+                margin-bottom: 2px; /* Add a little space below the name */
+            }
+
+              .student-list {
+              background-color: #ffffff; /* White background */
+              padding: 20px; /* Padding inside the container */
+              border-radius: 10px; /* Rounded corners */
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+              margin:-90px 0 0 -10px;
+              /* Optional: space around the container */
+            }
+            .search-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #ffffff;
+                padding: 12px 15px;
+                margin: -15px 0 0 0;
+                width: 100%;
+                
+            }
+            #searchInput {
+                flex: 1;
+                padding: 12px 15px;
+                margin-right: 10px;
+                background-color: #ffffff;
+                border: none;
+                border-bottom: 1px solid black;
+                box-sizing: border-box; /* Ensures padding doesn't affect the width */
+                width: 100%;
+            }
+          /* Tabs Container */
+          .tabs {
+                  display: flex;
+                  justify-content: space-around;
+                  background: #ffffff;
+                  padding: 10px 0;
+                  margin-bottom: 20px;
+                  border: none;
+              }
+              
+              .tab-button {
+                  background: #fff;
+                  color: #3f62af;
+                  border: none;
+                  border-radius: 10px;
+                  padding: 10px 20px;
+                  cursor: pointer;
+                  transition: background 0.3s;
+                  margin-top: -10px;
+              }
+              
+              .tab-button.active {
+                  background: #3f62af;
+                  color: #fff;
+                  border: none;
+              }
+              
+              .tab-button:hover {
+                  background: #f0f0f0;
+                  border: none;
+              }
+              
+              /* Tab Content */
+              .tab-content {
+                  display: none;
+                  border: none;
+              }
+              
+              .tab-content.active {
+                  display: block;
+                  border: none;
+              }
+
+        /* Student Table */
+            #studentTable {
+            width: 100%; /* Make the table full width */
+            border-collapse: collapse; /* Collapse borders */
+            margin: 20px 0; /* Margin around the table */
+            font-family: 'Arial', sans-serif; /* Font styling */
+            
+            }
+
+            /* Header styling */
+            #studentTable thead {
+            background-color: #ffffff; /* Header background color */
+            color: #3f62af; /* Header text color */
+            border-bottom: 1px solid #ddd;
+            }
+
+            #studentTable th {
+            padding: 12px; /* Padding for header cells */
+            text-align: left; /* Align text to the left */
+            font-size: 16px; /* Header font size */
+            }
+
+            /* Body cell styling */
+            #studentTable tbody {
+            background-color: #ffffff; /* Default background color for body */
+            }
+
+            #studentTable td {
+            padding: 10px; /* Padding for body cells */
+            text-align: left; /* Align text to the left */
+            border-bottom: 1px solid #ddd; /* Bottom border for cells */
+            font-size: 16px; /* Body font size */
+            color: #333; /* Body text color */
+            }
+
+
+            #studentTable tbody tr:hover {
+            background-color: #f1f1f1; /* Light background on hover */
+            }
+
+            .table-searchbtn{
+                margin-top: 10px;
+                padding: 10px 15px;
+                background-color: #3f62af;
+                color: white;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+            }
+
+            /* Responsive styles */
+            @media screen and (max-width: 600px) {
+            #studentTable {
+                font-size: 14px; /* Smaller font size on small screens */
+            }
+            }
+
+
+            /* Pagination styles */
+            .pagination {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0;
+            }
+
+            .pagination button {
+                background-color: #3f62af;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+                transition: background-color 0.3s;
+            }
+
+            .pagination button:disabled {
+                background-color: #ddd;
+                cursor: not-allowed;
+            }
+
+            .pagination button:hover:not(:disabled) {
+                background-color: #2e4b91;
+            }
+
+            #pageNumber {
+                margin: 0 10px;
+                font-size: 16px;
+                font-weight: bold;
+            }
+              .submit-button {
+                  padding: 10px 20px;
+                  background-color: #3f62af;
+                  color: white;
+                  border: none;
+                  border-radius: 5px;
+                  cursor: pointer;
+              }
+              form {
+                background-color: #ffffff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 0 50px;
+                height: 100%;
+                text-align: center;
+            }
+            
+            h1 {
+                font-weight: bold;
+                margin: 0;
+            }
+            
+            p {
+                font-size: 14px;
+                font-weight: 100;
+                line-height: 20px;
+                margin: 20px 0 30px;
+            }
+            
+            input {
+                background-color: #ffffff;
+                border: none;
+                padding: 12px 15px;
+                margin: 8px 0;
+                width: 100%;
+                border-bottom: 1px solid black;
+            }
+            
+            button {
+                display: inline-block;
+                margin-top: 60px;
+                padding: 13px 45px;
+                background-color: #3f62af;
+                border: #3f62af;
+                color: white;
+                border-radius: 20px;
+                font-size: 12px;
+                text-transform: uppercase;
+                text-align: center;
+                text-decoration: none;
+                font-weight: bold;
+                letter-spacing: 1px;
+                transition: transform 80ms ease-in, background-color 0.3s ease;
+                cursor: pointer;
+            }
+            
+              div {
+                display: block;
+                unicode-bidi: isolate;
+            }
+
+              footer {
+                text-align: center;
+                padding: 20px;
+                background: #f6f5f7; 
+              }
+            
+              footer p {
+                margin: 5px 0;
+              }
+            
+              footer a {
+                margin: 0 10px;
+                text-decoration: none;
+                color: #3f62af;
+              }
+
+              /* For responsive design */
+              @media (max-width: 768px) {
+                  .message-input input {
+                      width: 80%;
+                  }
+              }
+
+              /* Responsive Adjustments */
+                @media (max-width: 768px) {
+                  body {
+                      font-size: 14px; /* Slightly smaller font on mobile */
+                  }
+                  .header-items {
+                      margin-left: 20px; /* Adjust header items margin for mobile */
+                      width: 80%; /* Full width on mobile */
+                  }
+                }
+                .messages-list {
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                  }
+                  
+                  .messages-list div {
+                    margin-bottom: 10px;
+                    padding: 10px;
+                    border-bottom: 1px solid #ddd;
+                  }
+                  
+                  .messages-list div:last-child {
+                    border-bottom: none;
+                  }
+                  
+                  .messages-list div button {
+                    margin-top: 10px;
+                  }
+                  
+                  .messages-list div input[type="text"] {
+                    width: 100%;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    border: 1px solid #ddd;
+                    border-radius: 10px;
+                  }
+              
+
+        

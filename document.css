@@ -1,353 +1,289 @@
-/* style.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #f4f4f9;
-    color: #000000;
-    transition: margin-left 0.5s;
-  }
-  
-  header {
-    background: #3f62af;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 4px 2px -2px gray;
-    transition: margin-left 0.5s;
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    padding: 0 20px;
-  }
-  
-  .logo-container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo {
-    height: 50px;
-    margin-left: 20px; /* Added margin-left to separate the logo from the menu button */
-  }
-  
-  .nav-links {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-  }
-  
-  .nav-links li {
-    padding: 15px;
-    font-size: 16px;
-  }
-  
-  .nav-links li a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .nav-links li:hover {
-    background-color: #e0e0e0;
-    border-radius: 5px;
-  }
-  
-  main {
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    transition: margin-left 0.5s;
-  }
-  
-  .documents-section {
-    text-align: center;
-  }
-  
-  .documents-section h1 {
-    font-size: 36px;
-    color: #3f62af;
-  }
-  
-  .subtitle {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 20px;
-  }
-  
-  .document-cards {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-  
-  .card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    padding: 20px;
-    margin: 20px; /* Spacing between cards */
-    max-width: 400px; /* Define a maximum width */
-    min-width: 300px; /* Define a minimum width */
-    text-align: left;
-    flex-grow: 1;
-  }
-  
-  .card h2 {
-    font-size: 20px;
-    color: #3f62af;
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0;
-  }
-  
-  .card ul {
-    list-style: none;
-    padding: 0;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .card ul li {
-    margin: 5px 0;
-  }
 
-  .card2 {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
-    text-align: left;
-  }
-  
-  .card2 h2 {
-    font-size: 20px;
-    color: #3f62af;
-  }
-  
-  .card2 p {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .card2 ul {
-    list-style: none;
-    padding: 0;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .card2 ul li {
-    margin: 5px 0;
-  }
-  
-  .submit-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    background: #3f62af;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #5757d1;
-  }
-  
-  .notice {
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .notice h3 {
-    font-size: 18px;
-    color: #3f62af;
-    margin-bottom: 10px;
-  }
-  
-  .notice p {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #f8f8f8;
-    border-top: 1px solid #ddd;
-  }
-  
-  footer .social-links a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: rgb(73, 73, 239);
-    transition: color 0.3s;
-  }
-  
-  footer .social-links a:hover {
-    color: #5757d1;
-  }
-  
-  footer p {
-    margin: 10px 0;
-    font-size: 14px;
-  }
-  
-  /* Side navigation bar */
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  .menu-btn {
-    font-size: 30px;
-    cursor: pointer;
-    color: #fff;
-  }
-  
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-    .sidenav a {
-      font-size: 18px;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .documents-section h1 {
-      font-size: 28px;
-    }
-    .card {
-      width: 100%;
-    }
-    .notice {
-      padding: 10px;
-    }
-  }
-  /* Admin document list styling */
-.document-item {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.document-item h3 {
-  font-size: 20px;
-  color: #3f62af;
-}
-
-.document-item p {
-  font-size: 14px;
-  color: #555;
-}
-
-.document-item a {
-  color: #3f62af;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.document-item a:hover {
-  text-decoration: underline;
-}
-.view-button {
-  padding: 10px 15px;
-  background-color: #3f62af;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+.image-wrapper {
+  position: relative;
   display: inline-block;
 }
 
-.view-button:hover {
-  background-color: #5757d1;
+.ribbon-red, .ribbon-blue, .ribbon-green {
+
+position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2px 5px; /* Padding for text spacing */
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  z-index: 10; /* Ensure the ribbon is above the image */
+  border-radius: 4px ;
 }
 
-/* Container for the document cards */
-#documents-list {
+.ribbon-red {
+  background-color: red;
+}
+
+.ribbon-blue {
+  background-color: blue;
+}
+
+.ribbon-green {
+  background-color: #ffc800; /* You can use a hex code or other color representation */
+}
+
+.thumbnail {
+  display: block; /* Ensure image takes up the full width */
+  border-radius: 4px; /* Optional: make the corners rounded */
+}
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f9;
+  color: #000000;
+  transition: margin-left 0.5s;
+}
+
+/* Container Styles */
+.content {
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px; /* Set a maximum width for the container */
+  margin: 0 auto; /* Center align the container */
+}
+.search-container {
   display: flex;
-  flex-wrap: wrap;
-  margin-top: 40px;
-  justify-content: center; /* Center the cards horizontally */
-  gap: 30px; /* Add space between cards */
-  padding: 40px; /* Padding around the container */
-
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 12px 15px;
+  margin: -15px 0 0 -10px;
+  width: 100%;
+  
 }
-.spinner {
+#searchInput {
+  flex: 1;
+  padding: 12px 15px;
+  margin-right: 8px;
+  background-color: #ffffff;
+  border: none;
+  border-bottom: 1px solid black;
+  box-sizing: border-box; /* Ensures padding doesn't affect the width */
+  width: 100%;
+}
+/* Admin Section Styles */
+.admin-section {
+  background: #ffffff; /* White background for the admin section */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  padding: 20px; /* Padding inside the section */
+  margin-left: -85px;
+}
+
+.admin-section h1 {
+  font-size: 24px; /* Size for the heading */
+  color: #333; /* Darker color for the heading text */
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+/* Documents Table Styles */
+#documents-container {
+  overflow-x: auto; /* Allow horizontal scrolling for small screens */
+}
+
+#documents-table {
+          width: 100%; /* Make the table full width */
+          border-collapse: collapse; /* Collapse borders */
+          margin: 20px 0; /* Margin around the table */
+          font-family: 'Arial', sans-serif; /* Font styling */
+          
+}
+
+#documents-table thead {
+background-color: #ffffff; /* Header background color */
+          color: #3f62af; /* Header text color */
+          border-bottom: 1px solid #ddd;
+}
+
+#documents-table th,
+#documents-table td {
+  padding: 12px 15px; /* Padding for table cells */
+  text-align: left; /* Left align text */
+  border-bottom: 1px solid #ddd; /* Bottom border for cells */
+}
+
+#documents-table tr:hover {
+  background-color: #f1f1f1; /* Light background on hover */
+}
+
+
+.pagination {
+  margin-top: 20px; /* Space above pagination */
+  display: flex; /* Flexbox for layout */
+  align-items: center; /* Center align items */
+  justify-content: center; /* Center pagination */
+  color: #000;
+}
+
+.pagination-button {
+  padding: 10px 15px;
+background-color: #3f62af;
+border: #3f62af;
+color: white;
+text-decoration: none;
+border-radius: 20px;
+display: inline-block;
+margin-top: -5px;
+border-radius: 20px;
+text-align: center;
+letter-spacing: 1px;
+transition: transform 80ms ease-in, background-color 0.3s ease;
+cursor: pointer;
+}
+
+.pagination-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+footer {
   text-align: center;
-  margin: 20px 0;
+  padding: 20px;
 }
 
-.loader {
-  border: 5px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 5px solid #3f62af;
-  width: 30px;
-  height: 30px;
-  animation: spin 1s linear infinite;
+footer .social-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: rgb(73, 73, 239);
+  transition: color 0.3s;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+footer .social-links a:hover {
+  color: #5757d1;
 }
-@media screen and (max-width: 768px) {
-  #documents-list {
-      flex-direction: column; /* Stack cards vertically on smaller screens */
-      align-items: center; /* Align items in the center */
+
+footer p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .sidenav a {
+    font-size: 18px;
   }
 }
 
-  
+@media (max-width: 576px) {
+  .documents-section h1 {
+    font-size: 28px;
+  }
+  .card {
+    width: 100%;
+  }
+  .notice {
+    padding: 10px;
+  }
+}
+/* Admin document list styling */
+.document-item {
+background-color: #fff;
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+padding: 20px;
+margin-bottom: 20px;
+text-align: left;
+}
+
+.document-item h3 {
+font-size: 20px;
+color: #3f62af;
+}
+
+.document-item p {
+font-size: 14px;
+color: #555;
+}
+
+.document-item a {
+color: #3f62af;
+text-decoration: none;
+font-weight: bold;
+}
+
+.document-item a:hover {
+text-decoration: underline;
+}
+.view-button {
+padding: 10px 15px;
+background-color: #3f62af;
+color: white;
+text-decoration: none;
+border-radius: 20px;
+display: inline-block;
+margin-top: -35px;
+border-radius: 20px;
+text-align: center;
+letter-spacing: 1px;
+transition: transform 80ms ease-in, background-color 0.3s ease;
+cursor: pointer;
+}
+
+
+
+/* Container for the document cards */
+#documents-list {
+display: flex;
+flex-wrap: wrap;
+margin-top: 40px;
+justify-content: center; /* Center the cards horizontally */
+gap: 30px; /* Add space between cards */
+padding: 40px; /* Padding around the container */
+
+}
+.loader {
+display: flex; /* Use flexbox to align dots */
+justify-content: center; /* Center the dots horizontally */
+align-items: flex-end; /* Align dots at the bottom */
+height: 30px; /* Set height for alignment */
+}
+
+.dot {
+width: 10px; /* Size of each dot */
+height: 10px; /* Size of each dot */
+margin: 0 5px; /* Space between dots */
+border-radius: 50%; /* Make them circular */
+background-color: #3f62af; /* Dot color */
+animation: bounce 0.6s infinite alternate; /* Bouncing animation */
+}
+
+/* Add individual delays for each dot to create a staggered effect */
+.dot:nth-child(1) {
+animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+from {
+  transform: translateY(0); /* Start position */
+}
+
+to {
+  transform: translateY(-15px); /* End position (upwards) */
+}
+}
+
+

@@ -46,23 +46,22 @@
 
     <script>
       document.getElementById("adminbtn").addEventListener("click", (e) => {
-        e.preventDefault();
-        const password = document.getElementById("AdminPassword").value;
-        const email = document.getElementById("AdminEmail").value;
-        if (password != "123456" || email != "admin@example.com") {
-          alert("Please enter correct details");
-        } else {
-<<<<<<< HEAD
-          window.location.href = "Admin/1_Dashboard_Admin.html";
-=======
-          window.location.href = "/admin_dashboard.html";
->>>>>>> 81cbde6d04b1741a8712588f8e07b115f50f9dd4
-        }
-        console.log(password);
-        console.log(email);
+    e.preventDefault(); // Prevent form submission or link navigation
+    const password = document.getElementById("AdminPassword").value;
+    const email = document.getElementById("AdminEmail").value;
 
-        // window.location.href = "/calc.html";
-      });
+    // Check if the entered password and email are correct
+    if (password !== "123456" || email !== "admin@example.com") {
+        alert("Please enter correct details"); // Alert if details are incorrect
+    } else {
+        window.location.href = "admin_dashboard.html"; // Redirect if details are correct
+    }
+
+    // Log password and email for debugging
+    console.log(password);
+    console.log(email);
+});
+
     </script>
   </body>
 </html>
