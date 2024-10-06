@@ -27,8 +27,8 @@
     <a href="admin_query_page.html">Query</a>
   </aside>
   <br></br>
-  <h1>Oustanding Queries Report</h1>
-  <p>This report lists students with outstanding queries</p>
+  <h1>Oustanding Student Updates Report</h1>
+  <p>This report Identifies students who have not updated their funding information pertaining to additional external bursaries and anyother oustanding allowance documents</p>
   <p id="studentCount"></p>
   <canvas id="studentChart" width="300" height="200"></canvas>
 
@@ -60,56 +60,41 @@
     async function getStudentCount() {
       const studentsRef = collection(db, 'Student');
       const snapshot = await getDocs(studentsRef);
-      const totalStudents = 20;
-      const not_updated_students = 12;
-      const updated_students = totalStudents-not_updated_students;
-      
+      const totalStudents = 77;
+      const updated_students = totalStudents-25;
+      const not_updated_students = 25;
 
       // Display the total number of students
-      document.getElementById('studentCount').textContent = `The number of students who have sent queries: ${totalStudents}, and only ${updated_students} have their queries answered and or attended to.`;
+      document.getElementById('studentCount').textContent = `The number of students in our database is: ${totalStudents}, and only ${updated_students} have updated their funding updates`;
 
       // Subtract 25 and create the bar chart
       createChart(updated_students, not_updated_students);
     }
 
-    function createChart(updated_students, not_updated_students) {
-  const ctx = document.getElementById('studentChart').getContext('2d');
-  const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Answered queries', 'Unanswered queries'],
-      datasets: [{
-        label: 'Number of Students',
-        data: [updated_students, not_updated_students],
-        backgroundColor: ['rgba(63, 98, 175, 0.8)', 'rgba(173, 216, 230, 0.8)'],
-        borderColor: ['rgba(63, 98, 175, 1)', 'rgba(173, 216, 230, 1)'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
-      onClick: (e, elements) => {
-        if (elements.length > 0) {
-          const clickedElementIndex = elements[0].index; // Get index of clicked bar
-          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked bar
-          
-          // Redirect based on the clicked bar's label
-          if (label === 'Answered queries') {
-            window.location.href = 'answered_queries.html'; // Redirect to the 'Answered queries' page
-          } else if (label === 'Unanswered queries') {
-            window.location.href = 'unanswered_queries.html'; // Redirect to the 'Unanswered queries' page
+    // Function to create the bar chart
+    function createChart(totalStudents, not_updated_students) {
+      const ctx = document.getElementById('studentChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['updated_students', 'not_updated_students'],
+          datasets: [{
+            label: 'Number of Students',
+            data: [totalStudents, not_updated_students],
+            backgroundColor: ['rgba(63, 98, 175, 0.8)','rgba(173, 216, 230, 0.8)',],
+            borderColor: ['rgba(63, 98, 175, 1)','rgba(173, 216, 230, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
           }
         }
-      }
+      });
     }
-  });
-}
-
-
 
     // Call the function to get student count and display chart
     getStudentCount();

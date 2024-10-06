@@ -72,7 +72,7 @@
       createChart(updated_students, not_updated_students);
     }
 
-    function createChart(updated_students, not_updated_students) {
+    function createChart(totalStudents, not_updated_students) {
   const ctx = document.getElementById('studentChart').getContext('2d');
   const chart = new Chart(ctx, {
     type: 'bar',
@@ -80,7 +80,7 @@
       labels: ['Answered queries', 'Unanswered queries'],
       datasets: [{
         label: 'Number of Students',
-        data: [updated_students, not_updated_students],
+        data: [totalStudents, not_updated_students],
         backgroundColor: ['rgba(63, 98, 175, 0.8)', 'rgba(173, 216, 230, 0.8)'],
         borderColor: ['rgba(63, 98, 175, 1)', 'rgba(173, 216, 230, 1)'],
         borderWidth: 1
@@ -99,16 +99,15 @@
           
           // Redirect based on the clicked bar's label
           if (label === 'Answered queries') {
-            window.location.href = 'answered_queries.html'; // Redirect to the 'Answered queries' page
+            window.location.href = 'answered_queries.html'; // Redirect to a new page for 'Answered queries'
           } else if (label === 'Unanswered queries') {
-            window.location.href = 'unanswered_queries.html'; // Redirect to the 'Unanswered queries' page
+            window.location.href = 'unanswered_queries.html'; // Redirect to a new page for 'Unanswered queries'
           }
         }
       }
     }
   });
 }
-
 
 
     // Call the function to get student count and display chart

@@ -72,44 +72,30 @@
       createChart(updated_students, not_updated_students);
     }
 
-    function createChart(updated_students, not_updated_students) {
-  const ctx = document.getElementById('studentChart').getContext('2d');
-  const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Answered queries', 'Unanswered queries'],
-      datasets: [{
-        label: 'Number of Students',
-        data: [updated_students, not_updated_students],
-        backgroundColor: ['rgba(63, 98, 175, 0.8)', 'rgba(173, 216, 230, 0.8)'],
-        borderColor: ['rgba(63, 98, 175, 1)', 'rgba(173, 216, 230, 1)'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
-      onClick: (e, elements) => {
-        if (elements.length > 0) {
-          const clickedElementIndex = elements[0].index; // Get index of clicked bar
-          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked bar
-          
-          // Redirect based on the clicked bar's label
-          if (label === 'Answered queries') {
-            window.location.href = 'answered_queries.html'; // Redirect to the 'Answered queries' page
-          } else if (label === 'Unanswered queries') {
-            window.location.href = 'unanswered_queries.html'; // Redirect to the 'Unanswered queries' page
+    // Function to create the bar chart
+    function createChart(totalStudents, not_updated_students) {
+      const ctx = document.getElementById('studentChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Answered queries', 'Unanswered queries'],
+          datasets: [{
+            label: 'Number of Students',
+            data: [totalStudents, not_updated_students],
+            backgroundColor: ['rgba(63, 98, 175, 0.8)','rgba(173, 216, 230, 0.8)',],
+            borderColor: ['rgba(63, 98, 175, 1)','rgba(173, 216, 230, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
           }
         }
-      }
+      });
     }
-  });
-}
-
-
 
     // Call the function to get student count and display chart
     getStudentCount();
