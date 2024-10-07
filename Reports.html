@@ -5,199 +5,591 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reports</title>
     <link rel="stylesheet" href="documents_page.css" />
-    <style>
-      /* General Styles */
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-      }
-
-      body {
-        background-color: #f6f5f7;
-      }
-
-      .header {
-        background-color: #3f62af;
-        color: #fff;
-        padding: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .logo {
-        height: 50px;
-        margin-left: 10px;
-      }
-
-      .nav-links {
-        list-style: none;
-        display: flex;
-      }
-
-      .nav-item a {
-        color: #fff;
-        text-decoration: none;
-        padding: 10px 20px;
-        font-weight: bold;
-      }
-
-      .nav-item a:hover {
-        background-color: #173e7a;
-        border-radius: 5px;
-      }
-
-      .sidenav {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        top: 0;
-        left: 0;
-        background-color: #3f62af;
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-      }
-
-      .sidenav a {
-        padding: 8px 8px 8px 32px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #fff;
-        display: block;
-        transition: 0.3s;
-      }
-
-      .sidenav a:hover {
-        background-color: #173e7a;
-      }
-
-      .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-      }
-
-      .menu-btn {
-        font-size: 30px;
-        cursor: pointer;
-        color: #fff;
-      }
-
-      main {
-        margin-left: 250px;
-        padding: 20px;
-      }
-
-      .report-header {
-        text-align: center;
-        margin-bottom: 40px;
-      }
-
-      .report-header h1 {
-        font-size: 3rem;
-        color: #3f62af;
-        margin-bottom: 20px;
-      }
-
-      .button-container {
-        display: flex;
-        gap: 20px;
-        justify-content: center;
-      }
-
-      .report-button {
-        display: inline-block;
-        padding: 20px 40px;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #ffffff;
-        background-color: #3f62af;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        text-align: center;
-        text-decoration: none;
-      }
-
-      .report-button:hover {
-        background-color: #173e7a;
-      }
-
-      footer {
-        background-color: #f8f8f8;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
-        border-top: 1px solid #ddd;
-      }
-
-      footer .social-links a {
-        margin: 0 10px;
-        text-decoration: none;
-        color: #3f62af;
-      }
-
-      footer p {
-        margin-top: 10px;
-        color: #3f62af;
-      }
-    </style>
+     <!--=============== REMIXICONS ===============-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
   </head>
   <body>
-    <header class="header">
-      <nav class="navbar">
-        <div class="logo-container">
-          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+    <div class="container">
+     
+      <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+                  
+        <div class="sidebar-menu-content">
+          
+            <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+              
+              <li class="nav-item">
+                  <a href="#" class="nav-link"><i class="ri-menu-line"></i></a>
+              </li> 
+              <li class="nav-item">
+                  <a href="admin_dashboard.html" class="nav-link"><i class="ri-currency-line"></i><span>Dashboard</span></a>
+              </li>
+
+              <li class="nav-item">
+                  <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i><span>Document</span></a>
+              </li>
+                <li class="nav-item ">
+                  <a href="admin_query_response.html" class="nav-link"><i class="ri-file-copy-2-line"></i><span>Message</span></a>
+              </li>
+                <li class="nav-item">
+                    <a href="Reports.html" class="nav-link"><i class="ri-file-chart-line"></i><span>Reports</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="ri-shield-user-line"></i><span>Account</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="useless.html" class="nav-link"><i class="ri-settings-5-line"></i><span>Settings</span></a>
+                </li>
+                <li class="nav-item">
+                  <a href="" class="nav-link"><i class="ri-logout-box-line"></i></i><span>Logout</span></a>
+              </li>
+            </ul>
+            
         </div>
-        <ul class="nav-links">
-          <li class="nav-item"><a href="#">Home</a></li>
-          <li class="nav-item"><a href="#">About Us</a></li>
-          <li class="nav-item"><a href="#">Our Services</a></li>
-          <li class="nav-item"><a href="#">Contact Us</a></li>
-        </ul>
-      </nav>
-    </header>
+        
+          <script>
+          document.addEventListener('DOMContentLoaded', function() {
+          const sidebar = document.querySelector('.sidebar-main');
 
-    <main>
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
-        <a href="#">Reports</a>
-        <a href="admin_query_page.html">Query</a>
-      </div>
+          sidebar.addEventListener('mouseenter', () => {
+          sidebar.classList.add('expanded');
+          sidebar.classList.remove('collapsed');
+          });
 
-      <!-- Reports Section with Buttons -->
-      <div class="report-header">
-        <h1>Reports</h1>
+          sidebar.addEventListener('mouseleave', () => {
+          sidebar.classList.remove('expanded');
+          sidebar.classList.add('collapsed');
+          });
+          });
+          </script>
+          <style>
+            /* Sidebar collapsed style */
+            .sidebar-main {
+                width: 70px; 
+                background-color: #3f62af;
+                transition: width 0.3s;
+                margin-top: 20px;
+                margin-left: 10px;
+                border-radius: 10px;
+              
+            }
+            
+            .sidebar-main.expanded {
+                width: 250px; /* Expanded width */
+            }
+            .sidebar-main.expanded .nav-sidebar-menu li a:hover {
+                background-color: rgba(255, 255, 255, 0.2); 
+                color: #ffffff; 
+                border-radius: 10px;
+                margin-left: -10px;
+                margin-right: 10px;
+            }
+            
+            .nav-sidebar-menu li a {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                text-decoration: none;
+                color: #fff;
+                margin-left: 15px;
+                margin-top: 30px;
+            }
+            
+            .nav-sidebar-menu li a i {
+                font-size: 24px; /* Icon size */
+                margin-right: 10px;
+            }
+            
+            .nav-sidebar-menu li a span {
+                display: none; /* Hide text by default */
+                transition: all 0.3s;
+            }
+            
+            ul {
+                list-style-type: none; 
+            }
+            
+            /* Show only icons when collapsed */
+            .sidebar-main.collapsed .nav-sidebar-menu li span {
+                display: none; /* Ensure text is hidden */
+                
+            }
+            
+            /* Hide the first menu item when expanded */
+            .sidebar-main.expanded .nav-sidebar-menu li:first-child {
+                display: none; /* Hides the entire first menu item (icon + text) */
+            }
+            
+            /* When expanded, show the text */
+            .sidebar-main.expanded .nav-sidebar-menu li a span {
+                display: inline; /* Show text when expanded */
+            }
+            
+            /* Center the first item icon when collapsed */
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a {
+                justify-content: center; /* Center icon in collapsed state */
+            }
+            
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
+                margin-right: 0;
+            }
+            </style>
+            
       </div>
-      <div class="button-container">
-        <a href="outstanding_queries.html" class="report-button">Outstanding Queries Report</a>
-        <a href="outstanding_students_updates.html" class="report-button">Outstanding Updates Report</a>
-        <a href="University_batch.html" class="report-button">University Report</a>
-      </div>
-    </main>
+     
+        <div class="main-content">
+          <header class="header">
+            <div class="header-container">
+              <!-- Search Section -->
+              <div class="header-search">
+                <input type="text" placeholder="Search..." />
+              </div>
+              <div class="header-search">
+                <button type="submit" class="header-searchbtn">Search</button>
+              </div>
+              <div class="header-items" style="margin-left: 600px;">
+                <!-- Profile Section -->
+                <div class="header-profile">
+                  <a href="#" id="profile-icon">
+                    <i class="ri-user-line"></i> Profile
+                  </a>
+                  <div
+                    class="profile-dropdown-menu"
+                    id="profile-dropdown"
+                    style="display: none"
+                  >
+                    <div class="item-header">
+                      <h6 class="item-title">Val Jansen</h6>
+                    </div>
+                    <div class="item-content">
+                      <ul class="settings-list">
+                        <li>
+                          <a href="#"><i class="ri-user-line"></i> My Profile</a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="ri-list-check-2"></i> Task</a>
+                        </li>
+                        <li>
+                          <a href="#"
+                            ><i class="ri-settings-2-line"></i> Admin Settings</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+      
+                <!-- Notifications Section -->
+                <div class="header-notifications">
+                  <a href="#" id="notifications-icon">
+                    <i class="ri-notification-3-line"></i>Notification
+                  </a>
+      
+                  <div
+                    class="notifications-dropdown-menu"
+                    id="notifications-dropdown"
+                    style="display: none"
+                  >
+                    <div class="item-header">
+                      <h6 class="item-title">Notifications</h6>
+                    </div>
+                    <div class="item-content">
+                      <ul class="notifications">
+                        <div class="media">
+                          <li>
+                            <a href="#"
+                              ><i class="ri-notification-3-fill"></i> Complete Today
+                              Task</a
+                            ><span>1 min ago</span>
+                          </li>
+                        </div>
+                        <div class="media">
+                          <li>
+                            <a href="#"
+                              ><i class="ri-notification-3-fill"></i> Updated Office
+                              No.</a
+                            ><span>5 min ago</span>
+                          </li>
+                        </div>
+                        <div class="media">
+                          <li>
+                            <a href="#"
+                              ><i class="ri-notification-3-fill"></i> Document
+                              Edited</a
+                            ><span>10 min ago</span>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+      
+                <!-- Dark Mode Toggle Section -->
+                <div class="header-dark">
+                  <a href="#" id="darkModeToggle">
+                    <i class="ri-moon-line"></i> Dark
+                  </a>
+                </div>
+      
+                <!-- Logout Section -->
+                <div class="header-logout">
+                  <a href="#" id="logout-icon">
+                    <i class="ri-logout-box-line"></i> Logout
+                  </a>
+                  <div
+                    class="logout-dropdown-menu"
+                    id="logout-dropdown"
+                    style="display: none"
+                  >
+                    <div class="item-header">
+                      <h6 class="item-title">Are you sure you want to log out?</h6>
+                    </div>
+                    <div class="item-content">
+                      <ul class="settings-list">
+                        <li>
+                          <a href="admin_login.html"
+                            ><i class="ri-check-line"></i> Yes</a
+                          >
+                        </li>
+                        <li>
+                          <a href="#" id="cancel-logout"
+                            ><i class="ri-close-line"></i> No</a
+                          >
+                        </li>
+                      </ul>
+                      <div id="logout-message" style="display: none; color: green">
+                        You have logged out successfully.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-    <footer>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
-      </div>
-      <p>
-        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights reserved
-      </p>
-    </footer>
+            <style>              
+            .header {
+              background-color: #ffffff; /* Keep the background color white */
+              color: #000; /* Change text color to black or any visible color */
+              padding: 0;
+              text-align: center;
+              border-radius: 10px;
+              box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+              width: 97%;
+              position: relative; /* Make header sticky */
+              top: 0; /* Position it at the top */
+              margin: 80px 0 10px 0;
+
+            }
+
+            .header-container {
+                  margin-top: -100px;
+                  display: flex;
+                  align-items: center;
+                  flex-direction: row;
+                  flex-wrap: nowrap;
+                  justify-content: flex-start;
+                  margin-left:-30px;  
+                  width: 100%; 
+              }
+
+              .header-search {
+                  display: flex;
+                  align-items: center;
+                  margin-left: -50px;
+              }
+
+              .header-search input {
+                  flex: 1;
+                  padding: 12px 15px;
+                  margin-bottom: 15px;
+                  margin-left: 50px;
+                  color: #000;
+                  background-color: #ffffff;
+                  border: none;
+                  border-bottom: 1px solid black;
+                  box-sizing: border-box;
+                  width: 50%;
+              }
+
+              .header-searchbtn {
+                margin-top: -55px;
+                margin-bottom: -50px;
+                  display: inline-block;
+                  padding: 10px 20px;
+                  background-color: #3f62af;
+                  border: none;
+                  color: white;
+                  border-radius: 20px;
+                  font-size: 12px;
+                  text-align: center;
+                  letter-spacing: 1px;
+                  transition: transform 80ms ease-in, background-color 0.3s ease;
+                  cursor: pointer;
+              }
+
+            .header-container div {
+                margin: 0 5px; 
+            }
+
+            .header-container a {
+                text-decoration: none; /* Remove underline */
+                color: #000; /* Change to your preferred color */
+            }
+
+            .header-items {
+              display: flex; /* This already ensures the icon and text are side by side */
+              margin-left: 600px;
+              border-radius: 10px;
+              margin-top: -20px;
+              justify-content: flex-start; /* Align items to the start (icon and text together) */
+              align-items: center; /* Vertically center the icon and text */
+              gap: 10px; /* Space between the icon and text */
+              padding: 10px 20px;
+              background-color: #ffffff;
+              width: 40%;  
+              flex-wrap: nowrap;
+              align-items: center;
+              flex-direction: row;
+              }
+
+              .header-items a i {
+                  margin-right: 8px;
+                  font-size: 18px;
+              }
+
+              .header-items a:hover {
+                  color: #3f62af;
+              }
+
+              .header-dark a {
+                  cursor: pointer;
+              }
+
+              .header-logout a {
+                  font-weight: bold;
+                  
+              }
+        
+              .header-items a {
+                  text-decoration: none;
+                  color: #333; /* Default link color */
+                  padding: 10px 15px; /* Padding around links */
+                  transition: color 0.3s ease; /* Smooth transition for hover effect */
+              }
+
+              /* Profile, Notifications, Logout sections */
+              .header-profile,
+              .header-notifications,
+              .header-logout,
+              .header-dark {
+                  position: relative; /* Needed for dropdown positioning */
+                  margin-right: 20px; /* Space between sections */
+              }
+
+              /* Dropdown menu styles */
+              .profile-dropdown-menu,
+              .notifications-dropdown-menu,
+              .logout-dropdown-menu {
+                  position: absolute;
+                  top: 100%; /* Positioning below the header item */
+                  left: 0; /* Align to the left */
+                  background: white; /* Background color for dropdown */
+                  border-radius: 10px; /* Rounded corners */
+                  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+                  z-index: 1000; /* Ensure dropdown is above other content */
+                  width: 300px; /* Set a width for the dropdown */
+              }
+
+              /* Header dropdown item header styles */
+              .item-header {
+                  padding: 10px 15px; /* Padding for header */
+                  background: #f7f7f7; /* Light gray background */
+              }
+
+              /* Item title styles */
+              .item-title {
+                  margin: 0; /* Remove default margin */
+                  font-size: 16px; /* Font size */
+              }
+
+              /* Dropdown item content styles */
+              .item-content {
+                  padding: 10px 0; /* Padding for item content */
+              }
+
+              /* List styles */
+              .settings-list,
+              .notifications {
+                  list-style: none; /* Remove default list styling */
+                  padding: 10px; /* Remove default padding */
+                  margin: 0; /* Remove default margin */
+              }
+
+              /* Individual dropdown item styles */
+              .settings-list li,
+              .notifications li {
+                  padding: 8px 15px; /* Padding for dropdown items */
+                  transition: background 0.3s ease; /* Smooth transition for hover */
+              }
+
+              /* Hover effect for dropdown items */
+              .settings-list li:hover,
+              .notifications li:hover {
+                  background: #f0f0f0; /* Change background on hover */
+              }
+
+              /* Media styles */
+              .media {
+                  display: flex; /* Flexbox for media items */
+                  align-items: center; /* Center items vertically */
+                  margin-bottom: 5px; /* Space between media items */
+              }
+
+              /* Media body styles */
+              .media-body {
+                  margin-left: 10px; /* Space between icon and text */
+              }
+
+              /* Notification icon styles */
+              .item-icon {
+                  width: 30px; /* Width for notification icon */
+                  height: 30px; /* Height for notification icon */
+                  display: flex; /* Flexbox for center alignment */
+                  align-items: center; /* Center align */
+                  justify-content: center; /* Center align */
+                  border-radius: 50%; /* Round icon */
+              }
+
+
+              /* Dark mode toggle styles */
+              
+              body.dark-mode {
+                  background-color: #000000; /* Dark mode background */
+                  color: #ffffff; /* Dark mode text color */
+              }
+
+              /* Universal element styles in dark mode */
+              body.dark-mode * {
+                  background-color: #1e1e1e; /* Dark background for all elements */
+                  color: #ddd; /* Light text for all elements */
+                
+              }
+
+              /* Links in dark mode */
+              body.dark-mode a {
+                  color: #ffffff; /* Light text for links */
+              }
+
+              body.dark-mode a:hover {
+                  color: #3f62af; /* Hover color for links in dark mode */
+              }
+
+              /* Input fields in dark mode */
+              body.dark-mode input {
+                  background-color: #333; /* Dark background for input fields */
+                  color: #ffffff; /* Light text for input fields */
+                  border-bottom : 1px solid #ddd; /* Dark border for input fields */
+            }
+
+            /* Buttons in dark mode */
+            body.dark-mode button {
+                background-color: #333; /* Dark background for buttons */
+                color: #ffffff; /* Light text for buttons */
+                border: 1px solid #ddd; /* Dark border for buttons */
+            }
+
+            body.dark-mode button:hover {
+                background-color: #ddd; /* Darker background on hover */
+            }
+
+            /* Optional specific sections */
+            body.dark-mode .header,
+            body.dark-mode .header-items,
+            body.dark-mode .welcome-sections,
+            body.dark-mode .welcome-container,
+            body.dark-mode .actions, body.dark-mode #SearchInput
+            {
+                background-color: #1e1e1e; /* Apply dark background */
+                color: #ffffff; /* Apply light text */
+                
+            }
+            </style>
+          </header>
+          <div>
+            <!-- Go Back Navigation -->
+            <div class="navigation" style="margin-left: 10px; margin-top: 20px">
+              <a href="admin_dashboard.html" class="go-back" style="color: #000; font-size: 16px;"
+                >← Go Back</a
+              >
+            </div>
+          </div>
+
+            <!-- Page Content Area Start Here -->
+            <div class="content">
+              
+              <div class="container">
+                <section class="reports-section">
+                    <!-- Reports Section -->
+                    <div class="report-header">
+                      <h1>Reports</h1>
+                    </div>
+                    
+                  <div class="card__container">
+                    <article class="card__article">
+                        <img src="https://complyan.com/wp-content/uploads/2022/09/Compliance-Levels.png" alt="image" class="card__img">
+                        <div class="card__data">
+                          <h4 class="card__title">Outstanding Queries</h4>
+                          <a href="outstanding_queries.html" class="report-button">Go to Report →</a>
+                        </div>
+                    </article>
+
+                    <article class="card__article">
+                        <img src="https://complyan.com/wp-content/uploads/2022/09/Frameworks.png" alt="image" class="card__img">
+                        <div class="card__data">
+                          <h2 class="card__title">Outstanding Student Updates: Funding</h2>
+                          <a href="outstanding_students_updates.html" class="report-button">Go to Report →</a>
+                        </div>
+                    </article>
+
+                    <article class="card__article">
+                        <img src="https://complyan.com/wp-content/uploads/2022/09/Frame-33731.png" alt="image" class="card__img">
+                        <div class="card__data">
+                          <h2 class="card__title">Unanswered Query</h2>
+                          <a href="un" class="report-butto  n">Go to Report →</a>
+                        </div>
+                    </article>
+
+                    <article class="card__article">
+                        <img src="https://complyan.com/wp-content/uploads/2022/09/Frame-33676.png" alt="image" class="card__img">
+                        <div class="card__data">
+                          <h2 class="card__title">University  Batch Report</h2>
+                          <a href="University_batch.html" class="report-button">Go to Report →</a>
+                        </div>
+                    </article>
+
+                    <article class="card__article">
+                        <img src="https://complyan.com/wp-content/uploads/2022/09/Dashboards-and-Reporting.png" alt="image" class="card__img">
+                        <div class="card__data">
+                          <h2 class="card__title">Outstanding Student Updates: Profile</h2>
+                          <a href="not_updated_students.html" class="report-button">Go to Report →</a>
+                        </div>
+                    </article>
+                  </div>
+
+                </section>
+                
+              </div>
+            </div>
+             <!-- Footer -->
+        <footer>
+          <p>&copy; Moshal Scholarship Program 2024 <br> Developed by INFOSYNC <br> All rights reserved</p>
+          <p>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+          </p>
+        </footer>
+        </div>
+       
+    </div>
 
     <script>
       function toggleNav() {
@@ -215,3 +607,261 @@
     <script type="module" src="documents_page.js"></script>
   </body>
 </html>
+
+<style>
+  /* General Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background-color: #f6f5f7;
+  }
+  .container {
+    display: flex;
+    min-height: 100vh; 
+    background-color: #f4f4f4;
+    overflow-y: hidden;
+    }
+        
+.main-content {
+flex-grow: 1; /* Takes up the remaining space */
+background-color: #f4f4f4; /* Background color */
+padding: 20px;
+margin-top: 20px;
+overflow-y: hidden;
+width: 100%;
+}
+    
+
+.content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f4f4f4;
+    margin-left: -20px;
+    width: 100%;
+    
+}
+.reports-section {
+    width: 100%;
+    margin-bottom: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+
+  .menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  main {
+    margin-left: 250px;
+    padding: 20px;
+  }
+
+  .report-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .report-header h1 {
+    font-size: 3rem;
+    color: #3f62af;
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .report-button {
+    margin-top: 10px;
+                padding: 10px 15px; /* Adjusted button size */
+                background-color: #ffffff;
+                color: #3f62af;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+  }
+
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #f4f4f4; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  footer p {
+    margin: 5px 0;
+  }
+
+  footer a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3f62af;
+  }
+/*=============== BASE ===============*/
+  
+img {
+    display: block;
+    width: 60px;
+    height: auto;
+  }
+  
+  /*=============== CARD ===============*/
+  
+  .card__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Change to accommodate 3 cards in the first row */
+    gap: 2rem;
+    row-gap: 3.5rem;
+   
+  }
+  
+  .card__article {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card__img {
+    width: 300px;
+    height: 350px;
+    border-radius: 1.5rem;
+  }
+  
+  .card__data {
+    font-size: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -9rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    opacity: 0;
+    transition: opacity 1s 1s;
+  }
+  
+  .card__description {
+    display: block;
+    font-size: 0.813rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .card__title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #262626;
+    margin-bottom: 0.75rem;
+  }
+  
+  .card__button {
+    text-decoration: none;
+    font-size: 0.813rem;
+    font-weight: 500;
+    color: #4a9d62;
+  }
+  
+  .card__button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Naming animations in hover */
+  .card__article:hover .card__data {
+    animation: show-data 1s forwards;
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  
+  .card__article:hover {
+    animation: remove-overflow 2s forwards;
+  }
+  
+  .card__article:not(:hover) {
+    animation: show-overflow 2s forwards;
+  }
+  
+  .card__article:not(:hover) .card__data {
+    animation: remove-data 1s forwards;
+  }
+  
+  /* Card animation */
+  @keyframes show-data {
+    50% {
+      transform: translateY(-10rem);
+    }
+    100% {
+      transform: translateY(-7rem);
+    }
+  }
+  
+  @keyframes remove-overflow {
+    to {
+      overflow: initial;
+    }
+  }
+  
+  @keyframes remove-data {
+    0% {
+      transform: translateY(-7rem);
+    }
+    50% {
+      transform: translateY(-10rem);
+    }
+    100% {
+      transform: translateY(0.5rem);
+    }
+  }
+  
+  @keyframes show-overflow {
+    0% {
+      overflow: initial;
+      pointer-events: none;
+    }
+    50% {
+      overflow: hidden;
+    }
+  }
+  
+  /* Adjust the grid layout for 5 cards */
+  .card__container {
+    grid-template-columns: repeat(3, 1fr); /* Three cards in the first row */
+  }
+  
+  .card__article:nth-child(4) {
+    grid-column: 1 / 3; /* Make the fourth card span two columns */
+    margin-left: 150px;
+  }
+  
+  .card__article:nth-child(5) {
+    grid-column: 3; /* Place the fifth card in the last column */
+    margin-left: -150px;
+  }
+  
+  /* Align card positions */
+  .card__article {
+    margin-top: 20px; /* Optional: Adjust the vertical spacing */
+  }
+  
+
+</style>
