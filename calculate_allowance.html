@@ -211,7 +211,15 @@
       <h1>Allowance Calculation</h1>
       <form id="allowanceForm">
         <!-- External Funding Details -->
-        <label for="ExtFunding_Name"
+        <!-- Update the Funding Type selection to a dropdown -->
+        <label for="ExtFunding_Name">External Funding Source:</label>
+        <select id="ExtFunding_Name" name="ExtFunding_Name" required>
+          <option value="" disabled selected>Select your funding source</option>
+          <option value="GCRA">GCRA</option>
+          <option value="NSFAS">NSFAS</option>
+        </select>
+
+        <!-- <label for="ExtFunding_Name"
           >External Funding Source Name(write "N/A" if not applicable):</label
         >
         <input
@@ -220,7 +228,7 @@
           name="ExtFunding_Name"
           placeholder="Enter the name of the funding source"
           required
-        />
+        /> -->
 
         <label for="annual_amount"
           >Living Allowance Annual Amount given by external funder:</label
