@@ -13,191 +13,130 @@
   </head>
   <body>
     <div class="container">
-      <nav class="sidebar">
-        <div
-          class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color collapsed"
-        >
-          <div class="sidebar-menu-content">
+      <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+                
+        <div class="sidebar-menu-content">
+           
             <ul class="nav nav-sidebar-menu sidebar-toggle-view">
-              <li class="nav-item">
-                <a href="#" class="nav-link"
-                  ><i class="ri-menu-line"></i><span>Menu</span></a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="admin_dashboard.html" class="nav-link"
-                  ><i class="ri-graduation-cap-line"></i>Dashboard</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="admin-documents.html" class="nav-link"
-                  ><i class="ri-book-2-line"></i>Document</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="admin_query_response.html" class="nav-link"
-                  ><i class="ri-file-copy-2-line"></i>Message</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"
-                  ><i class="ri-file-chart-line"></i>Reports</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"
-                  ><i class="ri-shield-user-line"></i>Account</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"
-                  ><i class="ri-settings-5-line"></i>Settings</a
-                >
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link"
-                  ><i class="ri-logout-box-line"></i>Logout</a
-                >
-              </li>
+               
+               <li class="nav-item">
+                   <a href="#" class="nav-link"><i class="ri-menu-line"></i></a>
+               </li> 
+               <li class="nav-item">
+                   <a href="admin_dashboard.html" class="nav-link"><i class="ri-currency-line"></i><span>Dashboard</span></a>
+               </li>
+  
+               <li class="nav-item">
+                   <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i><span>Document</span></a>
+               </li>
+                <li class="nav-item ">
+                   <a href="admin_query_response.html" class="nav-link"><i class="ri-file-copy-2-line"></i><span>Message</span></a>
+               </li>
+                <li class="nav-item">
+                    <a href="Reports.html" class="nav-link"><i class="ri-file-chart-line"></i><span>Reports</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><i class="ri-shield-user-line"></i><span>Account</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="useless.html" class="nav-link"><i class="ri-settings-5-line"></i><span>Settings</span></a>
+                </li>
+                <li class="nav-item">
+                   <a href="" class="nav-link"><i class="ri-logout-box-line"></i></i><span>Logout</span></a>
+               </li>
             </ul>
-          </div>
-          <script>
-            document.addEventListener("DOMContentLoaded", function () {
-              const sidebar = document.querySelector(".sidebar-main");
-
-              sidebar.addEventListener("mouseenter", () => {
-                sidebar.classList.add("expanded");
-                sidebar.classList.remove("collapsed");
-              });
-
-              sidebar.addEventListener("mouseleave", () => {
-                sidebar.classList.remove("expanded");
-                sidebar.classList.add("collapsed");
-              });
-            });
-          </script>
+            
+        </div>
+        
+           <script>
+           document.addEventListener('DOMContentLoaded', function() {
+          const sidebar = document.querySelector('.sidebar-main');
+  
+          sidebar.addEventListener('mouseenter', () => {
+          sidebar.classList.add('expanded');
+          sidebar.classList.remove('collapsed');
+          });
+  
+          sidebar.addEventListener('mouseleave', () => {
+          sidebar.classList.remove('expanded');
+          sidebar.classList.add('collapsed');
+          });
+          });
+           </script>
           <style>
             /* Sidebar collapsed style */
             .sidebar-main {
-              margin-top: 10px;
-              margin-left: -150px;
-              position: relative;
-              padding: 5px;
-              background-color: #3f62af;
-              color: #fff;
-              transition: all 0.5s linear;
-              border-radius: 10px;
-              width: 60px; /* Collapsed width */
-              height: 60px; /* Fixed height to align with icon */
-              display: flex;
-              align-items: center; /* Center items vertically */
-              justify-content: center;
-              flex-wrap: wrap;
-              align-items: flex-start;
-              flex-direction: row;
-              align-content: flex-end;
+                width: 70px; 
+                background-color: #3f62af;
+                transition: width 0.3s;
+                margin-top: 20px;
+                margin-left: 10px;
+                border-radius: 10px;
+              
             }
-
+            
             .sidebar-main.expanded {
-              width: 220px;
-              margin-top: -2px;
-              margin-left: -150px;
-              height: calc(100vh - 20px);
-              top: 10px;
-              left: 10px;
-              overflow: hidden;
-              background-color: #3f62af;
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-              z-index: 1000;
-              transition: all 0.5s linear;
+                width: 250px; /* Expanded width */
             }
-
+            .sidebar-main.expanded .nav-sidebar-menu li a:hover {
+                background-color: rgba(255, 255, 255, 0.2); 
+                color: #ffffff; 
+                border-radius: 10px;
+                margin-left: -10px;
+                margin-right: 10px;
+            }
+            
             .nav-sidebar-menu li a {
-              display: flex;
-              align-items: center;
-              padding: 10px;
-              text-decoration: none;
-              color: #fff;
-              transition: background 0.3s; /* Smooth hover effect */
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                text-decoration: none;
+                color: #fff;
+                margin-left: -25px;
+                margin-top: 30px;
             }
-
-            .nav-sidebar-menu li a:hover {
-              background-color: rgba(255, 255, 255, 0.2); /* Hover effect */
-            }
-
+            
             .nav-sidebar-menu li a i {
-              /* Updated icon size */
-              margin-right: 10px;
-              transition: transform 0.3s; /* Smooth icon effect */
+                font-size: 24px; /* Icon size */
+                margin-right: 10px;
             }
-
+            
             .nav-sidebar-menu li a span {
-              display: none;
-              transition: all 0.3s;
+                display: none; /* Hide text by default */
+                transition: all 0.3s;
             }
-
+            
+            ul {
+                list-style-type: none; 
+            }
+            
+            /* Show only icons when collapsed */
+            .sidebar-main.collapsed .nav-sidebar-menu li span {
+                display: none; /* Ensure text is hidden */
+                
+            }
+            
+            /* Hide the first menu item when expanded */
+            .sidebar-main.expanded .nav-sidebar-menu li:first-child {
+                display: none; /* Hides the entire first menu item (icon + text) */
+            }
+            
+            /* When expanded, show the text */
             .sidebar-main.expanded .nav-sidebar-menu li a span {
-              display: inline-block;
-              opacity: 1;
+                display: inline; /* Show text when expanded */
             }
-
-            /* Only show first icon when collapsed */
-            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a span {
-              display: none;
-            }
-
-            .sidebar-main.collapsed .nav-sidebar-menu li:first-child,
-            .sidebar-main.collapsed .nav-sidebar-menu li:nth-child(1) {
-              /* This assumes Dashboard is the second item */
-              display: flex; /* Change from none to flex */
-            }
-
-            .sidebar-main.collapsed .nav-sidebar-menu li:not(:first-child) {
-              display: none; /* Hide all items except Dashboard */
-            }
-
+            
+            /* Center the first item icon when collapsed */
             .sidebar-main.collapsed .nav-sidebar-menu li:first-child a {
-              justify-content: center; /* Center icon in collapsed state */
+                justify-content: center; /* Center icon in collapsed state */
             }
-
+            
             .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
-              margin-right: 0;
+                margin-right: 0;
             }
-            .nav-item .nav-link i {
-              font-size: 20px;
-              background-color: #3f62af;
-              overflow: hidden; /* Prevent overflow when collapsed */
-              display: flex;
-              align-items: center; /* Center items vertically */
-              justify-content: center;
-            }
-            .nav-item {
-              padding: 1rem;
-              margin: 0 0;
-              border-radius: 8px;
-              transition: background 0.3s ease-in-out;
-              display: flex;
-              justify-content: center;
-            }
-            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
-              margin-right: 0;
-              margin-left: -40px;
-              margin-bottom: -30px;
-            }
-
-            /* Responsive adjustments */
-            @media (max-width: 768px) {
-              .sidebar-main {
-                width: 50px; /* Smaller width on mobile */
-              }
-
-              .sidebar-main.expanded {
-                width: 200px; /* Adjust expanded width on mobile */
-              }
-            }
-          </style>
-        </div>
-      </nav>
+            </style>
+            
+      </div>
 
       <div class="main-content">
         <header class="header">
@@ -209,370 +148,375 @@
             <div class="header-search">
               <button type="submit" class="header-searchbtn">Search</button>
             </div>
-          </div>
-
-          <div class="header-items">
-            <!-- Profile Section -->
-            <div class="header-profile">
-              <a href="#" id="profile-icon">
-                <i class="ri-user-line"></i> Profile
-              </a>
-              <div
-                class="profile-dropdown-menu"
-                id="profile-dropdown"
-                style="display: none"
-              >
-                <div class="item-header">
-                  <h6 class="item-title">Val Jansen</h6>
-                </div>
-                <div class="item-content">
-                  <ul class="settings-list">
-                    <li>
-                      <a href="#"><i class="ri-user-line"></i> My Profile</a>
-                    </li>
-                    <li>
-                      <a href="#"><i class="ri-list-check-2"></i> Task</a>
-                    </li>
-                    <li>
-                      <a href="#"
-                        ><i class="ri-settings-2-line"></i> Admin Settings</a
-                      >
-                    </li>
-                  </ul>
+            <div class="header-items" style="margin-left: 600px;">
+              <!-- Profile Section -->
+              <div class="header-profile">
+                <a href="#" id="profile-icon">
+                  <i class="ri-user-line"></i> Profile
+                </a>
+                <div
+                  class="profile-dropdown-menu"
+                  id="profile-dropdown"
+                  style="display: none"
+                >
+                  <div class="item-header">
+                    <h6 class="item-title">Val Jansen</h6>
+                  </div>
+                  <div class="item-content">
+                    <ul class="settings-list">
+                      <li>
+                        <a href="#"><i class="ri-user-line"></i> My Profile</a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="ri-list-check-2"></i> Task</a>
+                      </li>
+                      <li>
+                        <a href="#"
+                          ><i class="ri-settings-2-line"></i> Admin Settings</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Notifications Section -->
-            <div class="header-notifications">
-              <a href="#" id="notifications-icon">
-                <i class="ri-notification-3-line"></i>Notification
-              </a>
-
-              <div
-                class="notifications-dropdown-menu"
-                id="notifications-dropdown"
-                style="display: none"
-              >
-                <div class="item-header">
-                  <h6 class="item-title">Notifications</h6>
-                </div>
-                <div class="item-content">
-                  <ul class="notifications">
-                    <div class="media">
-                      <li>
-                        <a href="#"
-                          ><i class="ri-notification-3-fill"></i> Complete Today
-                          Task</a
-                        ><span>1 min ago</span>
-                      </li>
-                    </div>
-                    <div class="media">
-                      <li>
-                        <a href="#"
-                          ><i class="ri-notification-3-fill"></i> Updated Office
-                          No.</a
-                        ><span>5 min ago</span>
-                      </li>
-                    </div>
-                    <div class="media">
-                      <li>
-                        <a href="#"
-                          ><i class="ri-notification-3-fill"></i> Document
-                          Edited</a
-                        ><span>10 min ago</span>
-                      </li>
-                    </div>
-                  </ul>
+    
+              <!-- Notifications Section -->
+              <div class="header-notifications">
+                <a href="#" id="notifications-icon">
+                  <i class="ri-notification-3-line"></i>Notification
+                </a>
+    
+                <div
+                  class="notifications-dropdown-menu"
+                  id="notifications-dropdown"
+                  style="display: none"
+                >
+                  <div class="item-header">
+                    <h6 class="item-title">Notifications</h6>
+                  </div>
+                  <div class="item-content">
+                    <ul class="notifications">
+                      <div class="media">
+                        <li>
+                          <a href="#"
+                            ><i class="ri-notification-3-fill"></i> Complete Today
+                            Task</a
+                          ><span>1 min ago</span>
+                        </li>
+                      </div>
+                      <div class="media">
+                        <li>
+                          <a href="#"
+                            ><i class="ri-notification-3-fill"></i> Updated Office
+                            No.</a
+                          ><span>5 min ago</span>
+                        </li>
+                      </div>
+                      <div class="media">
+                        <li>
+                          <a href="#"
+                            ><i class="ri-notification-3-fill"></i> Document
+                            Edited</a
+                          ><span>10 min ago</span>
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Dark Mode Toggle Section -->
-            <div class="header-dark">
-              <a href="#" id="darkModeToggle">
-                <i class="ri-moon-line"></i> Dark
-              </a>
-            </div>
-
-            <!-- Logout Section -->
-            <div class="header-logout">
-              <a href="#" id="logout-icon">
-                <i class="ri-logout-box-line"></i> Logout
-              </a>
-              <div
-                class="logout-dropdown-menu"
-                id="logout-dropdown"
-                style="display: none"
-              >
-                <div class="item-header">
-                  <h6 class="item-title">Are you sure you want to log out?</h6>
-                </div>
-                <div class="item-content">
-                  <ul class="settings-list">
-                    <li>
-                      <a href="admin_login.html"
-                        ><i class="ri-check-line"></i> Yes</a
-                      >
-                    </li>
-                    <li>
-                      <a href="#" id="cancel-logout"
-                        ><i class="ri-close-line"></i> No</a
-                      >
-                    </li>
-                  </ul>
-                  <div id="logout-message" style="display: none; color: green">
-                    You have logged out successfully.
+    
+              <!-- Dark Mode Toggle Section -->
+              <div class="header-dark">
+                <a href="#" id="darkModeToggle">
+                  <i class="ri-moon-line"></i> Dark
+                </a>
+              </div>
+    
+              <!-- Logout Section -->
+              <div class="header-logout">
+                <a href="#" id="logout-icon">
+                  <i class="ri-logout-box-line"></i> Logout
+                </a>
+                <div
+                  class="logout-dropdown-menu"
+                  id="logout-dropdown"
+                  style="display: none"
+                >
+                  <div class="item-header">
+                    <h6 class="item-title">Are you sure you want to log out?</h6>
+                  </div>
+                  <div class="item-content">
+                    <ul class="settings-list">
+                      <li>
+                        <a href="admin_login.html"
+                          ><i class="ri-check-line"></i> Yes</a
+                        >
+                      </li>
+                      <li>
+                        <a href="#" id="cancel-logout"
+                          ><i class="ri-close-line"></i> No</a
+                        >
+                      </li>
+                    </ul>
+                    <div id="logout-message" style="display: none; color: green">
+                      You have logged out successfully.
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <style>
-            .header {
-              background-color: #ffffff; /* Keep the background color white */
-              color: #000; /* Change text color to black or any visible color */
-              padding: 0;
-              text-align: center;
-              border-radius: 10px;
-              box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
-              width: 104%;
-              position: relative; /* Make header sticky */
-              top: 0; /* Position it at the top */
-              margin: 30px 156px 50px -70px;
+  
+          <style>              
+          .header {
+            background-color: #ffffff; /* Keep the background color white */
+            color: #000; /* Change text color to black or any visible color */
+            padding: 0;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+            width: 98%;
+            position: relative; /* Make header sticky */
+            top: 0; /* Position it at the top */
+            margin: 80px 0 10px 0;
+  
+          }
+  
+          .header-container {
+                margin-top: -100px;
+                display: flex;
+                align-items: center;
+                margin-top: -100px;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                
             }
-
-            .header-container {
-              margin-top: -100px;
-              display: flex;
-              align-items: center;
-
-              flex-direction: row;
-              flex-wrap: nowrap;
-              justify-content: flex-start;
-            }
-
+  
             .header-search {
-              display: flex;
-              align-items: center;
-              margin-right: 10px;
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
             }
-
+  
             .header-search input {
-              flex: 1;
-              padding: 12px 15px;
-              margin-bottom: 28px;
-              margin-left: 10px;
-              color: #000;
-              background-color: #ffffff;
-              border: none;
-              border-bottom: 1px solid black;
-              box-sizing: border-box;
-              width: 50%;
+                flex: 1;
+                padding: 12px 15px;
+                margin-bottom: 15px;
+                margin-left: 10px;
+                color: #000;
+                background-color: #ffffff;
+                border: none;
+                border-bottom: 1px solid black;
+                box-sizing: border-box;
+                width: 50%;
             }
-
+  
             .header-searchbtn {
               margin-top: -35px;
               margin-bottom: -50px;
-              display: inline-block;
-              padding: 10px 20px;
-              background-color: #3f62af;
-              border: none;
-              color: white;
-              border-radius: 20px;
-              font-size: 12px;
-              text-align: center;
-              letter-spacing: 1px;
-              transition: transform 80ms ease-in, background-color 0.3s ease;
-              cursor: pointer;
+                display: inline-block;
+                padding: 10px 20px;
+                background-color: #3f62af;
+                color: white;
+                border-radius: 20px;
+                font-size: 12px;
+                text-align: center;
+                letter-spacing: 1px;
+                transition: transform 80ms ease-in, background-color 0.3s ease;
+                cursor: pointer;
             }
-
-            .header-container div {
-              margin: 0 10px;
-            }
-
-            .header-container a {
+  
+          .header-container div {
+              margin: 0 5px; 
+          }
+  
+          .header-container a {
               text-decoration: none; /* Remove underline */
               color: #000; /* Change to your preferred color */
+          }
+  
+          .header-items {
+            display: flex; /* This already ensures the icon and text are side by side */
+            margin-left: 800px;
+            margin-top: -40px;
+            justify-content: flex-start; /* Align items to the start (icon and text together) */
+            align-items: center; /* Vertically center the icon and text */
+            gap: 10px; /* Space between the icon and text */
+            padding: 10px 20px;
+            background-color: #ffffff;
+            width: 40%;  
+            flex-wrap: nowrap;
+            align-items: center;
+            flex-direction: row;
             }
-
-            .header-items {
-              display: flex; /* This already ensures the icon and text are side by side */
-              margin-left: 650px;
-              margin-top: -60px;
-              justify-content: flex-start; /* Align items to the start (icon and text together) */
-              align-items: center; /* Vertically center the icon and text */
-              gap: 20px; /* Space between the icon and text */
-              padding: 10px 20px;
-              background-color: #ffffff;
-              width: 40%;
-              flex-wrap: nowrap;
-              align-items: center;
-              flex-direction: row;
-            }
-
+  
             .header-items a i {
-              margin-right: 8px;
-              font-size: 18px;
+                margin-right: 8px;
+                font-size: 18px;
             }
-
+  
             .header-items a:hover {
-              color: #3f62af;
+                color: #3f62af;
             }
-
+  
             .header-dark a {
-              cursor: pointer;
+                cursor: pointer;
             }
-
+  
             .header-logout a {
-              font-weight: bold;
+                font-weight: bold;
+                
             }
-
+      
             .header-items a {
-              text-decoration: none;
-              color: #333; /* Default link color */
-              padding: 10px 15px; /* Padding around links */
-              transition: color 0.3s ease; /* Smooth transition for hover effect */
+                text-decoration: none;
+                color: #333; /* Default link color */
+                padding: 10px 15px; /* Padding around links */
+                transition: color 0.3s ease; /* Smooth transition for hover effect */
             }
-
+  
             /* Profile, Notifications, Logout sections */
             .header-profile,
             .header-notifications,
             .header-logout,
             .header-dark {
-              position: relative; /* Needed for dropdown positioning */
-              margin-right: 20px; /* Space between sections */
+                position: relative; /* Needed for dropdown positioning */
+                margin-right: 20px; /* Space between sections */
             }
-
+  
             /* Dropdown menu styles */
             .profile-dropdown-menu,
             .notifications-dropdown-menu,
             .logout-dropdown-menu {
-              position: absolute;
-              top: 100%; /* Positioning below the header item */
-              left: 0; /* Align to the left */
-              background: white; /* Background color for dropdown */
-              border-radius: 10px; /* Rounded corners */
-              box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
-              z-index: 1000; /* Ensure dropdown is above other content */
-              width: 300px; /* Set a width for the dropdown */
+                position: absolute;
+                top: 100%; /* Positioning below the header item */
+                left: 0; /* Align to the left */
+                background: white; /* Background color for dropdown */
+                border-radius: 10px; /* Rounded corners */
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+                z-index: 1000; /* Ensure dropdown is above other content */
+                width: 300px; /* Set a width for the dropdown */
             }
-
+  
             /* Header dropdown item header styles */
             .item-header {
-              padding: 10px 15px; /* Padding for header */
-              background: #f7f7f7; /* Light gray background */
+                padding: 10px 15px; /* Padding for header */
+                background: #f7f7f7; /* Light gray background */
             }
-
+  
             /* Item title styles */
             .item-title {
-              margin: 0; /* Remove default margin */
-              font-size: 16px; /* Font size */
+                margin: 0; /* Remove default margin */
+                font-size: 16px; /* Font size */
             }
-
+  
             /* Dropdown item content styles */
             .item-content {
-              padding: 10px 0; /* Padding for item content */
+                padding: 10px 0; /* Padding for item content */
             }
-
+  
             /* List styles */
             .settings-list,
             .notifications {
-              list-style: none; /* Remove default list styling */
-              padding: 10px; /* Remove default padding */
-              margin: 0; /* Remove default margin */
+                list-style: none; /* Remove default list styling */
+                padding: 10px; /* Remove default padding */
+                margin: 0; /* Remove default margin */
             }
-
+  
             /* Individual dropdown item styles */
             .settings-list li,
             .notifications li {
-              padding: 8px 15px; /* Padding for dropdown items */
-              transition: background 0.3s ease; /* Smooth transition for hover */
+                padding: 8px 15px; /* Padding for dropdown items */
+                transition: background 0.3s ease; /* Smooth transition for hover */
             }
-
+  
             /* Hover effect for dropdown items */
             .settings-list li:hover,
             .notifications li:hover {
-              background: #f0f0f0; /* Change background on hover */
+                background: #f0f0f0; /* Change background on hover */
             }
-
+  
             /* Media styles */
             .media {
-              display: flex; /* Flexbox for media items */
-              align-items: center; /* Center items vertically */
-              margin-bottom: 5px; /* Space between media items */
+                display: flex; /* Flexbox for media items */
+                align-items: center; /* Center items vertically */
+                margin-bottom: 5px; /* Space between media items */
             }
-
+  
             /* Media body styles */
             .media-body {
-              margin-left: 10px; /* Space between icon and text */
+                margin-left: 10px; /* Space between icon and text */
             }
-
+  
             /* Notification icon styles */
             .item-icon {
-              width: 30px; /* Width for notification icon */
-              height: 30px; /* Height for notification icon */
-              display: flex; /* Flexbox for center alignment */
-              align-items: center; /* Center align */
-              justify-content: center; /* Center align */
-              border-radius: 50%; /* Round icon */
+                width: 30px; /* Width for notification icon */
+                height: 30px; /* Height for notification icon */
+                display: flex; /* Flexbox for center alignment */
+                align-items: center; /* Center align */
+                justify-content: center; /* Center align */
+                border-radius: 50%; /* Round icon */
             }
-
+  
+  
             /* Dark mode toggle styles */
-
+            
             body.dark-mode {
-              background-color: #000000; /* Dark mode background */
-              color: #ffffff; /* Dark mode text color */
+                background-color: #000000; /* Dark mode background */
+                color: #ffffff; /* Dark mode text color */
             }
-
+  
             /* Universal element styles in dark mode */
             body.dark-mode * {
-              background-color: #1e1e1e; /* Dark background for all elements */
-              color: #ddd; /* Light text for all elements */
+                background-color: #1e1e1e; /* Dark background for all elements */
+                color: #ddd; /* Light text for all elements */
+              
             }
-
+  
             /* Links in dark mode */
             body.dark-mode a {
-              color: #ffffff; /* Light text for links */
+                color: #ffffff; /* Light text for links */
             }
-
+  
             body.dark-mode a:hover {
-              color: #3f62af; /* Hover color for links in dark mode */
+                color: #3f62af; /* Hover color for links in dark mode */
             }
-
+  
             /* Input fields in dark mode */
             body.dark-mode input {
-              background-color: #333; /* Dark background for input fields */
-              color: #ffffff; /* Light text for input fields */
-              border-bottom: 1px solid #ddd; /* Dark border for input fields */
-            }
-
-            /* Buttons in dark mode */
-            body.dark-mode button {
+                background-color: #333; /* Dark background for input fields */
+                color: #ffffff; /* Light text for input fields */
+                border-bottom : 1px solid #ddd; /* Dark border for input fields */
+          }
+  
+          /* Buttons in dark mode */
+          body.dark-mode button {
               background-color: #333; /* Dark background for buttons */
               color: #ffffff; /* Light text for buttons */
               border: 1px solid #ddd; /* Dark border for buttons */
-            }
-
-            body.dark-mode button:hover {
+          }
+  
+          body.dark-mode button:hover {
               background-color: #ddd; /* Darker background on hover */
-            }
-
-            /* Optional specific sections */
-            body.dark-mode .header,
-            body.dark-mode .header-items,
-            body.dark-mode .welcome-sections,
-            body.dark-mode .welcome-container,
-            body.dark-mode .actions,
-            body.dark-mode #SearchInput {
+          }
+  
+          /* Optional specific sections */
+          body.dark-mode .header,
+          body.dark-mode .header-items,
+          body.dark-mode .welcome-sections,
+          body.dark-mode .welcome-container,
+          body.dark-mode .actions, body.dark-mode #SearchInput
+          {
               background-color: #1e1e1e; /* Apply dark background */
               color: #ffffff; /* Apply light text */
-            }
+              
+          }
           </style>
         </header>
         <div>
           <!-- Go Back Navigation -->
-          <div class="navigation" style="margin-left: -60px; margin-top: -30px">
+          <div class="navigation" style="margin-left: 5px; margin-top: 25px">
             <a href="admin_dashboard.html" class="go-back" style="color: #000"
               >← Go Back</a
             >
