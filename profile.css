@@ -6,12 +6,15 @@
 }
 
 body {
-    background-color: #f6f5f7;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
     margin: 0;
+}
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
 }
 
 header {
@@ -79,25 +82,22 @@ h1.main-title {
 }
 
 
-main.container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-    overflow: hidden;
-    margin: 20px auto;
-    padding: 20px;
-}
-
 .profile-section {
+   
+    margin-left: 200px;
+    border-radius: 10px;
+    width: 85%;
+    background-color: #ffffff;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .profile-info {
+    
+    border-bottom: 500px;
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -105,11 +105,13 @@ main.container {
 }
 
 .profile-picture {
+    
     flex: 1;
     text-align: center;
 }
 
 .profile-picture img {
+    margin-top: 10px;
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -125,7 +127,7 @@ main.container {
     font-size: 18px;
 }
 
-.edit-profile-btn {
+.edit-profile-btn, .save-profile-btn, .cancel-profile-btn  {
     border-radius: 20px;
     border: 1px solid #3f62af;
     background-color: #3f62af;
@@ -142,23 +144,46 @@ main.container {
 .edit-profile-btn:active {
     transform: scale(0.95);
 }
-
-footer {
-    text-align: center;
-    padding: 20px;
-    background:  #3f62af;
-    border-top: 1px solid #ddd;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-footer a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #ffffff;
-}
+/* Footer container styling */
+.footer {
+    margin-top: 55px;
+      padding: 20px 0;
+      background-color: #fff;
+      margin-bottom: -100px;
+  }
+  
+  .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      padding: 0 15px;
+  }
+  
+  /* Left side (copyright text) */
+  .footer-left p {
+     
+      font-size: 16px;
+      color: #000000;
+      margin-left: 60px;
+  }
+  
+  /* Right side (social icons) */
+  .footer-right {
+    
+    margin-left: -200px;
+      display: flex;
+      gap: 15px;
+  }
+  
+  .social-icon {
+    font-size: 16px;
+      color: #000000;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      margin-right:  -230px;
+  }
+  
 
 @media (max-width: 768px) {
     main.container {
