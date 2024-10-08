@@ -5,29 +5,323 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home - My Moshal Allowance</title>
     <link rel="stylesheet" href="Style.css" />
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  
   </head>
   <body>
-    <header>
-      <nav class="navbar">
-        <img src="images/Morshal.jpg" alt="Morshal Logo" />
-        <ul class="nav-links">
-          <li class="nav-item">Profile</li>
-          <li class="nav-item">About Us</li>
-          <li class="nav-item">Contact Us</li>
-          <li class="nav-item">Document</li>
-          <li class="nav-item">Query</li>
-          <li class="nav-item">Calculate</li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <h1 align="center">My Moshal Allowance</h1>
-      <section>
-        <p>
-          Making it easy for you to be able to track your allowance distribution
-          for any month of the year.
-        </p>
-      </section>
+    
+    <div class="logout-moshal-logo">
+      <img src="https://moshalprogram.org/wp-content/uploads/2022/02/1200x630-01.jpg" alt="Moshal Logo" id="logoutButton" style=" object-fit: cover; object-position: center; cursor:pointer; position:relative; left:92%; margin-top: 15px;" />
+  
+      <div class="popover" id="logoutPopover">
+          <p style="font-size: 12px;">Are you sure you want to log out?</p>
+          <button onclick="logout()">Yes</button>
+          <button onclick="closePopover()">No</button>
+      </div>
+  </div>
+  
+  <script>
+      const logoutButton = document.getElementById('logoutButton');
+      const logoutPopover = document.getElementById('logoutPopover');
+  
+      // Show the popover near the logout button
+      logoutButton.onclick = function(event) {
+          const rect = logoutButton.getBoundingClientRect();
+          logoutPopover.style.display = 'block';
+          logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+          logoutPopover.style.top = `${rect.bottom + window.scrollY + 10}px`; // Slight offset to appear below
+      };
+  
+      // Close the popover
+      function closePopover() {
+          logoutPopover.style.display = 'none';
+      }
+  
+      // Handle logout logic
+      function logout() {
+          window.location.href = 'index.html'; // Redirect to index.html or your desired page
+      }
+  
+      // Close popover if clicking outside of it
+      window.onclick = function(event) {
+          if (!logoutButton.contains(event.target) && !logoutPopover.contains(event.target)) {
+              closePopover();
+          }
+      };
+  </script>
+  
+  <main>
+      <!-- Card -->
+      <div class="card-container">
+        <!-- First Card -->
+        <div class="card-transition">
+          <div class="card">
+            <img src="https://i.ibb.co/jTPMh68/0354c78944d7.png" alt="Morshal Image" class="card-img">
+          
+            <div class="card-body">
+              <h5 class="card-title">Calculate Your Moshal Allowance!</h5>
+              <p class="card-text">We’re thrilled to have you on this journey with us! Click the button below to calculate your allowance.</p>
+              <p class="card-updated">Last updated 3 mins ago</p>
+              <button class="card-button" onclick="window.location.href='calculate_allowance.html';">Go to Page</button>
+          </div>
+          </div>
+        </div>
+      
+        <!-- Second Card -->
+        <div class="card-transition">
+          <div class="card">
+            <img src="https://i.ibb.co/3MRqcXD/f905787bace5.png" alt="Morshal Image" class="card-img">
+            
+            <div class="card-body">
+              <h5 class="card-title">Questions About Your Allowance?</h5>
+              <p class="card-text">Navigating your allowance can be confusing. If you have questions about calculations or expenses, we’re here to help!</p>
+              <p class="card-updated">Last updated 8 mins ago</p>
+              <button class="card-button" onclick="window.location.href='student_Query.html';">Go to Page</button>
+          </div>
+          </div>
+        </div>
+      
+        <!-- Third Card -->
+        <div class="card-transition">
+          <div class="card">
+            <img src="https://i.ibb.co/W0ykFFj/edc646f23e29.png" alt="Morshal Image" class="card-img">
+            
+            <div class="card-body">
+              <h5 class="card-title">Submit Your Documents</h5>
+              <p class="card-text">It’s time to submit your proof of funding and allowance documents. Click the button below to easily upload the required files.</p>
+              <p class="card-updated">Last updated 1 month  ago</p>
+              <button class="card-button" onclick="window.location.href='documents.html';">Go to Page</button>
+          </div>
+          </div>
+        </div>
+         <!-- Forth Card -->
+         <div class="card-transition">
+          <div class="card">
+            <img src="https://i.ibb.co/9rxprhV/d1540986e331.png" alt="Morshal Image" class="card-img">
+          
+            <div class="card-body">
+              <h5 class="card-title">Go to My Profile</h5>
+              <p class="card-text">Need to update your personal details like your name, phone number, email, or password? Click the button below to access your profile!</p>
+              <p class="card-updated">Last updated 8 mins ago</p>
+              <button class="card-button" conclick="window.location.href='profile.html';">Go to Page</button>
+          </div>
+          </div>
+        </div>     
+      </div>
+<!-- End Card -->
+ 
     </main>
+    <footer class="footer">
+      <div class="footer-container">
+          <div class="footer-left">
+              <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+          </div>
+          <div class="footer-right">
+              <a href="#" class="social-icon">
+                  <img src="https://i.ibb.co/jVnnq3G/eb0256ebbbb2.png" alt="" >
+              </a>
+          </div>
+      </div>
+  </footer>
+    
   </body>
 </html>
+ <style>
+ body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;  /* Allows wrapping for smaller screens */
+  gap: -1000px;        /* Space between the cards */
+  margin: 80px;
+  margin-top: 30px;
+  background-color: #fff;
+}
+
+.card-transition {
+  flex: 1;
+  max-width: 18rem; /* Ensures cards don't get too wide */
+  min-width: 250px; /* Minimum width so the cards don't get too small */
+  margin-bottom: 20px; /* Adds space between rows when they stack */
+}
+
+.card {
+  width: 280px;
+  height: 490px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 18px #3f62af;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+ 
+  
+  /* Continuous floating animation */
+  animation: float 4s ease-in-out infinite;
+}
+
+.card-img {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 100%;
+  height: auto;
+}
+
+.card-header {
+  background-color: #6c757d;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.card-body {
+  padding: 15px;
+  background-color: #fff;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #6c757d;
+}
+
+.card-updated {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+.card-button {
+  background-color: #3f62af;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+                transition: background-color 0.3s;
+}
+
+.card-button:hover {
+  background-color: #3f62af;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  animation: none;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Media Queries for Responsive Design */
+
+/* When the screen is below 1024px (tablet and smaller screens) */
+@media (max-width: 1024px) {
+  .card-container {
+    justify-content: center;  /* Center cards on medium-sized screens */
+  }
+
+  .card-transition {
+    max-width: 45%; /* Take up more space per card */
+  }
+}
+
+/* When the screen is below 768px (mobile devices) */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center;    /* Center the stacked cards */
+  }
+
+  .card-transition {
+    max-width: 100%;  /* Cards take full width */
+    min-width: 250px; /* Ensure they don't shrink too much */
+  }
+}
+
+      /* Style for the popover */
+      .popover {
+          display: none;
+          margin-left: -90px;
+          position: absolute;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000; /* Ensure this is above other content */
+      }
+  
+      .popover button {
+        background-color: #3f62af;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+                transition: background-color 0.3s;
+      }
+  
+      /* Footer container styling */
+.footer {
+  margin-top: -80px;
+    padding: 20px 0;
+    background-color: #fff;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Left side (copyright text) */
+.footer-left p {
+    margin: 0;
+    font-size: 14px;
+    color: #000000;
+    margin-left: -60px;
+}
+
+/* Right side (social icons) */
+.footer-right {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    color: #6c757d;
+    font-size: 18px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: #007bff; /* On hover, the icon changes to a primary color */
+}
+
+  
+</style>
