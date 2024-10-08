@@ -15,39 +15,62 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
 function loadAdminMessages() {
     const messageQuery = collection(db, "Create_Query");
     onSnapshot(messageQuery, (querySnapshot) => {
         const adminMessageHistory = document.getElementById("adminMessageHistory");
         adminMessageHistory.innerHTML = ""; // Clear previous messages
+
+        // Create a map to group messages by user
+        const groupedMessages = {};
+
         querySnapshot.forEach((doc) => {
             const message = doc.data();
-            const messageDiv = document.createElement("div");
-            messageDiv.textContent = `${message.userName || 'User'}: ${message.userMessage}`;
-            if (message.adminResponse) {
-                const responseDiv = document.createElement("div");
-                responseDiv.textContent = `Admin: ${message.adminResponse}`;
-                messageDiv.appendChild(responseDiv);
-            } else {
-                const responseInput = document.createElement("input");
-                responseInput.type = "text";
-                responseInput.placeholder = "Type your response...";
-                const sendResponseBtn = document.createElement("button");
-                sendResponseBtn.textContent = "Send Response";
-                sendResponseBtn.onclick = () => sendResponse(doc.id, responseInput.value);
-                messageDiv.appendChild(responseInput);
-                messageDiv.appendChild(sendResponseBtn);
+            const userName = message.userName || 'User';
+            
+            if (!groupedMessages[userName]) {
+                groupedMessages[userName] = [];
             }
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "Delete";
-            deleteBtn.onclick = () => deleteMessage(doc.id);
-            messageDiv.appendChild(deleteBtn);
-            adminMessageHistory.appendChild(messageDiv);
+
+            groupedMessages[userName].push({ id: doc.id, ...message });
         });
+
+        // Render grouped messages
+        for (const [userName, messages] of Object.entries(groupedMessages)) {
+            const userDiv = document.createElement("div");
+            userDiv.classList.add('user-messages');
+            userDiv.innerHTML = `<strong>${userName}</strong>`;
+
+            messages.forEach((message) => {
+                const messageDiv = document.createElement("div");
+                messageDiv.textContent = `${message.userMessage}`;
+
+                if (message.adminResponse) {
+                    const responseDiv = document.createElement("div");
+                    responseDiv.textContent = `Admin: ${message.adminResponse}`;
+                    messageDiv.appendChild(responseDiv);
+                } else {
+                    const responseInput = document.createElement("input");
+                    responseInput.type = "text";
+                    responseInput.placeholder = "Type your response...";
+                    const sendResponseBtn = document.createElement("button");
+                    sendResponseBtn.textContent = "Send Response";
+                    sendResponseBtn.onclick = () => sendResponse(message.id, responseInput.value);
+                    messageDiv.appendChild(responseInput);
+                    messageDiv.appendChild(sendResponseBtn);
+                }
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Delete";
+                deleteBtn.onclick = () => deleteMessage(message.id);
+                messageDiv.appendChild(deleteBtn);
+                userDiv.appendChild(messageDiv);
+            });
+
+            adminMessageHistory.appendChild(userDiv);
+        }
     });
 }
-
 async function sendResponse(messageId, response) {
     if (response.trim()) {
         await updateDoc(doc(db, "Create_Query", messageId), {
