@@ -10,18 +10,26 @@
 
     <style>
       /* Main Content */
+    
       body{
         font-family: Arial, sans-serif;
-      }
+    background-color: #ffff;
+    margin: 0;
+    padding: 20px;
+}
+      
       .container {
+        background-color: #ffff;
         margin-top: 80px;
         padding: 20px;
         transition: margin-left 0.5s;
       }
 
       h1 {
-        font-size: 24px;
+        font-size: 20px;
         margin-bottom: 20px;
+        margin-left: 180px;
+        margin-top: -80px;
       }
 
       form {
@@ -41,41 +49,240 @@
       }
 
       button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-
-      button:hover {
-        background-color: #45a049;
-      }
+        margin-left: 750px;
+        width: 9%;
+        border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: #3f62af;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+}
+.submit-button {
+        margin-left: 152px;
+        width: 35%;
+        border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: #3f62af;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+}
 
       p {
         color: red;
         margin-top: 20px;
       }
 
-      table {
-        width: 60%;
-        border-collapse: collapse;
-        margin: 20px auto;
-      }
-      table,
-      th,
-      td {
-        border: 1px solid black;
-      }
-      th,
-      td {
-        padding: 10px;
-        text-align: center;
-      }
-      th {
-        background-color: #f2f2f2;
-      }
+.table-container {
+  margin-left: 180px;
+    max-width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 20px;
+}
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #3f62af;
+    color: white;
+    font-size: 1.1rem;
+}
+
+tbody td {
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1rem;
+}
+
+tbody tr:hover {
+    background-color: #ffe6e6;
+}
+
+#message {
+    font-size: 1.2rem;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+      
+
+.accordion {
+  margin-left: 180px;
+    width: 87%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #3f62af;
+    color: white;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.accordion-header:hover {
+    background: #ddd;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+.form-group label {
+    font-size: 1.1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border 0.2s;
+}
+
+.form-group input:focus {
+    border: 1px solid #f78da7;
+}
+.card {
+          position: relative; /* For absolute positioning of card__data */
+          overflow: hidden; /* Prevents overflow */
+          background: #fff;
+          border-radius: 8px;
+          transition: background 0.3s; /* Smooth transition */
+          flex: 1; /* Ensure cards take equal space */
+      }
+      
+      
+      
+      .card__img {
+        width: 500px;
+          height: 550px; /* Maintain aspect ratio */
+          border-radius: 1.5rem; /* Rounded corners */
+          margin: 10px; /* Adjust margin */
+          transition: transform 0.3s; /* Smooth transition */
+      }
+      
+      .card:hover .card__img {
+          transform: scale(1.05); /* Slight zoom effect on hover */
+      }
+      
+      .card__data {
+          width: 400px; 
+          font-size: 20px;
+          background-color: #ffffff;
+          padding: 1.5rem 2rem;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+          border-radius: 1rem;
+          position: absolute;
+          bottom: 1rem; /* Position above the bottom */
+          left: 50%; /* Center horizontally */
+          transform: translateX(-50%); /* Center the data */
+          opacity: 0; /* Initially hidden */
+          transition: opacity 0.3s ease; 
+      }
+      /* Footer container styling */
+.footer {
+  margin-top: 55px;
+    padding: 20px 0;
+    background-color: #fff;
+    margin-bottom: -100px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    padding: 0 15px;
+}
+
+/* Left side (copyright text) */
+.footer-left p {
+   
+    font-size: 16px;
+    color: #000000;
+    margin-left: 60px;
+}
+
+/* Right side (social icons) */
+.footer-right {
+  
+  margin-left: -200px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+  font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-right:  -230px;
+}
+      .card:hover .card__data {
+          opacity: 1;
+      }
+      
       /* Responsive Design */
       @media (max-width: 768px) {
         .nav-links {
@@ -290,11 +497,18 @@
       >
     </div>
   </div>
+
     <!-- Main Content -->
     <div class="container">
       <h1>Allowance Calculation</h1>
       <form id="allowanceForm">
-        <!-- External Funding Details -->
+        <div class="accordion">
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-arrow-down-wide-line"></i> External Funder
+              </div>
+              <div class="accordion-content">
+                  <!-- External Funding Details -->
         <!-- Update the Funding Type selection to a dropdown -->
         <label for="ExtFunding_Name">External Funding Source:</label>
         <select id="ExtFunding_Name" name="ExtFunding_Name" required>
@@ -302,30 +516,33 @@
           <option value="GCRA">GCRA</option>
           <option value="NSFAS">NSFAS</option>
         </select>
+              </div>
+          </div>
 
-        <!-- <label for="ExtFunding_Name"
-          >External Funding Source Name(write "N/A" if not applicable):</label
-        >
-        <input
-          type="text"
-          id="ExtFunding_Name"
-          name="ExtFunding_Name"
-          placeholder="Enter the name of the funding source"
-          required
-        /> -->
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-arrow-down-wide-line"></i> External Funding Amount
+              </div>
+              <div class="accordion-content">
+                <label for="annual_amount"
+                >Living Allowance Annual Amount given by external funder:</label
+              >
+              <input
+                type="number"
+                id="annual_amount"
+                name="annual_amount"
+                placeholder="Enter the funded amount"
+                required
+              />
+              </div>
+          </div>
 
-        <label for="annual_amount"
-          >Living Allowance Annual Amount given by external funder:</label
-        >
-        <input
-          type="number"
-          id="annual_amount"
-          name="annual_amount"
-          placeholder="Enter the funded amount"
-          required
-        />
-
-        <!-- Funding Type Selection -->
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-arrow-down-wide-line"></i> Moshal Funding Status
+              </div>
+              <div class="accordion-content">
+                  <!-- Funding Type Selection -->
         <label>Funding Type:</label>
         <div>
           <input
@@ -347,20 +564,33 @@
           />
           <label for="Full Funding">Full Funding</label>
         </div>
-
-        <!-- Funding Date -->
+              </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-arrow-down-wide-line"></i> Date Recieve Allowance
+            </div>
+            <div class="accordion-content">
+                 <!-- Funding Date -->
         <label for="ExtFunding_Date"
-          >When did you recieve your first allowance from your external
-          funder:</label
-        >
-        <input
-          type="date"
-          id="ExtFunding_Date"
-          name="ExtFunding_Date"
-          required
-        />
+        >When did you recieve your first allowance from your external
+        funder:</label
+      >
+      <input
+        type="date"
+        id="ExtFunding_Date"
+        name="ExtFunding_Date"
+        required
+      />
+            </div>
+        </div>
 
-        <!-- NSFAS Status -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-arrow-down-wide-line"></i> NSFAS Status
+          </div>
+          <div class="accordion-content">
+              <!-- NSFAS Status -->
         <label>Are you funded by NSFAS?</label>
         <div>
           <input
@@ -382,95 +612,155 @@
           />
           <label for="nsfas_no">No</label>
         </div>
+          </div>
+      </div>
 
-        <!-- Upload Proof of Funding Document -->
-        <label for="fileInput">Upload Proof of Funding Document:</label>
-        <input
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <i class="ri-arrow-down-wide-line"></i> Proof of Funding
+        </div>
+        <div class="accordion-content">
+            <!-- Upload Proof of Funding Document -->
+       
+        
+        
+        <div class="card">
+          <label for="fileInput">Upload Proof of Funding Document:</label>
+            <div id="fileInfo1"></div>
+            <img id="thumbnailImage1" class="card__img" alt="PDF Thumbnail" src="https://complyan.com/wp-content/uploads/2022/09/Frameworks.png" />
+            <div class="card__data">
+                <h3>Select a File</h3>
+                <input
           type="file"
           id="fileInput"
           name="fileInput"
           accept="application/pdf"
           required
         />
+                <button class="submit-button" type="button" onclick="submitPDF(1)">Submit</button>
+            </div>
+        </div>
+        <script>
+          async function renderPDF(fileInputId, thumbnailImageId) {
+              const fileInput = document.getElementById(fileInputId);
+              const thumbnailImage = document.getElementById(thumbnailImageId);
+  
+              const file = fileInput.files[0];
+              if (file && file.type === 'application/pdf') {
+                  const fileReader = new FileReader();
+  
+                  fileReader.onload = async function () {
+                      const typedarray = new Uint8Array(this.result);
+                      const pdf = await pdfjsLib.getDocument(typedarray).promise;
+  
+                      // Get the first page
+                      const page = await pdf.getPage(1);
+                      const viewport = page.getViewport({ scale: 1 });
+  
+                      const canvas = document.createElement('canvas');
+                      canvas.width = viewport.width;
+                      canvas.height = viewport.height;
+  
+                      const context = canvas.getContext('2d');
+                      await page.render({ canvasContext: context, viewport: viewport }).promise;
+  
+                      // Convert canvas to image and display
+                      thumbnailImage.src = canvas.toDataURL();
+                  };
+  
+                  fileReader.readAsArrayBuffer(file);
+              } else {
+                  alert('Please upload a valid PDF file.');
+                  // Reset to default image if invalid
+                  thumbnailImage.src = 'https://complyan.com/wp-content/uploads/2022/09/Frameworks.png';
+              }
+          }
+  
+          // Attach change event listeners to both file inputs
+          document.getElementById('fileInput1').addEventListener('change', () => renderPDF('fileInput1', 'thumbnailImage1'));
+          document.getElementById('fileInput2').addEventListener('change', () => renderPDF('fileInput2', 'thumbnailImage2'));
+  
+          
+      </script>
+        </div>
+    </div>
 
+      </div>
+
+        <!-- <label for="ExtFunding_Name"
+          >External Funding Source Name(write "N/A" if not applicable):</label
+        >
+        <input
+          type="text"
+          id="ExtFunding_Name"
+          name="ExtFunding_Name"
+          placeholder="Enter the name of the funding source"
+          required
+        /> -->
+        <br>
         <!-- Submit Button -->
         <button
           type="submit"
           class="calculate-button"
           onclick="calculateAllowance()"
         >
-          Submit Funding Information
+          Submit
         </button>
       </form>
 
-      <!-- Message Display -->
-      <p id="message"></p>
-    </div>
-    <table id="allowanceTable">
-      <thead>
-        <tr>
-          <th>Month</th>
-          <th>Allowance</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>May</td>
-          <td id="may"></td>
-        </tr>
-        <tr>
-          <td>June</td>
-          <td id="june"></td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td id="july"></td>
-        </tr>
-        <tr>
-          <td>August</td>
-          <td id="august"></td>
-        </tr>
-        <tr>
-          <td>September</td>
-          <td id="september"></td>
-        </tr>
-        <tr>
-          <td>October</td>
-          <td id="october"></td>
-        </tr>
-        <tr>
-          <td>November</td>
-          <td id="november"></td>
-        </tr>
-        <tr>
-          <td>December</td>
-          <td id="december"></td>
-        </tr>
-        <tr>
-          <td>January</td>
-          <td id="january"></td>
-        </tr>
-        <tr>
-          <td>Total Amount</td>
-          <td id="totalRemaining"></td>
-        </tr>
-      </tbody>
-    </table>
+     <!-- Message Display -->
+<p id="message"></p>
 
-    <!-- Toggle Navigation Script -->
-    <script>
-      function toggleNav() {
-        const sidenav = document.getElementById("mySidenav");
-        const container = document.querySelector(".container");
-        if (sidenav.style.width === "250px") {
-          sidenav.style.width = "0";
-          container.style.marginLeft = "0";
-        } else {
-          sidenav.style.width = "250px";
-          container.style.marginLeft = "250px";
-        }
-      }
-    </script>
+<div class="table-container">
+    <table id="allowanceTable">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>May</th>
+                <th>June</th>
+                <th>July</th>
+                <th>August</th>
+                <th>September</th>
+                <th>October</th>
+                <th>November</th>
+                <th>December</th>
+                <th>January</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Allowance</td>
+                <td id="may"></td>
+                <td id="june"></td>
+                <td id="july"></td>
+                <td id="august"></td>
+                <td id="september"></td>
+                <td id="october"></td>
+                <td id="november"></td>
+                <td id="december"></td>
+                <td id="january"></td>
+                <td id="totalRemaining"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+      <div class="footer-left">
+          <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+      </div>
+      <div class="footer-right">
+          <a href="#" class="social-icon">
+            All rights reserved
+          </a>
+      </div>
+  </div>
+</footer>
+
+
+  
     <script>
       function calculateAllowance() {
         const annualAmountInput =
@@ -501,6 +791,46 @@
         const totalRemainingCell = document.getElementById("totalRemaining");
         totalRemainingCell.textContent = Math.round(remainingAmount);
       }
+
+      //Accordian
+      
+    function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 15px";
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px";
+    }
+}
+function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.accordion-header');
+
+    // Close all other accordion sections
+    allHeaders.forEach(h => {
+        const c = h.nextElementSibling;
+        if (c !== content) {
+            c.style.maxHeight = null;
+            c.style.padding = "0 20px";
+            h.classList.remove('active');
+        }
+    });
+
+    // Toggle the clicked section
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 20px";
+        header.classList.remove('active');
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px 20px";
+        header.classList.add('active');
+    }
+}
+
     </script>
     <script type="module" src="calc.js"></script>
   </body>

@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Settings</title>
+<link rel="stylesheet" href="admin.css" />
+<!--=============== REMIXICONS ===============-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+</head>
+<body>
+      <div class="container">
+
+        <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+
+        <div class="sidebar-menu-content">
+
+        <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+
+        <li class="nav-item">
+        <a href="#" class="nav-link"><i class="ri-menu-line"></i></a>
+        </li> 
+        <li class="nav-item">
+        <a href="admin_dashboard.html" class="nav-link"><i class="ri-currency-line"></i><span>Dashboard</span></a>
+        </li>
+
+        <li class="nav-item">
+        <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i><span>Document</span></a>
+        </li>
+        <li class="nav-item ">
+        <a href="admin_query_response.html" class="nav-link"><i class="ri-file-copy-2-line"></i><span>Message</span></a>
+        </li>
+        <li class="nav-item">
+        <a href="Reports.html" class="nav-link"><i class="ri-file-chart-line"></i><span>Reports</span></a>
+        </li>
+        <li class="nav-item">
+        <a href="#" class="nav-link"><i class="ri-shield-user-line"></i><span>Account</span></a>
+        </li>
+        <li class="nav-item">
+        <a href="useless.html" class="nav-link"><i class="ri-settings-5-line"></i><span>Settings</span></a>
+        </li>
+        <li class="nav-item">
+        <a href="" class="nav-link"><i class="ri-logout-box-line"></i></i><span>Logout</span></a>
+        </li>
+        </ul>
+
+        </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.querySelector('.sidebar-main');
+
+        sidebar.addEventListener('mouseenter', () => {
+        sidebar.classList.add('expanded');
+        sidebar.classList.remove('collapsed');
+        });
+
+        sidebar.addEventListener('mouseleave', () => {
+        sidebar.classList.remove('expanded');
+        sidebar.classList.add('collapsed');
+        });
+        });
+        </script>
+        <style>
+
+        /* Sidebar collapsed style */
+        .sidebar-main {
+        width: 70px; 
+        background-color: #3f62af;
+        transition: width 0.3s;
+        margin-top: 20px;
+        margin-left: 20px;
+        border-radius: 10px;
+        height: 670px;
+        }
+
+        .sidebar-main.expanded {
+        width: 250px; /* Expanded width */
+      
+        }
+        .sidebar-main.expanded .nav-sidebar-menu li a:hover {
+        background-color: rgba(255, 255, 255, 0.2); 
+        color: #ffffff; 
+        border-radius: 20px;
+        width: 85%;
+        }
+
+        .nav-sidebar-menu li a {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        text-decoration: none;
+        color: #fff;
+        margin-left: 15px;
+        margin-top: 30px;
+        }
+
+        .nav-sidebar-menu li a i {
+        font-size: 16px; /* Icon size */
+       
+        background-color: #3f62af;
+        margin-top: -12px;
+
+        }
+
+        .nav-sidebar-menu li a span {
+        display: none; /* Hide text by default */
+        transition: all 0.3s;
+        }
+
+        ul {
+        list-style-type: none; 
+        }
+
+        /* Show only icons when collapsed */
+        .sidebar-main.collapsed .nav-sidebar-menu li span {
+        display: none; /* Ensure text is hidden */
+
+        }
+
+        /* Hide the first menu item when expanded */
+        .sidebar-main.expanded .nav-sidebar-menu li:first-child {
+        display: none; /* Hides the entire first menu item (icon + text) */
+        }
+
+        /* When expanded, show the text */
+        .sidebar-main.expanded .nav-sidebar-menu li a span {
+        display: inline; /* Show text when expanded */
+        }
+
+        /* Center the first item icon when collapsed */
+        .sidebar-main.collapsed .nav-sidebar-menu li:first-child a {
+        justify-content: center; /* Center icon in collapsed state */
+        }
+
+        .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
+        margin-right: 0;
+        }
+        </style>
+
+        </div>
+
+          <div class="main-content">
+                  <div>
+                      <!-- Go Back Navigation -->
+                      <div class="navigation" style="margin-left: 10px; margin-top: -10px">
+                        <a href="admin_dashboard.html" class="go-back" style="color: #000; font-size: 16px;"
+                        >← Go Back</a>
+                      </div>
+                  </div>
+                <h2 style="margin-bottom: -40px; margin-top: 20px;margin-left: 5px;">Settings</h2>
+                <!-- Page Content Area Start Here -->
+                <div class="content">
+                  <div class="container">
+                   
+                    <div class="accordion">
+                      
+                      <div class="accordion-item">
+                          <div class="accordion-header"><i class="ri-user-line"></i></div>
+                          <div class="accordion-content">
+                              <!-- Profile Settings Card -->
+                              <label for="c1" class="cards">
+                                  
+                                      <div class="description">
+                                          
+                                         
+                                      </div>
+                                
+                                  <div class="card-content">
+                                      <h2>Profile Settings</h2>
+                                      <p>Manage your account details</p>
+                                      <br>
+                                      <label for="adminName">Admin Name</label>
+                                      <input type="text" id="adminName" placeholder="Enter admin name" value="John Doe" />
+                                      <label for="adminEmail">Email</label>
+                                      <input type="email" id="adminEmail" placeholder="Enter email" value="admin@moshal.com" />
+                                      <button onclick="updateProfile()">Update Profile</button>
+                                  </div>
+                              </label>
+                          </div>
+                      </div>
+
+                      <div class="accordion-item">
+                          <div class="accordion-header"><i class="ri-notification-2-line"></i></div>
+                          <div class="accordion-content">
+                            <label for="c2" class="cards">
+                              <br>
+                              <div class="card-content">
+                                  <h2>Notification Preferences</h2><br>
+                                  <p>Set your notification preferences</p>
+                                  <label><input type="checkbox" id="emailNotifications" checked /> Receive email notifications</label>
+                                  <label><input type="checkbox" id="pushNotifications" checked /> Enable push notifications</label>
+                                  <button onclick="updateNotifications()">Update Notification Settings</button>
+                              </div>
+                          </label>
+                          </div>
+                      </div>
+                      <div class="accordion-item">
+                          <div class="accordion-header"><i class="ri-team-line"></i></div>
+                          <div class="accordion-content">
+                            <label for="c3" class="cards">
+                              
+                              <div class="card-content">
+                                  <h2>User Management</h2><br>
+                                  <p>Manage your users and their roles</p>
+                                  <label for="userSearch">Search User</label>
+                                  <input type="text" id="userSearch" placeholder="Enter student name" />
+                                  <button onclick="searchUser()">Search</button>
+                                  <div id="userList"></div>
+                              </div>
+                          </label>
+                          </div>
+                      </div>
+                      <div class="accordion-item">
+                        <div class="accordion-header"><i class="ri-article-line"></i></div>
+                        <div class="accordion-content">
+                          <label for="c4" class="cards">
+              
+                            <div class="card-content">
+                                <h2>Document Settings</h2><br>
+                                <p>Manage your document settings</p>
+                                <label for="retentionPeriod">Document Retention (in months)</label>
+                                <input type="number" id="retentionPeriod" value="12" />
+                                <br /><br />
+                                <button onclick="updateDocumentSettings()">Update Document Settings</button>
+                            </div>
+                        </label>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                      <div class="accordion-header"><i class="ri-shield-keyhole-line"></i></div>
+                      <div class="accordion-content">
+
+                          <label for="c5" class="cards">
+                              <div class="card-content">
+                                  <h2>Security Settings</h2><br>
+                                  <p>Manage security options</p>
+                                  <label><input type="checkbox" id="twoFactorAuth" checked /> Enable Two-factor Authentication</label>
+                                  <br /><br />
+                                  <button onclick="updateSecurity()">Update Security Settings</button>
+                              </div>
+                          </label>
+                      </div>
+                  </div>
+                  </div>
+                  
+                  <script>
+                  const accordionHeaders = document.querySelectorAll('.accordion-header');
+                  
+                  accordionHeaders.forEach(header => {
+                      header.addEventListener('click', () => {
+                          const accordionItem = header.parentElement;
+                          const accordionContent = accordionItem.querySelector('.accordion-content');
+                  
+                          // Toggle the display of the content
+                          if (accordionItem.classList.contains('active')) {
+                              accordionItem.classList.remove('active');
+                              accordionContent.style.display = 'none';
+                          } else {
+                              // Hide all other contents
+                              document.querySelectorAll('.accordion-item.active').forEach(item => {
+                                  item.classList.remove('active');
+                                  item.querySelector('.accordion-content').style.display = 'none';
+                              });
+                              // Show current content
+                              accordionItem.classList.add('active');
+                              accordionContent.style.display = 'block';
+                          }
+                      });
+                  });
+                  </script>
+                  </div>
+                </div>
+          </div>
+    </div>
+
+        <script>
+        function updateProfile() {
+        alert('Profile updated successfully!');
+        }
+        function updateNotifications() {
+        alert('Notification settings updated successfully!');
+        }
+        function searchUser() {
+        alert('Searching for user...');
+        }
+        function updateDocumentSettings() {
+        alert('Document settings updated successfully!');
+        }
+        function updateSecurity() {
+        alert('Security settings updated successfully!');
+        }
+
+        </script>
+
+<script type="module" src="useless.js"></script>
+<!-- Footer -->
+<footer>
+  <p>
+    &copy; Moshal Scholarship Program 2024 <br />
+    Developed by INFOSYNC <br />
+    All rights reserved
+  </p>
+  <p>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </p>
+</footer>
+<style>
+  
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f9;
+  color: #000000;
+  transition: margin-left 0.5s;
+}
+
+  
+.container {
+  display: flex;
+  min-height: 100vh; 
+  background-color: #f4f4f4;
+  overflow-y: hidden;
+  }
+      
+.main-content {
+flex-grow: 1; /* Takes up the remaining space */
+background-color: #f4f4f4; /* Background color */
+padding: 20px;
+margin-top: 20px;
+overflow-y: hidden;
+}
+  
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f4f4f4;
+  margin-top: -80px;
+  margin-left: -20px;
+  width: 100%;
+  
+}
+  .accordion {
+    display: flex;
+    flex-direction: row; 
+    margin-top: 120px;
+    margin-left: 350px;
+    gap: 60px;
+    
+  }
+
+  .accordion-item {
+    position: relative; /* Enable positioning for the content */
+    background-color: #ffffff;
+    height: 395px;
+    border: 1px solid #ccc;
+    gap: 30px;
+    border-radius: 10px;
+    margin-right: 10px; /* Space between items */
+    box-shadow: 0 14px 18px #3f62af;
+    overflow: hidden; /* Hide overflowing content */
+    transition: flex 0.3s ease; /* Smooth transition */
+  }
+
+  .accordion-item:last-child {
+    margin-right: 0; /* Remove margin from last item */
+  }
+
+  .accordion-header {
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    text-align: center; /* Center text in header */
+  }
+
+  .accordion-content {
+    display: none; /* Hide content initially */
+    padding: 15px;
+    border: none;
+    background-color: #fff;
+    width: 350px; /* Set a width for the content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .accordion-content p {
+    margin: 0;
+  }
+  
+  /* Optional styling for better visibility */
+  .accordion-header:hover {
+      background-color: #3f62af;
+      color: #fff;
+  }
+  
+  .accordion-item.active .accordion-content {
+      display: block; /* Show active content */
+  }
+  
+  .accordion-item.active .accordion-header {
+    background-color: #3f62af;
+    color: #fff;
+  }
+  footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: -115px;
+}
+
+footer .social-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: rgb(73, 73, 239);
+  transition: color 0.3s;
+}
+
+footer .social-links a:hover {
+  color: #5757d1;
+}
+
+footer p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+</style>
+
+</body>
+</html>
+
+
+
