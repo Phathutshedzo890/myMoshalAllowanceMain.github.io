@@ -7,307 +7,370 @@
     <link rel="stylesheet" href="profile.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
     <!--=============== REMIXICONS ===============-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-  
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
   </head>
   <body>
     <header class="header">
       <div class="header-search">
-          <img 
-              src="https://moshalprogram.org/wp-content/uploads/2022/02/1200x630-01.jpg" 
-              alt="Moshal Logo" 
-              class="logo" 
-              style="height: 80px; width: 165px; margin-left: -190px; border: 5px solid #3f62af; border-radius: 10px;">
+        <img
+          src="https://moshalprogram.org/wp-content/uploads/2022/02/1200x630-01.jpg"
+          alt="Moshal Logo"
+          class="logo"
+          style="
+            height: 80px;
+            width: 165px;
+            margin-left: -190px;
+            border: 5px solid #3f62af;
+            border-radius: 10px;
+          "
+        />
       </div>
       <div class="header-container">
-          <div class="header-items" style="margin-left: 760px; margin-top: 100px;">
-              <!-- Profile Section -->
-              <div class="header-profile">
-                  <a href="profile.html" id="profile-icon">
-                      <i class="ri-user-line"></i> Profile
-                  </a>
+        <div class="header-items" style="margin-left: 760px; margin-top: 100px">
+          <!-- Profile Section -->
+          <div class="header-profile">
+            <a href="profile.html" id="profile-icon">
+              <i class="ri-user-line"></i> Profile
+            </a>
+          </div>
+
+          <!-- Allowance Section -->
+          <div class="header-allowance">
+            <a href="calculate_allowance.html" id="allowance-icon">
+              <i class="ri-wallet-line"></i> Allowance
+            </a>
+          </div>
+
+          <!-- Query Section -->
+          <div class="header-query">
+            <a href="student_Query.html" id="query-icon">
+              <i class="ri-question-line"></i> Queries
+            </a>
+          </div>
+
+          <!-- Documents Section -->
+          <div class="header-documents">
+            <a href="documents.html" id="documents-icon">
+              <i class="ri-file-line"></i> Documents
+            </a>
+          </div>
+
+          <!-- Logout Section -->
+          <div class="header-logout">
+            <a href="#" id="logout-icon">
+              <i class="ri-logout-box-line"></i> Logout
+            </a>
+            <div
+              class="logout-dropdown-menu"
+              id="logout-dropdown"
+              style="display: none"
+            >
+              <div class="item-header">
+                <h6 class="item-title">Are you sure you want to log out?</h6>
               </div>
-  
-              <!-- Allowance Section -->
-              <div class="header-allowance">
-                  <a href="calculate_allowance.html" id="allowance-icon">
-                      <i class="ri-wallet-line"></i> Allowance
-                  </a>
-              </div>
-  
-              <!-- Query Section -->
-              <div class="header-query">
-                  <a href="student_Query.html" id="query-icon">
-                      <i class="ri-question-line"></i> Queries
-                  </a>
-              </div>
-  
-              <!-- Documents Section -->
-              <div class="header-documents">
-                  <a href="documents.html" id="documents-icon">
-                      <i class="ri-file-line"></i> Documents
-                  </a>
-              </div>
-  
-              <!-- Logout Section -->
-            <div class="header-logout">
-              <a href="#" id="logout-icon">
-                  <i class="ri-logout-box-line"></i> Logout
-              </a>
-              <div class="logout-dropdown-menu" id="logout-dropdown" style="display: none;">
-                  <div class="item-header">
-                      <h6 class="item-title">Are you sure you want to log out?</h6>
-                  </div>
-                  <div class="item-content">
-                      <ul class="settings-list">
-                          <li>
-                              <a href="index.html"><i class="ri-check-line"></i> Yes</a>
-                          </li>
-                          <li>
-                              <a href="#" id="cancel-logout"><i class="ri-close-line"></i> No</a>
-                          </li>
-                      </ul>
-                      <div id="logout-message" style="display: none; color: green">
-                          You have logged out successfully.
-                      </div>
-                  </div>
+              <div class="item-content">
+                <ul class="settings-list">
+                  <li>
+                    <button id="logout">yes</button>
+                    <!-- <a href="index.html"><i class="ri-check-line"></i> Yes</a> -->
+                  </li>
+                  <li>
+                    <button id="stay">No</button>
+                    <!-- <a href="#" id="cancel-logout"
+                      ><i class="ri-close-line"></i> No</a -->
+                  </li>
+                </ul>
+                <div id="logout-message" style="display: none; color: green">
+                  You have logged out successfully.
+                </div>
               </div>
             </div>
+          </div>
 
           <script>
-            document.getElementById('logout-icon').addEventListener('click', function(event) {
+            document
+              .getElementById("logout-icon")
+              .addEventListener("click", function (event) {
                 event.preventDefault();
-                const dropdown = document.getElementById('logout-dropdown');
-                dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
-            });
+                const dropdown = document.getElementById("logout-dropdown");
+                dropdown.style.display =
+                  dropdown.style.display === "none" ||
+                  dropdown.style.display === ""
+                    ? "block"
+                    : "none";
+              });
 
-            document.getElementById('cancel-logout').addEventListener('click', function(event) {
+            document
+              .getElementById("cancel-logout")
+              .addEventListener("click", function (event) {
                 event.preventDefault();
-                document.getElementById('logout-dropdown').style.display = 'none';
-            });
+                document.getElementById("logout-dropdown").style.display =
+                  "none";
+              });
           </script>
-
-          </div>
+        </div>
       </div>
-  
-      <style>
-          .header {
-              background-color: #3f62af; /* Background color */
-              color: #fff; /* Text color */
-              padding: 0;
-              text-align: center;
-              border-radius: 10px;
-              width: 86%;
-              height: 80px;
-              position: relative; /* Sticky position */
-              margin-top: 10px;
-              margin-bottom: 50px;
-              margin-left: 200px;
-          }
-  
-          .header-container {
-              color: #fff;
-              margin-top: -100px;
-              display: flex;
-              align-items: center;
-              flex-direction: row;
-              flex-wrap: nowrap;
-              justify-content: flex-start;
-          }
-  
-          .header-search {
-              display: flex;
-              align-items: center;
-              margin-right: 10px;
-          }
-  
-          .header-container div {
-              margin: 0 5px;
-          }
-  
-          .header-items {
-              display: flex; /* Ensures side-by-side layout */
-              justify-content: flex-start; /* Aligns items to the start */
-              align-items: center; /* Vertically centers items */
-              gap: 10px; /* Space between items */
-              padding: 10px 20px;
-              background-color: #3f62af;
-              color: #fff;
-              width: 40%;
-              flex-wrap: nowrap;
-          }
-  
-          .header-items a {
-              color: #fff; /* Link color */
-              text-decoration: none; /* Remove underline */
-              padding: 10px 15px; /* Padding around links */
-              transition: color 0.3s ease; /* Smooth transition for hover effect */
-          }
-   
-          .item-header {
-              padding: 10px;
-              border-bottom: 1px solid #eee; /* Divider */
-          }
-  
-          .item-content {
-              padding: 10px;
-          }
-  
-          .item-content ul {
-              list-style-type: none; /* Remove bullets */
-              padding: 0; /* No padding */
-              margin: 0; /* No margin */
-          }
-  
-          .item-content ul li {
-              padding: 5px 10px; /* Padding for items */
-              cursor: pointer; /* Pointer on hover */
-              transition: background 0.2s; /* Smooth transition */
-          }
-  
-          .item-content ul li:hover {
-              background: #f0f0f0; /* Highlight on hover */
-          }
-                    
-          .logout-dropdown-menu {
-            font-size: 16px;
-            position: absolute;
-            color: #000000;
-            border: 1px solid #000000;
-            top: 120%; /* Positioning below the header item */
-            background: #fff; /* Background color for dropdown */
-            border-radius: 10px; /* Rounded corners */
-            z-index: 1000; /* Ensure dropdown is above other content */
-            width: 300px; /* Set a width for the dropdown */
-            left: 75%;
-          }
 
-          .settings-list li a {
-            text-decoration: none;
-            color: black;
-            display: flex;
-            align-items: center;
-          }
+      <style>
+        .header {
+          background-color: #3f62af; /* Background color */
+          color: #fff; /* Text color */
+          padding: 0;
+          text-align: center;
+          border-radius: 10px;
+          width: 86%;
+          height: 80px;
+          position: relative; /* Sticky position */
+          margin-top: 10px;
+          margin-bottom: 50px;
+          margin-left: 200px;
+        }
+
+        .header-container {
+          color: #fff;
+          margin-top: -100px;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+        }
+
+        .header-search {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+        }
+
+        .header-container div {
+          margin: 0 5px;
+        }
+
+        .header-items {
+          display: flex; /* Ensures side-by-side layout */
+          justify-content: flex-start; /* Aligns items to the start */
+          align-items: center; /* Vertically centers items */
+          gap: 10px; /* Space between items */
+          padding: 10px 20px;
+          background-color: #3f62af;
+          color: #fff;
+          width: 40%;
+          flex-wrap: nowrap;
+        }
+
+        .header-items a {
+          color: #fff; /* Link color */
+          text-decoration: none; /* Remove underline */
+          padding: 10px 15px; /* Padding around links */
+          transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .item-header {
+          padding: 10px;
+          border-bottom: 1px solid #eee; /* Divider */
+        }
+
+        .item-content {
+          padding: 10px;
+        }
+
+        .item-content ul {
+          list-style-type: none; /* Remove bullets */
+          padding: 0; /* No padding */
+          margin: 0; /* No margin */
+        }
+
+        .item-content ul li {
+          padding: 5px 10px; /* Padding for items */
+          cursor: pointer; /* Pointer on hover */
+          transition: background 0.2s; /* Smooth transition */
+        }
+
+        .item-content ul li:hover {
+          background: #f0f0f0; /* Highlight on hover */
+        }
+
+        .logout-dropdown-menu {
+          font-size: 16px;
+          position: absolute;
+          color: #000000;
+          border: 1px solid #000000;
+          top: 120%; /* Positioning below the header item */
+          background: #fff; /* Background color for dropdown */
+          border-radius: 10px; /* Rounded corners */
+          z-index: 1000; /* Ensure dropdown is above other content */
+          width: 300px; /* Set a width for the dropdown */
+          left: 75%;
+        }
+
+        .settings-list li a {
+          text-decoration: none;
+          color: black;
+          display: flex;
+          align-items: center;
+        }
 
         .logout-dropdown-menu a:hover {
           background-color: #3f62af;
           color: #fff;
         }
       </style>
-  </header>
+    </header>
 
-  <div>
-    <!-- Go Back Navigation -->
-    <div class="navigation" style="margin-left: 205px; margin-top: -15px;">
-      <a href="first.html" class="go-back" style="color: #000"
-        >← Go Back</a
-      >
-    </div>
-  </div>
-
-    
-  <section class="profile-section">
-    <div class="profile-info">
-      <div class="profile-container">
-        <h2>Your Profile</h2>
-        <div class="profile-picture">
-          <img src="download.jpeg" alt="Profile Picture" />
-        </div>
-        <div class="profile-details">
-          <div class="profile-card">
-            <i class="ri-user-3-line"></i>
-            <strong>First Name:</strong>
-            <span id="loggedUserFName"></span>
-            <input type="text" id="editFName" class="edit-input" style="display: none" />
-          </div>
-  
-          <div class="profile-card">
-            <i class="ri-user-3-fill"></i>
-            <strong>Last Name:</strong>
-            <span id="loggedUserLName"></span>
-            <input type="text" id="editLName" class="edit-input" style="display: none" />
-          </div>
-  
-          <div class="profile-card">
-            <i class="ri-mail-line"></i>
-            <strong>Email:</strong>
-            <span id="loggedUserEmail"></span>
-            <input type="email" id="editEmail" class="edit-input" style="display: none" />
-          </div>
-  
-          <div class="profile-card">
-            <i class="ri-id-card-line"></i>
-            <strong>Student Number:</strong>
-            <span id="loggedStudent_ID"></span>
-            <input type="text" id="editStudentID" class="edit-input" style="display: none" />
-          </div>
-  
-          <div class="profile-card">
-            <i class="ri-phone-line"></i>
-            <strong>Phone Number:</strong>
-            <span id="loggedUserPhoneNo"></span>
-            <input type="text" id="editPhoneNo" class="edit-input" style="display: none" />
-          </div>
-  
-          <div class="profile-card">
-            <i class="ri-building-line"></i>
-            <strong>University:</strong>
-            <span id="loggedUserVarsity"></span>
-            <input type="text" id="editVarsity" class="edit-input" style="display: none" />
-          </div>
-        </div>
-  
-        <div class="profile-actions">
-          <button class="edit-profile-btn" id="editProfileButton">Edit Profile</button>
-          <button class="save-profile-btn" id="saveProfileButton" style="display: none">Save</button>
-          <button class="cancel-profile-btn" id="cancelProfileButton" style="display: none">Cancel</button>
-        </div>
+    <div>
+      <!-- Go Back Navigation -->
+      <div class="navigation" style="margin-left: 205px; margin-top: -15px">
+        <a href="first.html" class="go-back" style="color: #000">← Go Back</a>
       </div>
     </div>
-  </section>
-  
-    
+
+    <section class="profile-section">
+      <div class="profile-info">
+        <div class="profile-container">
+          <h2>Your Profile</h2>
+          <div class="profile-picture">
+            <img src="download.jpeg" alt="Profile Picture" />
+          </div>
+          <div class="profile-details">
+            <div class="profile-card">
+              <i class="ri-user-3-line"></i>
+              <strong>First Name:</strong>
+              <span id="loggedUserFName"></span>
+              <input
+                type="text"
+                id="editFName"
+                class="edit-input"
+                style="display: none"
+              />
+            </div>
+
+            <div class="profile-card">
+              <i class="ri-user-3-fill"></i>
+              <strong>Last Name:</strong>
+              <span id="loggedUserLName"></span>
+              <input
+                type="text"
+                id="editLName"
+                class="edit-input"
+                style="display: none"
+              />
+            </div>
+
+            <div class="profile-card">
+              <i class="ri-mail-line"></i>
+              <strong>Email:</strong>
+              <span id="loggedUserEmail"></span>
+              <input
+                type="email"
+                id="editEmail"
+                class="edit-input"
+                style="display: none"
+              />
+            </div>
+
+            <div class="profile-card">
+              <i class="ri-id-card-line"></i>
+              <strong>Student Number:</strong>
+              <span id="loggedStudent_ID"></span>
+              <input
+                type="text"
+                id="editStudentID"
+                class="edit-input"
+                style="display: none"
+              />
+            </div>
+
+            <div class="profile-card">
+              <i class="ri-phone-line"></i>
+              <strong>Phone Number:</strong>
+              <span id="loggedUserPhoneNo"></span>
+              <input
+                type="text"
+                id="editPhoneNo"
+                class="edit-input"
+                style="display: none"
+              />
+            </div>
+
+            <div class="profile-card">
+              <i class="ri-building-line"></i>
+              <strong>University:</strong>
+              <span id="loggedUserVarsity"></span>
+              <input
+                type="text"
+                id="editVarsity"
+                class="edit-input"
+                style="display: none"
+              />
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button class="edit-profile-btn" id="editProfileButton">
+              Edit Profile
+            </button>
+            <button
+              class="save-profile-btn"
+              id="saveProfileButton"
+              style="display: none"
+            >
+              Save
+            </button>
+            <button
+              class="cancel-profile-btn"
+              id="cancelProfileButton"
+              style="display: none"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <footer class="footer">
       <div class="footer-container">
-          <div class="footer-left">
-              <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
-          </div>
-          <div class="footer-right">
-              <a href="#" class="social-icon">
-                All rights reserved
-              </a>
-          </div>
+        <div class="footer-left">
+          <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+        </div>
+        <div class="footer-right">
+          <a href="#" class="social-icon"> All rights reserved </a>
+        </div>
       </div>
-  </footer>
+    </footer>
 
     <script type="module" src="profile.js"></script>
   </body>
 </html>
 
- <style>/* Overall profile section styling */
+<style>
+  /* Overall profile section styling */
   .profile-section {
     background-color: #fff;
   }
-  
+
   .profile-container {
     max-width: 1200px;
-    
+
     margin: 0 auto;
   }
-  
+
   h2 {
     text-align: center;
     font-size: 30px;
     margin-bottom: 30px;
     margin-left: -1125px;
   }
-  
+
   .profile-picture {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
   }
-  
+
   .profile-picture img {
     width: 180px;
     height: 180px;
@@ -316,11 +379,11 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
   }
-  
+
   .profile-picture img:hover {
     transform: scale(1.1);
   }
-  
+
   /* Profile details in grid layout */
   .profile-details {
     display: grid;
@@ -328,7 +391,7 @@
     gap: 30px;
     margin-bottom: 40px; /* Extra space for buttons */
   }
-  
+
   /* Profile card styling */
   .profile-card {
     background-color: #fff;
@@ -339,32 +402,31 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     font-size: 1.1em;
   }
-  
+
   .profile-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
-  
+
   .profile-card strong {
     display: block;
     margin-bottom: 10px;
   }
-  
+
   .profile-card i {
     font-size: 24px;
     margin-right: 10px;
     color: #3f62af;
   }
-  
+
   /* Profile actions */
   .profile-actions {
     text-align: center;
     margin-top: 20px;
   }
-  
+
   /* Make sure buttons are always below last row of cards */
   .profile-actions {
     grid-column: span 2;
   }
-
-  </style>
+</style>
