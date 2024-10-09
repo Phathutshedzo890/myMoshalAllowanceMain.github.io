@@ -34,6 +34,7 @@ async function loadStudents() {
     studentTableBody.appendChild(row);
   });
 }
+
 // Load admin messages from Firestore
 function loadAdminMessages() {
   const messageQuery = collection(db, "Create_Query");
