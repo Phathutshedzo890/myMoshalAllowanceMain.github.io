@@ -35,12 +35,12 @@ const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
+
 // Function to handle file upload
 function uploadPDF(fileInputId, storagePath, firestoreCollection, messageElementId) {
   const fileInput = document.getElementById(fileInputId);
   const file = fileInput.files[0];
   const user = auth.currentUser;
-
   if (file && user) {
     const fileRef = storageRef(storage, `${storagePath}/${user.uid}/${file.name}`);
     

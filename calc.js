@@ -105,7 +105,7 @@ document.querySelector(".calculate-button").addEventListener("click", async (eve
   
   async function saveExternalFundingData() {
     // Retrieve form values
-    const ExtFunding_Name = document.getElementById("ExtFunding_Name").value.trim();
+    const ExtFunding_Name = document.getElementById("ExtFunding_Name").value; // This will now capture the dropdown value
     const ExtFunding_Amt = document.getElementById("annual_amount").value.trim();
     const ExtFunding_Type = document.querySelector('input[name="ExtFunding_Type"]:checked')?.value;
     const ExtFunding_Date = document.getElementById("ExtFunding_Date").value.trim();
@@ -159,7 +159,7 @@ document.querySelector(".calculate-button").addEventListener("click", async (eve
       // Save data to Firestore
       await setDoc(externalFundingRef, {
         ExtFundingID: userUID, // Use the UID as the ID
-        ExtFunding_Name: ExtFunding_Name,
+        ExtFunding_Name: ExtFunding_Name, // This will now save GCRA or NSFAS
         ExtFunding_Amt: Number(ExtFunding_Amt),
         ExtFunding_Type: ExtFunding_Type,
         ExtFunding_Date: ExtFunding_Date,
@@ -175,6 +175,7 @@ document.querySelector(".calculate-button").addEventListener("click", async (eve
       console.error("Error saving external funding information:", error);
     }
   }
+  
   
 
 

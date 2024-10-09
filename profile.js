@@ -121,6 +121,9 @@ const firebaseConfig = {
         console.error("Error signing out:", error);
       });
   });
+  document.getElementById("stay").addEventListener('click', (e)=>{
+    window.location.href = "profile.html"; // Redirect to
+  });
 // onAuthStateChanged(auth,async (user)=>{
 //     console.log(user);
 //     if(user){

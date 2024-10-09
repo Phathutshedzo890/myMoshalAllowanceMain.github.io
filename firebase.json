@@ -25,6 +25,10 @@
       {
         "source": "**",
         "destination": "/index.html"
+      },
+      {
+        "source":"/calculate_allowance/:id",
+        "destination":"/calulate_allowance.html"
       }
     ]
   }

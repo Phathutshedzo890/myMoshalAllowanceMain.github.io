@@ -124,8 +124,14 @@ main.container.right-panel-active .sign-up-section {
     opacity: 1;
     z-index: 5;
 }
-
-.overlay-section {
+img {
+    width: 80%; /* Adjust the image width as needed */
+    max-width: 300px; /* Set a max width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 100px; /* Rounded corners for the image */
+   margin-top: 60px;
+}
+  .overlay-section {
     position: absolute;
     top: 0;
     left: 50%;
@@ -134,16 +140,14 @@ main.container.right-panel-active .sign-up-section {
     overflow: hidden;
     transition: transform 0.6s ease-in-out;
     z-index: 100;
-}
+  }
 
-main.container.right-panel-active .overlay-section {
+  main.container.right-panel-active .overlay-section {
     transform: translateX(-100%);
-}
+  }
 
-.overlay {
+  .overlay {
     background: #3f62af;
-    /*background: -webkit-linear-gradient(to right, #007bff, #0056b3);
-    background: linear-gradient(to right, #007bff, #0056b3);*/
     color: #ffffff;
     position: relative;
     left: -100%;
@@ -151,13 +155,13 @@ main.container.right-panel-active .overlay-section {
     width: 200%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
-}
+  }
 
-main.container.right-panel-active .overlay {
+  main.container.right-panel-active .overlay {
     transform: translateX(50%);
-}
+  }
 
-.overlay-panel {
+  .overlay-panel {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -165,29 +169,29 @@ main.container.right-panel-active .overlay {
     justify-content: center;
     padding: 0 40px;
     text-align: center;
-    top: 0;
+    top: -80px;
     height: 100%;
     width: 50%;
     transform: translateX(0);
     transition: transform 0.6s ease-in-out;
-}
+  }
 
-.overlay-left {
+  .overlay-left {
     transform: translateX(-20%);
-}
+  }
 
-main.container.right-panel-active .overlay-left {
+  main.container.right-panel-active .overlay-left {
     transform: translateX(0);
-}
+  }
 
-.overlay-right {
+  .overlay-right {
     right: 0;
     transform: translateX(0);
-}
+  }
 
-main.container.right-panel-active .overlay-right {
+  main.container.right-panel-active .overlay-right {
     transform: translateX(20%);
-}
+  }
 
 form {
     background-color: #ffffff;
@@ -213,24 +217,30 @@ p {
 }
 
 input {
-    background-color: #eee;
+    background-color: #ffffff;
     border: none;
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
+    border-bottom: 1px solid black;
 }
 
 button {
+    display: inline-block;
+    margin-top: 60px;
+    padding: 13px 45px;
+    background-color: #3f62af;
+    border: #3f62af;
+    color: white;
     border-radius: 20px;
-    border: 1px solid rgb(73, 73, 239);
-    background-color: rgb(73, 73, 239);
-    color: #ffffff;
     font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
     text-transform: uppercase;
-    transition: transform 80ms ease-in;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 80ms ease-in, background-color 0.3s ease;
+    cursor: pointer;
 }
 
 button.ghost {
@@ -249,16 +259,16 @@ button:active {
 footer {
     text-align: center;
     padding: 20px;
-    background: #f8f8f8;
-    border-top: 1px solid #ddd;
-}
+    background: #f6f5f7; 
+  }
 
-footer p {
+  footer p {
     margin: 5px 0;
-}
+  }
 
-footer a {
+  footer a {
     margin: 0 10px;
     text-decoration: none;
-    color: rgb(73, 73, 239);
-}
+    color: #3f62af;
+  }
+  
