@@ -4,317 +4,466 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Data</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
 </head>
 <body>
   <title>Report</title>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <h1 class="main-title">My Moshal Allowance</h1>
-
-      <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-    </nav>
-  </header>
-  <aside class="sidenav" id="mySidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
-      >&times;</a
+   <!-- Go Back Navigation -->
+   <div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
+    <a href="Reports.html" class="go-back" style="color: #000"
+      >← Go Back</a
     >
-    <a href="Reports.html">Reports</a>
-    <a href="admin_query_page.html">Query</a>
-  </aside>
-  <br></br>
-  <h1>Oustanding Student Updates Report</h1>
-  <p>This report Identifies students who have not updated their funding information pertaining to additional external bursaries and anyother oustanding allowance documents</p>
-  <p id="studentCount"></p>
-  <canvas id="studentChart" width="300" height="200"></canvas>
+  </div>
+   
+    <div class="report-container">
+      <h1 class="title"> Outstanding Student Funding Report</h1>
+      <p class="report-date">Report Date: <span id="currentDate"></span></p>
+      <p class="generated">Generated: Bi-weekly (Duration: First 2 months of the academic year)</p>
+      <br>
 
-  <script type="module">
-    // Import Firebase modules
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-    
+      <section class="key-metrics"> 
+        <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Key Metrics</h2>
+        <div class="cards-container">
+          <div class="card">
+            <h3 style="font-size: 13px;">Total Students</h3>
+            <p><span id="totalStudents"></span></p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 13px;">Compliant</h3>
+            <p><span id="compliantCount"></span></p>
+          </div>
+          <div class="card">
+            <h3 style="font-size: 13px;">Non-Compliant</h3>
+            <p><span id="nonCompliantCount"></span></p>
+          </div>
+          <div class="card">
+            <h5 style="font-size: 13px;">Financial Aid Delay</h5>
+            <p> High Risk </p>
+          </div>
+        </div>
+        
+        <div class="chart-container">
+          <canvas id="complianceChart" width="300" height="200"></canvas>
+      </div>
+     
+        <p><strong>Compliance Rate: </strong><span id="studentCount"></span></p>
+      </section>
 
-    // Firebase configuration
-    const firebaseConfig = {
-  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-  projectId: "mymoshalallowance-34e68",
-  storageBucket: "mymoshalallowance-34e68.appspot.com",
-  messagingSenderId: "387609738002",
-  appId: "1:387609738002:web:38cf56b731375650d751cb",
-  measurementId: "G-5E13X2QNFC"
-};
+      <h2 class="section-title" style="margin-top: 15px;"><i class="ri-error-warning-line"></i> Analysis of Non-Compliance</h2>
+      <section class="non-compliance-analysis">
+        <ul>
+          <li><strong>Root Causes:</strong>
+            <ul>
+              <li>Lack of awareness among students about document submission deadlines.</li>
+              <li>Confusion due to unclear instructions or technical issues with the submission portal.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
+      <h2 class="section-title"><i class="ri-alert-line"></i> Risks and Impact</h2>
+      <section class="risks-impact"  >
+        <ul>
+          <li><strong>Potential Delays:</strong>
+            <ul>
+              <li>Financial aid processing is at risk for the non-compliant students, potentially affecting their ability to attend classes or purchase necessary materials.</li>
+          <li>Budget planning complications may arise due to incomplete or missing data.</li>
+            </ul>
+          </li>
+          <li><strong>Budget Impact:</strong>
+            <ul>
+              <li>The program faces challenges in planning accurate budget allocations due to incomplete financial information.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
 
-    // Initialize Firestore
-    const db = getFirestore(app);
+      <h2 class="section-title"><i class="ri-lightbulb-line"></i> Recommendations & Actions</h2>
+      <section class="recommendations-actions">
+        <ul>
+          <li><strong>Immediate Actions:</strong>
+            <ul>
+              <li>Send Targeted Reminders: Directly contact the non-compliant students with clear instructions and deadlines.</li>
+              <li>Review Compliant Students: Confirm that all necessary documents have been submitted for the students marked compliant.</li>
+            </ul>
+          </li>
+          <li><strong>Campaign for Compliance:</strong>
+            <ul>
+              <li>Offer incentives such as priority funding or recognition for early compliance.</li>
+            </ul>
+          </li>
+          <li><strong>Process Improvements:</strong>
+            <ul>
+              <li>Simplify submission forms and offer direct support to guide students through the process.</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
 
-    // Fetch student count from Firestore and display it
-    async function getStudentCount() {
-      const studentsRef = collection(db, 'Student');
-      const snapshot = await getDocs(studentsRef);
-      const totalStudents = 77;
-      const updated_students = totalStudents-25;
-      const not_updated_students = 25;
+      <h2 class="section-title"><i class="ri-timer-line"></i> Compliance Monitoring Plan</h2>
+      <section class="compliance-monitoring-plan" >
+        <ul>
+          <li>Continuous Tracking: Implement a system to track the status of student submissions and flag those approaching deadlines.</li>
+          <li>Trend Analysis: Monitor submission patterns to identify high-risk periods or groups.</li>
+        </ul>
+      </section>
 
-      // Display the total number of students
-      document.getElementById('studentCount').textContent = `The number of students in our database is: ${totalStudents}, and only ${updated_students} have updated their funding updates`;
+    </div>
 
-      // Subtract 25 and create the bar chart
-      createChart(updated_students, not_updated_students);
-    }
+        <script>
+          // Wait for the DOM to be fully loaded before executing the script
+          document.addEventListener('DOMContentLoaded', function () {
+                // Set the current date into the span
+                document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+            });
+        </script>
 
-    // Function to create the bar chart
-    function createChart(updated_students, not_updated_students) {
-  const ctx = document.getElementById('studentChart').getContext('2d');
-  const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['Updated', 'Not Updated'],
-      datasets: [{
-        label: 'Number of Students',
-        data: [updated_students, not_updated_students],
-        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
-      onClick: (e, elements) => {
-        if (elements.length > 0) {
-          const clickedElementIndex = elements[0].index; // Get index of clicked bar
-          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked bar
-          
-          // Redirect based on the clicked bar's label
-          if (label === 'Updated') {
-            window.location.href = 'updated_students.html'; // Redirect to the 'Updated Students' page
-          } else if (label === 'Not Updated') {
-            window.location.href = 'not_updated_students.html'; // Redirect to the 'Not Updated Students' page
+        <div class="details">
+          <h2>Details</h2>
+          <ul>
+              <li><strong>File Format</strong></li>
+              <li> <i class="ri-file-word-2-line" style="color: blue;"></i> MS Word</li>
+              <li> <i class="ri-file-pdf-2-line" style="color: red;"></i> PDF</li>
+              <li><i class="ri-article-line" style="color: green;"></i> Google Docs</li>
+              <li><strong>Size</strong>: A4 </li>
+          </ul>
+      </div>
+        <div class="download-section">
+            <a href="#" class="download-button">Download</a>
+        </div>
+  
+
+
+        <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+          import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+        
+          // Firebase configuration
+          const firebaseConfig = {
+              apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
+              authDomain: "mymoshalallowance.firebaseapp.com",
+              databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
+              projectId: "mymoshalallowance",
+              storageBucket: "mymoshalallowance.appspot.com",
+              messagingSenderId: "607619034226",
+              appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
+              measurementId: "G-NCTW2CSPR8"
+          };
+        
+          // Initialize Firebase
+          const firebaseApp = initializeApp(firebaseConfig);
+          const db = getFirestore(firebaseApp);
+        
+          async function fetchStudentComplianceData() {
+              let compliantCount = 0;
+              let nonCompliantCount = 0;
+        
+              try {
+                  const studentsSnapshot = await getDocs(collection(db, 'Student'));
+                  
+                  for (const studentDoc of studentsSnapshot.docs) {
+                      const studentID = studentDoc.id;
+                      const missingDocuments = await checkMissingDocuments(studentID);
+                      
+                      if (missingDocuments.length >= 2) {
+                          nonCompliantCount++;
+                      } else {
+                          compliantCount++;
+                      }
+                  }
+        
+                  renderPolarAreaChart(compliantCount, nonCompliantCount);
+              } catch (error) {
+                  console.error('Error fetching student compliance data:', error);
+              }
           }
+        
+          async function checkMissingDocuments(studentID) {
+              const missingDocs = [];
+              const docTypes = ['feeStatements', 'proofOfFunding', 'ExternalFunding'];
+              for (let docType of docTypes) {
+                  const snapshot = await getDocs(collection(db, docType));
+                  const docExists = snapshot.docs.some(doc => doc.id === studentID);
+                  if (!docExists) {
+                      missingDocs.push(docType);
+                  }
+              }
+              return missingDocs;
+          }
+        
+          function renderPolarAreaChart(compliantCount, nonCompliantCount) {
+            const totalStudents = compliantCount + nonCompliantCount;
+            // Update the span 
+            document.getElementById('totalStudents').textContent = totalStudents;
+            document.getElementById('compliantCount').textContent = compliantCount;
+            document.getElementById('nonCompliantCount').textContent = nonCompliantCount;
+            const complianceRate = totalStudents > 0 ? ((compliantCount / totalStudents) * 100).toFixed(2) : 0;
+           document.getElementById('studentCount').textContent = `${complianceRate}%`;
+                    const ctx = document.getElementById('complianceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Updated Students', 'Not Updated Students'],
+                    datasets: [{
+                        data: [compliantCount, nonCompliantCount],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.6)',  // Light blue for compliant
+                            'rgba(255, 99, 132, 0.6)'   // Light red for non-compliant
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: false,
+                      
+                        }
+                    },
+                    scales: {
+                        r: {
+                            ticks: {
+                                stepSize: 1
+                            }
+                        }
+                    }, // Add onClick event to handle the redirection
+            onClick: function (event, elements) {
+                // If an element is clicked
+                if (elements.length > 0) {
+                    const clickedElementIndex = elements[0].index;
+                    // Check if the clicked element corresponds to the 'Non-Compliant Students' segment
+                    if (clickedElementIndex === 1) {  // 'Non-Compliant Students' is at index 1
+                        window.location.href = 'noncompliant.html';
+                    }
+                }
+            }
         }
-      }
-    }
-  });
+    });
 }
-
-    // Call the function to get student count and display chart
-    getStudentCount();
-  </script>
-  <script>
-    function toggleNav() {
-      const sidenav = document.getElementById("mySidenav");
-      if (sidenav.style.width === "250px") {
-        sidenav.style.width = "0";
-        document.body.style.marginLeft = "0";
-      } else {
-        sidenav.style.width = "250px";
-        document.body.style.marginLeft = "250px";
-      }
-    }
-
-    document.getElementById("signIn").addEventListener("click", () => {
-      document
-        .getElementById("container")
-        .classList.remove("right-panel-active");
-    });
-
-    document.getElementById("signUp").addEventListener("click", () => {
-      document
-        .getElementById("container")
-        .classList.add("right-panel-active");
-    });
-  </script>
-   <footer>
-    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+          // Call the fetch function once the page has loaded
+          document.addEventListener('DOMContentLoaded', function() {
+              fetchStudentComplianceData();
+          });
+        </script>
+  
+  
+  <footer>
+    <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
     <p>
       <a href="#">Privacy Policy</a>
       <a href="#">Terms of Service</a>
     </p>
   </footer>
+
 </body>
 </html>
 
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
 
+.report-container {
+  max-width: 794px; /* A4 width for print */
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #3f62af;
+}
+
+.chart-container {
+  width: 50%;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: -30px;
+  margin-bottom: -20px;
+}
+
+.title {
+  text-align: center;
+  color: #34495e;
+}
+
+.report-date,
+.generated {
+  text-align: center;
+  color: #7f8c8d;
+  margin: 5px 0;
+}
+
+.section-title {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 20px;
+  display: flex;
+}
+
+.section-title i {
+  margin-right: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.card {
+  background-color: #fff;
+  padding: 10px;
+  width: 20%;
+  height: 85px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+section:not(.key-metrics) {
+  margin-bottom: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: #f8f8f8;
+  margin: 0;
+}
+
+.details {
+  margin-left: 25%;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.details h2 {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.details ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.details li {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.download-section {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.download-button {
+  border-radius: 20px;
+  border: 1px solid #3f62af;
+  background-color: transparent;
+  color: #3f62af;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 25px;
+  letter-spacing: 1px;
+}
+
+footer {
+  margin-top: 11px;
+  text-align: center;
+  padding: 20px;
+  background: #f8f8f8;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: #3f62af;
+}
+
+/* A4 Print Styling */
+@media print {
   body {
-    background-color: #f6f5f7;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
+    width: 210mm;
+    height: 297mm;
     margin: 0;
   }
 
-  header {
-    background: #3f62af;
-    border-bottom: 1px solid #ddd;
-    padding: 0 20px;
-    box-shadow: 0 4px 2px -2px gray;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    height: 70px;
+  .report-container {
+    page-break-after: auto;
+    page-break-inside: avoid;
+    width: 100%;
+    margin: 0;
+    padding: 15mm;
+    box-shadow: none;
   }
 
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .chart-container {
+    page-break-inside: avoid;
+    width: 100%;
+    padding: 0;
+  }
+
+  .cards-container {
     width: 100%;
   }
 
-  .menu-btn {
-    font-size: 30px;
-    cursor: pointer;
-    color: #ffffff;
-    order: -1; /* Add this line to move the button to the left */
+  .card {
+    width: calc(100% / 4 - 20px); /* Adjust for A4 print */
+    margin-bottom: 10px;
   }
-
-  h1.main-title {
-    color: #ffffff;
-    margin-left: 10px; /* Add some margin to separate the title from the button */
-  }
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #3f62af;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
- 
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #ffffff;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-  }
-
-  main.container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    position: relative;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-    overflow: hidden;
-    margin: 20px auto;
-  }
-
-  h1 {
-    font-weight: bold;
-    margin: 0;
-    text-align: center;
-    margin-top: 50px;
-  }
-
-  p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    margin: 20px 0 30px;
-    text-align: center;
-  }
-
-
-  button {
-    border-radius: 20px;
-    border: 1px solid #3f62af;
-    background-color: #3f62af;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-    cursor: pointer;
-  }
-
-  button.ghost {
-    background-color: transparent;
-    border-color: #ffffff;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  button:active {
-    transform: scale(0.95);
-  }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: #f8f8f8;
-    border-top: 1px solid #ddd;
-  }
-
-  footer p {
-    margin: 5px 0;
-  }
-
-  footer a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #3f62af;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .form-section {
-      width: 100%;
-    }
-    main.container.right-panel-active .sign-in-section,
-    main.container.right-panel-active .sign-up-section {
-      transform: translateX(100%);
-      width: 100%;
-    }
-    .overlay-section {
-      display: none;
-    }
-    main.container {
-      width: 90%;
-    }
-  }
+}
 </style>
+
 

@@ -1,269 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Data</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f6f5f7;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100vh;
-      margin: 0;
-    }
-
-    header {
-      background: #3f62af;
-      border-bottom: 1px solid #ddd;
-      padding: 0 20px;
-      box-shadow: 0 4px 2px -2px gray;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      height: 70px;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .menu-btn {
-      font-size: 30px;
-      cursor: pointer;
-      color: #ffffff;
-      order: -1; /* Add this line to move the button to the left */
-    }
-
-    h1.main-title {
-      color: #ffffff;
-      margin-left: 10px; /* Add some margin to separate the title from the button */
-    }
-
-    .sidenav {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0;
-      left: 0;
-      background-color: #3f62af;
-      overflow-x: hidden;
-      transition: 0.5s;
-      padding-top: 60px;
-    }
-
-    .sidenav a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 25px;
-      color: #ffffff;
-      display: block;
-      transition: 0.3s;
-    }
-
-    .sidenav a:hover {
-      color: #f1f1f1;
-    }
-
-    .sidenav .closebtn {
-      position: absolute;
-      top: 0;
-      right: 25px;
-      font-size: 36px;
-      cursor: pointer;
-    }
-
-    main.container {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-      position: relative;
-      width: 768px;
-      max-width: 100%;
-      min-height: 480px;
-      overflow: hidden;
-      margin: 20px auto;
-    }
-
-    h1 {
-      font-weight: bold;
-      margin: 0;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    p {
-      font-size: 14px;
-      font-weight: 100;
-      line-height: 20px;
-      margin: 20px 0 30px;
-      text-align: center;
-    }
-
-    button {
-      border-radius: 20px;
-      border: 1px solid #3f62af;
-      background-color: #3f62af;
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 12px 45px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: transform 80ms ease-in;
-      cursor: pointer;
-    }
-
-    button.ghost {
-      background-color: transparent;
-      border-color: #ffffff;
-    }
-
-    button:focus {
-      outline: none;
-    }
-
-    button:active {
-      transform: scale(0.95);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #f8f8f8;
-      border-top: 1px solid #ddd;
-    }
-
-    footer p {
-      margin: 5px 0;
-    }
-
-    footer a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #3f62af;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-      font-size: 18px;
-      text-align: left;
-    }
-    
-    th, td {
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-    }
-    
-    th {
-      background-color: #3f62af;
-      color: white;
-    }
-    
-    td {
-      word-wrap: break-word; /* Ensures the message column can wrap text */
-    }
-
-    .message-column {
-      width: 40%; /* Set a larger width for the message column */
-    }
-
-    .action-btn {
-      background-color: #3f62af;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .action-btn:hover {
-      background-color: #2e4b87;
-    }
-
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .form-section {
-        width: 100%;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Allowance Payment Summary Report</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js" type="module"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
       }
-      main.container.right-panel-active .sign-in-section,
-      main.container.right-panel-active .sign-up-section {
-        transform: translateX(100%);
-        width: 100%;
+  
+      body {
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        margin: 0;
       }
-      .overlay-section {
-        display: none;
+  
+  
+      h1 {
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        margin-top: 50px;
       }
-      main.container {
+  
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        margin: 20px 0 30px;
+        text-align: center;
+      }
+  
+      button {
+        border-radius: 20px;
+        border: 1px solid #3f62af;
+        background-color: #3f62af;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+      }
+  
+      button.ghost {
+        background-color: transparent;
+        border-color: #ffffff;
+      }
+  
+      button:focus {
+        outline: none;
+      }
+  
+      button:active {
+        transform: scale(0.95);
+      }
+  
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #f8f8f8;
+        
+      }
+  
+      footer p {
+        margin: 5px 0;
+      }
+  
+      footer a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3f62af;
+      }
+  
+      table {
         width: 90%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 5px #3f62af;
+      margin-left: 50px;
       }
-    }
-  </style>
+      
+      th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+      
+      th {
+        background-color: #3f62af;
+        color: white;
+      }
+      
+      td {
+        word-wrap: break-word;
+      }
+  
+      .message-column {
+        width: 40%;
+      }
+  
+      .action-btn {
+        background-color: #3f62af;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+  
+      .action-btn:hover {
+        background-color: #2e4b87;
+      }
+  
+      @media (max-width: 768px) {
+        main.container {
+          width: 90%;
+        }
+      }
+    </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <h1 class="main-title">My Moshal Allowance</h1>
-      <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-    </nav>
-  </header>
-  <aside class="sidenav" id="mySidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">&times;</a>
-    <a href="Reports.html">Reports</a>
-    <a href="admin_query_page.html">Query</a>
-  </aside>
-  <main>
-    <h1>Unanswered Queries</h1>
-    <p>This page show a more details about the unanswered queries</p>
-    <table>
+   <!-- Go Back Navigation -->
+ <div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
+  <a href="" class="go-back" style="color: #000"
+    >← Go Back</a
+  >
+</div>
+
+  <main style="margin-top: -150px;">
+    <h1>Full Student Allowance Disbursement</h1><br>
+    <table id="reportTable">
         <thead>
-          <tr>
-            <th>Date</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th class="message-column">Message</th>
-            <th>Action</th>
-          </tr>
+            <tr>
+                <th>Student ID</th>
+                <th>External Funding Name</th>
+                <th>External Funding Amount</th>
+                <th>Calculated Allowance</th>
+                <th>External Funding Type</th>
+                <th>External Funding Date</th>
+                <th>NSFAS Status</th>
+                <th>Document</th>
+            </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>2024-10-05</td>
-            <td>John</td>
-            <td>Doe</td>
-            <td>This is a sample message from John Doe explaining his query in detail.</td>
-            <td><button class="action-btn" onclick="handleClick()">View</button></td>
-          </tr>
-          <tr>
-            <td>2024-10-03</td>
-            <td>Jane</td>
-            <td>Smith</td>
-            <td>Another detailed message that should wrap correctly in this larger column to display the full message.</td>
-            <td><button class="action-btn" onclick="goToPage('details_page_jane.html')">View</button></td>
-          </tr>
+        <tbody id="reportBody">
+            <!-- Data will be populated here -->
         </tbody>
-      </table>
-    
+    </table>
   </main>
   <footer>
     <p>&copy; 2024 MyWebsite. All rights reserved.</p>
@@ -272,10 +166,99 @@
       <a href="#">Terms of Service</a>
     </p>
   </footer>
-  <script>
-     function goToPage(pageUrl) {
-      window.location.href = pageUrl;
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
+        authDomain: "mymoshalallowance.firebaseapp.com",
+        databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
+        projectId: "mymoshalallowance",
+        storageBucket: "mymoshalallowance.appspot.com",
+        messagingSenderId: "607619034226",
+        appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
+        measurementId: "G-NCTW2CSPR8",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            loadAllowanceData();  // Call data loading function if a user is logged in
+        } else {
+            console.log("No user is logged in.");
+            // Handle the case for unauthenticated users, such as redirecting to a login page
+        }
+    });
+
+    function calculateAllowance(annualAmount) {
+        const fixedAmount = 100000; // Example fixed amount for calculation
+        const remainingAmount = fixedAmount - annualAmount;
+        return Math.round(remainingAmount / 9); // Monthly allowance (adjust as needed)
     }
-  </script>
+
+    async function loadAllowanceData() {
+        const reportBody = document.getElementById('reportBody');
+        // No clearing of existing data (appends new data if required)
+
+        try {
+            const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
+
+            if (querySnapshot.empty) {
+                if (reportBody.innerHTML.trim() === '') {
+                    reportBody.innerHTML = '<tr><td colspan="8">No data available</td></tr>';
+                }
+                return;
+            }
+
+            // Object to store the number of fundings per date
+            const fundingDataByDate = {};
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const calculatedAllowance = calculateAllowance(data.ExtFunding_Amt);
+
+                const fundingDate = data.ExtFunding_Date;  // Capture funding date
+
+                // Group fundings by date
+                if (fundingDataByDate[fundingDate]) {
+                    fundingDataByDate[fundingDate]++;
+                } else {
+                    fundingDataByDate[fundingDate] = 1;
+                }
+
+                // Create table row for each funding
+                const row = reportBody.insertRow();
+                row.insertCell(0).textContent = data.Student_ID;
+                row.insertCell(1).textContent = data.ExtFunding_Name;
+                row.insertCell(2).textContent = data.ExtFunding_Amt;
+                row.insertCell(3).textContent = calculatedAllowance;
+                row.insertCell(4).textContent = data.ExtFunding_Type;
+                row.insertCell(5).textContent = fundingDate;
+                row.insertCell(6).textContent = data.NSFAS_Status;
+
+                const docLink = document.createElement('a');
+                docLink.href = data.ExtFunding_Doc_URL;
+                docLink.textContent = 'View Document';
+                docLink.target = '_blank';
+                row.insertCell(7).appendChild(docLink);
+            });
+
+            console.log("Funding Data by Date:", fundingDataByDate);  // Log to check date accuracy
+
+        } catch (error) {
+            console.error("Error loading allowance data:", error);
+            if (reportBody.innerHTML.trim() === '') {
+                reportBody.innerHTML = '<tr><td colspan="8">Error loading data</td></tr>';
+            }
+        }
+    }
+</script>
+
 </body>
 </html>

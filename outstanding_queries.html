@@ -7,30 +7,148 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
 </head>
 <body>
   <title>Report</title>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <h1 class="main-title">My Moshal Allowance</h1>
+ 
+<!-- Go Back Navigation -->
+<div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
+  <a href="Reports.html" class="go-back" style="color: #000"
+    >← Go Back</a
+  >
+</div>
+ 
+  <div class="report-container">
+    <h1 class="title"> Oustanding Student Queries</h1>
+      <p class="report-date">Report Date: <span id="currentDate"></span></p>
+      <p class="generated">Generated: Weekly (Duration: Weeks of the academic year)</p>
+   
+        <section class="key-metrics"> 
+          <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Key Metrics</h2>
+          <div class="cards-container">
+            <div class="card">
+              <h3 style="font-size: 13px;">Peak Week</h3>
+              <p> Week 4</p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Query Turnover </h3>
+              <p>1.5 days</p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Response Rate</h3>
+              <p id="responseRate"></p> 60%</div>
+          <div class="chart-container">
+            <canvas id="studentChart" width="300" height="200"></canvas>
+          </div>
+          <p><span id="studentCount"></span></p>
+        </section>
+        
+        <h2 class="section-title" style="margin-top: 15px;">
+          <i class="ri-error-warning-line"></i> Decisions To Consider
+        </h2>
+        <section class="decisions-made"><ul>
+                <li>Respond to queries urgently to reduce backlog and avoid potential delays in allowances.</li>
+                <li>Identify and address students who persistently query to offer direct support on the platforms, preventing repeat queries.</li>
+              </ul>
+        </section>
+        
+        <h2 class="section-title" style="margin-top: 15px;">
+          <i class="ri-bar-chart-box-line"></i> Key Insights
+        </h2>
+        <section class="key-insights">
+          <ul>
+            <li><strong>Query Turnover Rate:</strong>
+              <ul>
+                <li>The average turnover rate is approximately 2 days, but high-severity queries have been unanswered for over 7 days, requiring prioritization.</li>
+              </ul>
+            </li>
+            <li><strong>Admin Responsiveness:</strong>
+              <ul>
+                <li>60% of queries are resolved within the first 3 days, but 40% remain unresolved, indicating the need for better prioritization of high-severity issues.</li>
+              </ul>
+            </li>
+            <li><strong>High Query Count Students:</strong>
+              <ul>
+                <li>Students have submitted multiple queries, signaling a need for deeper investigation to prevent recurring issues.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <h2 class="section-title" style="margin-top: 15px;">
+          <i class="ri-alert-line"></i> Query Severity and Escalation
+        </h2>
+        <section class="query-severity">
+          <ul>
+            <li><strong>Severity of Queries:</strong>
+              <ul>
+                <li>High-severity cases (unanswered for more than 7 days) must be addressed urgently.</li>
+              </ul>
+            </li>
+            <li><strong>Escalation of Queries:</strong>
+              <ul>
+                <li>If queries remain unresolved beyond the admin’s scope, they should be escalated to senior Moshal staff for further investigation.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <h2 class="section-title" style="margin-top: 15px;">
+          <i class="ri-calendar-check-line"></i> Query Submission Trends
+        </h2>
+        <section class="query-trends">
+          <ul>
+            <li><strong>Submission Patterns:</strong>
+              <ul>
+                <li>There are identifiable spikes in query submissions, often tied to key events like funding updates. As admin prepare for these peak times by allocating more resources in advance.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
+        <h2 class="section-title" style="margin-top: 15px;">
+          <i class="ri-line-chart-line"></i> Impact on Student Satisfaction
+        </h2>
+        <section class="student-satisfaction">
+          <ul>
+            <li><strong>Impact of Delayed Responses:</strong>
+              <ul>
+                <li>Prolonged unresolved queries can lead to frustration and decreased trust in the system, particularly when related to financial issues.</li>
+                <li>By reducing the time taken to resolve queries, the admin can improve the overall student experience and reduce repeat queries.</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        
 
-      <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-    </nav>
-  </header>
-  <aside class="sidenav" id="mySidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
-      >&times;</a
-    >
-    <a href="Reports.html">Reports</a>
-    <a href="admin_query_page.html">Query</a>
-  </aside>
-  <br></br>
-  <h1>Oustanding Queries Report</h1>
-  <p>This report lists students with outstanding queries</p>
-  <p id="studentCount"></p>
-  <canvas id="studentChart" width="300" height="200"></canvas>
+            <script>
+              // Wait for the DOM to be fully loaded before executing the script
+              document.addEventListener('DOMContentLoaded', function () {
+                    // Set the current date into the span
+                    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+                });
+            </script>
+
+  </div>
+
+            <div class="details">
+              <h2>Details</h2>
+              <ul>
+                  <li><strong>File Format</strong></li>
+                  <li> <i class="ri-file-word-2-line" style="color: blue;"></i> MS Word</li>
+                  <li> <i class="ri-file-pdf-2-line" style="color: red;"></i> PDF</li>
+                  <li><i class="ri-article-line" style="color: green;"></i> Google Docs</li>
+                  <li><strong>Size</strong>: A4 </li>
+              </ul>
+          </div>
+            <div class="download-section">
+                <a href="#" class="download-button">Download</a>
+            </div>
 
   <script type="module">
     // Import Firebase modules
@@ -40,14 +158,15 @@
 
     // Firebase configuration
     const firebaseConfig = {
-  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-  projectId: "mymoshalallowance-34e68",
-  storageBucket: "mymoshalallowance-34e68.appspot.com",
-  messagingSenderId: "387609738002",
-  appId: "1:387609738002:web:38cf56b731375650d751cb",
-  measurementId: "G-5E13X2QNFC"
-};
+      apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
+      authDomain: "mymoshalallowance.firebaseapp.com",
+      databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
+      projectId: "mymoshalallowance",
+      storageBucket: "mymoshalallowance.appspot.com",
+      messagingSenderId: "607619034226",
+      appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
+      measurementId: "G-NCTW2CSPR8"
+    };
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
@@ -65,8 +184,8 @@
       
 
       // Display the total number of students
-      document.getElementById('studentCount').textContent = `The number of students who have sent queries: ${totalStudents}, and only ${updated_students} have their queries answered and or attended to.`;
-
+    const responseRate = ((updated_students / totalStudents) * 100).toFixed(2);
+      document.getElementById('studentCount').textContent = ``;
       // Subtract 25 and create the bar chart
       createChart(updated_students, not_updated_students);
     }
@@ -74,33 +193,30 @@
     function createChart(updated_students, not_updated_students) {
   const ctx = document.getElementById('studentChart').getContext('2d');
   const chart = new Chart(ctx, {
-    type: 'bar',
+    type: 'doughnut', // Change chart type to 'doughnut'
     data: {
       labels: ['Answered queries', 'Unanswered queries'],
       datasets: [{
         label: 'Number of Students',
         data: [updated_students, not_updated_students],
-        backgroundColor: ['rgba(63, 98, 175, 0.8)', 'rgba(173, 216, 230, 0.8)'],
-        borderColor: ['rgba(63, 98, 175, 1)', 'rgba(173, 216, 230, 1)'],
+        backgroundColor: ['rgba(63, 98, 175, 0.8)', '#ff0000'], // Colors for each section
+        borderColor: ['rgba(63, 98, 175, 1)', '#ff0000'], // Border colors for each section
         borderWidth: 1
       }]
     },
     options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      },
+      responsive: true, // Make chart responsive
+      cutout: '50%', // Set cutout percentage for donut effect
       onClick: (e, elements) => {
         if (elements.length > 0) {
-          const clickedElementIndex = elements[0].index; // Get index of clicked bar
-          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked bar
+          const clickedElementIndex = elements[0].index; // Get index of clicked section
+          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked section
           
-          // Redirect based on the clicked bar's label
+          // Redirect based on the clicked section's label
           if (label === 'Answered queries') {
-            window.location.href = 'answered_queries.html'; // Redirect to the 'Answered queries' page
+            window.location.href = 'answered_queries.html'; // Redirect to 'Answered queries' page
           } else if (label === 'Unanswered queries') {
-            window.location.href = 'unanswered_queries.html'; // Redirect to the 'Unanswered queries' page
+            window.location.href = 'not_updated_students.html'; // Redirect to 'Unanswered queries' page
           }
         }
       }
@@ -113,37 +229,15 @@
     // Call the function to get student count and display chart
     getStudentCount();
   </script>
-  <script>
-    function toggleNav() {
-      const sidenav = document.getElementById("mySidenav");
-      if (sidenav.style.width === "250px") {
-        sidenav.style.width = "0";
-        document.body.style.marginLeft = "0";
-      } else {
-        sidenav.style.width = "250px";
-        document.body.style.marginLeft = "250px";
-      }
-    }
+ 
+ <footer>
+  <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
+  <p>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </p>
+</footer>
 
-    document.getElementById("signIn").addEventListener("click", () => {
-      document
-        .getElementById("container")
-        .classList.remove("right-panel-active");
-    });
-
-    document.getElementById("signUp").addEventListener("click", () => {
-      document
-        .getElementById("container")
-        .classList.add("right-panel-active");
-    });
-  </script>
-   <footer>
-    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
-    <p>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </p>
-  </footer>
 </body>
 </html>
 
@@ -154,169 +248,198 @@
     padding: 0;
     font-family: Arial, sans-serif;
   }
-
-  body {
-    background-color: #f6f5f7;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    margin: 0;
-  }
-
-  header {
-    background: #3f62af;
-    border-bottom: 1px solid #ddd;
-    padding: 0 20px;
-    box-shadow: 0 4px 2px -2px gray;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    height: 70px;
-  }
-
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .menu-btn {
-    font-size: 30px;
-    cursor: pointer;
-    color: #ffffff;
-    order: -1; /* Add this line to move the button to the left */
-  }
-
-  h1.main-title {
-    color: #ffffff;
-    margin-left: 10px; /* Add some margin to separate the title from the button */
-  }
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #3f62af;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #ffffff;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-  }
-
-  main.container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    position: relative;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-    overflow: hidden;
+  
+  .report-container {
+    max-width: 794px; /* A4 width for print */
     margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px #3f62af;
   }
-
-  h1 {
-    font-weight: bold;
-    margin: 0;
+  
+  .chart-container {
+    width: 60%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+    margin-left: 20px;
+  }
+  
+  .title {
     text-align: center;
+    color: #34495e;
+  }
+  
+  #studentCount{
     margin-top: 50px;
+    margin-left: -110px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
   }
-
-  p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    margin: 20px 0 30px;
+  .report-date,
+  .generated {
+    text-align: center;
+    color: #7f8c8d;
+    margin: 5px 0;
+  }
+  
+  .section-title {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: flex;
+  }
+  
+  .section-title i {
+    margin-right: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
+  .cards-container {
+    display: flex;
+    
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 180px;
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 10px;
+    width: 20%;
+    height: 85px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
     text-align: center;
   }
-
-
-  button {
+  
+  .card h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  section:not(.key-metrics) {
+    margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    background-color: #f8f8f8;
+    margin: 0;
+  }
+  
+  .details {
+    margin-left: 25%;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .details h2 {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  
+  .details ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .details li {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+  }
+  
+  .download-section {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .download-button {
     border-radius: 20px;
     border: 1px solid #3f62af;
-    background-color: #3f62af;
-    color: #ffffff;
+    background-color: transparent;
+    color: #3f62af;
     font-size: 12px;
     font-weight: bold;
-    padding: 12px 45px;
+    padding: 12px 25px;
     letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-    cursor: pointer;
+    margin-left: -620px;
   }
-
-  button.ghost {
-    background-color: transparent;
-    border-color: #ffffff;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  button:active {
-    transform: scale(0.95);
-  }
-
+  
   footer {
+    margin-top: 11px;
     text-align: center;
     padding: 20px;
     background: #f8f8f8;
-    border-top: 1px solid #ddd;
   }
-
+  
   footer p {
     margin: 5px 0;
   }
-
+  
   footer a {
-    margin: 0 10px;
     text-decoration: none;
     color: #3f62af;
   }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .form-section {
+  
+  /* A4 Print Styling */
+  @media print {
+    body {
+      width: 210mm;
+      height: 297mm;
+      margin: 0;
+    }
+  
+    .report-container {
+      page-break-after: auto;
+      page-break-inside: avoid;
+      width: 100%;
+      margin: 0;
+      padding: 15mm;
+      box-shadow: none;
+    }
+  
+    .chart-container {
+      page-break-inside: avoid;
+      width: 100%;
+      padding: 0;
+    }
+  
+    .cards-container {
       width: 100%;
     }
-    main.container.right-panel-active .sign-in-section,
-    main.container.right-panel-active .sign-up-section {
-      transform: translateX(100%);
-      width: 100%;
-    }
-    .overlay-section {
-      display: none;
-    }
-    main.container {
-      width: 90%;
+  
+    .card {
+      width: calc(100% / 4 - 20px); /* Adjust for A4 print */
+      margin-bottom: 10px;
     }
   }
-</style>
+  </style>
 

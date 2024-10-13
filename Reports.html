@@ -61,7 +61,8 @@
           <style>
             /* Sidebar collapsed style */
             .sidebar-main {
-                width: 70px; 
+                width: 70px;
+                height: 700px; 
                 background-color: #3f62af;
                 transition: width 0.3s;
                 margin-top: 20px;
@@ -542,7 +543,7 @@
                     <article class="card__article">
                         <img src="https://complyan.com/wp-content/uploads/2022/09/Frameworks.png" alt="image" class="card__img">
                         <div class="card__data">
-                          <h2 class="card__title">Outstanding Student Updates: Funding</h2>
+                          <h2 class="card__title">Outstanding Student Funding</h2>
                           <a href="outstanding_students_updates.html" class="report-button">Go to Report →</a>
                         </div>
                     </article>
@@ -550,24 +551,16 @@
                     <article class="card__article">
                         <img src="https://complyan.com/wp-content/uploads/2022/09/Frame-33731.png" alt="image" class="card__img">
                         <div class="card__data">
-                          <h2 class="card__title">Unanswered Query</h2>
-                          <a href="un" class="report-butto  n">Go to Report →</a>
+                          <h2 class="card__title">University Batch</h2>
+                          <a href="University_batch.html" class="report-butto  n">Go to Report →</a>
                         </div>
                     </article>
 
                     <article class="card__article">
                         <img src="https://complyan.com/wp-content/uploads/2022/09/Frame-33676.png" alt="image" class="card__img">
                         <div class="card__data">
-                          <h2 class="card__title">University  Batch Report</h2>
-                          <a href="University_batch.html" class="report-button">Go to Report →</a>
-                        </div>
-                    </article>
-
-                    <article class="card__article">
-                        <img src="https://complyan.com/wp-content/uploads/2022/09/Dashboards-and-Reporting.png" alt="image" class="card__img">
-                        <div class="card__data">
-                          <h2 class="card__title">Outstanding Student Updates: Profile</h2>
-                          <a href="not_updated_students.html" class="report-button">Go to Report →</a>
+                          <h2 class="card__title">Allowance Disbursement</h2>
+                          <a href="summary_of_allowance.html" class="report-button">Go to Report →</a>
                         </div>
                     </article>
                   </div>
@@ -625,7 +618,7 @@
     }
         
 .main-content {
-flex-grow: 1; /* Takes up the remaining space */
+flex-grow: 1; 
 background-color: #f4f4f4; /* Background color */
 padding: 20px;
 margin-top: 20px;
@@ -644,11 +637,12 @@ width: 100%;
 }
 .reports-section {
     width: 100%;
-    margin-bottom: 20px;
+    height: 440px;
+    margin-bottom: -60px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 10px;
 }
 
   .closebtn {
@@ -701,7 +695,7 @@ width: 100%;
     text-align: center;
     padding: 20px;
     background: #f4f4f4; 
-    margin-top: 10px;
+    margin-top: -300px;
     margin-bottom: 10px;
   }
 
@@ -726,10 +720,10 @@ img {
   
   .card__container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Change to accommodate 3 cards in the first row */
-    gap: 2rem;
-    row-gap: 3.5rem;
-   
+    grid-template-columns: repeat(4, 1fr); /* Change to accommodate 3 cards in the first row */
+    gap: 5px;
+    row-gap: 100px;
+   margin-top: -35px;
   }
   
   .card__article {
@@ -738,8 +732,8 @@ img {
   }
   
   .card__img {
-    width: 300px;
-    height: 350px;
+    width: 250px;
+    height: 300px;
     border-radius: 1.5rem;
   }
   
@@ -839,26 +833,4 @@ img {
       overflow: hidden;
     }
   }
-  
-  /* Adjust the grid layout for 5 cards */
-  .card__container {
-    grid-template-columns: repeat(3, 1fr); /* Three cards in the first row */
-  }
-  
-  .card__article:nth-child(4) {
-    grid-column: 1 / 3; /* Make the fourth card span two columns */
-    margin-left: 150px;
-  }
-  
-  .card__article:nth-child(5) {
-    grid-column: 3; /* Place the fifth card in the last column */
-    margin-left: -150px;
-  }
-  
-  /* Align card positions */
-  .card__article {
-    margin-top: 20px; /* Optional: Adjust the vertical spacing */
-  }
-  
-
-</style>
+  </style>
