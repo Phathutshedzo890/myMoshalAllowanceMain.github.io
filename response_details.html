@@ -1,136 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Respond to Student Query</title>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f6f5f7;
-      padding: 20px;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Respond to Student Query</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f6f5f7;
+        padding: 20px;
+      }
 
-    h1 {
-      color: #3f62af;
-      text-align: center;
-    }
+      h1 {
+        color: #3f62af;
+        text-align: center;
+      }
 
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
 
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
 
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
 
-    button {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      background-color: #3f62af;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+      button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        background-color: #3f62af;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+      }
 
-    button:hover {
-      background-color: #2e4b87;
-    }
+      button:hover {
+        background-color: #2e4b87;
+      }
 
-    .message-box {
-      margin-bottom: 20px;
-      background-color: #f0f0f0;
-      padding: 15px;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Respond to Student Query</h1>
-  <form id="responseForm">
-    <div id="studentQueryDetails" class="message-box"></div>
-    <label for="adminResponse">Your Response:</label>
-    <textarea id="adminResponse" rows="5" required></textarea>
-    <button type="submit">Submit Response</button>
-  </form>
+      .message-box {
+        margin-bottom: 20px;
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Respond to Student Query</h1>
+    <form id="responseForm">
+      <div id="studentQueryDetails" class="message-box"></div>
+      <label for="adminResponse">Your Response:</label>
+      <textarea id="adminResponse" rows="5" required></textarea>
+      <button type="submit">Submit Response</button>
+    </form>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      import {
+        getFirestore,
+        doc,
+        getDoc,
+        updateDoc,
+      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
-      authDomain: "mymoshalallowance.firebaseapp.com",
-      databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
-      projectId: "mymoshalallowance",
-      storageBucket: "mymoshalallowance.appspot.com",
-      messagingSenderId: "607619034226",
-      appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
-      measurementId: "G-NCTW2CSPR8"
-    };
+      const firebaseConfig = {
+        apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+        authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+        projectId: "mymoshalallowance-34e68",
+        storageBucket: "mymoshalallowance-34e68.appspot.com",
+        messagingSenderId: "387609738002",
+        appId: "1:387609738002:web:38cf56b731375650d751cb",
+        measurementId: "G-5E13X2QNFC",
+      };
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
 
-    // Get the query parameter from the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const docId = urlParams.get('docId');
+      // Get the query parameter from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const docId = urlParams.get("docId");
 
-    // Function to fetch student query data and populate the details
-    async function fetchStudentQuery() {
-      const docRef = doc(db, "Create_Query", docId);
-      const docSnap = await getDoc(docRef);
+      // Function to fetch student query data and populate the details
+      async function fetchStudentQuery() {
+        const docRef = doc(db, "Create_Query", docId);
+        const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        const date = new Date(data.timestamp);
-        document.getElementById('studentQueryDetails').innerHTML = `
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const date = new Date(data.timestamp);
+          document.getElementById("studentQueryDetails").innerHTML = `
           <p><strong>Student Name:</strong> ${data.userName}</p>
           <p><strong>Date:</strong> ${date.toLocaleDateString()}</p>
           <p><strong>Message:</strong> ${data.userMessage}</p>
         `;
-      } else {
-        console.log("No such document!");
+        } else {
+          console.log("No such document!");
+        }
       }
-    }
 
-    fetchStudentQuery();
+      fetchStudentQuery();
 
-    document.getElementById('responseForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const adminResponse = document.getElementById('adminResponse').value;
+      document
+        .getElementById("responseForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const adminResponse = document.getElementById("adminResponse").value;
 
-      try {
-        const docRef = doc(db, "Create_Query", docId);
-        await updateDoc(docRef, {
-          adminResponse: adminResponse
+          try {
+            const docRef = doc(db, "Create_Query", docId);
+            await updateDoc(docRef, {
+              adminResponse: adminResponse,
+            });
+            alert("Response submitted successfully!");
+            window.location.href = "not_updated_students.html";
+          } catch (error) {
+            console.error("Error submitting response:", error);
+          }
         });
-        alert("Response submitted successfully!");
-        window.location.href = "not_updated_students.html";
-      } catch (error) {
-        console.error("Error submitting response:", error);
-      }
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
