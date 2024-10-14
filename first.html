@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home - My Moshal Allowance</title>
+    <title>Student Home - My Moshal Allowance</title>
     <link rel="stylesheet" href="Style.css" />
     <!--=============== REMIXICONS ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
@@ -12,7 +12,7 @@
   <body>
     
     <div class="logout-moshal-logo">
-      <img src="https://moshalprogram.org/wp-content/uploads/2022/02/1200x630-01.jpg" alt="Moshal Logo" id="logoutButton" style=" object-fit: cover; object-position: center; cursor:pointer; position:relative; left:92%; margin-top: 15px;" />
+      <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Moshal Logo" id="logoutButton" style="width: 90px; height: 90px; object-fit: cover; object-position: center; cursor: pointer; position: relative; left: 93%; margin-top: 15px;" />
   
       <div class="popover" id="logoutPopover">
           <p style="font-size: 12px;">Are you sure you want to log out?</p>
@@ -52,7 +52,7 @@
   </script>
   
   <main>
-      <!-- Card -->
+    
       <div class="card-container">
         <!-- First Card -->
         <div class="card-transition">
@@ -62,7 +62,7 @@
             <div class="card-body">
               <h5 class="card-title">Calculate Your Moshal Allowance!</h5>
               <p class="card-text">We’re thrilled to have you on this journey with us! Click the button below to calculate your allowance.</p>
-              <p class="card-updated">Last updated 3 mins ago</p>
+              <br>
               <button class="card-button" onclick="window.location.href='calculate_allowance.html';">Go to Page</button>
           </div>
           </div>
@@ -76,7 +76,7 @@
             <div class="card-body">
               <h5 class="card-title">Questions About Your Allowance?</h5>
               <p class="card-text">Navigating your allowance can be confusing. If you have questions about calculations or expenses, we’re here to help!</p>
-              <p class="card-updated">Last updated 8 mins ago</p>
+              <br>
               <button class="card-button" onclick="window.location.href='student_Query.html';">Go to Page</button>
           </div>
           </div>
@@ -90,7 +90,7 @@
             <div class="card-body">
               <h5 class="card-title">Submit Your Documents</h5>
               <p class="card-text">It’s time to submit your proof of funding and allowance documents. Click the button below to easily upload the required files.</p>
-              <p class="card-updated">Last updated 1 month  ago</p>
+              <br><br>
               <button class="card-button" onclick="window.location.href='documents.html';">Go to Page</button>
           </div>
           </div>
@@ -103,15 +103,16 @@
             <div class="card-body">
               <h5 class="card-title">Go to My Profile</h5>
               <p class="card-text">Need to update your personal details like your name, phone number, email, or password? Click the button below to access your profile!</p>
-              <p class="card-updated">Last updated 8 mins ago</p>
+              <br>
               <button class="card-button" onclick="window.location.href='profile.html';">Go to Page</button>
           </div>
           </div>
         </div>     
       </div>
-<!-- End Card -->
+
  
     </main>
+
     <footer class="footer">
       <div class="footer-container">
           <div class="footer-left">
@@ -119,8 +120,8 @@
           </div>
           <div class="footer-right">
               <a href="#" class="social-icon">
-                  <img src="https://i.ibb.co/jVnnq3G/eb0256ebbbb2.png" alt="" >
-              </a>
+                <img src="https://i.ibb.co/JRLZkhd/e535a745e3b7.png" alt="Moshal Logo" id="logoutButton" style="width: 250px; height: 90px; object-fit: cover; object-position: center;  position: relative; left: 60%; margin-top: 15px;" />
+            </a>
           </div>
       </div>
   </footer>
@@ -230,7 +231,7 @@
   }
 }
 
-/* Media Queries for Responsive Design */
+
 
 /* When the screen is below 1024px (tablet and smaller screens) */
 @media (max-width: 1024px) {
@@ -256,7 +257,6 @@
   }
 }
 
-      /* Style for the popover */
       .popover {
           display: none;
           margin-left: -90px;
@@ -280,12 +280,10 @@
                 font-size: 14px;
                 font-weight: bold;
                 transition: background-color 0.3s;
-      }
-  
-      /* Footer container styling */
+      }  
 .footer {
-  margin-top: -80px;
-    padding: 20px 0;
+  margin-top: -110px;
+    margin-bottom: 100px;
     background-color: #fff;
 }
 
@@ -295,33 +293,11 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+  
 }
 
-/* Left side (copyright text) */
-.footer-left p {
-    margin: 0;
-    font-size: 14px;
-    color: #000000;
-    margin-left: -60px;
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
 }
-
-/* Right side (social icons) */
-.footer-right {
-    display: flex;
-    gap: 15px;
-}
-
-.social-icon {
-    color: #6c757d;
-    font-size: 18px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.social-icon:hover {
-    color: #007bff; /* On hover, the icon changes to a primary color */
-}
-
   
 </style>

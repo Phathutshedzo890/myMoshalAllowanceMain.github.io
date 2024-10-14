@@ -198,50 +198,50 @@
               return missingDocs;
           }
         
-          function renderPolarAreaChart(compliantCount, nonCompliantCount) {
-            const totalStudents = compliantCount + nonCompliantCount;
-            // Update the span 
-            document.getElementById('totalStudents').textContent = totalStudents;
-            document.getElementById('compliantCount').textContent = compliantCount;
-            document.getElementById('nonCompliantCount').textContent = nonCompliantCount;
-            const complianceRate = totalStudents > 0 ? ((compliantCount / totalStudents) * 100).toFixed(2) : 0;
-           document.getElementById('studentCount').textContent = `${complianceRate}%`;
-                    const ctx = document.getElementById('complianceChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'polarArea',
-                data: {
-                    labels: ['Updated Students', 'Not Updated Students'],
-                    datasets: [{
-                        data: [compliantCount, nonCompliantCount],
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.6)',  // Light blue for compliant
-                            'rgba(255, 99, 132, 0.6)'   // Light red for non-compliant
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(255, 99, 132, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: false,
-                      
-                        }
-                    },
-                    scales: {
-                        r: {
-                            ticks: {
-                                stepSize: 1
-                            }
-                        }
-                    }, // Add onClick event to handle the redirection
+          function renderBarChart(compliantCount, nonCompliantCount) {
+    const totalStudents = compliantCount + nonCompliantCount;
+    
+    // Update the span 
+    document.getElementById('totalStudents').textContent = totalStudents;
+    document.getElementById('compliantCount').textContent = compliantCount;
+    document.getElementById('nonCompliantCount').textContent = nonCompliantCount;
+    const complianceRate = totalStudents > 0 ? ((compliantCount / totalStudents) * 100).toFixed(2) : 0;
+    document.getElementById('studentCount').textContent = `${complianceRate}%`;
+    
+    const ctx = document.getElementById('complianceChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar', // Change chart type to 'bar'
+        data: {
+            labels: ['Updated Students', 'Not Updated Students'],
+            datasets: [{
+                data: [compliantCount, nonCompliantCount],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.6)',  // Light blue for compliant
+                    'rgba(255, 99, 132, 0.6)'   // Light red for non-compliant
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true, // Start y-axis at zero
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false // Hide legend as it's not needed for a bar chart
+                }
+            },
+            // Add onClick event to handle the redirection
             onClick: function (event, elements) {
                 // If an element is clicked
                 if (elements.length > 0) {
@@ -255,7 +255,8 @@
         }
     });
 }
-          // Call the fetch function once the page has loaded
+
+// Call the fetch function once the page has loaded
           document.addEventListener('DOMContentLoaded', function() {
               fetchStudentComplianceData();
           });

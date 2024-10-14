@@ -192,26 +192,30 @@
     function createChart(updated_students, not_updated_students) {
   const ctx = document.getElementById('studentChart').getContext('2d');
   const chart = new Chart(ctx, {
-    type: 'doughnut', // Change chart type to 'doughnut'
+    type: 'bar', // Change chart type to 'bar'
     data: {
       labels: ['Answered queries', 'Unanswered queries'],
       datasets: [{
         label: 'Number of Students',
         data: [updated_students, not_updated_students],
-        backgroundColor: ['rgba(63, 98, 175, 0.8)', '#ff0000'], // Colors for each section
-        borderColor: ['rgba(63, 98, 175, 1)', '#ff0000'], // Border colors for each section
+        backgroundColor: ['rgba(63, 98, 175, 0.8)', '#ff0000'], // Colors for each bar
+        borderColor: ['rgba(63, 98, 175, 1)', '#ff0000'], // Border colors for each bar
         borderWidth: 1
       }]
     },
     options: {
       responsive: true, // Make chart responsive
-      cutout: '50%', // Set cutout percentage for donut effect
+      scales: {
+        y: {
+          beginAtZero: true // Start y-axis at zero
+        }
+      },
       onClick: (e, elements) => {
         if (elements.length > 0) {
-          const clickedElementIndex = elements[0].index; // Get index of clicked section
-          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked section
+          const clickedElementIndex = elements[0].index; // Get index of clicked bar
+          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked bar
           
-          // Redirect based on the clicked section's label
+          // Redirect based on the clicked bar's label
           if (label === 'Answered queries') {
             window.location.href = 'answered_queries.html'; // Redirect to 'Answered queries' page
           } else if (label === 'Unanswered queries') {

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Documents</title>
+    <title>Allowance Calculation</title>
     <link rel="stylesheet" href="documents_page.css" />
     <!--=============== REMIXICONS ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
@@ -20,13 +20,13 @@
       
       .container {
         background-color: #ffff;
-        margin-top: 80px;
+        margin-top: 10px;
         padding: 20px;
         transition: margin-left 0.5s;
       }
 
       h1 {
-        font-size: 20px;
+        font-size: 30px;
         margin-bottom: 20px;
         margin-left: 180px;
         margin-top: -80px;
@@ -64,25 +64,21 @@
     transition: transform 80ms ease-in;
 }
 .submit-button {
-        margin-left: 152px;
-        width: 35%;
+         margin-left: 150px;
+         margin-top:-100px ;
+        width: 9%;
         border-radius: 20px;
     border: 1px solid #3f62af;
     background-color: #3f62af;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
-    padding: 12px 45px;
+    padding: 15px 50px 15px 20px;
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
     transition: transform 80ms ease-in;
 }
-
-      p {
-        color: red;
-        margin-top: 20px;
-      }
 
 .table-container {
   margin-left: 180px;
@@ -91,30 +87,35 @@
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    margin-top: 20px;
+    margin-top: 35px;
+    box-shadow: 0 4px 10px #3f62af;
 }
 
 table {
+  box-shadow: 0 4px 10px #3f62af;
     width: 100%;
     border-collapse: collapse;
     text-align: center;
 }
 
 th, td {
+  
     padding: 15px;
     border-bottom: 1px solid #ddd;
 }
 
 thead th {
-    background-color: #3f62af;
-    color: white;
-    font-size: 1.1rem;
+    background-color: #fff;
+    color: #3f62af;
+    font-size: 20px;
+    
 }
 
 tbody td {
-    background-color: #f9f9f9;
+    background-color: #fff;
     color: #333;
-    font-size: 1rem;
+    font-size: 20px;
+    
 }
 
 tbody tr:hover {
@@ -127,14 +128,14 @@ tbody tr:hover {
     margin-bottom: 20px;
 }
 
-      
-
 .accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
   margin-left: 180px;
     width: 87%;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px #3f62af;
     background-color:  #3f62af;
 }
 
@@ -143,17 +144,21 @@ tbody tr:hover {
 }
 
 .accordion-header {
-    background: #3f62af;
-    color: white;
+    background: #fff;
+    color: #3f62af;
     padding: 15px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     transition: background 0.3s, transform 0.2s;
 }
-
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
 .accordion-header:hover {
-    background: #ddd;
+    background: #3f62af;
     transform: scale(1.02);
     color: #fff;
 }
@@ -166,6 +171,7 @@ tbody tr:hover {
 
 .accordion-header.active i {
     transform: rotate(180deg); /* Rotate icon when active */
+    
 }
 
 .accordion-content {
@@ -202,50 +208,13 @@ tbody tr:hover {
 
 .form-group input:focus {
     border: 1px solid #f78da7;
-}
-.card {
-          position: relative; /* For absolute positioning of card__data */
-          overflow: hidden; /* Prevents overflow */
-          background: #fff;
-          border-radius: 8px;
-          transition: background 0.3s; /* Smooth transition */
-          flex: 1; /* Ensure cards take equal space */
-      }
-      
-      
-      
-      .card__img {
-        width: 500px;
-          height: 550px; /* Maintain aspect ratio */
-          border-radius: 1.5rem; /* Rounded corners */
-          margin: 10px; /* Adjust margin */
-          transition: transform 0.3s; /* Smooth transition */
-      }
-      
-      .card:hover .card__img {
-          transform: scale(1.05); /* Slight zoom effect on hover */
-      }
-      
-      .card__data {
-          width: 400px; 
-          font-size: 20px;
-          background-color: #ffffff;
-          padding: 1.5rem 2rem;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-          border-radius: 1rem;
-          position: absolute;
-          bottom: 1rem; /* Position above the bottom */
-          left: 50%; /* Center horizontally */
-          transform: translateX(-50%); /* Center the data */
-          opacity: 0; /* Initially hidden */
-          transition: opacity 0.3s ease; 
-      }
+} 
       /* Footer container styling */
-.footer {
-  margin-top: 55px;
-    padding: 20px 0;
+   
+      .footer {
+  margin-top: 10px;
+    margin-bottom: -30px;
     background-color: #fff;
-    margin-bottom: -100px;
 }
 
 .footer-container {
@@ -253,35 +222,13 @@ tbody tr:hover {
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
-    padding: 0 15px;
-}
-
-/* Left side (copyright text) */
-.footer-left p {
-   
-    font-size: 16px;
-    color: #000000;
-    margin-left: 60px;
-}
-
-/* Right side (social icons) */
-.footer-right {
+    margin: 0 auto;
   
-  margin-left: -200px;
-    display: flex;
-    gap: 15px;
 }
 
-.social-icon {
-  font-size: 16px;
-    color: #000000;
-    text-decoration: none;
-    transition: color 0.3s ease;
-    margin-right:  -230px;
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
 }
-      .card:hover .card__data {
-          opacity: 1;
-      }
       
       /* Responsive Design */
       @media (max-width: 768px) {
@@ -304,199 +251,190 @@ tbody tr:hover {
     </style>
   </head>
   <body>
+
     <header class="header">
-      <div class="header-search">
-          <img 
-              src="https://moshalprogram.org/wp-content/uploads/2022/02/1200x630-01.jpg" 
-              alt="Moshal Logo" 
-              class="logo" 
-              style="height: 73px; width: 165px; margin-left: -190px; border: 5px solid #3f62af; border-radius: 10px;">
+      <div class="logout-moshal-logo">
+        <img src="https://i.ibb.co/vs7K75q/e2726a36d9c9.png" alt="Moshal Logo" id="homeButton" style="width: 190px; height: 80px; object-fit: cover; object-position: center; position: relative; right: 59%; border-radius: 10px;" />
+    
+        <div class="popover" id="homePopover">
+          <p style="font-size: 16px;color: #000;">Want to go to the home page?</p>
+          <button style="width: 70px;" onclick="goHome()">Yes</button>
+          <button style="width: 70px;" onclick="closePopover('homePopover')">No</button>
+        </div>
       </div>
+    
       <div class="header-container">
-          <div class="header-items" style="margin-left: 700px; margin-top: 35px;">
-              <!-- Profile Section -->
-              <div class="header-profile">
-                  <a href="profile.html" id="profile-icon">
-                      <i class="ri-user-line"></i> Profile
-                  </a>
-              </div>
-  
-              <!-- Allowance Section -->
-              <div class="header-allowance">
-                  <a href="calculate_allowance.html" id="allowance-icon">
-                      <i class="ri-wallet-line"></i> Allowance
-                  </a>
-              </div>
-  
-              <!-- Query Section -->
-              <div class="header-query">
-                  <a href="student_Query.html" id="query-icon">
-                      <i class="ri-question-line"></i> Queries
-                  </a>
-              </div>
-  
-              <!-- Documents Section -->
-              <div class="header-documents">
-                  <a href="documents.html" id="documents-icon">
-                      <i class="ri-file-line"></i> Documents
-                  </a>
-              </div>
-  
-              <!-- Logout Section -->
-            <div class="header-logout">
-              <a href="#" id="logout-icon">
-                  <i class="ri-logout-box-line"></i> Logout
-              </a>
-              
-              <div class="logout-dropdown-menu" id="logout-dropdown" style="display: none;">
-                  <div class="item-header">
-                      <h6 class="item-title">Are you sure you want to log out?</h6>
-                  </div>
-                  <div class="item-content">
-                      <ul class="settings-list">
-                          <li>
-                              <a href="index.html"><i class="ri-check-line"></i> Yes</a>
-                          </li>
-                          <li>
-                              <a href="#" id="cancel-logout"><i class="ri-close-line"></i> No</a>
-                          </li>
-                      </ul>
-                      <div id="logout-message" style="display: none; color: green">
-                          You have logged out successfully.
-                      </div>
-                  </div>
-              </div>
-            </div>
-
-          <script>
-            document.getElementById('logout-icon').addEventListener('click', function(event) {
-                event.preventDefault();
-                const dropdown = document.getElementById('logout-dropdown');
-                dropdown.style.display = dropdown.style.display === 'none' || dropdown.style.display === '' ? 'block' : 'none';
-            });
-
-            document.getElementById('cancel-logout').addEventListener('click', function(event) {
-                event.preventDefault();
-                document.getElementById('logout-dropdown').style.display = 'none';
-            });
-          </script>
-
+        <div class="header-items" style="margin-left: 700px; margin-top: 35px;">
+          <!-- Profile Section -->
+          <div class="header-profile">
+            <a href="profile.html" id="profile-icon">
+              <i class="ri-user-line"></i> Profile
+            </a>
           </div>
+    
+          <!-- Allowance Section -->
+          <div class="header-allowance">
+            <a href="calculate_allowance.html" id="allowance-icon">
+              <i class="ri-wallet-line"></i> Allowance
+            </a>
+          </div>
+    
+          <!-- Query Section -->
+          <div class="header-query">
+            <a href="student_Query.html" id="query-icon">
+              <i class="ri-question-line"></i> Queries
+            </a>
+          </div>
+    
+          <!-- Documents Section -->
+          <div class="header-documents">
+            <a href="documents.html" id="documents-icon">
+              <i class="ri-file-line"></i> Documents
+            </a>
+          </div>
+    
+          <!-- Logout Section -->
+          <div class="header-logout">
+            <a href="#" id="logout-icon">
+              <i class="ri-logout-box-line"></i> Logout
+            </a>
+    
+            <div class="popover" id="logoutPopover" style="width: 170px;">
+              <p style="color: #000;">Are you sure you want to log out?</p>
+              <button onclick="logout()" style="width: 70px;">Yes</button>
+              <button onclick="closePopover('logoutPopover')" style="width: 70px;">No</button>
+            </div>
+          </div>
+        </div>
       </div>
-  
+    
       <style>
-          .header {
-              background-color: #3f62af; /* Background color */
-              color: #fff; /* Text color */
-              padding: 0;
-              text-align: center;
-              border-radius: 10px;
-              width: 85%;
-              height: 80px;
-              position: relative; /* Sticky position */
-              margin-top: 10px;
-              margin-bottom: 50px;
-              margin-left: 200px;
-          }
-  
-          .header-container {
-              color: #fff;
-              margin-top: -100px;
-              display: flex;
-              align-items: center;
-              flex-direction: row;
-              flex-wrap: nowrap;
-              justify-content: flex-start;
-          }
-  
-          .header-search {
-              display: flex;
-              align-items: center;
-              margin-right: 10px;
-          }
-  
-          .header-container div {
-              margin: 0 5px;
-          }
-  
-          .header-items {
-              display: flex; /* Ensures side-by-side layout */
-              justify-content: flex-start; /* Aligns items to the start */
-              align-items: center; /* Vertically centers items */
-              gap: 10px; /* Space between items */
-              padding: 10px 20px;
-              background-color: #3f62af;
-              color: #fff;
-              width: 40%;
-              flex-wrap: nowrap;
-          }
-  
-          .header-items a {
-              color: #fff; /* Link color */
-              text-decoration: none; /* Remove underline */
-              padding: 10px 15px; /* Padding around links */
-              transition: color 0.3s ease; /* Smooth transition for hover effect */
-          }
-   
-          .item-header {
-              padding: 10px;
-              border-bottom: 1px solid #eee; /* Divider */
-          }
-  
-          .item-content {
-              padding: 10px;
-          }
-  
-          .item-content ul {
-              list-style-type: none; /* Remove bullets */
-              padding: 0; /* No padding */
-              margin: 0; /* No margin */
-          }
-  
-          .item-content ul li {
-              padding: 5px 10px; /* Padding for items */
-              cursor: pointer; /* Pointer on hover */
-              transition: background 0.2s; /* Smooth transition */
-          }
-  
-          .item-content ul li:hover {
-              background: #f0f0f0; /* Highlight on hover */
-          }
-                    
-          .logout-dropdown-menu {
-            font-size: 16px;
-            position: absolute;
-            color: #000000;
-            border: 1px solid #000000;
-            top: 120%; /* Positioning below the header item */
-            background: #fff; /* Background color for dropdown */
-            border-radius: 10px; /* Rounded corners */
-            z-index: 1000; /* Ensure dropdown is above other content */
-            width: 300px; /* Set a width for the dropdown */
-            left: 75%;
-          }
-
-          .settings-list li a {
-            text-decoration: none;
-            color: black;
-            display: flex;
-            align-items: center;
-          }
-
-        .logout-dropdown-menu a:hover {
+        .header {
           background-color: #3f62af;
           color: #fff;
+          padding: 0;
+          text-align: center;
+          border-radius: 10px;
+          width: 85%;
+          height: 80px;
+          margin: 10px 0 50px 200px;
+        }
+    
+        .header-container {
+          margin-top: -100px;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+    
+        .header-items {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 15px;
+          padding: 0 20px;
+          background-color: #3f62af;
+          color: #fff;
+          width: 40%;
+        }
+    
+        .header-items a {
+          font-family: Arial,  sans-serif;
+          font-size: 20px;
+          color: #fff;
+          text-decoration: none;
+          padding: 10px 15px;
+          transition: color 0.3s ease;
+        }
+    
+        .popover {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+        }
+    
+        .popover button {
+          background-color: #3f62af;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          margin: 0 5px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: bold;
+          transition: background-color 0.3s;
         }
       </style>
-  </header>
-  <div>
-    <!-- Go Back Navigation -->
-    <div class="navigation" style="margin-left: 205px; margin-top: -25px;margin-bottom: 25px">
-      <a href="first.html" class="go-back" style="color: #000"
-        >← Go Back</a
-      >
+    
+      <script>
+        // Show and position the Home popover
+        const homeButton = document.getElementById('homeButton');
+        const homePopover = document.getElementById('homePopover');
+        homeButton.onclick = function() {
+          const rect = homeButton.getBoundingClientRect();
+          homePopover.style.display = 'block';
+          homePopover.style.left = `${rect.left + window.scrollX}px`;
+          homePopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        };
+    
+        // Show and position the Logout popover
+        const logoutButton = document.getElementById('logout-icon');
+        const logoutPopover = document.getElementById('logoutPopover');
+        logoutButton.onclick = function(event) {
+          event.preventDefault();
+          const rect = logoutButton.getBoundingClientRect();
+          logoutPopover.style.display = 'block';
+          logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+          logoutPopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        };
+    
+        // Close popovers
+        function closePopover(id) {
+          document.getElementById(id).style.display = 'none';
+        }
+    
+        // Go to home page
+        function goHome() {
+          window.location.href = 'first.html'; // Replace with actual home page URL
+        }
+    
+        // Log out function
+        function logout() {
+          window.location.href = 'index.html'; // Replace with actual log out logic
+        }
+    
+        // Close popovers when clicking outside
+        window.onclick = function(event) {
+          if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+            closePopover('homePopover');
+          }
+          if (!logoutButton.contains(event.target) && !logoutPopover.contains(event.target)) {
+            closePopover('logoutPopover');
+          }
+        };
+      </script>
+    </header>
+    
+    <!-- Navigation Container -->
+    <div class="navigation-container" style="margin-left: 35px; margin-top: -25px; margin-bottom: 25px; display: flex; gap: 20px; align-items: center;">
+
+      <a href="profile.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+        <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+      </a>
+
+      <a href="student_Query.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
+        <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+      </a>
+
     </div>
-  </div>
+
 
     <!-- Main Content -->
     <div class="container">
@@ -619,73 +557,26 @@ tbody tr:hover {
         <div class="accordion-header" onclick="toggleAccordion(this)">
             <i class="ri-arrow-down-wide-line"></i> Proof of Funding
         </div>
-        <div class="accordion-content">
-            <!-- Upload Proof of Funding Document -->
-       
-        
-        
-        <div class="card">
-          <label for="fileInput">Upload Proof of Funding Document:</label>
-            <div id="fileInfo1"></div>
-            <img id="thumbnailImage1" class="card__img" alt="PDF Thumbnail" src="https://complyan.com/wp-content/uploads/2022/09/Frameworks.png" />
-            <div class="card__data">
-                <h3>Select a File</h3>
-                <input
-          type="file"
-          id="fileInput"
-          name="fileInput"
-          accept="application/pdf"
-          required
-        />
-                <button class="submit-button" type="button" onclick="submitPDF(1)">Submit</button>
+
+          <div class="accordion-content">
+              <!-- Upload Proof of Funding Document -->
+            <div class="card">
+              <label for="fileInput">Upload Proof of Funding Document:</label>
+                    <input
+              type="file"
+              id="fileInput"
+              name="fileInput"
+              accept="application/pdf"
+              required
+            />
+                    <button  class="submit-button" type="button" onclick="submitPDF(1)">Upload</button>
+                </div>
             </div>
-        </div>
-        <script>
-          async function renderPDF(fileInputId, thumbnailImageId) {
-              const fileInput = document.getElementById(fileInputId);
-              const thumbnailImage = document.getElementById(thumbnailImageId);
-  
-              const file = fileInput.files[0];
-              if (file && file.type === 'application/pdf') {
-                  const fileReader = new FileReader();
-  
-                  fileReader.onload = async function () {
-                      const typedarray = new Uint8Array(this.result);
-                      const pdf = await pdfjsLib.getDocument(typedarray).promise;
-  
-                      // Get the first page
-                      const page = await pdf.getPage(1);
-                      const viewport = page.getViewport({ scale: 1 });
-  
-                      const canvas = document.createElement('canvas');
-                      canvas.width = viewport.width;
-                      canvas.height = viewport.height;
-  
-                      const context = canvas.getContext('2d');
-                      await page.render({ canvasContext: context, viewport: viewport }).promise;
-  
-                      // Convert canvas to image and display
-                      thumbnailImage.src = canvas.toDataURL();
-                  };
-  
-                  fileReader.readAsArrayBuffer(file);
-              } else {
-                  alert('Please upload a valid PDF file.');
-                  // Reset to default image if invalid
-                  thumbnailImage.src = 'https://complyan.com/wp-content/uploads/2022/09/Frameworks.png';
-              }
-          }
-  
-          // Attach change event listeners to both file inputs
-          document.getElementById('fileInput1').addEventListener('change', () => renderPDF('fileInput1', 'thumbnailImage1'));
-          document.getElementById('fileInput2').addEventListener('change', () => renderPDF('fileInput2', 'thumbnailImage2'));
-  
-          
-      </script>
-        </div>
+          </div>
+      </div>
     </div>
 
-      </div>
+
 
         <!-- <label for="ExtFunding_Name"
           >External Funding Source Name(write "N/A" if not applicable):</label
@@ -709,60 +600,58 @@ tbody tr:hover {
       </form>
 
      <!-- Message Display -->
-<p id="message"></p>
+      <p id="message"></p>
 
-<div class="table-container">
-    <table id="allowanceTable">
-        <thead>
-            <tr>
-                <th>Category</th>
-                <th>May</th>
-                <th>June</th>
-                <th>July</th>
-                <th>August</th>
-                <th>September</th>
-                <th>October</th>
-                <th>November</th>
-                <th>December</th>
-                <th>January</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Allowance</td>
-                <td id="may"></td>
-                <td id="june"></td>
-                <td id="july"></td>
-                <td id="august"></td>
-                <td id="september"></td>
-                <td id="october"></td>
-                <td id="november"></td>
-                <td id="december"></td>
-                <td id="january"></td>
-                <td id="totalRemaining"></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<footer class="footer">
-  <div class="footer-container">
-      <div class="footer-left">
-          <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+      <div class="table-container">
+          <table id="allowanceTable">
+              <thead>
+                  <tr>
+                      <th>Category</th>
+                      <th>May</th>
+                      <th>June</th>
+                      <th>July</th>
+                      <th>August</th>
+                      <th>September</th>
+                      <th>October</th>
+                      <th>November</th>
+                      <th>December</th>
+                      <th>January</th>
+                      <th>Total</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Allowance</td>
+                      <td id="may"></td>
+                      <td id="june"></td>
+                      <td id="july"></td>
+                      <td id="august"></td>
+                      <td id="september"></td>
+                      <td id="october"></td>
+                      <td id="november"></td>
+                      <td id="december"></td>
+                      <td id="january"></td>
+                      <td id="totalRemaining"></td>
+                  </tr>
+              </tbody>
+          </table>
       </div>
-      <div class="footer-right">
-          <a href="#" class="social-icon">
-            All rights reserved
-          </a>
-      </div>
-  </div>
-</footer>
 
+      <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+            </div>
+            <div class="footer-right">
+                <a href="#" class="social-icon">
+                  <img src="https://i.ibb.co/JRLZkhd/e535a745e3b7.png" alt="Moshal Logo" id="logoutButton" style="width: 250px; height: 90px; object-fit: cover; object-position: center;  position: relative; left: 60%; margin-top: 15px;" />
+              </a>
+            </div>
+        </div>
+    </footer>
 
-  
     <script>
-      function calculateAllowance() {
+    function calculateAllowance() {
         const annualAmountInput =
           document.getElementById("annual_amount").value;
         const annualAmount = parseFloat(annualAmountInput);

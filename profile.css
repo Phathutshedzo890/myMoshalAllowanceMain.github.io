@@ -4,6 +4,9 @@
     padding: 0;
     font-family: Arial, sans-serif;
 }
+.element {
+    z-index: 0; /* Resets z-index */
+}
 
 body {
     background-color: #fff;
@@ -24,7 +27,6 @@ header {
     box-shadow: 0 4px 2px -2px gray;
     position: sticky;
     top: 0;
-    z-index: 1000;
     display: flex;
     align-items: center;
     height: 70px;
@@ -43,15 +45,17 @@ header {
     color: #ffffff;
 }
 
-h1.main-title {
-    color: #ffffff;
+h1{
+    font-size: 30px;
+    margin-top: -55px;
+    margin-left: -210px;
 }
 
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    
     top: 0;
     left: 0;
     background-color: #ffffff; /* Changed from #3f62af to #ffffff (white) */
@@ -111,7 +115,8 @@ h1.main-title {
 }
 
 .profile-picture img {
-    margin-top: 10px;
+    margin-top: 100px;
+    margin-left: -1350px;
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -124,7 +129,7 @@ h1.main-title {
 
 .profile-details p {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .edit-profile-btn, .save-profile-btn, .cancel-profile-btn  {
@@ -144,47 +149,8 @@ h1.main-title {
 .edit-profile-btn:active {
     transform: scale(0.95);
 }
-/* Footer container styling */
-.footer {
-    margin-top: 55px;
-      padding: 20px 0;
-      background-color: #fff;
-      margin-bottom: -100px;
-  }
-  
-  .footer-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      padding: 0 15px;
-  }
-  
-  /* Left side (copyright text) */
-  .footer-left p {
-     
-      font-size: 16px;
-      color: #000000;
-      margin-left: 60px;
-  }
-  
-  /* Right side (social icons) */
-  .footer-right {
-    
-    margin-left: -200px;
-      display: flex;
-      gap: 15px;
-  }
-  
-  .social-icon {
-    font-size: 16px;
-      color: #000000;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      margin-right:  -230px;
-  }
-  
 
+ 
 @media (max-width: 768px) {
     main.container {
         width: 90%;

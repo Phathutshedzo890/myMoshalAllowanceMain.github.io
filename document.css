@@ -188,6 +188,9 @@ footer p {
 }
 
 
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
 
 @media (max-width: 768px) {
   .nav-links {
