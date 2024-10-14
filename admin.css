@@ -14,7 +14,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
             .container {
             display: flex;
             min-height: 100vh; 

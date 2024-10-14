@@ -8,7 +8,9 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
-  
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
   <style>
     * {
       box-sizing: border-box;
@@ -139,11 +141,17 @@
 
 <body>
  
-  <!-- Go Back Navigation -->
- <div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
-  <a href="outstanding_queries.html" class="go-back" style="color: #000"
-    >← Go Back</a
-  >
+ <!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="outstanding_queries.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+
+  <a href="response_details.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+  </a>
+
 </div>
 
   <main style="margin-top: -200px;">

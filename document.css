@@ -4,6 +4,9 @@
   display: inline-block;
 }
 
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
 .ribbon-red, .ribbon-blue, .ribbon-green {
 
 position: absolute;

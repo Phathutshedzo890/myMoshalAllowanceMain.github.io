@@ -16,253 +16,316 @@
   <title>Report</title>
 </head>
 <body>
-   <!-- Go Back Navigation -->
-   <div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
-    <a href="Reports.html" class="go-back" style="color: #000"
-      >← Go Back</a
-    >
-  </div>
+   <!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="Reports.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+
+  <a href="noncompliant.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+  </a>
+
+</div>
    
     <div class="report-container">
-      <h1 class="title"> Outstanding Student Funding Report</h1>
-      <p class="report-date">Report Date: <span id="currentDate"></span></p>
-      <p class="generated">Generated: Bi-weekly (Duration: First 2 months of the academic year)</p>
-      <br>
+        <h1 class="title"> Outstanding Student Funding Report</h1>
+        <p class="report-date">Report Date: <span id="currentDate"></span></p>
+        <p class="generated">Generated: Bi-weekly (Duration: First 2 months of the academic year)</p>
+        <br>
 
-      <section class="key-metrics"> 
-        <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Key Metrics</h2>
-        <div class="cards-container">
-          <div class="card">
-            <h3 style="font-size: 13px;">Total Students</h3>
-            <p><span id="totalStudents"></span></p>
+        <section class="key-metrics"> 
+          <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Key Metrics</h2>
+          <div class="cards-container">
+            <div class="card">
+              <h3 style="font-size: 13px;">Total Students</h3>
+              <p><span id="totalStudents"></span></p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Compliant</h3>
+              <p><span id="compliantCount"></span></p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Non-Compliant</h3>
+              <p><span id="nonCompliantCount"></span></p>
+            </div>
+            <div class="card">
+              <h5 style="font-size: 13px;">Financial Aid Delay</h5>
+              <p> High Risk </p>
+            </div>
           </div>
-          <div class="card">
-            <h3 style="font-size: 13px;">Compliant</h3>
-            <p><span id="compliantCount"></span></p>
+          
+          <div class="chart-container">
+            <canvas id="documentStatusChart" width="400" height="200"></canvas>
+        </div>
+        </section>
+      </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-error-warning-line"></i> Analysis of Non-Compliance
+              </div>
+              <div class="accordion-content">
+                <section class="non-compliance-analysis">
+                  <ul>
+                    <li><strong>Root Causes:</strong>
+                      <ul>
+                        <li>Lack of awareness among students about document submission deadlines.</li>
+                        <li>Confusion due to unclear instructions or technical issues with the submission portal.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+              </div>
           </div>
-          <div class="card">
-            <h3 style="font-size: 13px;">Non-Compliant</h3>
-            <p><span id="nonCompliantCount"></span></p>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-alert-line"></i> Risks and Impact
+            </div>
+            <div class="accordion-content">
+              <section class="risks-impact"  >
+                <ul>
+                  <li><strong>Potential Delays:</strong>
+                    <ul>
+                      <li>Financial aid processing is at risk for the non-compliant students, potentially affecting their ability to attend classes or purchase necessary materials.</li>
+                  <li>Budget planning complications may arise due to incomplete or missing data.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Budget Impact:</strong>
+                    <ul>
+                      <li>The program faces challenges in planning accurate budget allocations due to incomplete financial information.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </section>
+            </div>
+        </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-lightbulb-line"></i> Recommendations & Actions
+              </div>
+              <div class="accordion-content">
+                <section class="recommendations-actions">
+                  <ul>
+                    <li><strong>Immediate Actions:</strong>
+                      <ul>
+                        <li>Send Targeted Reminders: Directly contact the non-compliant students with clear instructions and deadlines.</li>
+                        <li>Review Compliant Students: Confirm that all necessary documents have been submitted for the students marked compliant.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Campaign for Compliance:</strong>
+                      <ul>
+                        <li>Offer incentives such as priority funding or recognition for early compliance.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Process Improvements:</strong>
+                      <ul>
+                        <li>Simplify submission forms and offer direct support to guide students through the process.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+              </div>
           </div>
-          <div class="card">
-            <h5 style="font-size: 13px;">Financial Aid Delay</h5>
-            <p> High Risk </p>
-          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-timer-line"></i> Compliance Monitoring Plan
+            </div>
+            <div class="accordion-content">
+              <section class="compliance-monitoring-plan" >
+                <ul>
+                  <li>Continuous Tracking: Implement a system to track the status of student submissions and flag those approaching deadlines.</li>
+                  <li>Trend Analysis: Monitor submission patterns to identify high-risk periods or groups.</li>
+                </ul>
+              </section>
+            </div>
         </div>
         
-        <div class="chart-container">
-          <canvas id="complianceChart" width="300" height="200"></canvas>
-      </div>
-     
-        <p><strong>Compliance Rate: </strong><span id="studentCount"></span></p>
-      </section>
+        </div>
+      
+            <script>
+              // Wait for the DOM to be fully loaded before executing the script
+              document.addEventListener('DOMContentLoaded', function () {
+                    // Set the current date into the span
+                    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+                });
+                //Accordian
+      
+                    function toggleAccordion(header) {
+                    const content = header.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.padding = "0 15px";
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.padding = "15px";
+                    }
+                }
+                function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.accordion-header');
 
-      <h2 class="section-title" style="margin-top: 15px;"><i class="ri-error-warning-line"></i> Analysis of Non-Compliance</h2>
-      <section class="non-compliance-analysis">
-        <ul>
-          <li><strong>Root Causes:</strong>
-            <ul>
-              <li>Lack of awareness among students about document submission deadlines.</li>
-              <li>Confusion due to unclear instructions or technical issues with the submission portal.</li>
-            </ul>
-          </li>
-        </ul>
-      </section>
+    // Close all other accordion sections
+    allHeaders.forEach(h => {
+        const c = h.nextElementSibling;
+        if (c !== content) {
+            c.style.maxHeight = null;
+            c.style.padding = "0 20px";
+            h.classList.remove('active');
+        }
+    });
 
-      <h2 class="section-title"><i class="ri-alert-line"></i> Risks and Impact</h2>
-      <section class="risks-impact"  >
-        <ul>
-          <li><strong>Potential Delays:</strong>
-            <ul>
-              <li>Financial aid processing is at risk for the non-compliant students, potentially affecting their ability to attend classes or purchase necessary materials.</li>
-          <li>Budget planning complications may arise due to incomplete or missing data.</li>
-            </ul>
-          </li>
-          <li><strong>Budget Impact:</strong>
-            <ul>
-              <li>The program faces challenges in planning accurate budget allocations due to incomplete financial information.</li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-
-      <h2 class="section-title"><i class="ri-lightbulb-line"></i> Recommendations & Actions</h2>
-      <section class="recommendations-actions">
-        <ul>
-          <li><strong>Immediate Actions:</strong>
-            <ul>
-              <li>Send Targeted Reminders: Directly contact the non-compliant students with clear instructions and deadlines.</li>
-              <li>Review Compliant Students: Confirm that all necessary documents have been submitted for the students marked compliant.</li>
-            </ul>
-          </li>
-          <li><strong>Campaign for Compliance:</strong>
-            <ul>
-              <li>Offer incentives such as priority funding or recognition for early compliance.</li>
-            </ul>
-          </li>
-          <li><strong>Process Improvements:</strong>
-            <ul>
-              <li>Simplify submission forms and offer direct support to guide students through the process.</li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-
-      <h2 class="section-title"><i class="ri-timer-line"></i> Compliance Monitoring Plan</h2>
-      <section class="compliance-monitoring-plan" >
-        <ul>
-          <li>Continuous Tracking: Implement a system to track the status of student submissions and flag those approaching deadlines.</li>
-          <li>Trend Analysis: Monitor submission patterns to identify high-risk periods or groups.</li>
-        </ul>
-      </section>
-
-    </div>
-
-        <script>
-          // Wait for the DOM to be fully loaded before executing the script
-          document.addEventListener('DOMContentLoaded', function () {
+    // Toggle the clicked section
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 20px";
+        header.classList.remove('active');
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px 20px";
+        header.classList.add('active');
+    }
+    }
+                // Wait for the DOM to be fully loaded before executing the script
+                document.addEventListener('DOMContentLoaded', function () {
                 // Set the current date into the span
                 document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
             });
-        </script>
+            </script>
+        <!-- Include the Chart.js CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <div class="details">
-          <h2>Details</h2>
-          <ul>
-              <li><strong>File Format</strong></li>
-              <li> <i class="ri-file-word-2-line" style="color: blue;"></i> MS Word</li>
-              <li> <i class="ri-file-pdf-2-line" style="color: red;"></i> PDF</li>
-              <li><i class="ri-article-line" style="color: green;"></i> Google Docs</li>
-              <li><strong>Size</strong>: A4 </li>
-          </ul>
-      </div>
-        <div class="download-section">
-            <a href="#" class="download-button">Download</a>
-        </div>
-  
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
+        const firebaseConfig = {
+          apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+          authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+          projectId: "mymoshalallowance-34e68",
+          storageBucket: "mymoshalallowance-34e68.appspot.com",
+          messagingSenderId: "387609738002",
+          appId: "1:387609738002:web:38cf56b731375650d751cb",
+          measurementId: "G-5E13X2QNFC"
+        };
 
-        <script type="module">
-          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-          import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-        
-          // Firebase configuration
-          const firebaseConfig = {
-  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-  projectId: "mymoshalallowance-34e68",
-  storageBucket: "mymoshalallowance-34e68.appspot.com",
-  messagingSenderId: "387609738002",
-  appId: "1:387609738002:web:38cf56b731375650d751cb",
-  measurementId: "G-5E13X2QNFC"
-};
-        
-          // Initialize Firebase
-          const firebaseApp = initializeApp(firebaseConfig);
-          const db = getFirestore(firebaseApp);
-        
-          async function fetchStudentComplianceData() {
-              let compliantCount = 0;
-              let nonCompliantCount = 0;
-        
-              try {
-                  const studentsSnapshot = await getDocs(collection(db, 'Student'));
-                  
-                  for (const studentDoc of studentsSnapshot.docs) {
-                      const studentID = studentDoc.id;
-                      const missingDocuments = await checkMissingDocuments(studentID);
-                      
-                      if (missingDocuments.length >= 2) {
-                          nonCompliantCount++;
-                      } else {
-                          compliantCount++;
-                      }
-                  }
-        
-                  renderPolarAreaChart(compliantCount, nonCompliantCount);
-              } catch (error) {
-                  console.error('Error fetching student compliance data:', error);
-              }
-          }
-        
-          async function checkMissingDocuments(studentID) {
-              const missingDocs = [];
-              const docTypes = ['feeStatements', 'proofOfFunding', 'ExternalFunding'];
-              for (let docType of docTypes) {
-                  const snapshot = await getDocs(collection(db, docType));
-                  const docExists = snapshot.docs.some(doc => doc.id === studentID);
-                  if (!docExists) {
-                      missingDocs.push(docType);
-                  }
-              }
-              return missingDocs;
-          }
-        
-          function renderBarChart(compliantCount, nonCompliantCount) {
-    const totalStudents = compliantCount + nonCompliantCount;
-    
-    // Update the span 
-    document.getElementById('totalStudents').textContent = totalStudents;
-    document.getElementById('compliantCount').textContent = compliantCount;
-    document.getElementById('nonCompliantCount').textContent = nonCompliantCount;
-    const complianceRate = totalStudents > 0 ? ((compliantCount / totalStudents) * 100).toFixed(2) : 0;
-    document.getElementById('studentCount').textContent = `${complianceRate}%`;
-    
-    const ctx = document.getElementById('complianceChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar', // Change chart type to 'bar'
-        data: {
-            labels: ['Updated Students', 'Not Updated Students'],
-            datasets: [{
-                data: [compliantCount, nonCompliantCount],
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.6)',  // Light blue for compliant
-                    'rgba(255, 99, 132, 0.6)'   // Light red for non-compliant
-                ],
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(255, 99, 132, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true, // Start y-axis at zero
-                    ticks: {
-                        stepSize: 1
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false // Hide legend as it's not needed for a bar chart
-                }
-            },
-            // Add onClick event to handle the redirection
-            onClick: function (event, elements) {
-                // If an element is clicked
-                if (elements.length > 0) {
-                    const clickedElementIndex = elements[0].index;
-                    // Check if the clicked element corresponds to the 'Non-Compliant Students' segment
-                    if (clickedElementIndex === 1) {  // 'Non-Compliant Students' is at index 1
-                        window.location.href = 'noncompliant.html';
-                    }
-                }
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let totalStudents = 0;
+        let compliantCount = 0;
+        let nonCompliantCount = 0;
+
+        // Function to fetch students and check their document status
+        async function getDocumentStatus() {
+          const studentsSnapshot = await getDocs(collection(db, 'Student'));
+          let updatedCount = 0;
+          let notUpdatedCount = 0;
+
+          for (const studentDoc of studentsSnapshot.docs) {
+            const studentID = studentDoc.id;
+            const missingDocuments = await checkMissingDocuments(studentID);
+
+            if (missingDocuments.length >= 2) {
+              notUpdatedCount++;
+            } else {
+              updatedCount++;
             }
+          }
+          return { updatedCount, notUpdatedCount };
         }
-    });
+
+        // Function to check if a student is missing required documents
+        async function checkMissingDocuments(studentID) {
+          const missingDocs = [];
+          const docTypes = ['feeStatements', 'proofOfFunding', 'ExternalFunding'];
+
+          for (let docType of docTypes) {
+            const snapshot = await getDocs(collection(db, docType));
+            const docExists = snapshot.docs.some(doc => doc.id === studentID);
+            if (!docExists) {
+              missingDocs.push(docType);
+            }
+          }
+
+          return missingDocs;
+        }
+
+        // Function to create the bar chart
+async function createChart() {
+  const { updatedCount, notUpdatedCount } = await getDocumentStatus();
+
+  const ctx = document.getElementById('documentStatusChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Updated', 'Not Updated'],
+      datasets: [{
+        label: '',
+        data: [updatedCount, notUpdatedCount],
+        backgroundColor: ['#4CAF50', '#FF5733'],  // Green for updated, Red for not updated
+        borderColor: ['#4CAF50', '#FF5733'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      onClick: (e) => {
+        const activePoints = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+        if (activePoints.length > 0) {
+          const chartIndex = activePoints[0].index;
+          if (chartIndex === 1) {  // Not Updated bar clicked
+            window.location.href = 'noncompliant.html';  // Redirect to noncompliant page
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
 
-// Call the fetch function once the page has loaded
-          document.addEventListener('DOMContentLoaded', function() {
-              fetchStudentComplianceData();
-          });
-        </script>
-  
-  
+        // Function to fetch student counts for cards
+        async function fetchStudentCounts() {
+          const studentsSnapshot = await getDocs(collection(db, 'Student'));
+
+          for (const studentDoc of studentsSnapshot.docs) {
+            totalStudents++; // Increment total students
+            const studentID = studentDoc.id;
+            
+            // Check for missing documents
+            const missingDocuments = await checkMissingDocuments(studentID);
+
+            // Update counts based on missing documents
+            if (missingDocuments.length >= 2) {
+              nonCompliantCount++; // 2 or more missing docs = non-compliant
+            } else {
+              compliantCount++; // Less than 2 missing docs = compliant
+            }
+          }
+
+          // Set the values directly in the respective cards or spans
+          document.getElementById('totalStudents').textContent = totalStudents;
+          document.getElementById('compliantCount').textContent = compliantCount;
+          document.getElementById('nonCompliantCount').textContent = nonCompliantCount;
+        }
+
+        // Initialize the chart and fetch student counts when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+          await fetchStudentCounts();
+          await createChart(); // Ensure the chart is created after the data is fetched
+        });
+      </script>
+
   <footer>
     <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
     <p>
@@ -285,6 +348,7 @@
 .report-container {
   max-width: 794px; /* A4 width for print */
   margin: 20px auto;
+  margin-top: -10px;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -292,13 +356,14 @@
 }
 
 .chart-container {
-  width: 50%;
-  margin: 20px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: -30px;
-  margin-bottom: -20px;
+  width: 100%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+    margin-right: 60px;
 }
 
 .title {
@@ -415,6 +480,65 @@ body {
   padding: 12px 25px;
   letter-spacing: 1px;
 }
+.accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  margin-left: 362px;
+    width: 52%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px #3f62af;
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #fff;
+    color: #3f62af;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
+.accordion-header:hover {
+    background: #3f62af;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+    
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+  
 
 footer {
   margin-top: 11px;

@@ -11,12 +11,17 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
 </head>
 <body>
-   <!-- Go Back Navigation -->
-   <div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
-    <a href="Reports.html" class="go-back" style="color: #000"
-      >← Go Back</a
-    >
-  </div>
+  <!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="Reports.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+
+  <a href="unanswered_queries.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+  </a>
+</div>
 
   <div class="report-container">
     <h1 class="title"><i class="ri-file-text-line"></i> Student Funding University Batch Report</h1>
@@ -28,103 +33,141 @@
       <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Comprehensive Overview</h2>
       <p>The breakdown of fully funded vs. partially funded students across universities offers a clear picture of resource allocation and program reach.</p>
       
-      <div class="cards-container">
-        <div class="card">
-          <h3 style="font-size: 13px;">Most Funding</h3>
-          <p>WITS</p>
-        </div>
-        <div class="card">
-          <h3 style="font-size: 13px;">Most Partial Funding</h3>
-          <p>WITS</p>
-        </div>
-        <div class="card">
-          <h5 style="font-size: 13px;">Least Funding</h5>
-          <p>NMU</p>
-        </div>
-        <div class="card">
-          <h5 style="font-size: 13px;">Largest Discrepancy</h5>
-          <p>UWC</p>
-        </div>
-        <div class="card">
-          <h3 style="font-size: 13px;">Most Balanced </h3>
-          <p>UKZN</p>
-        </div>
-        <div class="card">
-          <h5 style="font-size: 13px;">Smallest Funding Gap</h5>
-          <p>SUN</p>
-        </div>
-      </div>
-  
       <div class="chart-container">
-        <canvas id="fundingChart" width="300" height="200"></canvas>
+        <canvas id="fundingAmountsChart" width="400" height="200"></canvas>
+
       </div>
-    </section>
-  
-    <h2 class="section-title"><i class="ri-find-replace-line"></i> Data Findings</h2>
-   <section class= "data-findings">
-    <ul>
-      <li><strong>Trends by University:</strong> Some universities have a higher proportion of fully funded students, while others have a higher proportion of partially funded students.</li>
-      <li> Across universities, there is a higher proportion of partially funded students compared to fully funded students. Some universities have a larger share of fully funded students, while others see a higher proportion of partially funded students.</li>
-    </ul>
-   </section>
-    
-    <h2 class="section-title"><i class="ri-line-chart-line"></i> Analysis</h2>
-    <section class="analysis">
-      <ul>
-        <li><strong>Proportional Allocation of Funding:</strong> Universities with a high percentage of fully funded students likely focus on high-need students or have strong scholarship programs. Conversely, universities with more partially funded students may be facing funding constraints, increased sponsorship needs, or high demand for scholarships.</li>
-        <li><strong>Trends in Funding Disparity:</strong> Universities with a significant gap between fully and partially funded students might show inequality in funding allocation. Investigating these trends can reveal systemic issues in awarding full scholarships or highlight a lack of resources for scholarships.</li>
-      </ul>
-    </section>
-    
-  
-    <h2 class="section-title"><i class="ri-thumb-up-line"></i> Observations</h2>
-    <section class="observation">
-      <ul>
-        <li><strong>University-Level Observations:</strong> Universities with a high percentage of fully funded students may experience higher demand from students in need. These programs should ensure the sustainability and sufficiency of their funding.</li>
-        <li><strong>Partially Funded Students:</strong> A high proportion of partially funded students could point to gaps in scholarship availability, with an increase in students needing financial assistance but not receiving full funding.</li>
-        <li><strong>Over Time:</strong> If the number of fully funded students decreases, it is crucial to explore whether changes in eligibility, funding availability, or student needs have played a role. A rise in partially funded students might suggest insufficient funding, prompting a need to reconsider funding models.</li>
-      </ul>
-    </section>
-    
-  
-    <h2 class="section-title"><i class="ri-archive-line"></i> Recommendations</h2>
-    <section class="recommend">
-      <ul>
-        <li><strong>Targeted Funding Strategies:</strong> Universities with many partially funded students might require additional funding sources or sponsorships. A targeted outreach campaign could increase external partnerships or attract more donors.</li>
-        <li><strong>Increased Flexibility in Funding Allocation:</strong> Universities with a higher proportion of partially funded students may benefit from flexible funding options, such as incremental funding increases based on student progress.</li>
-        <li><strong>Monitoring Funding Gaps:</strong> Universities should set clear guidelines for transitioning students from partial to full funding based on their financial needs or academic performance. Long-term planning should focus on ensuring future funding sources and sustainability for universities with high percentages of partially funded students.</li>
-      </ul>
-    </section>
-    
-  
-    <h2 class="section-title"><i class="ri-sun-line"></i> Resource Allocation</h2>
-    <section class="resource">
-      <p>The ratio of partially funded to fully funded students (3:2) reflects a balanced approach to resource allocation, allowing the program to support a larger number of students while maintaining a significant cohort of fully funded students.</p>
     </section>
   </div>
-  
-  
-<script>
-  // Wait for the DOM to be fully loaded before executing the script
+
+        <div class="accordion">
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-find-replace-line"></i> Data Findings
+              </div>
+              <div class="accordion-content">
+                <section class= "data-findings">
+                  <ul>
+                    <li><strong>Trends by University:</strong> Some universities have a higher proportion of fully funded students, while others have a higher proportion of partially funded students.</li>
+                    <li> Across universities, there is a higher proportion of partially funded students compared to fully funded students. Some universities have a larger share of fully funded students, while others see a higher proportion of partially funded students.</li>
+                  </ul>
+                </section>
+              </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-line-chart-line"></i> Analysis
+            </div>
+            <div class="accordion-content">
+              <section class="analysis">
+                <ul>
+                  <li><strong>Proportional Allocation of Funding:</strong> Universities with a high percentage of fully funded students likely focus on high-need students or have strong scholarship programs. Conversely, universities with more partially funded students may be facing funding constraints, increased sponsorship needs, or high demand for scholarships.</li>
+                  <li><strong>Trends in Funding Disparity:</strong> Universities with a significant gap between fully and partially funded students might show inequality in funding allocation. Investigating these trends can reveal systemic issues in awarding full scholarships or highlight a lack of resources for scholarships.</li>
+                </ul>
+              </section>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <i class="ri-thumb-up-line"></i> Observations
+          </div>
+          <div class="accordion-content">
+            <section class="observation">
+              <ul>
+                <li><strong>University-Level Observations:</strong> Universities with a high percentage of fully funded students may experience higher demand from students in need. These programs should ensure the sustainability and sufficiency of their funding.</li>
+                <li><strong>Partially Funded Students:</strong> A high proportion of partially funded students could point to gaps in scholarship availability, with an increase in students needing financial assistance but not receiving full funding.</li>
+                <li><strong>Over Time:</strong> If the number of fully funded students decreases, it is crucial to explore whether changes in eligibility, funding availability, or student needs have played a role. A rise in partially funded students might suggest insufficient funding, prompting a need to reconsider funding models.</li>
+              </ul>
+            </section>
+          </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <i class="ri-archive-line"></i> Recommendations
+        </div>
+        <div class="accordion-content">
+          <section class="recommend">
+            <ul>
+              <li><strong>Targeted Funding Strategies:</strong> Universities with many partially funded students might require additional funding sources or sponsorships. A targeted outreach campaign could increase external partnerships or attract more donors.</li>
+              <li><strong>Increased Flexibility in Funding Allocation:</strong> Universities with a higher proportion of partially funded students may benefit from flexible funding options, such as incremental funding increases based on student progress.</li>
+              <li><strong>Monitoring Funding Gaps:</strong> Universities should set clear guidelines for transitioning students from partial to full funding based on their financial needs or academic performance. Long-term planning should focus on ensuring future funding sources and sustainability for universities with high percentages of partially funded students.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-sun-line"></i> Resource Allocation
+              </div>
+              <div class="accordion-content">
+                <section class="resource">
+                  <p>The ratio of partially funded to fully funded students (3:2) reflects a balanced approach to resource allocation, allowing the program to support a larger number of students while maintaining a significant cohort of fully funded students.</p>
+                </section>
+              </div>
+          </div>
+      </div>
+
+    <script>
+      // Wait for the DOM to be fully loaded before executing the script
   document.addEventListener('DOMContentLoaded', function () {
         // Set the current date into the span
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
     });
-</script>
+        // Wait for the DOM to be fully loaded before executing the script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Set the current date into the span
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+        });
+        // Wait for the DOM to be fully loaded before executing the script
+        document.addEventListener('DOMContentLoaded', function () {
+                // Set the current date into the span
+                document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+            });
+            //Accordian
+  
+                function toggleAccordion(header) {
+                const content = header.nextElementSibling;
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.padding = "0 15px";
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.style.padding = "15px";
+                }
+            }
+            function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const allHeaders = document.querySelectorAll('.accordion-header');
 
-<div class="details">
-  <h2>Details</h2>
-  <ul>
-      <li><strong>File Format</strong></li>
-      <li> <i class="ri-file-word-2-line" style="color: blue;"></i> MS Word</li>
-      <li> <i class="ri-file-pdf-2-line" style="color: red;"></i> PDF</li>
-      <li><i class="ri-article-line" style="color: green;"></i> Google Docs</li>
-      <li><strong>Size</strong>: A4 </li>
-  </ul>
-</div>
-<div class="download-section">
-    <a href="#" class="download-button">Download</a>
-</div>
+            // Close all other accordion sections
+            allHeaders.forEach(h => {
+                const c = h.nextElementSibling;
+                if (c !== content) {
+                    c.style.maxHeight = null;
+                    c.style.padding = "0 20px";
+                    h.classList.remove('active');
+                }
+            });
+
+            // Toggle the clicked section
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.style.padding = "0 20px";
+                header.classList.remove('active');
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.padding = "15px 20px";
+                header.classList.add('active');
+            }
+            }
+    </script>
+    
+  </div>
 
 <footer>
   <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
@@ -134,67 +177,82 @@
   </p>
 </footer>
 
-  <script>
-    function createFundingChart() {
-  const ctx = document.getElementById('fundingChart').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['UP', 'Wits', 'UCT', 'Rhodes', 'SUN', 'UFS', 'UJ', 'UKZN','UWC','NMU'],
-      datasets: [
-        {
-          label: 'Fully Funded Students',
-          data: [50, 70, 60, 40, 45, 35, 55, 65, 20, 15], 
-          backgroundColor: 'rgba(63, 98, 175, 0.8)',
-          borderColor: 'rgba(63, 98, 175, 1)',
-          borderWidth: 1
-        },
-        {
-          label: 'Partially Funded Students',
-          data: [100, 150, 120, 80, 90, 70, 110, 100, 90, 75], 
-          backgroundColor: 'rgba(173, 216, 230, 0.8)',
-          borderColor: 'rgba(173, 216, 230, 1)',
-          borderWidth: 1
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          stacked: false, // Ensure bars are side by side
-          ticks: {
-            beginAtZero: true
-          }
-        },
-        y: {
-          stacked: false, // Ensure bars are side by side
-          beginAtZero: true
-        }
-      },
-      plugins: {
-        legend: {
-          display: true,
-          position: 'top'
-        },
-        tooltip: {
-          callbacks: {
-            label: function (context) {
-              const label = context.dataset.label || '';
-              const value = context.raw || 0;
-              return `${label}: ${value} Students`;
-            }
-          }
-        }
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  const firebaseConfig = {
+      apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+      authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+      projectId: "mymoshalallowance-34e68",
+      storageBucket: "mymoshalallowance-34e68.appspot.com",
+      messagingSenderId: "387609738002",
+      appId: "1:387609738002:web:38cf56b731375650d751cb",
+      measurementId: "G-5E13X2QNFC"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  async function loadFundingAmountsData() {
+      try {
+          const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
+
+          // Objects to store total amount for each funding type
+          const fundingDataByType = {
+              Full: 0,
+              Partial: 0
+          };
+
+          querySnapshot.forEach((doc) => {
+              const data = doc.data();
+              const fundingAmount = data.ExtFunding_Amt;
+              const fundingType = data.ExtFunding_Type;
+
+              // Sum the funding amounts based on the funding type
+              if (fundingType === 'Full') {
+                  fundingDataByType.Full += fundingAmount;
+              } else if (fundingType === 'Partial') {
+                  fundingDataByType.Partial += fundingAmount;
+              }
+          });
+
+          const labels = ['Full', 'Partial'];
+          const dataValues = [fundingDataByType.Full, fundingDataByType.Partial];
+
+          const ctx = document.getElementById('fundingAmountsChart').getContext('2d');
+          new Chart(ctx, {
+              type: 'bar',
+              data: {
+                  labels: labels,
+                  datasets: [{
+                      label: '',
+                      data: dataValues,
+                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                      borderColor: 'rgba(75, 192, 192, 1)',
+                      borderWidth: 1
+                  }]
+              },
+              options: {
+                  scales: {
+                      y: {
+                          beginAtZero: true
+                      }
+                  }
+              }
+          });
+      } catch (error) {
+          console.error("Error loading funding amounts data:", error);
       }
-    }
-  });
-}
+  }
 
-// Call the function to create the funding chart
-createFundingChart();
+  loadFundingAmountsData();
+</script>
 
-  </script>
+<!-- Include a canvas for the chart -->
+<canvas id="fundingChart" width="400" height="200"></canvas>
+
+
 
 </body>
 </html>
@@ -217,13 +275,13 @@ createFundingChart();
   }
   
   .chart-container {
-    width: 60%;
-    margin: 20px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 160px;
-    margin-bottom: 15px;
+    width: 80%;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: -20px;
+      margin-bottom: -10px;
   }
   
   .title {
@@ -343,6 +401,65 @@ createFundingChart();
     padding: 12px 25px;
     letter-spacing: 1px;
   }
+     
+.accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  margin-left: 362px;
+    width: 52%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px #3f62af;
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #fff;
+    color: #3f62af;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
+.accordion-header:hover {
+    background: #3f62af;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+    
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
   
   footer {
     margin-top: 11px;

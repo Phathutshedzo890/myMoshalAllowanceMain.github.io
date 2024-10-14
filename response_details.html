@@ -6,6 +6,9 @@
     <title>Respond to Student Query</title>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -66,12 +69,37 @@
     </style>
   </head>
   <body>
+<!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="not_updated_students.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+
+</div>
+
     <h1>Respond to Student Query</h1>
     <form id="responseForm">
       <div id="studentQueryDetails" class="message-box"></div>
       <label for="adminResponse">Your Response:</label>
       <textarea id="adminResponse" rows="5" required></textarea>
-      <button type="submit">Submit Response</button>
+      <button type="submit" style="display: inline-block;
+      margin-top: 5px;
+      margin-left: 240px;
+      padding: 13px 35px;
+      background-color: #3f62af;
+      border: #3f62af;
+      color: white;
+      border-radius: 20px;
+      width: 20%;
+      font-size: 12px;
+      text-transform: uppercase;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 1px;
+      transition: transform 80ms ease-in, background-color 0.3s ease;
+      cursor: pointer;">Submit</button>
     </form>
 
     <script type="module">

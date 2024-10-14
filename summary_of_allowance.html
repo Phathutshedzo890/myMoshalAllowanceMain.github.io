@@ -12,12 +12,18 @@
  
 </head>
 <body>
- <!-- Go Back Navigation -->
- <div class="navigation" style="margin-left: 25px; margin-top: 15px; margin-bottom: 5px;">
-    <a href="Reports.html" class="go-back" style="color: #000"
-      >← Go Back</a
-    >
-  </div>
+ <!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="Reports.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+
+  <a href="unanswered_queries.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+  </a>
+</div>
+
    
     <div class="report-container">
       <h1 class="title"> Student Allowance Disbursement </h1>
@@ -29,243 +35,291 @@
         <div class="chart-container">
             <canvas id="fundingDateChart" width="400" height="200"></canvas>
       </div>
-        
-      </section>
-      <h2 class="section-title" style="margin-top: 15px;"><i class="ri-error-warning-line"></i> Analysis of Funding Date Trends</h2>
-        <section class="funding-date-analysis">
-        <ul>
-            <ul>
-            <li>Peak funding dates are often associated with a surge in student queries, particularly concerning allowance calculations, missing payments, or document submission errors.</li>
-            </ul>
-            <ul>
-
-                <li>The majority of funding disbursements occur on the <strong>15th of each month</strong>, with a noticeable spike in <strong>October</strong>.</li>
-            </ul>
-            <ul>
-                <li>Students may have future funding dates scheduled. Early identification of these dates helps ensure no delays in funding processes.</li>
-            </ul>
-            
-        </ul>
-        </section>
-
-        <h2 class="section-title"><i class="ri-alert-line"></i> Risks and Impact</h2>
-        <section class="risks-impact">
-        <ul>
-            <li><strong>Potential Delays:</strong>
-            <ul>
-                <li>Financial aid processing may be delayed for non-compliant students, potentially affecting their ability to attend classes or purchase necessary materials.</li>
-                <li>Increased volume of student queries around peak funding dates can cause delays in resolving issues, impacting overall efficiency.</li>
-            </ul>
-            </li>
-            </li>
-            <li><strong>Budget Impact:</strong>
-            <ul>
-                <li>Incomplete or delayed documentation may complicate financial aid processing and disrupt budget planning, making it challenging to allocate funds accurately.</li>
-            </ul>
-            </li>
-        </ul>
-        </section>
-
-        <h2 class="section-title"><i class="ri-error-warning-line"></i> Admin Recommendations</h2>
-        <section class="admin-recommendations">
-        <ul>
-            <li><strong>Review Upcoming Funding Dates:</strong>
-            <ul>
-                <li>Ensure that students with upcoming funding dates, especially those with incomplete documentation, have all necessary approvals in place to avoid delays.</li>
-            </ul>
-            </li>
-            <li><strong>Prepare for Peak Query Volumes:</strong>
-            <ul>
-                <li>Anticipate an increase in student queries around peak funding days (e.g., 15th of the month) and ensure adequate staffing and resources are in place to handle these queries.</li>
-                <li>Consider extending support hours or adding additional resources to help students with allowance issues.</li>
-            </ul>
-            </li>
-            <li><strong>Optimize Communication:</strong>
-            <ul>
-                <li>Proactively communicate with students ahead of peak funding dates, reminding them of required documentation and submission deadlines to reduce the volume of queries.</li>
-            </ul>
-            </li>
-            <li><strong>Automated Alerts:</strong>
-            <ul>
-                <li>Set up automated reminders for students with upcoming funding dates and incomplete documentation to ensure timely processing and avoid delays.</li>
-            </ul>
-            </li>
-        </ul>
-        </section>
-
-
+      
     </div>
+      
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-error-warning-line"></i> Analysis of Funding Date Trends
+            </div>
+            <div class="accordion-content">
+              <section class="funding-date-analysis">
+                <ul>
+                    <ul>
+                    <li>Peak funding dates are often associated with a surge in student queries, particularly concerning allowance calculations, missing payments, or document submission errors.</li>
+                    </ul>
+                    <ul>
+        
+                        <li>The majority of funding disbursements occur on the <strong>15th of each month</strong>, with a noticeable spike in <strong>October</strong>.</li>
+                    </ul>
+                    <ul>
+                        <li>Students may have future funding dates scheduled. Early identification of these dates helps ensure no delays in funding processes.</li>
+                    </ul>
+                    
+                </ul>
+                </section>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <i class="ri-alert-line"></i> Risks and Impact
+          </div>
+          <div class="accordion-content">
+            <section class="risks-impact">
+              <ul>
+                  <li><strong>Potential Delays:</strong>
+                  <ul>
+                      <li>Financial aid processing may be delayed for non-compliant students, potentially affecting their ability to attend classes or purchase necessary materials.</li>
+                      <li>Increased volume of student queries around peak funding dates can cause delays in resolving issues, impacting overall efficiency.</li>
+                  </ul>
+                  </li>
+                  </li>
+                  <li><strong>Budget Impact:</strong>
+                  <ul>
+                      <li>Incomplete or delayed documentation may complicate financial aid processing and disrupt budget planning, making it challenging to allocate funds accurately.</li>
+                  </ul>
+                  </li>
+              </ul>
+              </section>
+          </div>
+      </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-lightbulb-line"></i> Recommendations & Actions
+            </div>
+            <div class="accordion-content">
+              <section class="admin-recommendations">
+                <ul>
+                    <li><strong>Review Upcoming Funding Dates:</strong>
+                    <ul>
+                        <li>Ensure that students with upcoming funding dates, especially those with incomplete documentation, have all necessary approvals in place to avoid delays.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Prepare for Peak Query Volumes:</strong>
+                    <ul>
+                        <li>Anticipate an increase in student queries around peak funding days (e.g., 15th of the month) and ensure adequate staffing and resources are in place to handle these queries.</li>
+                        <li>Consider extending support hours or adding additional resources to help students with allowance issues.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Optimize Communication:</strong>
+                    <ul>
+                        <li>Proactively communicate with students ahead of peak funding dates, reminding them of required documentation and submission deadlines to reduce the volume of queries.</li>
+                    </ul>
+                    </li>
+                    <li><strong>Automated Alerts:</strong>
+                    <ul>
+                        <li>Set up automated reminders for students with upcoming funding dates and incomplete documentation to ensure timely processing and avoid delays.</li>
+                    </ul>
+                    </li>
+                </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
         <script>
             // Wait for the DOM to be fully loaded before executing the script
             document.addEventListener('DOMContentLoaded', function () {
                 // Set the current date into the span
                 document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
             });
-        </script>
-
-        <div class="details">
-            <h2>Details</h2>
-            <ul>
-                <li><strong>File Format</strong></li>
-                <li> <i class="ri-file-word-2-line" style="color: blue;"></i> MS Word</li>
-                <li> <i class="ri-file-pdf-2-line" style="color: red;"></i> PDF</li>
-                <li><i class="ri-article-line" style="color: green;"></i> Google Docs</li>
-                <li><strong>Size</strong>: A4 </li>
-            </ul>
-        </div>
-        <div class="download-section">
-            <a href="#" class="download-button">Download</a>
-        </div>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
-        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-        const firebaseConfig = {
-  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-  projectId: "mymoshalallowance-34e68",
-  storageBucket: "mymoshalallowance-34e68.appspot.com",
-  messagingSenderId: "387609738002",
-  appId: "1:387609738002:web:38cf56b731375650d751cb",
-  measurementId: "G-5E13X2QNFC"
-};
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                loadFundingData();
-            } else {
-                console.log("No user is logged in.");
-            }
-        });
-
-        async function loadFundingData() {
-            const fundingDates = [];
-            const fundingCounts = [];
-            const futureFundingDateStudents = [];
-            const futureFundingDate = "2024-10-15"; // Student ID 2600314 future funding date
-
-            try {
-                const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
-
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
-                    const date = new Date(data.ExtFunding_Date).toLocaleDateString();
-                    const studentId = data.Student_ID;
-
-                    // Track the dates for funding trends
-                    if (!fundingDates.includes(date)) {
-                        fundingDates.push(date);
-                        fundingCounts.push(1);
+            // Wait for the DOM to be fully loaded before executing the script
+            document.addEventListener('DOMContentLoaded', function () {
+                    // Set the current date into the span
+                    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+                });
+                //Accordian
+      
+                    function toggleAccordion(header) {
+                    const content = header.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.padding = "0 15px";
                     } else {
-                        const index = fundingDates.indexOf(date);
-                        fundingCounts[index] += 1;
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.padding = "15px";
                     }
+                }
+                function toggleAccordion(header) {
+                const content = header.nextElementSibling;
+                const allHeaders = document.querySelectorAll('.accordion-header');
 
-                    // Highlight student with future funding date
-                    if (date === futureFundingDate && studentId === "2600314") {
-                        futureFundingDateStudents.push(date);
+                // Close all other accordion sections
+                allHeaders.forEach(h => {
+                    const c = h.nextElementSibling;
+                    if (c !== content) {
+                        c.style.maxHeight = null;
+                        c.style.padding = "0 20px";
+                        h.classList.remove('active');
                     }
                 });
 
-                // Call function to render the chart
-                renderChart(fundingDates, fundingCounts, futureFundingDateStudents);
+                // Toggle the clicked section
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.padding = "0 20px";
+                    header.classList.remove('active');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    content.style.padding = "15px 20px";
+                    header.classList.add('active');
+                }
+                }
+        </script>
 
-            } catch (error) {
-                console.error("Error loading funding data:", error);
-            }
-        }
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+            import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+            import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-        function renderChart(fundingDates, fundingCounts) {
-    const ctx = document.getElementById('fundingDateChart').getContext('2d');
+            const firebaseConfig = {
+      apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+      authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+      projectId: "mymoshalallowance-34e68",
+      storageBucket: "mymoshalallowance-34e68.appspot.com",
+      messagingSenderId: "387609738002",
+      appId: "1:387609738002:web:38cf56b731375650d751cb",
+      measurementId: "G-5E13X2QNFC"
+    };
 
-    // Convert dates into Date objects for sorting
-    const data = fundingDates.map((date, index) => ({
-        date: new Date(date),
-        count: fundingCounts[index]
-    }));
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            const db = getFirestore(app);
 
-    // Sort data by date in ascending order
-    data.sort((a, b) => a.date - b.date);
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    loadFundingData();
+                } else {
+                    console.log("No user is logged in.");
+                }
+            });
 
-    // Extract sorted dates and counts
-    const sortedFundingDates = data.map(item => item.date.toISOString().split('T')[0]);  // Format date as 'YYYY-MM-DD'
-    const sortedFundingCounts = data.map(item => item.count);
+            async function loadFundingData() {
+                const fundingDates = [];
+                const fundingCounts = [];
+                const futureFundingDateStudents = [];
+                const futureFundingDate = "2024-10-15"; // Student ID 2600314 future funding date
 
-    const fundingDateChart = new Chart(ctx, {
-        type: 'scatter',  // Use scatter plot for time progression
-        data: {
-            datasets: [{
-                label: 'Number of Fundings by Date',
-                data: sortedFundingDates.map((date, index) => ({
-                    x: date,
-                    y: 0,  // Keep all points on a flat y-axis
-                    r: sortedFundingCounts[index] * 2,  // Bubble size corresponds to funding count
-                    v: sortedFundingCounts[index]  // Store count value for tooltips
-                })),
-                backgroundColor: sortedFundingCounts.map((count) => {
-                    // Adjust color intensity based on the count of fundings
-                    const alpha = count / Math.max(...sortedFundingCounts);  // Scale color intensity
-                    return `rgba(75, 192, 192, ${alpha})`;  // Dynamic alpha for color intensity
-                }),
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Funding Date Scatter Plot (Previous to Current)'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(tooltipItem) {
-                            return `Date: ${tooltipItem.raw.x}, Fundings: ${tooltipItem.raw.v}`;
+                try {
+                    const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
+
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const date = new Date(data.ExtFunding_Date).toLocaleDateString();
+                        const studentId = data.Student_ID;
+
+                        // Track the dates for funding trends
+                        if (!fundingDates.includes(date)) {
+                            fundingDates.push(date);
+                            fundingCounts.push(1);
+                        } else {
+                            const index = fundingDates.indexOf(date);
+                            fundingCounts[index] += 1;
                         }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'category',  // Dates displayed as categorical labels
-                    title: {
-                        display: true,
-                        text: 'Funding Date (sorted from past to current)'
-                    }
-                },
-                y: {
-                    display: false  // Only one row, no need for visible y-axis
+
+                        // Highlight student with future funding date
+                        if (date === futureFundingDate && studentId === "2600314") {
+                            futureFundingDateStudents.push(date);
+                        }
+                    });
+
+                    // Call function to render the chart
+                    renderChart(fundingDates, fundingCounts, futureFundingDateStudents);
+
+                } catch (error) {
+                    console.error("Error loading funding data:", error);
                 }
             }
+
+            function renderChart(fundingDates, fundingCounts) {
+        const ctx = document.getElementById('fundingDateChart').getContext('2d');
+
+        // Convert dates into Date objects for sorting
+        const data = fundingDates.map((date, index) => ({
+            date: new Date(date),
+            count: fundingCounts[index]
+        }));
+
+        // Sort data by date in ascending order
+        data.sort((a, b) => a.date - b.date);
+
+        // Extract sorted dates and counts
+        const sortedFundingDates = data.map(item => item.date.toISOString().split('T')[0]);  // Format date as 'YYYY-MM-DD'
+        const sortedFundingCounts = data.map(item => item.count);
+
+        const fundingDateChart = new Chart(ctx, {
+      type: 'bar',  // Change to bar chart
+      data: {
+        labels: sortedFundingDates,  // Dates will be the labels on the x-axis
+        datasets: [{
+          label: 'Number of Fundings by Date',
+          data: sortedFundingCounts,  // Funding counts will be plotted on the y-axis
+          backgroundColor: sortedFundingCounts.map((count) => {
+            // Adjust color intensity based on the count of fundings
+            const alpha = count / Math.max(...sortedFundingCounts);  // Scale color intensity
+            return `rgba(75, 192, 192, ${alpha})`;  // Dynamic alpha for color intensity
+          }),
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Funding Date Bar Chart (Previous to Current)'
+          },
+          tooltip: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return `Date: ${tooltipItem.label}, Fundings: ${tooltipItem.raw}`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Funding Date (sorted from past to current)'
+            }
+          },
+          y: {
+            beginAtZero: true,  // Ensure the y-axis starts at 0
+            title: {
+              display: true,
+              text: 'Number of Fundings'
+            }
+          }
         }
+      }
     });
 
-    // Adding event listener for double-click event
-    document.getElementById('fundingDateChart').addEventListener('dblclick', (event) => {
-        const points = fundingDateChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
-        
-        if (points.length > 0) {
-            window.location.href = 'unanswered_queries.html';
-        }
-    });
-}
 
-    </script>
+        // Adding event listener for double-click event
+        document.getElementById('fundingDateChart').addEventListener('dblclick', (event) => {
+            const points = fundingDateChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+            
+            if (points.length > 0) {
+                window.location.href = 'unanswered_queries.html';
+            }
+        });
+    }
 
-<footer>
-    <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
-    <p>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </p>
-  </footer>
+        </script>
+
+        <footer>
+            <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
+            <p>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+            </p>
+        </footer>
 
 </body>
 </html>
@@ -411,6 +465,66 @@
       padding: 12px 25px;
       letter-spacing: 1px;
     }
+    
+.accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  margin-left: 362px;
+    width: 52%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px #3f62af;
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #fff;
+    color: #3f62af;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
+.accordion-header:hover {
+    background: #3f62af;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+    
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+  
     
     footer {
       margin-top: 11px;
