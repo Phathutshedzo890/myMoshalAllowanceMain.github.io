@@ -12,7 +12,6 @@
           margin: 0;
           padding: 0;
           font-family: Arial, sans-serif;
-          
         }
     
         body {
@@ -25,7 +24,6 @@
           position: sticky;
           overflow-y: hidden;
         }
-    
     
         h1 {
           font-weight: bold;
@@ -73,7 +71,6 @@
           text-align: center;
           padding: 20px;
           background: #f8f8f8;
-          
         }
     
         footer p {
@@ -88,10 +85,10 @@
     
         table {
           width: 90%;
-        border-collapse: collapse;
-        background-color: white;
-        box-shadow: 0 2px 5px #3f62af;
-        margin-left: 50px;
+          border-collapse: collapse;
+          background-color: white;
+          box-shadow: 0 2px 5px #3f62af;
+          margin-left: 50px;
         }
         
         th, td {
@@ -121,7 +118,16 @@
           border-radius: 5px;
           font-size: 14px;
         }
-    
+        
+        table {
+    width: 90%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px #3f62af;
+    margin-left: 50px;
+    margin-bottom: 30px; /* Add this line to add margin below the table */
+}
+
         .action-btn:hover {
           background-color: #2e4b87;
         }
@@ -152,6 +158,7 @@
                     <th>Missing Documents</th>
                     <th>Days Since Last Update</th>
                     <th>Severity</th>
+                    <th>Action</th> <!-- Added Action column -->
                 </tr>
             </thead>
             <tbody>
@@ -166,14 +173,14 @@
 
         // Firebase configuration (replace with your config)
         const firebaseConfig = {
-  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-  projectId: "mymoshalallowance-34e68",
-  storageBucket: "mymoshalallowance-34e68.appspot.com",
-  messagingSenderId: "387609738002",
-  appId: "1:387609738002:web:38cf56b731375650d751cb",
-  measurementId: "G-5E13X2QNFC"
-};
+            apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+            authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+            projectId: "mymoshalallowance-34e68",
+            storageBucket: "mymoshalallowance-34e68.appspot.com",
+            messagingSenderId: "387609738002",
+            appId: "1:387609738002:web:38cf56b731375650d751cb",
+            measurementId: "G-5E13X2QNFC"
+        };
 
         // Initialize Firebase
         const firebaseApp = initializeApp(firebaseConfig);
@@ -193,7 +200,7 @@
                     
                     // Check for missing documents
                     const missingDocuments = await checkMissingDocuments(studentID);
-                    if (missingDocuments.length >= 2) {  // Changed to check for 2 or more missing documents
+                    if (missingDocuments.length >= 2) {  // Check for 2 or more missing documents
                         const lastUpdate = studentData.LastUpdate || new Date();
                         const daysSinceUpdate = calculateDaysSince(lastUpdate);
 
@@ -203,7 +210,8 @@
                             studentName: `${studentData.Student_FName} ${studentData.Student_LName}`,
                             missingDocuments,
                             daysSinceUpdate,
-                            severity
+                            severity,
+                            studentID
                         });
                         nonCompliantTable.appendChild(row);
                     }
@@ -255,22 +263,19 @@
                 <td>${data.missingDocuments.join(', ')}</td>
                 <td>${data.daysSinceUpdate} days</td>
                 <td class="${data.severity.toLowerCase()}-risk">${data.severity}</td>
+                <td><button class="action-btn" onclick="remindStudent('${data.studentID}')">Remind</button></td> <!-- Added Remind button -->
             `;
             return row;
         }
 
-        // Call the fetch function once the page has loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            fetchNonCompliantStudents();
-        });
-    </script>
+        // Function to handle the remind button click event
+        function remindStudent(studentID) {
+            alert(`Reminder sent to student ID: ${studentID}`);
+            // You can add further functionality here to send reminders to the student.
+        }
 
-<footer>
-    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
-    <p>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </p>
-  </footer>
+        // Call the fetch function once the page has loaded
+        fetchNonCompliantStudents();
+    </script>
 </body>
 </html>
