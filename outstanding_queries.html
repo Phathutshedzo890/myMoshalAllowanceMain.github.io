@@ -201,74 +201,157 @@
 }
 
             </script>
+<script type="module">
+  function goToPage(pageUrl) {
+      window.location.href = pageUrl;
+  }
 
-          <script type="module">
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-            import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-            const firebaseConfig = {
-              apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-              authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-              projectId: "mymoshalallowance-34e68",
-              storageBucket: "mymoshalallowance-34e68.appspot.com",
-              messagingSenderId: "387609738002",
-              appId: "1:387609738002:web:38cf56b731375650d751cb",
-              measurementId: "G-5E13X2QNFC"
-            };
-            const app = initializeApp(firebaseConfig);
-            const db = getFirestore(app);
+  const firebaseConfig = {
+      apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+      authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+      projectId: "mymoshalallowance-34e68",
+      storageBucket: "mymoshalallowance-34e68.appspot.com",
+      messagingSenderId: "387609738002",
+      appId: "1:387609738002:web:38cf56b731375650d751cb",
+      measurementId: "G-5E13X2QNFC"
+  };
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-            // Function to count answered and unanswered queries
-            async function getQueryStatus() {
-              const answeredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "==", "answered")));
-              const unansweredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "==", null)));
-              
-              return {
-                answered: answeredQuerySnapshot.size,
-                unanswered: unansweredQuerySnapshot.size
-              };
-            }
+  // Function to calculate severity based on the time the query has been unanswered
+  function calculateSeverity(timestamp) {
+      const currentTime = new Date();
+      const queryTime = new Date(timestamp);
+      const timeDiff = currentTime - queryTime;
 
-            // Display the bar chart
-            async function displayQueryChart() {
-              const queryCounts = await getQueryStatus();
+      const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
 
-              const ctx = document.getElementById('queryChart').getContext('2d');
-              const queryChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                  labels: ['Answered', 'Unanswered'],
-                  datasets: [{
-                    label: '',
-                    data: [queryCounts.answered, queryCounts.unanswered],
-                    backgroundColor: ['#4CAF50', '#FF5733'], // Green for answered, Red for unanswered
-                    borderColor: ['#4CAF50', '#FF5733'],
-                    borderWidth: 1
-                  }]
-                },
-                options: {
-                  responsive: true,
-                  onClick: (e) => {
-                    const activePoints = queryChart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
-                    if (activePoints.length > 0) {
-                      const chartIndex = activePoints[0].index;
-                      if (chartIndex === 1) { // Unanswered queries bar
-                        window.location.href = 'not_updated_students.html';
+      if (daysDiff >= 7) {
+          return { severity: "High", days: daysDiff };
+      } else if (daysDiff >= 3) {
+          return { severity: "Medium", days: daysDiff };
+      } else {
+          return { severity: "Low", days: daysDiff };
+      }
+  }
+
+  async function displayQueryStats() {
+      const unansweredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "==", null)));
+      const answeredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "!=", null)));
+
+      const unansweredCount = unansweredQuerySnapshot.size;
+      const answeredCount = answeredQuerySnapshot.size;
+
+      // Prepare data for bar chart
+      const ctx = document.getElementById('queryChart').getContext('2d');
+      new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: ['Answered', 'Unanswered'],
+              datasets: [{
+                  label: 'Query Count',
+                  data: [answeredCount, unansweredCount],
+                  backgroundColor: ['green', 'red'],
+                  borderColor: ['darkgreen', 'darkred'],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              onClick: function (e) {
+                  const activePoints = this.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+                  if (activePoints.length > 0) {
+                      const index = activePoints[0].index;
+                      if (index === 0) {
+                          goToPage('answered_queries.html'); // Redirect to answered queries page
+                      } else {
+                          goToPage('not_updated_students.html'); // Redirect to unanswered queries page
                       }
-                    }
-                  },
-                  scales: {
-                    y: {
-                      beginAtZero: true
-                    }
                   }
-                }
-              });
-            }
+              },
+              scales: {
+                  y: { beginAtZero: true }
+              }
+          }
+      });
+  }
 
-            // Initialize the chart on page load
-            displayQueryChart();
-          </script>
+  async function displayStudentData() {
+      const q = query(collection(db, "Create_Query"), where("adminResponse", "==", null));
+      const querySnapshot = await getDocs(q);
+      const tableBody = document.getElementById('studentTableBody');
+
+      const studentQueries = {};
+
+      querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const { severity, days } = calculateSeverity(data.timestamp);
+
+          if (!studentQueries[data.userName]) {
+              studentQueries[data.userName] = {
+                  queries: [],
+                  severity,
+                  days
+              };
+          }
+          studentQueries[data.userName].queries.push({
+              date: new Date(data.timestamp).toLocaleDateString(),
+              message: data.userMessage,
+              docId: doc.id,
+              severity,
+              days
+          });
+      });
+
+      const rows = [];
+      for (const student in studentQueries) {
+          const studentData = studentQueries[student];
+          const queryCount = studentData.queries.length;
+          const latestQuery = studentData.queries[0];
+
+          const messagePreview = latestQuery.message.split(" ").slice(0, 6).join(" ") + (latestQuery.message.split(" ").length > 6 ? "..." : "");
+
+          const row = document.createElement('tr');
+          const dateCell = document.createElement('td');
+          const nameCell = document.createElement('td');
+          const countCell = document.createElement('td');
+          const messageCell = document.createElement('td');
+          const severityCell = document.createElement('td');
+          const actionCell = document.createElement('td');
+
+          dateCell.textContent = latestQuery.date;
+          nameCell.textContent = student;
+          countCell.textContent = queryCount;
+          messageCell.textContent = messagePreview;
+          severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
+
+          const button = document.createElement('button');
+          button.textContent = 'Respond';
+          button.className = 'action-btn';
+          button.onclick = () => {
+              goToPage(`response_details.html?docId=${latestQuery.docId}`);
+          };
+
+          actionCell.appendChild(button);
+          row.appendChild(dateCell);
+          row.appendChild(nameCell);
+          row.appendChild(countCell);
+          row.appendChild(messageCell);
+          row.appendChild(severityCell);
+          row.appendChild(actionCell);
+
+          rows.push(row);
+      }
+
+      rows.forEach(row => tableBody.appendChild(row));
+  }
+
+  displayQueryStats();
+  displayStudentData();
+</script>
+
  
  <footer>
   <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
