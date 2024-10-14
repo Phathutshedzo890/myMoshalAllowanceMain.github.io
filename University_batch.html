@@ -25,8 +25,8 @@
 
   <div class="report-container">
     <h1 class="title"><i class="ri-file-text-line"></i> Student Funding University Batch Report</h1>
-    <p class="report-date">Report Date: <span id="currentDate"></span></p>
-    <p class="generated">Generated: monthly (Duration: Months of the academic year)</p>
+    <p class="report-date">Report Date: 31 May 2024</p>
+    <p class="generated">Generated: Annually</p>
     <br>
   
     <section class="key-metrics">
@@ -34,7 +34,7 @@
       <p>The breakdown of fully funded vs. partially funded students across universities offers a clear picture of resource allocation and program reach.</p>
       
       <div class="chart-container">
-        <canvas id="fundingAmountsChart" width="400" height="200"></canvas>
+        <canvas id="fundingChart" width="400" height="200"></canvas>
 
       </div>
     </section>
@@ -177,77 +177,68 @@
   </p>
 </footer>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+<script>
+  function createFundingChart() {
+    const ctx = document.getElementById('fundingChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['UP', 'Wits', 'UCT', 'Rhodes', 'SUN', 'UFS', 'UJ', 'UKZN', 'UWC', 'NMU'],
+            datasets: [
+                {
+                    label: 'Fully Funded Students',
+                    data: [50, 70, 60, 40, 45, 35, 55, 65, 20, 15],
+                    backgroundColor: 'rgba(63, 98, 175, 0.8)',
+                    borderColor: 'rgba(63, 98, 175, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Partially Funded Students',
+                    data: [100, 150, 120, 80, 90, 70, 110, 100, 90, 75],
+                    backgroundColor: 'rgba(173, 216, 230, 0.8)',
+                    borderColor: 'rgba(173, 216, 230, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: false, // Ensure bars are side by side
+                    ticks: {
+                        beginAtZero: true
+                    }
+                },
+                y: {
+                    stacked: false, // Ensure bars are side by side
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const label = context.dataset.label || '';
+                            const value = context.raw || 0;
+                            return `${label}: ${value} Students`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
 
-  const firebaseConfig = {
-      apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-      authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-      projectId: "mymoshalallowance-34e68",
-      storageBucket: "mymoshalallowance-34e68.appspot.com",
-      messagingSenderId: "387609738002",
-      appId: "1:387609738002:web:38cf56b731375650d751cb",
-      measurementId: "G-5E13X2QNFC"
-  };
+// Call the function to create the funding chart
+createFundingChart();
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  async function loadFundingAmountsData() {
-      try {
-          const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
-
-          // Objects to store total amount for each funding type
-          const fundingDataByType = {
-              Full: 0,
-              Partial: 0
-          };
-
-          querySnapshot.forEach((doc) => {
-              const data = doc.data();
-              const fundingAmount = data.ExtFunding_Amt;
-              const fundingType = data.ExtFunding_Type;
-
-              // Sum the funding amounts based on the funding type
-              if (fundingType === 'Full') {
-                  fundingDataByType.Full += fundingAmount;
-              } else if (fundingType === 'Partial') {
-                  fundingDataByType.Partial += fundingAmount;
-              }
-          });
-
-          const labels = ['Full', 'Partial'];
-          const dataValues = [fundingDataByType.Full, fundingDataByType.Partial];
-
-          const ctx = document.getElementById('fundingAmountsChart').getContext('2d');
-          new Chart(ctx, {
-              type: 'bar',
-              data: {
-                  labels: labels,
-                  datasets: [{
-                      label: '',
-                      data: dataValues,
-                      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                      borderColor: 'rgba(75, 192, 192, 1)',
-                      borderWidth: 1
-                  }]
-              },
-              options: {
-                  scales: {
-                      y: {
-                          beginAtZero: true
-                      }
-                  }
-              }
-          });
-      } catch (error) {
-          console.error("Error loading funding amounts data:", error);
-      }
-  }
-
-  loadFundingAmountsData();
 </script>
+
 
 <!-- Include a canvas for the chart -->
 <canvas id="fundingChart" width="400" height="200"></canvas>
