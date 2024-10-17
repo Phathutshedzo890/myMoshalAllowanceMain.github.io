@@ -57,15 +57,25 @@ const firebaseConfig = {
     const loggedInUserId = auth.currentUser.uid;
     const docRef = doc(db, "Student", loggedInUserId);
   
+    // Get input values
     const updatedData = {
-      Student_FName: document.getElementById('editFName').value,
-      Student_LName: document.getElementById('editLName').value,
-      Student_email: document.getElementById('editEmail').value,
-      Student_ID: document.getElementById('editStudentID').value,
-      Student_PhoneNo: document.getElementById('editPhoneNo').value,
-      Student_Varsity: document.getElementById('editVarsity').value
+      Student_FName: document.getElementById('editFName').value.trim(),
+      Student_LName: document.getElementById('editLName').value.trim(),
+      Student_email: document.getElementById('editEmail').value.trim(),
+      Student_ID: document.getElementById('editStudentID').value.trim(),
+      Student_PhoneNo: document.getElementById('editPhoneNo').value.trim(),
+      Student_Varsity: document.getElementById('editVarsity').value.trim()
     };
   
+    // Validate that no field is left empty
+    for (let key in updatedData) {
+      if (!updatedData[key]) {
+        alert(`${key.replace(/_/g, ' ')} cannot be empty.`);
+        return; // Stop the function if any field is empty
+      }
+    }
+  
+    // If all fields are valid, proceed to update the document
     updateDoc(docRef, updatedData)
       .then(() => {
         console.log("Profile updated successfully.");
@@ -76,13 +86,14 @@ const firebaseConfig = {
         document.getElementById('loggedStudent_ID').innerText = updatedData.Student_ID;
         document.getElementById('loggedUserPhoneNo').innerText = updatedData.Student_PhoneNo;
         document.getElementById('loggedUserVarsity').innerText = updatedData.Student_Varsity;
-        
+  
         toggleEditProfile(false); // Switch back to view mode
       })
       .catch((error) => {
         console.error("Error updating document: ", error);
       });
   });
+  
   
   function toggleEditProfile(isEditing) {
     const displayStyle = isEditing ? 'none' : 'inline';
