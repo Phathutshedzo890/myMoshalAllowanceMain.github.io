@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Data</title>
+  <link rel="stylesheet" href="admin-documents.html" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+   <!--=============== REMIXICONS ===============-->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      
+    }
+
+    body {
+      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
+      margin: 0;
+      position: sticky;
+      overflow-y: hidden;
+    }
+
+
+    h1 {
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 100;
+      line-height: 20px;
+      margin: 20px 0 30px;
+      text-align: center;
+    }
+
+    button {
+      border-radius: 20px;
+      border: 1px solid #3f62af;
+      background-color: #3f62af;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 12px 45px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: transform 80ms ease-in;
+      cursor: pointer;
+    }
+
+    button.ghost {
+      background-color: transparent;
+      border-color: #ffffff;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f8f8f8;
+      
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #3f62af;
+    }
+
+    table {
+      width: 90%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 5px #3f62af;
+    margin-left: 50px;
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+    }
+    
+    th {
+      background-color: #3f62af;
+      color: white;
+    }
+    
+    td {
+      word-wrap: break-word;
+    }
+
+    .message-column {
+      width: 40%;
+    }
+
+    .action-btn {
+      background-color: #3f62af;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .action-btn:hover {
+      background-color: #2e4b87;
+    }
+
+    @media (max-width: 768px) {
+      main.container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+ 
+ <!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="outstanding_queries.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+
+  <a href="response_details.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+  </a>
+
+</div>
+
+  <main style="margin-top: -200px;">
+    <h1>Outstanding Student Queries</h1><br>
+    <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Student Name</th>
+            <th>Query Count</th>
+            <th>Message</th>
+            <th>Severity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="studentTableBody">
+        </tbody>
+      </table>
+  </main>
+  <footer>
+    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </p>
+  </footer>
+  <script type="module">
+    function goToPage(pageUrl) {
+      window.location.href = pageUrl;
+    }
+  
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+  
+    const firebaseConfig = {
+  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+  projectId: "mymoshalallowance-34e68",
+  storageBucket: "mymoshalallowance-34e68.appspot.com",
+  messagingSenderId: "387609738002",
+  appId: "1:387609738002:web:38cf56b731375650d751cb",
+  measurementId: "G-5E13X2QNFC"
+};
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+  
+    // Function to calculate severity based on the time the query has been unanswered
+    function calculateSeverity(timestamp) {
+      const currentTime = new Date();
+      const queryTime = new Date(timestamp);
+      const timeDiff = currentTime - queryTime; // time difference in milliseconds
+  
+      const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert to days
+  
+      if (daysDiff >= 7) {
+        return { severity: "High", days: daysDiff };
+      } else if (daysDiff >= 3) {
+        return { severity: "Medium", days: daysDiff };
+      } else {
+        return { severity: "Low", days: daysDiff };
+      }
+    }
+  
+    async function displayStudentData() {
+      const q = query(collection(db, "Create_Query"), where("adminResponse", "==", null));
+      const querySnapshot = await getDocs(q);
+      const tableBody = document.getElementById('studentTableBody');
+  
+      const studentQueries = {};
+  
+      // Group queries by student
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const { severity, days } = calculateSeverity(data.timestamp);
+  
+        if (!studentQueries[data.userName]) {
+          studentQueries[data.userName] = {
+            queries: [],
+            severity,
+            days
+          };
+        }
+        studentQueries[data.userName].queries.push({ 
+          date: new Date(data.timestamp).toLocaleDateString(),
+          message: data.userMessage,
+          docId: doc.id,
+          severity,
+          days
+        });
+      });
+  
+      // Create rows for each student and count their queries
+      const rows = [];
+      for (const student in studentQueries) {
+        const studentData = studentQueries[student];
+        const queryCount = studentData.queries.length;
+        const latestQuery = studentData.queries[0];  // Sorting by the first query for severity
+  
+        // Extracting the first 6 words from the message
+        const messagePreview = latestQuery.message.split(" ").slice(0, 6).join(" ") + (latestQuery.message.split(" ").length > 6 ? "..." : "");
+  
+        const row = document.createElement('tr');
+        const dateCell = document.createElement('td');
+        const nameCell = document.createElement('td');
+        const countCell = document.createElement('td');
+        const messageCell = document.createElement('td');
+        const severityCell = document.createElement('td');
+        const actionCell = document.createElement('td');
+  
+        dateCell.textContent = latestQuery.date;
+        nameCell.textContent = student;
+        countCell.textContent = queryCount;
+        messageCell.textContent = messagePreview;
+        severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
+  
+        const button = document.createElement('button');
+        button.textContent = 'Respond';
+        button.className = 'action-btn';
+        button.onclick = () => {
+          goToPage(`response_details.html?docId=${latestQuery.docId}`);
+        };
+  
+        actionCell.appendChild(button);
+        row.appendChild(dateCell);
+        row.appendChild(nameCell);
+        row.appendChild(countCell); // Added count column
+        row.appendChild(messageCell);
+        row.appendChild(severityCell);
+        row.appendChild(actionCell);
+  
+        rows.push(row);
+      }
+  
+      // Sort rows by severity (longest unanswered first)
+      rows.sort((a, b) => {
+        const aSeverity = a.children[4].textContent.split(" ")[0]; // Get severity level
+        const bSeverity = b.children[4].textContent.split(" ")[0];
+  
+        const severityOrder = { "High": 3, "Medium": 2, "Low": 1 };
+  
+        return severityOrder[bSeverity] - severityOrder[aSeverity];
+      });
+  
+      // Append sorted rows to table
+      rows.forEach(row => tableBody.appendChild(row));
+    }
+  
+    displayStudentData();
+  </script>
+  
+</body>
+</html>
+

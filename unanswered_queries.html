@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Allowance Payment Summary Report</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js" type="module"></script>
+    <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+ 
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+  
+      body {
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        margin: 0;
+      }
+  
+  
+      h1 {
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        margin-top: 50px;
+      }
+  
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        margin: 20px 0 30px;
+        text-align: center;
+      }
+  
+      button {
+        border-radius: 20px;
+        border: 1px solid #3f62af;
+        background-color: #3f62af;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+      }
+  
+      button.ghost {
+        background-color: transparent;
+        border-color: #ffffff;
+      }
+  
+      button:focus {
+        outline: none;
+      }
+  
+      button:active {
+        transform: scale(0.95);
+      }
+  
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #f8f8f8;
+        
+      }
+  
+      footer p {
+        margin: 5px 0;
+      }
+  
+      footer a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3f62af;
+      }
+  
+      table {
+        width: 90%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 5px #3f62af;
+      margin-left: 50px;
+      }
+      
+      th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+      
+      th {
+        background-color: #3f62af;
+        color: white;
+      }
+      
+      td {
+        word-wrap: break-word;
+      }
+  
+      .message-column {
+        width: 40%;
+      }
+  
+      .action-btn {
+        background-color: #3f62af;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+  
+      .action-btn:hover {
+        background-color: #2e4b87;
+      }
+  
+      @media (max-width: 768px) {
+        main.container {
+          width: 90%;
+        }
+      }
+    </style>
+</head>
+<body>
+  <!-- Navigation Container -->
+<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
+  
+  <a href="University_batch.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
+    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+  </a>
+</div>
+
+  <main style="margin-top: -150px;">
+    <h1>Full Student Allowance Disbursement</h1><br>
+    <table id="reportTable">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>External Funding Name</th>
+                <th>External Funding Amount</th>
+                <th>Calculated Allowance</th>
+                <th>External Funding Type</th>
+                <th>External Funding Date</th>
+                <th>NSFAS Status</th>
+                <th>Document</th>
+            </tr>
+        </thead>
+        <tbody id="reportBody">
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+  </main>
+  <footer>
+    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </p>
+  </footer>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+  projectId: "mymoshalallowance-34e68",
+  storageBucket: "mymoshalallowance-34e68.appspot.com",
+  messagingSenderId: "387609738002",
+  appId: "1:387609738002:web:38cf56b731375650d751cb",
+  measurementId: "G-5E13X2QNFC"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            loadAllowanceData();  // Call data loading function if a user is logged in
+        } else {
+            console.log("No user is logged in.");
+            // Handle the case for unauthenticated users, such as redirecting to a login page
+        }
+    });
+
+    function calculateAllowance(annualAmount) {
+        const fixedAmount = 100000; // Example fixed amount for calculation
+        const remainingAmount = fixedAmount - annualAmount;
+        return Math.round(remainingAmount / 9); // Monthly allowance (adjust as needed)
+    }
+
+    async function loadAllowanceData() {
+        const reportBody = document.getElementById('reportBody');
+        // No clearing of existing data (appends new data if required)
+
+        try {
+            const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
+
+            if (querySnapshot.empty) {
+                if (reportBody.innerHTML.trim() === '') {
+                    reportBody.innerHTML = '<tr><td colspan="8">No data available</td></tr>';
+                }
+                return;
+            }
+
+            // Object to store the number of fundings per date
+            const fundingDataByDate = {};
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const calculatedAllowance = calculateAllowance(data.ExtFunding_Amt);
+
+                const fundingDate = data.ExtFunding_Date;  // Capture funding date
+
+                // Group fundings by date
+                if (fundingDataByDate[fundingDate]) {
+                    fundingDataByDate[fundingDate]++;
+                } else {
+                    fundingDataByDate[fundingDate] = 1;
+                }
+
+                // Create table row for each funding
+                const row = reportBody.insertRow();
+                row.insertCell(0).textContent = data.Student_ID;
+                row.insertCell(1).textContent = data.ExtFunding_Name;
+                row.insertCell(2).textContent = data.ExtFunding_Amt;
+                row.insertCell(3).textContent = calculatedAllowance;
+                row.insertCell(4).textContent = data.ExtFunding_Type;
+                row.insertCell(5).textContent = fundingDate;
+                row.insertCell(6).textContent = data.NSFAS_Status;
+
+                const docLink = document.createElement('a');
+                docLink.href = data.ExtFunding_Doc_URL;
+                docLink.textContent = 'View Document';
+                docLink.target = '_blank';
+                row.insertCell(7).appendChild(docLink);
+            });
+
+            console.log("Funding Data by Date:", fundingDataByDate);  // Log to check date accuracy
+
+        } catch (error) {
+            console.error("Error loading allowance data:", error);
+            if (reportBody.innerHTML.trim() === '') {
+                reportBody.innerHTML = '<tr><td colspan="8">Error loading data</td></tr>';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

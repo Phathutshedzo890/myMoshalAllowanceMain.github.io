@@ -19,28 +19,26 @@ import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "http
 
 // Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
-    authDomain: "mymoshalallowance.firebaseapp.com",
-    databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
-    projectId: "mymoshalallowance",
-    storageBucket: "mymoshalallowance.appspot.com",
-    messagingSenderId: "607619034226",
-    appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
-    measurementId: "G-NCTW2CSPR8"
-  };
-
+  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+  projectId: "mymoshalallowance-34e68",
+  storageBucket: "mymoshalallowance-34e68.appspot.com",
+  messagingSenderId: "387609738002",
+  appId: "1:387609738002:web:38cf56b731375650d751cb",
+  measurementId: "G-5E13X2QNFC"
+};
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
+
 // Function to handle file upload
 function uploadPDF(fileInputId, storagePath, firestoreCollection, messageElementId) {
   const fileInput = document.getElementById(fileInputId);
   const file = fileInput.files[0];
   const user = auth.currentUser;
-
   if (file && user) {
     const fileRef = storageRef(storage, `${storagePath}/${user.uid}/${file.name}`);
     
