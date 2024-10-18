@@ -3,15 +3,14 @@ import{getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebas
 import{getFirestore,doc,getDoc,collection,updateDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
-    authDomain: "mymoshalallowance.firebaseapp.com",
-    databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
-    projectId: "mymoshalallowance",
-    storageBucket: "mymoshalallowance.appspot.com",
-    messagingSenderId: "607619034226",
-    appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
-    measurementId: "G-NCTW2CSPR8"
-  };
+  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+  projectId: "mymoshalallowance-34e68",
+  storageBucket: "mymoshalallowance-34e68.appspot.com",
+  messagingSenderId: "387609738002",
+  appId: "1:387609738002:web:38cf56b731375650d751cb",
+  measurementId: "G-5E13X2QNFC"
+};
   const firebaseApp = initializeApp(firebaseConfig);
   const auth = getAuth();
   const db = getFirestore();
@@ -58,15 +57,25 @@ const firebaseConfig = {
     const loggedInUserId = auth.currentUser.uid;
     const docRef = doc(db, "Student", loggedInUserId);
   
+    // Get input values
     const updatedData = {
-      Student_FName: document.getElementById('editFName').value,
-      Student_LName: document.getElementById('editLName').value,
-      Student_email: document.getElementById('editEmail').value,
-      Student_ID: document.getElementById('editStudentID').value,
-      Student_PhoneNo: document.getElementById('editPhoneNo').value,
-      Student_Varsity: document.getElementById('editVarsity').value
+      Student_FName: document.getElementById('editFName').value.trim(),
+      Student_LName: document.getElementById('editLName').value.trim(),
+      Student_email: document.getElementById('editEmail').value.trim(),
+      Student_ID: document.getElementById('editStudentID').value.trim(),
+      Student_PhoneNo: document.getElementById('editPhoneNo').value.trim(),
+      Student_Varsity: document.getElementById('editVarsity').value.trim()
     };
   
+    // Validate that no field is left empty
+    for (let key in updatedData) {
+      if (!updatedData[key]) {
+        alert(`${key.replace(/_/g, ' ')} cannot be empty.`);
+        return; // Stop the function if any field is empty
+      }
+    }
+  
+    // If all fields are valid, proceed to update the document
     updateDoc(docRef, updatedData)
       .then(() => {
         console.log("Profile updated successfully.");
@@ -77,13 +86,14 @@ const firebaseConfig = {
         document.getElementById('loggedStudent_ID').innerText = updatedData.Student_ID;
         document.getElementById('loggedUserPhoneNo').innerText = updatedData.Student_PhoneNo;
         document.getElementById('loggedUserVarsity').innerText = updatedData.Student_Varsity;
-        
+  
         toggleEditProfile(false); // Switch back to view mode
       })
       .catch((error) => {
         console.error("Error updating document: ", error);
       });
   });
+  
   
   function toggleEditProfile(isEditing) {
     const displayStyle = isEditing ? 'none' : 'inline';
@@ -120,6 +130,9 @@ const firebaseConfig = {
       .catch((error) => {
         console.error("Error signing out:", error);
       });
+  });
+  document.getElementById("stay").addEventListener('click', (e)=>{
+    window.location.href = "profile.html"; // Redirect to
   });
 // onAuthStateChanged(auth,async (user)=>{
 //     console.log(user);
