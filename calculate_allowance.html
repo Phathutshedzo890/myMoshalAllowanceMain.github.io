@@ -651,35 +651,42 @@ body::-webkit-scrollbar {
     </footer>
 
     <script>
-    function calculateAllowance() {
-        const annualAmountInput =
-          document.getElementById("annual_amount").value;
-        const annualAmount = parseFloat(annualAmountInput);
-        const fixedAmount = 100000; // Fixed amount for calculation
-        const remainingAmount = fixedAmount - annualAmount;
-        const monthlyAllowance = remainingAmount / 9;
+function calculateAllowance() {
+    const annualAmountInput = document.getElementById("annual_amount").value;
+    const annualAmount = parseFloat(annualAmountInput);
+    const fixedAmount = 100000; // Fixed amount for calculation
+    const remainingAmount = fixedAmount - annualAmount;
+    const monthlyAllowance = remainingAmount / 9;
 
-        // Display the monthly allowance in each month
-        const months = [
-          "may",
-          "june",
-          "july",
-          "august",
-          "september",
-          "october",
-          "november",
-          "december",
-          "january",
-        ];
-        months.forEach((month) => {
-          const cell = document.getElementById(month);
-          cell.textContent = Math.round(monthlyAllowance);
-        });
+    // Create a formatter for South African Rands
+    const formatter = new Intl.NumberFormat('en-ZA', {
+        style: 'currency',
+        currency: 'ZAR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
-        // Display the total remaining amount
-        const totalRemainingCell = document.getElementById("totalRemaining");
-        totalRemainingCell.textContent = Math.round(remainingAmount);
-      }
+    // Display the monthly allowance in each month
+    const months = [
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+        "january",
+    ];
+    months.forEach((month) => {
+        const cell = document.getElementById(month);
+        cell.textContent = formatter.format(monthlyAllowance);
+    });
+
+    // Display the total remaining amount
+    const totalRemainingCell = document.getElementById("totalRemaining");
+    totalRemainingCell.textContent = formatter.format(remainingAmount);
+}
 
       //Accordian
       

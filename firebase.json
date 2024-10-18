@@ -15,7 +15,7 @@
     }
   },
   "hosting": {
-    "public": ".",
+    "public": "./",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -25,11 +25,14 @@
       {
         "source": "**",
         "destination": "/index.html"
-      },
-      {
-        "source":"/calculate_allowance/:id",
-        "destination":"/calulate_allowance.html"
       }
     ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
