@@ -1,6 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import{getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import{getFirestore,doc,getDoc,collection,updateDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
@@ -43,6 +45,25 @@ const firebaseConfig = {
       }
     }
   });
+
+  // Add event listener for 'Forgot Password' link
+document.getElementById('forgotPasswordLink').addEventListener('click', function () {
+  const email = prompt("Please enter your registered email address:");
+  
+  if (email) {
+    // Send password reset email
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent! Please check your inbox.");
+      })
+      .catch((error) => {
+        console.error("Error sending password reset email: ", error);
+        alert("Error: " + error.message);
+      });
+  } else {
+    alert("Please enter a valid email address.");
+  }
+});
   
   // Toggle between edit and view mode
   document.getElementById('editProfileButton').addEventListener('click', function () {
