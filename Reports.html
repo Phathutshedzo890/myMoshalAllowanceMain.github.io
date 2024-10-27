@@ -12,57 +12,136 @@
     <div class="container">
      
       <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
-                  
+                
         <div class="sidebar-menu-content">
-          
+           
             <ul class="nav nav-sidebar-menu sidebar-toggle-view">
-              
-              <li class="nav-item">
-                  <a href="#" class="nav-link"><i class="ri-menu-line"></i></a>
-              </li> 
-              <li class="nav-item">
-                  <a href="admin_dashboard.html" class="nav-link"><i class="ri-currency-line"></i><span>Dashboard</span></a>
-              </li>
-
-              <li class="nav-item">
-                  <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i><span>Document</span></a>
-              </li>
+               
+               <li class="nav-item">
+                   <a href="#" class="nav-link"><i class="ri-menu-line"></i></a>
+               </li> 
+               <li class="nav-item">
+                   <a href="admin_dashboard.html" class="nav-link"><i class="ri-currency-line"></i><span>Dashboard</span></a>
+               </li>
+  
+               <li class="nav-item">
+                   <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i><span>Document</span></a>
+               </li>
                 <li class="nav-item ">
-                  <a href="admin_query_response.html" class="nav-link"><i class="ri-file-copy-2-line"></i><span>Message</span></a>
-              </li>
+                   <a href="admin_query_response.html" class="nav-link"><i class="ri-file-copy-2-line"></i><span>Message</span></a>
+               </li>
                 <li class="nav-item">
                     <a href="Reports.html" class="nav-link"><i class="ri-file-chart-line"></i><span>Reports</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="useless.html" class="nav-link"><i class="ri-settings-5-line"></i><span>Settings</span></a>
                 </li>
+
                 <li class="nav-item">
-                  <a href="" class="nav-link"><i class="ri-logout-box-line"></i></i><span>Logout</span></a>
+                  <a href="#" class="nav-link" id="logoutLink">
+                      <i class="ri-logout-box-line"></i>
+                      <span>Logout</span>
+                  </a>
               </li>
+              
+              <style>
+              .logout-popover {
+                display: none;
+          margin-left: 50px;
+          position: absolute;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000; /* Ensure this is above other content */
+                 
+              }
+              
+              .logout-popover .buttons {
+                  display: flex;
+                  gap: 10px;
+                  margin-top: 10px;
+                  justify-content: center;
+              }
+              
+              .logout-popover button {
+                background-color: #3f62af;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              
+              </style>
+              <div class="logout-popover" id="logoutPopover">
+                  <p>Are you sure you want to log out?</p>
+                  <div class="buttons">
+                      <button class="confirm" onclick="logout()">Yes</button>
+                      <button class="cancel" onclick="closePopover()">No</button>
+                  </div>
+              </div>
+              <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  const logoutLink = document.getElementById('logoutLink');
+                  const logoutPopover = document.getElementById('logoutPopover');
+              
+                  // Show the popover near the logout link
+                  logoutLink.onclick = function(event) {
+                      event.preventDefault();
+                      const rect = logoutLink.getBoundingClientRect();
+                      logoutPopover.style.display = 'block';
+                      logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+                      logoutPopover.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                  };
+              
+                  // Close the popover
+                  function closePopover() {
+                      logoutPopover.style.display = 'none';
+                  }
+                  window.closePopover = closePopover;
+              
+                  // Handle logout logic
+                  function logout() {
+                      window.location.href = 'admin_login.html'; // Redirect to index.html or your desired page
+                  }
+                  window.logout = logout;
+              
+                  // Close popover if clicking outside of it
+                  document.addEventListener('click', function(event) {
+                      if (!logoutLink.contains(event.target) && !logoutPopover.contains(event.target)) {
+                          closePopover();
+                      }
+                  });
+              });
+              </script>
             </ul>
             
         </div>
         
-          <script>
-          document.addEventListener('DOMContentLoaded', function() {
+           <script>
+           document.addEventListener('DOMContentLoaded', function() {
           const sidebar = document.querySelector('.sidebar-main');
-
+  
           sidebar.addEventListener('mouseenter', () => {
           sidebar.classList.add('expanded');
           sidebar.classList.remove('collapsed');
           });
-
+  
           sidebar.addEventListener('mouseleave', () => {
           sidebar.classList.remove('expanded');
           sidebar.classList.add('collapsed');
           });
           });
-          </script>
+           </script>
           <style>
             /* Sidebar collapsed style */
             .sidebar-main {
-                width: 70px;
-                height: 700px; 
+                width: 70px; 
                 background-color: #3f62af;
                 transition: width 0.3s;
                 margin-top: 20px;
@@ -78,7 +157,7 @@
                 background-color: rgba(255, 255, 255, 0.2); 
                 color: #ffffff; 
                 border-radius: 10px;
-                margin-left: -10px;
+                margin-left: 10px;
                 margin-right: 10px;
             }
             
@@ -88,7 +167,7 @@
                 padding: 10px;
                 text-decoration: none;
                 color: #fff;
-                margin-left: 15px;
+                margin-left: 13px;
                 margin-top: 30px;
             }
             
@@ -135,115 +214,159 @@
       </div>
      
         <div class="main-content">
-          <header class="header" style="background-color: #fff; color: #3f62af;padding: 0;text-align: center; border-radius: 10px; width: 99%; height: 80px; margin: 85px 0 10px 0;">
-            <div class="header-container">
-              <div class="header-items" style="margin-left: 800px; margin-bottom: -80px;">
-                  
-                <a href="#">
-                  <i class="ri-notification-3-line" style="font-size: 24px;"></i>
-                </a>
-                <!-- Dark Mode Icon -->
-                <a href="#" onclick="toggleDarkMode()">
-                  <i class="ri-moon-line" style="font-size: 24px;"></i>
-                </a>
-                <!-- Log Out Icon -->
-                <a href="index.html">
-                  <i class="ri-logout-box-line" style="font-size: 24px;"></i>
-                </a>
-                <a href="admin_dashboard.html">
-                  <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home" style="width: 60px; height: 60px;border-radius: 10px;">
-                </a>
-              </div>
-            </div>
-          <script>
-            // Function to toggle dark mode
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark-mode');
-    }
-          </script>
-            <style>
-              .header {
-                background-color: #3f62af;
-                color: #fff;
-                padding: 0;
-                text-align: center;
-                border-radius: 10px;
-                width: 85%;
-                height: 80px;
-                margin: 10px 0 50px 200px;
-              }
           
-              .header-container {
-                margin-top: -100px;
-                display: flex;
-                align-items: center;
-                flex-direction: row;
-                justify-content: flex-start;
-              }
-          
-              .header-items {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                gap: 15px;
-                padding: 0 10px;
-                background-color:#fff;
-                color: #fff;
-                width: 25%;
-                
-              }
-          
-              .header-items a {
-                font-family: Arial,  sans-serif;
-                font-size: 20px;
-                color: #000;
-                text-decoration: none;
-                padding: 0;
-                transition: color 0.3s ease;
-                margin-right: 80px;
-              }
-          
-              .popover {
-                display: none;
-                position: absolute;
-                background-color: #fff;
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                padding: 10px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                z-index: 1000;
-              }
-          
-              .popover button {
-                background-color: #3f62af;
-                color: white;
-                border: none;
-                padding: 10px 20px;
-                margin: 0 5px;
-                border-radius: 20px;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: bold;
-                transition: background-color 0.3s;
-              }
+           <!--Start Navigation-->   
+          <style>
+            .navigation-container {
+              position: absolute;
+              right: 40px;
+              top: 20px;
+              display: flex;
+              align-items: center;
+              gap: 15px;
+              transition: all 0.3s ease;
+            }
+            
+            .nav-buttons {
+              display: flex;
+              gap: 15px;
+              opacity: 0;
+              width: 0;
+              overflow: hidden;
+              transition: all 0.3s ease;
+            }
+            
+            .nav-arrow {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 40px;
+              height: 40px;
+              background-color: #3f62af;
+              border-radius: 5px;
+              color: white;
+              text-decoration: none;
+              font-size: 24px;
+            }
+            
+            .nav-button {
+              position: relative;
+              z-index: none;
+            }
+            
+            .nav-button img {
+              width: 60px;
+              height: 60px;
+              border-radius: 10px;
+              object-fit: cover;
+              cursor: pointer;
+              transition: transform 0.3s ease;
+            }
+            
+            .nav-button:hover img {
+              transform: scale(1.1);
+            }
+            
+            .navigation-container:hover .nav-buttons {
+              opacity: 1;
+              width: 110px; /* Width for two buttons + gap */
+            }
+            
+            .popover {
+              display: none;
+              position: absolute;
+              background: white;
+              border: 1px solid #ddd;
+              border-radius: 8px;
+              padding: 15px;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+              z-index: 1000;
+              text-align: center;
+              right: 0;
+              top: 70px;
+            }
+            
+            .popover-buttons {
+              display: flex;
+              gap: 10px;
+              justify-content: center;
+            }
+            
+            .popover button {
+              background-color: #3f62af;
+              color: #fff;
+              width: 70px;
+              padding: 8px 0;
+              border: none;
+              border-radius: 20px;
+              cursor: pointer;
+              transition: background-color 0.2s;
+            }
+            
+            .popover button:hover {
+              background-color: #2d4b8f;
+            }
             </style>
           
-          </header>
-  
-          <div>
-            <!-- Navigation Container -->
-            <div class="navigation-container" style="margin-left: 5px; margin-top: 40px; display: flex; gap: 20px; align-items: center;">
-  
-              <a href="admin_query_response.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
-                <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
-              </a>
-  
-              <a href="useless.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
-                <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
-              </a>
-  
+            <div class="navigation-container">
+              <div class="nav-buttons">
+                <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
+                  <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+                </a>
+                <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+                  <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+
+                </a>
+              </div>
+              
+              <div class="nav-button" id="homeButton">
+                <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+                <div class="popover" id="homePopover">
+                  <p>Want to go to the home page?</p>
+                  <div class="popover-buttons">
+                    <button class="confirm" onclick="goHome()">Yes</button>
+                    <button class="cancel" onclick="closePopover('homePopover')">No</button>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+            
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const homeButton = document.getElementById('homeButton');
+              const homePopover = document.getElementById('homePopover');
+              
+              function showPopover(button, popover) {
+                const rect = button.getBoundingClientRect();
+                popover.style.display = 'block';
+              }
+            
+              homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
+              
+              window.closePopover = function(id) {
+                document.getElementById(id).style.display = 'none';
+              };
+            
+              window.goHome = function() {
+                window.location.href = 'admin_dashboard.html';
+              };
+            
+              window.goBack = function() {
+                window.history.back();
+              };
+              
+              window.goForward = function() {
+                window.history.forward();
+              };
+            
+              document.addEventListener('click', function(event) {
+                if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+                  closePopover('homePopover');
+                }
+              });
+            });
+            </script>
+            <!--End Navigation-->
 
             <!-- Page Content Area Start Here -->
             <div class="content">
@@ -252,7 +375,7 @@
                 <section class="reports-section">
                     <!-- Reports Section -->
                     <div class="report-header">
-                      <h1 style="font-weight: bold; font-size: 30px; color: #000;">Reports</h1>
+                      <h1 style="margin-top:10px; font-size: 40px; color: #000;">Reports</h1>
                     </div>
                     
                   <div class="card__container">
@@ -280,13 +403,6 @@
                         </div>
                     </article>
 
-                    <article class="card__article">
-                        <img src="https://complyan.com/wp-content/uploads/2022/09/Frame-33676.png" alt="image" class="card__img">
-                        <div class="card__data">
-                          <h2 class="card__title">Allowance Disbursement</h2>
-                          <a href="summary_of_allowance.html" class="report-button">Go to Report →</a>
-                        </div>
-                    </article>
                   </div>
 
                 </section>
@@ -294,13 +410,13 @@
               </div>
             </div>
              <!-- Footer -->
-        <footer>
-          <p>&copy; Moshal Scholarship Program 2024 <br> Developed by INFOSYNC <br> All rights reserved</p>
-          <p>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-          </p>
-        </footer>
+            <footer>
+              <p>&copy; Moshal Scholarship Program 2024 <br> Developed by INFOSYNC <br> All rights reserved</p>
+              <p>
+                  <a href="#">Privacy Policy</a>
+                  <a href="#">Terms of Service</a>
+              </p>
+            </footer>
         </div>
        
     </div>
@@ -361,7 +477,8 @@ width: 100%;
 }
 .reports-section {
     width: 100%;
-    height: 440px;
+    height: 500px;
+    margin-top: 50px;
     margin-bottom: -60px;
     background: #fff;
     border-radius: 10px;
@@ -415,11 +532,15 @@ width: 100%;
   }
 
 
+  body::-webkit-scrollbar {
+    display: none;
+}
+
   footer {
     text-align: center;
     padding: 20px;
     background: #f4f4f4; 
-    margin-top: -300px;
+    margin-top: -180px;
     margin-bottom: 10px;
   }
 
@@ -444,10 +565,11 @@ img {
   
   .card__container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Change to accommodate 3 cards in the first row */
-    gap: 5px;
+    grid-template-columns: repeat(3, 1fr); /* Change to accommodate 3 cards in the first row */
+    gap: 35px;
     row-gap: 100px;
-   margin-top: -35px;
+   margin-top: -25px;
+   margin-left: 30px;
   }
   
   .card__article {
@@ -456,8 +578,8 @@ img {
   }
   
   .card__img {
-    width: 250px;
-    height: 300px;
+    width: 350px;
+    height: 400px;
     border-radius: 1.5rem;
   }
   
@@ -465,11 +587,11 @@ img {
     font-size: 20px;
     width: 300px;
     background-color: #ffffff;
-    padding: 1.5rem 2rem;
+    padding: 20px 15px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     border-radius: 1rem;
     position: absolute;
-    bottom: -9rem;
+    bottom: -100px;
     left: 0;
     right: 0;
     margin-inline: auto;

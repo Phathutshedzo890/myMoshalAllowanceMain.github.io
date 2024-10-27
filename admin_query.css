@@ -36,6 +36,9 @@ overflow-y: hidden;
     
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
 .message-section {
     width: 200%;
     margin: auto;
