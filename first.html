@@ -119,8 +119,23 @@
               <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
           </div>
           <div class="footer-right">
-              <a href="#" class="social-icon">
-                <img src="https://i.ibb.co/JRLZkhd/e535a745e3b7.png" alt="Moshal Logo" id="logoutButton" style="width: 250px; height: 90px; object-fit: cover; object-position: center;  position: relative; left: 60%; margin-top: 15px;" />
+            <!-- GitHub Icon -->
+            <a href="https://github.com/Phathutshedzo890/myMoshalAllowanceMain.github.io" class="social-icon" style="margin-top: 10px;">
+              <i class="ri-github-fill" style="font-size: 25px; color:#3f62af;"></i>
+            </a>
+
+            <!-- Moshal Logo Icon -->
+            <a href="https://moshalprogram.org/" class="social-icon" style="margin-bottom: 10px;">
+              <img src="https://moshalprogram.org/wp-content/uploads/2021/08/cropped-favicon-1.png" 
+                  alt="Moshal Logo" 
+                  style="width: 25px; height: 25px; object-fit: contain; margin-bottom: -3px;" />
+            </a>
+
+            <!-- INFOSYNC Logo Icon -->
+            <a href="#" class="social-icon" style="margin-top: 10px;">
+              <img src="https://i.ibb.co/DfMG7hG/9e6ddb57455f.jpg" 
+                  alt="INFOSYNC Logo" 
+                  style="width: 35px; height: 35px; object-fit: contain; margin-bottom: -6px; margin-left: -25px;" />
             </a>
           </div>
       </div>
@@ -137,8 +152,8 @@
 .card-container {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;  /* Allows wrapping for smaller screens */
-  gap: -1000px;        /* Space between the cards */
+  flex-wrap: wrap;  
+  gap: -1000px;        
   margin: 80px;
   margin-top: 30px;
   background-color: #fff;
@@ -146,9 +161,9 @@
 
 .card-transition {
   flex: 1;
-  max-width: 18rem; /* Ensures cards don't get too wide */
-  min-width: 250px; /* Minimum width so the cards don't get too small */
-  margin-bottom: 20px; /* Adds space between rows when they stack */
+  max-width: 18rem; 
+  min-width: 250px; 
+  margin-bottom: 20px; 
 }
 
 .card {
@@ -158,10 +173,6 @@
   overflow: hidden;
   box-shadow: 0 14px 18px #3f62af;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
- 
-  
-  /* Continuous floating animation */
-  animation: float 4s ease-in-out infinite;
 }
 
 .card-img {
@@ -221,18 +232,6 @@
   animation: none;
 }
 
-/* Floating animation */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-
-
 /* When the screen is below 1024px (tablet and smaller screens) */
 @media (max-width: 1024px) {
   .card-container {
@@ -282,8 +281,8 @@
                 transition: background-color 0.3s;
       }  
 .footer {
-  margin-top: -110px;
-    margin-bottom: 100px;
+  margin-top: -90px;
+    margin-bottom: 0;
     background-color: #fff;
 }
 
