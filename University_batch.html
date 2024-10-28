@@ -323,72 +323,99 @@
     <a href="#">Terms of Service</a>
   </p>
 </footer>
+<canvas id="fundingChart" width="400" height="200"></canvas> <!-- Canvas for Chart.js -->
 
-<script>
-  function createFundingChart() {
-    const ctx = document.getElementById('fundingChart').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['UP', 'Wits', 'UCT', 'Rhodes', 'SUN', 'UFS', 'UJ', 'UKZN', 'UWC', 'NMU'],
-            datasets: [
-                {
-                    label: 'Fully Funded Students',
-                    data: [50, 70, 60, 40, 45, 35, 55, 65, 20, 15],
-                    backgroundColor: 'rgba(63, 98, 175, 0.8)',
-                    borderColor: 'rgba(63, 98, 175, 1)',
-                    borderWidth: 1
-                },
-                {
-                    label: 'Partially Funded Students',
-                    data: [100, 150, 120, 80, 90, 70, 110, 100, 90, 75],
-                    backgroundColor: 'rgba(173, 216, 230, 0.8)',
-                    borderColor: 'rgba(173, 216, 230, 1)',
-                    borderWidth: 1
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
+            authDomain: "mymoshalallowance.firebaseapp.com",
+            databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
+            projectId: "mymoshalallowance",
+            storageBucket: "mymoshalallowance.appspot.com",
+            messagingSenderId: "607619034226",
+            appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
+            measurementId: "G-NCTW2CSPR8"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loadFundingData();  // Call data loading function if a user is logged in
+            } else {
+                console.log("No user is logged in.");
+            }
+        });
+
+        async function loadFundingData() {
+            const fundingCounts = {}; // Object to store counts of funding types
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
+
+                if (querySnapshot.empty) {
+                    console.log("No funding data available.");
+                    return;
                 }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    stacked: false, // Ensure bars are side by side
-                    ticks: {
-                        beginAtZero: true
-                    }
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const fundingType = data.ExtFunding_Type;
+
+                    // Update funding count by type
+                    fundingCounts[fundingType] = (fundingCounts[fundingType] || 0) + 1;
+                });
+
+                console.log("Funding Counts by Type:", fundingCounts); // Log to check counts
+
+                // Call function to render the bar chart
+                const chart = renderFundingChart(fundingCounts);
+
+                // Add click event listener to chart
+                document.getElementById('fundingChart').addEventListener('click', function() {
+                    window.location.href = 'unanswered_queries.html'; // Redirect to unanswered_queries.html
+                });
+
+            } catch (error) {
+                console.error("Error loading funding data:", error);
+            }
+        }
+
+        function renderFundingChart(fundingCounts) {
+            const ctx = document.getElementById('fundingChart').getContext('2d');
+
+            const labels = Object.keys(fundingCounts);
+            const data = Object.values(fundingCounts);
+
+            return new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Number of Fundings by Type',
+                        data: data,
+                        backgroundColor: ['green', 'red'],
+                        borderColor: ['drakgreen', 'darkred'],
+                        borderWidth: 1
+                    }]
                 },
-                y: {
-                    stacked: false, // Ensure bars are side by side
-                    beginAtZero: true
-                }
-            },
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top'
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            const label = context.dataset.label || '';
-                            const value = context.raw || 0;
-                            return `${label}: ${value} Students`;
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
                         }
                     }
                 }
-            }
+            });
         }
-    });
-}
+    </script>
 
-// Call the function to create the funding chart
-createFundingChart();
-
-</script>
-
-
-<!-- Include a canvas for the chart -->
-<canvas id="fundingChart" width="400" height="200"></canvas>
 
 
 
