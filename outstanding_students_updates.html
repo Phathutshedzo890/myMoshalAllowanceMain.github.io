@@ -16,19 +16,164 @@
   <title>Report</title>
 </head>
 <body>
-   <!-- Navigation Container -->
-<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
   
-  <a href="Reports.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
-    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
-  </a>
-
-  <a href="noncompliant.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
-    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
-  </a>
-
-</div>
+  <div>
+    <!--Start Navigation-->   
+    <style>
+     .navigation-container {
+       position: absolute;
+       right: 40px;
+       top: 20px;
+       display: flex;
+       align-items: center;
+       gap: 15px;
+       transition: all 0.3s ease;
+     
+     }
+     
+     .nav-buttons {
+       display: flex;
+       gap: 15px;
+       opacity: 0;
+       width: 0;
+       overflow: hidden;
+       transition: all 0.3s ease;
+     }
+     
+     .nav-arrow {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 40px;
+       height: 40px;
+       background-color: #3f62af;
+       border-radius: 5px;
+       color: white;
+       text-decoration: none;
+       font-size: 24px;
+     }
+     
+     .nav-button {
+       position: relative;
+       z-index: none;
+     }
+     
+     .nav-button img {
+      
+       width: 60px;
+       height: 60px;
+       border-radius: 10px;
+       object-fit: cover;
+       cursor: pointer;
+       transition: transform 0.3s ease;
+     }
+     
+     .nav-button:hover img {
+       transform: scale(1.1);
+     }
+     
+     .navigation-container:hover .nav-buttons {
+       opacity: 1;
+       width: 110px; /* Width for two buttons + gap */
+     }
+     
+     .popover {
+       display: none;
+       position: absolute;
+       background: white;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       padding: 15px;
+       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       z-index: 1000;
+       text-align: center;
+       right: 0;
+       top: 70px;
+     }
+     
+     .popover-buttons {
+       display: flex;
+       gap: 10px;
+       justify-content: center;
+     }
+     
+     .popover button {
+       background-color: #3f62af;
+       color: #fff;
+       width: 70px;
+       padding: 8px 0;
+       border: none;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.2s;
+     }
+     
+     .popover button:hover {
+       background-color: #2d4b8f;
+     }
+     </style>
    
+     <div class="navigation-container">
+       <div class="nav-buttons">
+         <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
+           <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+         </a>
+         <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+           <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+
+         </a>
+       </div>
+       
+       <div class="nav-button" id="homeButton">
+         <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+         <div class="popover" id="homePopover">
+           <p>Want to go to the report page?</p>
+           <div class="popover-buttons">
+             <button class="confirm" onclick="goHome()">Yes</button>
+             <button class="cancel" onclick="closePopover('homePopover')">No</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       const homeButton = document.getElementById('homeButton');
+       const homePopover = document.getElementById('homePopover');
+       
+       function showPopover(button, popover) {
+         const rect = button.getBoundingClientRect();
+         popover.style.display = 'block';
+       }
+     
+       homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
+       
+       window.closePopover = function(id) {
+         document.getElementById(id).style.display = 'none';
+       };
+     
+       window.goHome = function() {
+         window.location.href = 'Reports.html';
+       };
+     
+       window.goBack = function() {
+         window.history.back();
+       };
+       
+       window.goForward = function() {
+         window.history.forward();
+       };
+     
+       document.addEventListener('click', function(event) {
+         if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+           closePopover('homePopover');
+         }
+       });
+     });
+     </script>
+     <!--End Navigation-->
+    </div>
+
     <div class="report-container">
         <h1 class="title"> Outstanding Student Funding Report</h1>
         <p class="report-date">Report Date: 31 May 2024</p>
@@ -345,7 +490,7 @@ async function createChart() {
 .report-container {
   max-width: 794px; /* A4 width for print */
   margin: 20px auto;
-  margin-top: -10px;
+  margin-top: 100px;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -536,6 +681,9 @@ body {
     font-size: 1rem;
 }
   
+body::-webkit-scrollbar {
+    display: none;
+}
 
 footer {
   margin-top: 11px;

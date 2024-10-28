@@ -96,8 +96,8 @@ messageBoard.style.maxHeight = "500px"; // adjust the height as needed
 // Load admin messages on page load
 loadAdminMessages();
 
-// Function to load notifications (messages)
-// Function to load notifications (only messages without an admin response)
+// Function to messages
+// Function to loadonly messages without an admin response)
 function loadNotifications() {
     const notificationsCount = document.getElementById("notificationsCount");
     const messagesQuery = collection(db, "Create_Query");
@@ -119,20 +119,29 @@ function loadNotifications() {
   
 // Search functionality
 document.getElementById("searchBtn").addEventListener("click", () => {
-  const searchInput = document.getElementById("searchInput").value.toLowerCase();
+  const firstNameInput = document.getElementById("searchFirstName").value.toLowerCase();
+  const lastNameInput = document.getElementById("searchLastName").value.toLowerCase();
+  const emailInput = document.getElementById("searchEmail").value.toLowerCase();
   const studentRows = document.querySelectorAll("#studentTableBody tr");
 
   studentRows.forEach((row) => {
     const firstName = row.children[0].textContent.toLowerCase();
     const lastName = row.children[1].textContent.toLowerCase();
+    const email = row.children[2].textContent.toLowerCase(); // Assuming email is in the third column
 
-    if (firstName.includes(searchInput) || lastName.includes(searchInput)) {
-      row.style.display = "";
+    // Check if any input is filled and match accordingly
+    const matchesFirstName = firstNameInput && firstName.includes(firstNameInput);
+    const matchesLastName = lastNameInput && lastName.includes(lastNameInput);
+    const matchesEmail = emailInput && email.includes(emailInput);
+
+    if (matchesFirstName || matchesLastName || matchesEmail) {
+      row.style.display = ""; // Show row if there’s a match
     } else {
-      row.style.display = "none";
+      row.style.display = "none"; // Hide row if no match
     }
   });
 });
+
 
 // Initial load
 loadStudents();

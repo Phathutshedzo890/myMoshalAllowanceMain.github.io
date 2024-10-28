@@ -16,21 +16,165 @@
 </head>
 <body>
  
-<!-- Navigation Container -->
-<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
-  
-  <a href="Reports.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
-    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
-  </a>
+  <div>
+    <!--Start Navigation-->   
+    <style>
+     .navigation-container {
+       position: absolute;
+       right: 40px;
+       top: 20px;
+       display: flex;
+       align-items: center;
+       gap: 15px;
+       transition: all 0.3s ease;
+     
+     }
+     
+     .nav-buttons {
+       display: flex;
+       gap: 15px;
+       opacity: 0;
+       width: 0;
+       overflow: hidden;
+       transition: all 0.3s ease;
+     }
+     
+     .nav-arrow {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 40px;
+       height: 40px;
+       background-color: #3f62af;
+       border-radius: 5px;
+       color: white;
+       text-decoration: none;
+       font-size: 24px;
+     }
+     
+     .nav-button {
+       position: relative;
+       z-index: none;
+     }
+     
+     .nav-button img {
+      
+       width: 60px;
+       height: 60px;
+       border-radius: 10px;
+       object-fit: cover;
+       cursor: pointer;
+       transition: transform 0.3s ease;
+     }
+     
+     .nav-button:hover img {
+       transform: scale(1.1);
+     }
+     
+     .navigation-container:hover .nav-buttons {
+       opacity: 1;
+       width: 110px; /* Width for two buttons + gap */
+     }
+     
+     .popover {
+       display: none;
+       position: absolute;
+       background: white;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       padding: 15px;
+       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       z-index: 1000;
+       text-align: center;
+       right: 0;
+       top: 70px;
+     }
+     
+     .popover-buttons {
+       display: flex;
+       gap: 10px;
+       justify-content: center;
+     }
+     
+     .popover button {
+       background-color: #3f62af;
+       color: #fff;
+       width: 70px;
+       padding: 8px 0;
+       border: none;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.2s;
+     }
+     
+     .popover button:hover {
+       background-color: #2d4b8f;
+     }
+     </style>
+   
+     <div class="navigation-container">
+       <div class="nav-buttons">
+         <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
+           <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+         </a>
+         <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+           <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
 
-  <a href="not_updated_students.html" class="go-forward" style="color: transparent; display: flex; align-items: center;">
-    <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
-  </a>
-
-</div>
+         </a>
+       </div>
+       
+       <div class="nav-button" id="homeButton">
+         <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+         <div class="popover" id="homePopover">
+           <p>Want to go to the report page?</p>
+           <div class="popover-buttons">
+             <button class="confirm" onclick="goHome()">Yes</button>
+             <button class="cancel" onclick="closePopover('homePopover')">No</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       const homeButton = document.getElementById('homeButton');
+       const homePopover = document.getElementById('homePopover');
+       
+       function showPopover(button, popover) {
+         const rect = button.getBoundingClientRect();
+         popover.style.display = 'block';
+       }
+     
+       homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
+       
+       window.closePopover = function(id) {
+         document.getElementById(id).style.display = 'none';
+       };
+     
+       window.goHome = function() {
+         window.location.href = 'Reports.html';
+       };
+     
+       window.goBack = function() {
+         window.history.back();
+       };
+       
+       window.goForward = function() {
+         window.history.forward();
+       };
+     
+       document.addEventListener('click', function(event) {
+         if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+           closePopover('homePopover');
+         }
+       });
+     });
+     </script>
+     <!--End Navigation-->
+    </div>
  
   <div class="report-container">
-    <h1 class="title"> Oustanding Student Queries</h1>
+    <h1 class="title"> Oustanding Student Queries Report</h1>
       <p class="report-date">Report Date: <span id="currentDate"></span></p>
       <p class="generated">Generated: Weekly </p>
    
@@ -79,12 +223,12 @@
                 <ul>
                   <li><strong>Query Turnover Rate:</strong>
                     <ul>
-                      <li>The average turnover rate is approximately 2 days, but high-severity queries have been unanswered for over 7 days, requiring prioritization.</li>
+                      <li>The average turnover rate is approximately <i>n</i> days, but high-severity queries have been unanswered for over  <i>n</i> days, requiring prioritization.</li>
                     </ul>
                   </li>
                   <li><strong>Admin Responsiveness:</strong>
                     <ul>
-                      <li>60% of queries are resolved within the first 3 days, but 40% remain unresolved, indicating the need for better prioritization of high-severity issues.</li>
+                      <li> <i>n</i> % of queries are resolved within the first  <i>n</i> days, but  <i>n</i> % remain unresolved, indicating the need for better prioritization of high-severity issues.</li>
                     </ul>
                   </li>
                   <li><strong>High Query Count Students:</strong>
@@ -201,165 +345,165 @@
 }
 
             </script>
-<script type="module">
-  function goToPage(pageUrl) {
-      window.location.href = pageUrl;
-  }
-
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-  const firebaseConfig = {
-      apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-      authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-      projectId: "mymoshalallowance-34e68",
-      storageBucket: "mymoshalallowance-34e68.appspot.com",
-      messagingSenderId: "387609738002",
-      appId: "1:387609738002:web:38cf56b731375650d751cb",
-      measurementId: "G-5E13X2QNFC"
-  };
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Function to calculate severity based on the time the query has been unanswered
-  function calculateSeverity(timestamp) {
-      const currentTime = new Date();
-      const queryTime = new Date(timestamp);
-      const timeDiff = currentTime - queryTime;
-
-      const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-
-      if (daysDiff >= 7) {
-          return { severity: "High", days: daysDiff };
-      } else if (daysDiff >= 3) {
-          return { severity: "Medium", days: daysDiff };
-      } else {
-          return { severity: "Low", days: daysDiff };
-      }
-  }
-
-  async function displayQueryStats() {
-      const unansweredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "==", null)));
-      const answeredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "!=", null)));
-
-      const unansweredCount = unansweredQuerySnapshot.size;
-      const answeredCount = answeredQuerySnapshot.size;
-
-      // Prepare data for bar chart
-      const ctx = document.getElementById('queryChart').getContext('2d');
-      new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: ['Answered', 'Unanswered'],
-              datasets: [{
-                  label: 'Query Count',
-                  data: [answeredCount, unansweredCount],
-                  backgroundColor: ['green', 'red'],
-                  borderColor: ['darkgreen', 'darkred'],
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              onClick: function (e) {
-                  const activePoints = this.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
-                  if (activePoints.length > 0) {
-                      const index = activePoints[0].index;
-                      if (index === 0) {
-                          goToPage('answered_queries.html'); // Redirect to answered queries page
-                      } else {
-                          goToPage('not_updated_students.html'); // Redirect to unanswered queries page
-                      }
-                  }
-              },
-              scales: {
-                  y: { beginAtZero: true }
+            <script type="module">
+              function goToPage(pageUrl) {
+                  window.location.href = pageUrl;
               }
-          }
-      });
-  }
 
-  async function displayStudentData() {
-      const q = query(collection(db, "Create_Query"), where("adminResponse", "==", null));
-      const querySnapshot = await getDocs(q);
-      const tableBody = document.getElementById('studentTableBody');
+              import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+              import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-      const studentQueries = {};
-
-      querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          const { severity, days } = calculateSeverity(data.timestamp);
-
-          if (!studentQueries[data.userName]) {
-              studentQueries[data.userName] = {
-                  queries: [],
-                  severity,
-                  days
+              const firebaseConfig = {
+                  apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
+                  authDomain: "mymoshalallowance-34e68.firebaseapp.com",
+                  projectId: "mymoshalallowance-34e68",
+                  storageBucket: "mymoshalallowance-34e68.appspot.com",
+                  messagingSenderId: "387609738002",
+                  appId: "1:387609738002:web:38cf56b731375650d751cb",
+                  measurementId: "G-5E13X2QNFC"
               };
-          }
-          studentQueries[data.userName].queries.push({
-              date: new Date(data.timestamp).toLocaleDateString(),
-              message: data.userMessage,
-              docId: doc.id,
-              severity,
-              days
-          });
-      });
+              const app = initializeApp(firebaseConfig);
+              const db = getFirestore(app);
 
-      const rows = [];
-      for (const student in studentQueries) {
-          const studentData = studentQueries[student];
-          const queryCount = studentData.queries.length;
-          const latestQuery = studentData.queries[0];
+              // Function to calculate severity based on the time the query has been unanswered
+              function calculateSeverity(timestamp) {
+                  const currentTime = new Date();
+                  const queryTime = new Date(timestamp);
+                  const timeDiff = currentTime - queryTime;
 
-          const messagePreview = latestQuery.message.split(" ").slice(0, 6).join(" ") + (latestQuery.message.split(" ").length > 6 ? "..." : "");
+                  const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
 
-          const row = document.createElement('tr');
-          const dateCell = document.createElement('td');
-          const nameCell = document.createElement('td');
-          const countCell = document.createElement('td');
-          const messageCell = document.createElement('td');
-          const severityCell = document.createElement('td');
-          const actionCell = document.createElement('td');
+                  if (daysDiff >= 7) {
+                      return { severity: "High", days: daysDiff };
+                  } else if (daysDiff >= 3) {
+                      return { severity: "Medium", days: daysDiff };
+                  } else {
+                      return { severity: "Low", days: daysDiff };
+                  }
+              }
 
-          dateCell.textContent = latestQuery.date;
-          nameCell.textContent = student;
-          countCell.textContent = queryCount;
-          messageCell.textContent = messagePreview;
-          severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
+              async function displayQueryStats() {
+                  const unansweredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "==", null)));
+                  const answeredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "!=", null)));
 
-          const button = document.createElement('button');
-          button.textContent = 'Respond';
-          button.className = 'action-btn';
-          button.onclick = () => {
-              goToPage(`response_details.html?docId=${latestQuery.docId}`);
-          };
+                  const unansweredCount = unansweredQuerySnapshot.size;
+                  const answeredCount = answeredQuerySnapshot.size;
 
-          actionCell.appendChild(button);
-          row.appendChild(dateCell);
-          row.appendChild(nameCell);
-          row.appendChild(countCell);
-          row.appendChild(messageCell);
-          row.appendChild(severityCell);
-          row.appendChild(actionCell);
+                  // Prepare data for bar chart
+                  const ctx = document.getElementById('queryChart').getContext('2d');
+                  new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                          labels: ['Answered', 'Unanswered'],
+                          datasets: [{
+                              label: 'Query Count',
+                              data: [answeredCount, unansweredCount],
+                              backgroundColor: ['green', 'red'],
+                              borderColor: ['darkgreen', 'darkred'],
+                              borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          onClick: function (e) {
+                              const activePoints = this.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+                              if (activePoints.length > 0) {
+                                  const index = activePoints[0].index;
+                                  if (index === 0) {
+                                      goToPage('answered_queries.html'); // Redirect to answered queries page
+                                  } else {
+                                      goToPage('not_updated_students.html'); // Redirect to unanswered queries page
+                                  }
+                              }
+                          },
+                          scales: {
+                              y: { beginAtZero: true }
+                          }
+                      }
+                  });
+              }
 
-          rows.push(row);
-      }
+              async function displayStudentData() {
+                  const q = query(collection(db, "Create_Query"), where("adminResponse", "==", null));
+                  const querySnapshot = await getDocs(q);
+                  const tableBody = document.getElementById('studentTableBody');
 
-      rows.forEach(row => tableBody.appendChild(row));
-  }
+                  const studentQueries = {};
 
-  displayQueryStats();
-  displayStudentData();
-</script>
+                  querySnapshot.forEach((doc) => {
+                      const data = doc.data();
+                      const { severity, days } = calculateSeverity(data.timestamp);
 
- 
- <footer>
-  <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
-  <p>
-    <a href="#">Privacy Policy</a>
-    <a href="#">Terms of Service</a>
-  </p>
-</footer>
+                      if (!studentQueries[data.userName]) {
+                          studentQueries[data.userName] = {
+                              queries: [],
+                              severity,
+                              days
+                          };
+                      }
+                      studentQueries[data.userName].queries.push({
+                          date: new Date(data.timestamp).toLocaleDateString(),
+                          message: data.userMessage,
+                          docId: doc.id,
+                          severity,
+                          days
+                      });
+                  });
+
+                  const rows = [];
+                  for (const student in studentQueries) {
+                      const studentData = studentQueries[student];
+                      const queryCount = studentData.queries.length;
+                      const latestQuery = studentData.queries[0];
+
+                      const messagePreview = latestQuery.message.split(" ").slice(0, 6).join(" ") + (latestQuery.message.split(" ").length > 6 ? "..." : "");
+
+                      const row = document.createElement('tr');
+                      const dateCell = document.createElement('td');
+                      const nameCell = document.createElement('td');
+                      const countCell = document.createElement('td');
+                      const messageCell = document.createElement('td');
+                      const severityCell = document.createElement('td');
+                      const actionCell = document.createElement('td');
+
+                      dateCell.textContent = latestQuery.date;
+                      nameCell.textContent = student;
+                      countCell.textContent = queryCount;
+                      messageCell.textContent = messagePreview;
+                      severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
+
+                      const button = document.createElement('button');
+                      button.textContent = 'Respond';
+                      button.className = 'action-btn';
+                      button.onclick = () => {
+                          goToPage(`response_details.html?docId=${latestQuery.docId}`);
+                      };
+
+                      actionCell.appendChild(button);
+                      row.appendChild(dateCell);
+                      row.appendChild(nameCell);
+                      row.appendChild(countCell);
+                      row.appendChild(messageCell);
+                      row.appendChild(severityCell);
+                      row.appendChild(actionCell);
+
+                      rows.push(row);
+                  }
+
+                  rows.forEach(row => tableBody.appendChild(row));
+              }
+
+              displayQueryStats();
+              displayStudentData();
+            </script>
+
+            
+            <footer>
+              <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
+              <p>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+              </p>
+            </footer>
 
 </body>
 </html>
@@ -374,7 +518,8 @@
   
   .report-container {
     max-width: 794px; /* A4 width for print */
-    margin: 20px auto;
+    margin: 20px auto  ;
+    margin-top: 100px;
     background: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -574,6 +719,9 @@
     font-size: 1rem;
 }
   
+body::-webkit-scrollbar {
+    display: none;
+}
   footer {
     margin-top: 11px;
     text-align: center;

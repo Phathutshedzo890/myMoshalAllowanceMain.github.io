@@ -36,7 +36,14 @@ position: absolute;
   display: block; /* Ensure image takes up the full width */
   border-radius: 4px; /* Optional: make the corners rounded */
 }
-
+.header-searchbtn{
+  background-color: #3f62af;
+  color: #ffffff;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -138,35 +145,6 @@ background-color: #ffffff; /* Header background color */
 
 #documents-table tr:hover {
   background-color: #f1f1f1; /* Light background on hover */
-}
-
-
-.pagination {
-  margin-top: 20px; /* Space above pagination */
-  display: flex; /* Flexbox for layout */
-  align-items: center; /* Center align items */
-  justify-content: center; /* Center pagination */
-  color: #000;
-}
-
-.pagination-button {
-  padding: 10px 15px;
-background-color: #3f62af;
-border: #3f62af;
-color: white;
-text-decoration: none;
-border-radius: 20px;
-display: inline-block;
-margin-top: -5px;
-border-radius: 20px;
-text-align: center;
-letter-spacing: 1px;
-transition: transform 80ms ease-in, background-color 0.3s ease;
-cursor: pointer;
-}
-
-.pagination-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
 }
 
 footer {
