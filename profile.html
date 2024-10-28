@@ -5,37 +5,287 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Profile</title>
     <link rel="stylesheet" href="profile.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!--=============== REMIXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
   </head>
   <body>
-    <header>
-      <nav class="navbar">
-        <h1 class="main-title">My Moshal Allowance</h1>
-        <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-      </nav>
+    <header class="header">
+      <div class="logout-moshal-logo">
+        <img
+          src="https://i.ibb.co/vs7K75q/e2726a36d9c9.png"
+          alt="Moshal Logo"
+          id="homeButton"
+          style="
+            width: 180px;
+            height: 80px;
+            object-fit: cover;
+            object-position: center;
+            position: relative;
+            right: 106%;
+            border-radius: 10px;
+          "
+        />
+
+        <div class="popover" id="homePopover">
+          <p style="font-size: 16px; color: #000">
+            Want to go to the home page?
+          </p>
+          <button style="width: 70px" onclick="goHome()">Yes</button>
+          <button style="width: 70px" onclick="closePopover('homePopover')">
+            No
+          </button>
+        </div>
+      </div>
+
+      <div class="header-container">
+        <div class="header-items" style="margin-left: 700px; margin-top: 35px">
+          <!-- Profile Section -->
+          <div class="header-profile">
+            <a href="profile.html" id="profile-icon">
+              <i class="ri-user-line"></i> Profile
+            </a>
+          </div>
+
+          <!-- Allowance Section -->
+          <div class="header-allowance">
+            <a href="calculate_allowance.html" id="allowance-icon">
+              <i class="ri-wallet-line"></i> Allowance
+            </a>
+          </div>
+
+          <!-- Query Section -->
+          <div class="header-query">
+            <a href="student_Query.html" id="query-icon">
+              <i class="ri-question-line"></i> Queries
+            </a>
+          </div>
+
+          <!-- Documents Section -->
+          <div class="header-documents">
+            <a href="documents.html" id="documents-icon">
+              <i class="ri-file-line"></i> Documents
+            </a>
+          </div>
+
+          <!-- Logout Section -->
+          <div class="header-logout">
+            <a href="#" id="logout-icon">
+              <i class="ri-logout-box-line"></i> Logout
+            </a>
+
+            <div class="popover" id="logoutPopover" style="width: 170px">
+              <p style="color: #000">Are you sure you want to log out?</p>
+              <button onclick="logout()" style="width: 70px">Yes</button>
+              <button
+                onclick="closePopover('logoutPopover')"
+                style="width: 70px"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .header {
+          background-color: #3f62af;
+          color: #fff;
+          padding: 0;
+          text-align: center;
+          border-radius: 10px;
+          width: 85%;
+          height: 79px;
+          margin: 10px 0 50px 200px;
+        }
+
+        .header-container {
+          background-color: transparent;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          justify-content: flex-start;
+          margin-left: -110px;
+          width: 90%;
+        }
+
+        .header-items {
+          display: flex;
+          gap: 15px;
+          margin-bottom: 25px;
+          margin-left: auto;
+          margin-right: 0;
+          align-items: center;
+        }
+
+        .header-items a {
+          font-family: Arial, sans-serif;
+          font-size: 20px;
+          color: #fff;
+          text-decoration: none;
+          padding: 10px 15px;
+        }
+
+        .popover {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+        }
+
+        .popover button {
+          background-color: #3f62af;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          margin: 0 5px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: bold;
+          transition: background-color 0.3s;
+        }
+      </style>
+
+      <script>
+        // Show and position the Home popover
+        const homeButton = document.getElementById("homeButton");
+        const homePopover = document.getElementById("homePopover");
+        homeButton.onclick = function () {
+          const rect = homeButton.getBoundingClientRect();
+          homePopover.style.display = "block";
+          homePopover.style.left = `${rect.left + window.scrollX}px`;
+          homePopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        };
+
+        // Show and position the Logout popover
+        const logoutButton = document.getElementById("logout-icon");
+        const logoutPopover = document.getElementById("logoutPopover");
+        logoutButton.onclick = function (event) {
+          event.preventDefault();
+          const rect = logoutButton.getBoundingClientRect();
+          logoutPopover.style.display = "block";
+          logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+          logoutPopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        };
+
+        // Close popovers
+        function closePopover(id) {
+          document.getElementById(id).style.display = "none";
+        }
+
+        // Go to home page
+        function goHome() {
+          window.location.href = "first.html"; // Replace with actual home page URL
+        }
+
+        // Log out function
+        function logout() {
+          window.location.href = "index.html"; // Replace with actual log out logic
+        }
+
+        // Close popovers when clicking outside
+        window.onclick = function (event) {
+          if (
+            !homeButton.contains(event.target) &&
+            !homePopover.contains(event.target)
+          ) {
+            closePopover("homePopover");
+          }
+          if (
+            !logoutButton.contains(event.target) &&
+            !logoutPopover.contains(event.target)
+          ) {
+            closePopover("logoutPopover");
+          }
+        };
+      </script>
     </header>
 
-    <aside class="sidenav" id="mySidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
-        >&times;</a
+    <div
+      class="navigation"
+      style="
+        margin-left: 25px;
+        margin-top: -55px;
+        margin-bottom: 25px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      "
+    >
+      <a
+        href="javascript:void(0);"
+        class="nav-arrow"
+        id="prev"
+        onclick="goBack()"
+        style="color: transparent; display: flex; align-items: center"
       >
-      <a href="calc.html">Home</a>
-      <a href="#">About</a>
-      <a href="documents.html">Documents</a>
-      <a href="student.html">Query</a>
-      <a href="#" id="logout">Logout</a>
-    </aside>
+        <i
+          class="ri-arrow-left-s-line"
+          style="
+            font-size: 36px;
+            margin-right: 5px;
+            color: #fff;
+            background-color: #3f62af;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            text-decoration: none;
+          "
+        ></i>
+      </a>
 
-    <main class="container">
-      <section class="profile-section">
-        <h2>Your Profile</h2>
-        <div class="profile-info">
+      <a
+        href="javascript:void(0);"
+        class="nav-arrow"
+        id="next"
+        onclick="goForward()"
+        style="color: transparent; display: flex; align-items: center"
+      >
+        <i
+          class="ri-arrow-right-s-line"
+          style="
+            font-size: 36px;
+            margin-right: 5px;
+            color: #fff;
+            background-color: #3f62af;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+          "
+        ></i>
+      </a>
+    </div>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
+
+      function goForward() {
+        window.history.forward();
+      }
+    </script>
+
+    <section class="profile-section">
+      <div class="profile-info">
+        <div class="profile-container">
+          <h2>Your Profile</h2>
           <div class="profile-picture">
             <img src="download.jpeg" alt="Profile Picture" />
           </div>
-          <!-- HTML Updates for Edit Profile -->
           <div class="profile-details">
-            <div>
-              <strong>First Name:</strong><span id="loggedUserFName"></span>
+            <div class="profile-card">
+              <i class="ri-user-3-line"></i>
+              <strong>First Name:</strong>
+              <span id="loggedUserFName"></span>
               <input
                 type="text"
                 id="editFName"
@@ -43,8 +293,11 @@
                 style="display: none"
               />
             </div>
-            <div>
-              <strong>Last Name:</strong><span id="loggedUserLName"></span>
+
+            <div class="profile-card">
+              <i class="ri-user-3-fill"></i>
+              <strong>Last Name:</strong>
+              <span id="loggedUserLName"></span>
               <input
                 type="text"
                 id="editLName"
@@ -52,8 +305,11 @@
                 style="display: none"
               />
             </div>
-            <div>
-              <strong>Email:</strong><span id="loggedUserEmail"></span>
+
+            <div class="profile-card">
+              <i class="ri-mail-line"></i>
+              <strong>Email:</strong>
+              <span id="loggedUserEmail"></span>
               <input
                 type="email"
                 id="editEmail"
@@ -61,9 +317,11 @@
                 style="display: none"
               />
             </div>
-            <div>
-              <strong>Student Number:</strong
-              ><span id="loggedStudent_ID"></span>
+
+            <div class="profile-card">
+              <i class="ri-hashtag"></i>
+              <strong>Student Number:</strong>
+              <span id="loggedStudent_ID"></span>
               <input
                 type="text"
                 id="editStudentID"
@@ -71,8 +329,11 @@
                 style="display: none"
               />
             </div>
-            <div>
-              <strong>Phone Number:</strong><span id="loggedUserPhoneNo"></span>
+
+            <div class="profile-card">
+              <i class="ri-phone-line"></i>
+              <strong>Phone Number:</strong>
+              <span id="loggedUserPhoneNo"></span>
               <input
                 type="text"
                 id="editPhoneNo"
@@ -80,8 +341,11 @@
                 style="display: none"
               />
             </div>
-            <div>
-              <strong>University:</strong><span id="loggedUserVarsity"></span>
+
+            <div class="profile-card">
+              <i class="ri-building-line"></i>
+              <strong>University:</strong>
+              <span id="loggedUserVarsity"></span>
               <input
                 type="text"
                 id="editVarsity"
@@ -89,7 +353,9 @@
                 style="display: none"
               />
             </div>
-            <br />
+          </div>
+
+          <div class="profile-actions">
             <button class="edit-profile-btn" id="editProfileButton">
               Edit Profile
             </button>
@@ -109,29 +375,189 @@
             </button>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
 
-    <footer>
-      <p>&copy; 2024 MyWebsite. All rights reserved.</p>
-      <p>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-      </p>
+      <br />
+      <a href="#" id="forgotPasswordLink">Change Password?</a>
+      <br />
+    </section>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-left">
+          <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+        </div>
+        <div class="footer-right">
+          <!-- GitHub Icon -->
+          <a
+            href="https://github.com/Phathutshedzo890/myMoshalAllowanceMain.github.io"
+            class="social-icon"
+            style="margin-top: 10px; text-decoration: none"
+          >
+            <i
+              class="ri-github-fill"
+              style="font-size: 25px; color: #3f62af; margin-left: 15px"
+            ></i>
+          </a>
+
+          <!-- Moshal Logo Icon -->
+          <a
+            href="https://moshalprogram.org/"
+            class="social-icon"
+            style="margin-bottom: 10px; text-decoration: none"
+          >
+            <img
+              src="https://moshalprogram.org/wp-content/uploads/2021/08/cropped-favicon-1.png"
+              alt="Moshal Logo"
+              style="
+                width: 25px;
+                height: 25px;
+                object-fit: contain;
+                margin-bottom: -3px;
+                margin-left: 15px;
+              "
+            />
+          </a>
+
+          <!-- INFOSYNC Logo Icon -->
+          <a href="#" class="social-icon" style="margin-top: 10px">
+            <img
+              src="https://i.ibb.co/DfMG7hG/9e6ddb57455f.jpg"
+              alt="INFOSYNC Logo"
+              style="
+                width: 35px;
+                height: 35px;
+                object-fit: contain;
+                margin-bottom: -6px;
+                margin-left: 15px;
+              "
+            />
+          </a>
+        </div>
+      </div>
     </footer>
 
-    <script>
-      function toggleNav() {
-        const sidenav = document.getElementById("mySidenav");
-        if (sidenav.style.width === "250px") {
-          sidenav.style.width = "0";
-          document.body.style.marginLeft = "0";
-        } else {
-          sidenav.style.width = "250px";
-          document.body.style.marginLeft = "250px";
-        }
-      }
-    </script>
     <script type="module" src="profile.js"></script>
   </body>
 </html>
+
+<style>
+  /* Overall profile section styling */
+  .profile-section {
+    background-color: #fff;
+  }
+
+  .profile-container {
+    max-width: 1200px;
+
+    margin: 0 auto;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-top: -90px;
+    margin-bottom: -30px;
+    margin-left: -15px;
+  }
+
+  .profile-picture {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .profile-picture img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid #3f62af;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .profile-picture img:hover {
+    transform: scale(1.1);
+    transform: translateY(-5px); /* Moves the card up */
+    box-shadow: 0 8px 16px rgba(69, 192, 65, 0.8); /* Green shadow */
+    border: 2px solid #45c041; /* Green border */
+    color: #45c041; /* Changes text color to green */
+  }
+
+  /* Profile details in grid layout */
+  .profile-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+    margin-top: -280px;
+  }
+
+  /* Profile card styling */
+  .profile-card {
+    background-color: #fff;
+    border: 2px solid #3f62af;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 20px;
+  }
+
+  .profile-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-5px); /* Moves the card up */
+    box-shadow: 0 8px 16px rgba(69, 192, 65, 0.8); /* Green shadow */
+    border: 2px solid #45c041; /* Green border */
+    color: #45c041; /* Changes text color to green */
+  }
+
+  .profile-card i {
+    transition: color 0.3s ease; /* Smooth transition for icon color */
+  }
+
+  .profile-card i:hover {
+    color: #45c041; /* Changes icon color to green */
+  }
+
+  .profile-card strong {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .profile-card i {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #3f62af;
+  }
+
+  /* Profile actions */
+  .profile-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  /* Make sure buttons are always below last row of cards */
+  .profile-actions {
+    grid-column: span 2;
+  }
+  /* Footer container styling */
+
+  .footer {
+    margin-top: -10px;
+    margin-bottom: 30px;
+    background-color: #fff;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+</style>

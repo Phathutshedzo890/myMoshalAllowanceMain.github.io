@@ -22,14 +22,13 @@ import {
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
-  authDomain: "mymoshalallowance.firebaseapp.com",
-  databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
-  projectId: "mymoshalallowance",
-  storageBucket: "mymoshalallowance.appspot.com",
-  messagingSenderId: "607619034226",
-  appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
-  measurementId: "G-NCTW2CSPR8",
+  apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+  authDomain: "mmmma-c2403.firebaseapp.com",
+  projectId: "mmmma-c2403",
+  storageBucket: "mmmma-c2403.appspot.com",
+  messagingSenderId: "133407121519",
+  appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+  measurementId: "G-NBSGM52XGG"
 };
 
 // Initialize Firebase
@@ -105,7 +104,7 @@ document.querySelector(".calculate-button").addEventListener("click", async (eve
   
   async function saveExternalFundingData() {
     // Retrieve form values
-    const ExtFunding_Name = document.getElementById("ExtFunding_Name").value.trim();
+    const ExtFunding_Name = document.getElementById("ExtFunding_Name").value; // This will now capture the dropdown value
     const ExtFunding_Amt = document.getElementById("annual_amount").value.trim();
     const ExtFunding_Type = document.querySelector('input[name="ExtFunding_Type"]:checked')?.value;
     const ExtFunding_Date = document.getElementById("ExtFunding_Date").value.trim();
@@ -159,7 +158,7 @@ document.querySelector(".calculate-button").addEventListener("click", async (eve
       // Save data to Firestore
       await setDoc(externalFundingRef, {
         ExtFundingID: userUID, // Use the UID as the ID
-        ExtFunding_Name: ExtFunding_Name,
+        ExtFunding_Name: ExtFunding_Name, // This will now save GCRA or NSFAS
         ExtFunding_Amt: Number(ExtFunding_Amt),
         ExtFunding_Type: ExtFunding_Type,
         ExtFunding_Date: ExtFunding_Date,
@@ -175,6 +174,7 @@ document.querySelector(".calculate-button").addEventListener("click", async (eve
       console.error("Error saving external funding information:", error);
     }
   }
+  
   
 
 

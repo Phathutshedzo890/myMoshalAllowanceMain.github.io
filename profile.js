@@ -1,17 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 import{getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import{getFirestore,doc,getDoc,collection,updateDoc} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
-    authDomain: "mymoshalallowance.firebaseapp.com",
-    databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
-    projectId: "mymoshalallowance",
-    storageBucket: "mymoshalallowance.appspot.com",
-    messagingSenderId: "607619034226",
-    appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
-    measurementId: "G-NCTW2CSPR8"
-  };
+  apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+  authDomain: "mmmma-c2403.firebaseapp.com",
+  projectId: "mmmma-c2403",
+  storageBucket: "mmmma-c2403.appspot.com",
+  messagingSenderId: "133407121519",
+  appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+  measurementId: "G-NBSGM52XGG"
+};
   const firebaseApp = initializeApp(firebaseConfig);
   const auth = getAuth();
   const db = getFirestore();
@@ -44,6 +45,25 @@ const firebaseConfig = {
       }
     }
   });
+
+  // Add event listener for 'Forgot Password' link
+document.getElementById('forgotPasswordLink').addEventListener('click', function () {
+  const email = prompt("Please enter your registered email address:");
+  
+  if (email) {
+    // Send password reset email
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        alert("Password reset email sent! Please check your inbox.");
+      })
+      .catch((error) => {
+        console.error("Error sending password reset email: ", error);
+        alert("Error: " + error.message);
+      });
+  } else {
+    alert("Please enter a valid email address.");
+  }
+});
   
   // Toggle between edit and view mode
   document.getElementById('editProfileButton').addEventListener('click', function () {
@@ -58,15 +78,25 @@ const firebaseConfig = {
     const loggedInUserId = auth.currentUser.uid;
     const docRef = doc(db, "Student", loggedInUserId);
   
+    // Get input values
     const updatedData = {
-      Student_FName: document.getElementById('editFName').value,
-      Student_LName: document.getElementById('editLName').value,
-      Student_email: document.getElementById('editEmail').value,
-      Student_ID: document.getElementById('editStudentID').value,
-      Student_PhoneNo: document.getElementById('editPhoneNo').value,
-      Student_Varsity: document.getElementById('editVarsity').value
+      Student_FName: document.getElementById('editFName').value.trim(),
+      Student_LName: document.getElementById('editLName').value.trim(),
+      Student_email: document.getElementById('editEmail').value.trim(),
+      Student_ID: document.getElementById('editStudentID').value.trim(),
+      Student_PhoneNo: document.getElementById('editPhoneNo').value.trim(),
+      Student_Varsity: document.getElementById('editVarsity').value.trim()
     };
   
+    // Validate that no field is left empty
+    for (let key in updatedData) {
+      if (!updatedData[key]) {
+        alert(`${key.replace(/_/g, ' ')} cannot be empty.`);
+        return; // Stop the function if any field is empty
+      }
+    }
+  
+    // If all fields are valid, proceed to update the document
     updateDoc(docRef, updatedData)
       .then(() => {
         console.log("Profile updated successfully.");
@@ -77,13 +107,14 @@ const firebaseConfig = {
         document.getElementById('loggedStudent_ID').innerText = updatedData.Student_ID;
         document.getElementById('loggedUserPhoneNo').innerText = updatedData.Student_PhoneNo;
         document.getElementById('loggedUserVarsity').innerText = updatedData.Student_Varsity;
-        
+  
         toggleEditProfile(false); // Switch back to view mode
       })
       .catch((error) => {
         console.error("Error updating document: ", error);
       });
   });
+  
   
   function toggleEditProfile(isEditing) {
     const displayStyle = isEditing ? 'none' : 'inline';
@@ -120,6 +151,9 @@ const firebaseConfig = {
       .catch((error) => {
         console.error("Error signing out:", error);
       });
+  });
+  document.getElementById("stay").addEventListener('click', (e)=>{
+    window.location.href = "profile.html"; // Redirect to
   });
 // onAuthStateChanged(auth,async (user)=>{
 //     console.log(user);

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documents</title>
+    <link rel="stylesheet" href="documents_page.css" />
+    <style>
+      /* Side Navigation Bar */
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1001;
+        top: 0;
+        left: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+
+      .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidenav a:hover {
+        color: #f1f1f1;
+      }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      /* Header and Navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+        background-color: #3f62af;
+        padding: 0 20px;
+        box-shadow: 0 4px 2px -2px gray;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+      .menu-btn {
+        font-size: 30px;
+        cursor: pointer;
+        color: #fff;
+        margin-right: 15px;
+      }
+
+      .logo {
+        height: 50px;
+      }
+
+      .nav-links {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        margin: 0;
+      }
+
+      .nav-links li {
+        padding: 15px;
+        font-size: 16px;
+      }
+
+      .nav-links li a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .nav-links li:hover {
+        background-color: #e0e0e0;
+        border-radius: 5px;
+      }
+
+      /* Main Content */
+      .container {
+        margin-top: 80px;
+        padding: 20px;
+        transition: margin-left 0.5s;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      input,
+      button {
+        padding: 8px;
+        margin-top: 5px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      p {
+        color: red;
+        margin-top: 20px;
+      }
+
+      table {
+        width: 60%;
+        border-collapse: collapse;
+        margin: 20px auto;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        h1 {
+          font-size: 20px;
+        }
+        .container {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Side Navigation Bar -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
+        >&times;</a
+      >
+      <a href="calculate_allowance_page.html">Update Allowance</a>
+      <a href="profile.html">Profile</a>
+      <a href="documents.html">Documents</a>
+      <a href="student_Query.html">Query</a>
+    </div>
+
+    <!-- Header with Logo and Navigation Links -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="logo-container">
+          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
+          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        </div>
+        <ul class="nav-links">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">About Us</a></li>
+          <li class="nav-item"><a href="#">Our Services</a></li>
+          <li class="nav-item"><a href="#">Contact Us</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>Allowance Calculation</h1>
+      <form id="allowanceForm">
+        <!-- External Funding Details -->
+        <label for="ExtFunding_Name"
+          >External Funding Source Name(write "N/A" if not applicable):</label
+        >
+        <input
+          type="text"
+          id="ExtFunding_Name"
+          name="ExtFunding_Name"
+          placeholder="Enter the name of the funding source"
+          required
+        />
+
+        <label for="annual_amount"
+          >Living Allowance Annual Amount given by external funder:</label
+        >
+        <input
+          type="number"
+          id="annual_amount"
+          name="annual_amount"
+          placeholder="Enter the funded amount"
+          required
+        />
+
+        <!-- Funding Type Selection -->
+        <label>Funding Type:</label>
+        <div>
+          <input
+            type="radio"
+            id="ExtFunding_Type"
+            name="ExtFunding_Type"
+            value="Partial Funding"
+            required
+          />
+          <label for="Partial Funding">Partial Funding</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="ExtFunding_Type"
+            name="ExtFunding_Type"
+            value="Full Funding"
+            required
+          />
+          <label for="Full Funding">Full Funding</label>
+        </div>
+
+        <!-- Funding Date -->
+        <label for="ExtFunding_Date"
+          >When did you recieve your first allowance from your external
+          funder:</label
+        >
+        <input
+          type="date"
+          id="ExtFunding_Date"
+          name="ExtFunding_Date"
+          required
+        />
+
+        <!-- NSFAS Status -->
+        <label>Are you funded by NSFAS?</label>
+        <div>
+          <input
+            type="radio"
+            id="NSFAS_Status"
+            name="NSFAS_Status"
+            value="Yes"
+            required
+          />
+          <label for="nsfas_yes">Yes</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="NSFAS_Status"
+            name="NSFAS_Status"
+            value="No"
+            required
+          />
+          <label for="nsfas_no">No</label>
+        </div>
+
+        <!-- Upload Proof of Funding Document -->
+        <label for="fileInput">Upload Proof of Funding Document:</label>
+        <input
+          type="file"
+          id="fileInput"
+          name="fileInput"
+          accept="application/pdf"
+          required
+        />
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="calculate-button"
+          onclick="calculateAllowance()"
+        >
+          Submit Funding Information
+        </button>
+      </form>
+
+      <!-- Message Display -->
+      <p id="message"></p>
+    </div>
+    <table id="allowanceTable">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Allowance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>May</td>
+          <td id="may"></td>
+        </tr>
+        <tr>
+          <td>June</td>
+          <td id="june"></td>
+        </tr>
+        <tr>
+          <td>July</td>
+          <td id="july"></td>
+        </tr>
+        <tr>
+          <td>August</td>
+          <td id="august"></td>
+        </tr>
+        <tr>
+          <td>September</td>
+          <td id="september"></td>
+        </tr>
+        <tr>
+          <td>October</td>
+          <td id="october"></td>
+        </tr>
+        <tr>
+          <td>November</td>
+          <td id="november"></td>
+        </tr>
+        <tr>
+          <td>December</td>
+          <td id="december"></td>
+        </tr>
+        <tr>
+          <td>January</td>
+          <td id="january"></td>
+        </tr>
+        <tr>
+          <td>Total Amount</td>
+          <td id="totalRemaining"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Toggle Navigation Script -->
+    <script>
+      function toggleNav() {
+        const sidenav = document.getElementById("mySidenav");
+        const container = document.querySelector(".container");
+        if (sidenav.style.width === "250px") {
+          sidenav.style.width = "0";
+          container.style.marginLeft = "0";
+        } else {
+          sidenav.style.width = "250px";
+          container.style.marginLeft = "250px";
+        }
+      }
+    </script>
+    <script>
+      function calculateAllowance() {
+        const annualAmountInput =
+          document.getElementById("annual_amount").value;
+        const annualAmount = parseFloat(annualAmountInput);
+        const fixedAmount = 100000; // Fixed amount for calculation
+        const remainingAmount = fixedAmount - annualAmount;
+        const monthlyAllowance = remainingAmount / 9;
+
+        // Display the monthly allowance in each month
+        const months = [
+          "may",
+          "june",
+          "july",
+          "august",
+          "september",
+          "october",
+          "november",
+          "december",
+          "january",
+        ];
+        months.forEach((month) => {
+          const cell = document.getElementById(month);
+          cell.textContent = Math.round(monthlyAllowance);
+        });
+
+        // Display the total remaining amount
+        const totalRemainingCell = document.getElementById("totalRemaining");
+        totalRemainingCell.textContent = Math.round(remainingAmount);
+      }
+    </script>
+    <script type="module" src="calc.js"></script>
+  </body>
+</html>

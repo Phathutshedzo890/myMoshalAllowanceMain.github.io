@@ -7,24 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <nav class="navbar">
-        <h1 class="main-title">My Moshal Allowance</h1>
 
-        <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-      </nav>
-    </header>
-    <aside class="sidenav" id="mySidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
-        >&times;</a
-      >
-      <a href="#">Home</a>
-    </aside>
     <main class="container" id="container">
+     
       <!-- Registration Form -->
       <section class="form-section sign-up-section">
         <form id="registerForm">
-          <h1>Create Account</h1>
+          <h3>Create Account</h3>
           <!-- First Name -->
           <input type="text" id="Fname" placeholder="First Name" required />
           <!-- Last Name -->
@@ -43,7 +32,7 @@
             <select id="Varsity" required>
               <option value="" disabled selected>Select University</option>
               <option value="University of Witwatersrand">
-                University of Witwatersrand
+                University of the Witwatersrand
               </option>
               <option value="University of Johannesburg">
                 University of Johannesburg
@@ -54,11 +43,32 @@
               <option value="University of Cape Town">
                 University of Cape Town
               </option>
+              <option value="University of Stellenbosch">
+                 Stellenbosch University
+              </option>
+              <option value="University of Stellenbosch">
+                North-West University
+             </option>
+              <option value="University of Free State">
+                University of the Free State
+              </option>
+              <option value="University of Kwa-Zulu Natal">
+                University of KwaZulu-Natal
+              </option>
+              <option value="University of Western Cape">
+                University of the Western Cape
+              </option>
+              <option value="University of Rhodes">
+                Rhodes University
+              </option>
+              <option value="Nelson Mandela University ">
+                Nelson Mandela University 
+              </option>
             </select>
           </div>
 
           <!-- Phone Number -->
-          <input type="tel" id="PhoneNo" placeholder="Phone Number" required />
+          <input type="number" id="PhoneNo" placeholder="Phone Number" required />
           <!-- Email -->
           <input type="email" id="RegisterEmail" placeholder="Email" required />
           <!-- Password -->
@@ -75,7 +85,7 @@
       <!-- Login Form -->
       <section class="form-section sign-in-section">
         <form id="loginForm">
-          <h1>Sign In</h1>
+          <h3>Sign In</h3>
           <!-- Email -->
           <input type="email" id="LoginEmail" placeholder="Email" required />
           <!-- Password -->
@@ -85,19 +95,24 @@
             placeholder="Password"
             required
           />
+          <br />
+          <a href="#" id="forgotPasswordLink" style="font-size: 14px;font-family: Arial, sans-serif;color: #000;margin-bottom: -10px;">Forgot Password?</a>
           <button type="submit" id="Addbtn">Sign In</button>
           <a class="admin-link" href="admin_login.html">Admin</a>
         </form>
+       
       </section>
 
       <aside class="overlay-section">
         <article class="overlay">
           <section class="overlay-panel overlay-left">
+              <img src="https://i.ibb.co/GRQL9Kn/00ea154022e5.png" alt="User Guide">
             <h1>Existing user?</h1>
             <p>Login with your personal info</p>
             <button class="ghost" id="signIn">Sign In</button>
           </section>
           <section class="overlay-panel overlay-right">
+            <img src="https://i.ibb.co/GRQL9Kn/00ea154022e5.png" alt="">
             <h1>New user?</h1>
             <p>
               Gain clarity on your allowance. Enter your personal details and
@@ -108,13 +123,15 @@
         </article>
       </aside>
     </main>
+
     <footer>
-      <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+      <p>&copy; Moshal Scholarship Program 2024 <br> Developed by INFOSYNC <br> All rights reserved</p>
       <p>
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
       </p>
     </footer>
+
     <script>
       function toggleNav() {
         const sidenav = document.getElementById("mySidenav");
@@ -140,116 +157,44 @@
       });
     </script>
     <script type="module" src="LoginFire.js"></script>
+    
+    <script type="module" src="profile.js"></script>
+  
   </body>
 </html>
 
 <style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-
-  body {
-    background-color: #f6f5f7;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh;
-    margin: 0;
-  }
-
-  header {
-    background: #3f62af;
-    border-bottom: 1px solid #ddd;
-    padding: 0 20px;
-    box-shadow: 0 4px 2px -2px gray;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    height: 70px;
-  }
-
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .menu-btn {
-    font-size: 30px;
-    cursor: pointer;
-    color: #ffffff;
-    order: -1; /* Add this line to move the button to the left */
-  }
-
-  h1.main-title {
-    color: #ffffff;
-    margin-left: 10px; /* Add some margin to separate the title from the button */
-  }
-
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #3f62af;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #ffffff;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
   /* Style the select drop-down to match the input fields */
-  .select-container {
-    width: 100%;
-    margin: 8px 0;
+.select-container {
+  width: 100%;
+  margin: 8px 0;
+}
+
+.select-container select {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #ffffff;
+  border: none; /* Remove all borders */
+  border-bottom: 1px solid black; /* Add only the bottom border */
+  color: black; 
   }
 
-  .select-container select {
-    width: 100%;
-    padding: 12px 15px;
-    border-radius: 5px;
-    background-color: #eee;
-    border: none;
-    /* font-size: 16px; */
-    color: gray;
-  }
-
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-  }
+.select-container select option:first-child {
+  color: black; /* Black placeholder-like text for the first option */
+}
 
   main.container {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
-    width: 768px;
+    width: 55%;
     max-width: 100%;
-    min-height: 480px;
+    min-height: 510px;
     overflow: hidden;
-    margin: 20px auto;
+    margin: 70px auto 0;
+    padding: 20px;
+    
   }
 
   .form-section {
@@ -259,11 +204,13 @@
     transition: all 0.6s ease-in-out;
   }
 
-  .sign-in-section {
-    left: 0;
-    width: 50%;
-    z-index: 2;
-  }
+
+.sign-in-section {
+  position: relative;
+  top: 0; 
+  width: 50%;
+  z-index: 2;
+}
 
   .sign-up-section {
     left: 0;
@@ -282,6 +229,15 @@
     z-index: 5;
   }
 
+  img {
+    width: 80%; /* Adjust the image width as needed */
+    max-width: 300px; /* Set a max width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 100px; /* Rounded corners for the image */
+    margin-top: 100px;
+    justify-content: center;
+    justify-items: center;
+}
   .overlay-section {
     position: absolute;
     top: 0;
@@ -320,7 +276,7 @@
     justify-content: center;
     padding: 0 40px;
     text-align: center;
-    top: 0;
+    top: -80px;
     height: 100%;
     width: 50%;
     transform: translateX(0);
@@ -368,15 +324,21 @@
   }
 
   input {
-    background-color: #eee;
-    border: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
-    border-radius: 5px;
-  }
+  background-color: #ffffff;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
 
-  button {
+input::placeholder {
+  color: black; 
+  opacity: 1; 
+}
+
+button.Addbtn {
+    margin-top: 40px;
     border-radius: 20px;
     border: 1px solid #3f62af;
     background-color: #3f62af;
@@ -389,12 +351,32 @@
     transition: transform 80ms ease-in;
     cursor: pointer;
   }
+  button {
+   
+    border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: #3f62af;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 40px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  }
 
   button.ghost {
     background-color: transparent;
     border-color: #ffffff;
   }
+  button[type="submit"]:first-of-type {
+  margin-top: 10px; /* Adjust as needed */
+}
 
+#Addbtn {
+  margin-top: 40px; /* Adjust as needed */
+}
   button:focus {
     outline: none;
   }
@@ -403,23 +385,27 @@
     transform: scale(0.95);
   }
 
-  footer {
+  /* Admin link style */
+  .admin-link {
+    display: inline-block;
+    margin-top: 60px;
+    padding:13px 45px;
+    background-color: #3f62af; /* Matches the main button color */
+    color: white; /* White text for contrast */
+    border-radius: 20px; /* Rounded corners to match button */
+    font-size: 12px; /* Similar font size */
+    text-transform: uppercase;
     text-align: center;
-    padding: 20px;
-    background: #f8f8f8;
-    border-top: 1px solid #ddd;
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: transform 80ms ease-in, background-color 0.3s ease; /* Smooth transition */
+    cursor: pointer;
   }
-
-  footer p {
-    margin: 5px 0;
+  
+  .admin-link:active {
+    transform: scale(0.95); /* Slight shrink effect on click */
   }
-
-  footer a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #3f62af;
-  }
-
   /* Responsive Design */
   @media (max-width: 768px) {
     .form-section {
@@ -436,31 +422,5 @@
     main.container {
       width: 90%;
     }
-  }
-  /* Admin link style */
-  .admin-link {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 25px;
-    background-color: #3f62af; /* Matches the main button color */
-    color: white; /* White text for contrast */
-    border-radius: 20px; /* Rounded corners to match button */
-    font-size: 14px; /* Similar font size */
-    text-transform: uppercase;
-    text-align: center;
-    text-decoration: none; /* Remove underline */
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: transform 80ms ease-in, background-color 0.3s ease; /* Smooth transition */
-    cursor: pointer;
-  }
-
-  /* Admin link hover and active effects */
-  .admin-link:hover {
-    background-color: #2f4e8a; /* Darker shade on hover */
-  }
-
-  .admin-link:active {
-    transform: scale(0.95); /* Slight shrink effect on click */
   }
 </style>

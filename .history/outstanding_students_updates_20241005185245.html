@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+</head>
+<body>
+  <title>Report</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="main-title">My Moshal Allowance</h1>
+
+      <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
+    </nav>
+  </header>
+  <aside class="sidenav" id="mySidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
+      >&times;</a
+    >
+    <a href="Reports.html">Reports</a>
+    <a href="admin_query_page.html">Query</a>
+  </aside>
+  <br></br>
+  <h1>Oustanding Student Updates Report</h1>
+  <p>This report Identifies students who have not updated their funding information pertaining to additional external bursaries and anyother oustanding allowance documents</p>
+  <p id="studentCount"></p>
+  <canvas id="studentChart" width="300" height="200"></canvas>
+
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    
+
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
+      authDomain: "mymoshalallowance.firebaseapp.com",
+      databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
+      projectId: "mymoshalallowance",
+      storageBucket: "mymoshalallowance.appspot.com",
+      messagingSenderId: "607619034226",
+      appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
+      measurementId: "G-NCTW2CSPR8"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Firestore
+    const db = getFirestore(app);
+
+    // Fetch student count from Firestore and display it
+    async function getStudentCount() {
+      const studentsRef = collection(db, 'Student');
+      const snapshot = await getDocs(studentsRef);
+      const totalStudents = 77;
+      const updated_students = totalStudents-25;
+      const not_updated_students = 25;
+
+      // Display the total number of students
+      document.getElementById('studentCount').textContent = `The number of students in our database is: ${totalStudents}, and only ${updated_students} have updated their funding updates`;
+
+      // Subtract 25 and create the bar chart
+      createChart(updated_students, not_updated_students);
+    }
+
+    // Function to create the bar chart
+    function createChart(totalStudents, not_updated_students) {
+      const ctx = document.getElementById('studentChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['updated_students', 'not_updated_students'],
+          datasets: [{
+            label: 'Number of Students',
+            data: [totalStudents, not_updated_students],
+            backgroundColor: ['rgba(63, 98, 175, 0.8)','rgba(173, 216, 230, 0.8)',],
+            borderColor: ['rgba(63, 98, 175, 1)','rgba(173, 216, 230, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          onClick: (e, elements) => {
+        if (elements.length > 0) {
+          const clickedElementIndex = elements[1].index; // Get index of clicked bar
+          const label = chart.data.labels[clickedElementIndex]; // Get label of clicked bar
+          
+          // Redirect based on the clicked bar's label
+          if (label === 'not_updated_students') {
+            window.location.href = 'not_updated_students.html'; // Redirect to a new page for 'Answered queries'
+          } 
+      }
+        }
+        }
+      });
+    }
+
+    // Call the function to get student count and display chart
+    getStudentCount();
+  </script>
+  <script>
+    function toggleNav() {
+      const sidenav = document.getElementById("mySidenav");
+      if (sidenav.style.width === "250px") {
+        sidenav.style.width = "0";
+        document.body.style.marginLeft = "0";
+      } else {
+        sidenav.style.width = "250px";
+        document.body.style.marginLeft = "250px";
+      }
+    }
+
+    document.getElementById("signIn").addEventListener("click", () => {
+      document
+        .getElementById("container")
+        .classList.remove("right-panel-active");
+    });
+
+    document.getElementById("signUp").addEventListener("click", () => {
+      document
+        .getElementById("container")
+        .classList.add("right-panel-active");
+    });
+  </script>
+   <footer>
+    <p>&copy; 2024 MyWebsite. All rights reserved.</p>
+    <p>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </p>
+  </footer>
+</body>
+</html>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    background-color: #f6f5f7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0;
+  }
+
+  header {
+    background: #3f62af;
+    border-bottom: 1px solid #ddd;
+    padding: 0 20px;
+    box-shadow: 0 4px 2px -2px gray;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    height: 70px;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .menu-btn {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ffffff;
+    order: -1; /* Add this line to move the button to the left */
+  }
+
+  h1.main-title {
+    color: #ffffff;
+    margin-left: 10px; /* Add some margin to separate the title from the button */
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #3f62af;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+ 
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+  }
+
+  main.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    overflow: hidden;
+    margin: 20px auto;
+  }
+
+  h1 {
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    margin: 20px 0 30px;
+    text-align: center;
+  }
+
+
+  button {
+    border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: #3f62af;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  }
+
+  button.ghost {
+    background-color: transparent;
+    border-color: #ffffff;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  button:active {
+    transform: scale(0.95);
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    background: #f8f8f8;
+    border-top: 1px solid #ddd;
+  }
+
+  footer p {
+    margin: 5px 0;
+  }
+
+  footer a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3f62af;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .form-section {
+      width: 100%;
+    }
+    main.container.right-panel-active .sign-in-section,
+    main.container.right-panel-active .sign-up-section {
+      transform: translateX(100%);
+      width: 100%;
+    }
+    .overlay-section {
+      display: none;
+    }
+    main.container {
+      width: 90%;
+    }
+  }
+</style>
+

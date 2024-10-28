@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Non-Compliant Students Report</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        margin: 0;
+      }
+      body::-webkit-scrollbar {
+        display: none; /* Hide scrollbar */
+      }
+
+      h1 {
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        margin: 20px 0 30px;
+        text-align: center;
+      }
+
+      .remind-button {
+        position: absolute;
+        border-radius: 20px;
+        border: 1px solid #3f62af;
+        background-color: #3f62af;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 10px 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+        width: 130px;
+        margin-left: 50px;
+        margin-top: 20px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #f8f8f8;
+      }
+
+      footer p {
+        margin: 5px 0;
+      }
+
+      footer a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3f62af;
+      }
+
+      table {
+        width: 90%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 5px #3f62af;
+        margin-left: 50px;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #3f62af;
+        color: white;
+      }
+
+      td {
+        word-wrap: break-word;
+      }
+
+      .message-column {
+        width: 40%;
+      }
+
+      table {
+        position: fixed;
+        width: 90%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 5px #3f62af;
+        margin-top: -450px;
+        margin-left: 50px;
+        margin-bottom: 30px; /* Add this line to add margin below the table */
+      }
+
+      @media (max-width: 768px) {
+        main.container {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <!--Start Navigation-->
+      <style>
+        .navigation-container {
+          position: absolute;
+          left: 88%;
+          top: 20px;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          transition: all 0.3s ease;
+        }
+
+        .nav-buttons {
+          display: flex;
+          gap: 15px;
+          opacity: 0;
+          width: 0;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .nav-arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          background-color: #3f62af;
+          border-radius: 5px;
+          color: white;
+          text-decoration: none;
+          font-size: 24px;
+        }
+
+        .nav-button {
+          position: relative;
+          z-index: none;
+        }
+
+        .nav-button img {
+          width: 60px;
+          height: 60px;
+          border-radius: 10px;
+          object-fit: cover;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
+
+        .nav-button:hover img {
+          transform: scale(1.1);
+        }
+
+        .navigation-container:hover .nav-buttons {
+          opacity: 1;
+          width: 110px; /* Width for two buttons + gap */
+        }
+
+        .popover {
+          display: none;
+          position: absolute;
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 15px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+          text-align: center;
+          right: 0;
+          top: 70px;
+        }
+
+        .popover-buttons {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+        }
+
+        .popover button {
+          background-color: #3f62af;
+          color: #fff;
+          width: 70px;
+          padding: 8px 0;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .popover button:hover {
+          background-color: #2d4b8f;
+        }
+      </style>
+
+      <div class="navigation-container">
+        <div class="nav-buttons">
+          <a
+            href="javascript:void(0);"
+            class="nav-arrow"
+            id="prev"
+            onclick="goBack()"
+            style="color: transparent; display: flex; align-items: center"
+          >
+            <i
+              class="ri-arrow-left-s-line"
+              style="
+                font-size: 36px;
+                margin-right: 5px;
+                color: #fff;
+                background-color: #3f62af;
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+              "
+            ></i>
+          </a>
+          <a
+            href="javascript:void(0);"
+            class="nav-arrow"
+            id="next"
+            onclick="goForward()"
+            style="color: transparent; display: flex; align-items: center"
+          >
+            <i
+              class="ri-arrow-right-s-line"
+              style="
+                font-size: 36px;
+                margin-right: 5px;
+                color: #fff;
+                background-color: #3f62af;
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+              "
+            ></i>
+          </a>
+        </div>
+
+        <div class="nav-button" id="homeButton">
+          <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home" />
+          <div class="popover" id="homePopover">
+            <p>Want to go to the report page?</p>
+            <div class="popover-buttons">
+              <button class="confirm" onclick="goHome()">Yes</button>
+              <button class="cancel" onclick="closePopover('homePopover')">
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const homeButton = document.getElementById("homeButton");
+          const homePopover = document.getElementById("homePopover");
+
+          function showPopover(button, popover) {
+            const rect = button.getBoundingClientRect();
+            popover.style.display = "block";
+          }
+
+          homeButton.addEventListener("click", () =>
+            showPopover(homeButton, homePopover)
+          );
+
+          window.closePopover = function (id) {
+            document.getElementById(id).style.display = "none";
+          };
+
+          window.goHome = function () {
+            window.location.href = "Reports.html";
+          };
+
+          window.goBack = function () {
+            window.history.back();
+          };
+
+          window.goForward = function () {
+            window.history.forward();
+          };
+
+          document.addEventListener("click", function (event) {
+            if (
+              !homeButton.contains(event.target) &&
+              !homePopover.contains(event.target)
+            ) {
+              closePopover("homePopover");
+            }
+          });
+        });
+      </script>
+      <!--End Navigation-->
+    </section>
+
+    <h2
+      class="section-title"
+      style="
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 100px;
+        margin-left: 580px;
+        position: absolute;
+      "
+    >
+      Non-Compliant Students
+    </h2>
+    <section class="non-compliant-table">
+      <table id="non-compliant-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Student Name</th>
+            <th>Missing Documents</th>
+            <th>Days Since Last Update</th>
+            <th>Severity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be dynamically added here -->
+        </tbody>
+      </table>
+      <footer>
+        <p>
+          &copy; Moshal Scholarship Program 2024 <br />
+          Developed by InfoSync <br />
+          All rights reserved
+        </p>
+        <p>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </p>
+      </footer>
+    </section>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        doc,
+        getDoc,
+      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+      // Firebase configuration (replace with your config)
+      const firebaseConfig = {
+        apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+        authDomain: "mmmma-c2403.firebaseapp.com",
+        projectId: "mmmma-c2403",
+        storageBucket: "mmmma-c2403.appspot.com",
+        messagingSenderId: "133407121519",
+        appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+        measurementId: "G-NBSGM52XGG",
+      };
+
+      // Initialize Firebase
+      const firebaseApp = initializeApp(firebaseConfig);
+      const db = getFirestore(firebaseApp);
+
+      // Fetch non-compliant students and display in the table
+      async function fetchNonCompliantStudents() {
+        const nonCompliantTable = document
+          .getElementById("non-compliant-table")
+          .getElementsByTagName("tbody")[0];
+        nonCompliantTable.innerHTML = ""; // Clear the table before adding new rows
+
+        try {
+          // Get all students
+          const studentsSnapshot = await getDocs(collection(db, "Student"));
+          for (const studentDoc of studentsSnapshot.docs) {
+            const studentID = studentDoc.id;
+            const studentData = studentDoc.data();
+
+            // Check for missing documents
+            const missingDocuments = await checkMissingDocuments(studentID);
+            if (missingDocuments.length >= 2) {
+              // Check for 2 or more missing documents
+              const lastUpdate = studentData.LastUpdate || new Date();
+              const daysSinceUpdate = calculateDaysSince(lastUpdate);
+
+              const severity = getSeverity(daysSinceUpdate);
+
+              const row = createNonCompliantRow({
+                studentName: `${studentData.Student_FName} ${studentData.Student_LName}`,
+                missingDocuments,
+                daysSinceUpdate,
+                severity,
+                studentID,
+              });
+              nonCompliantTable.appendChild(row);
+            }
+          }
+        } catch (error) {
+          console.error("Error fetching non-compliant students:", error);
+        }
+      }
+
+      // Function to check missing documents for a student
+      async function checkMissingDocuments(studentID) {
+        const missingDocs = [];
+        const docTypes = ["feeStatements", "proofOfFunding", "ExternalFunding"];
+        for (let docType of docTypes) {
+          const snapshot = await getDocs(collection(db, docType));
+          const docExists = snapshot.docs.some((doc) => doc.id === studentID);
+          if (!docExists) {
+            missingDocs.push(docType);
+          }
+        }
+        return missingDocs;
+      }
+
+      // Function to calculate the number of days since the last update
+      function calculateDaysSince(lastUpdate) {
+        const currentDate = new Date();
+        const lastUpdateDate = new Date(lastUpdate);
+        const timeDiff = currentDate - lastUpdateDate;
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert milliseconds to days
+        return daysDiff;
+      }
+
+      // Function to determine severity based on days since last update
+      function getSeverity(daysSinceUpdate) {
+        if (daysSinceUpdate < 30) {
+          return "Low";
+        } else if (daysSinceUpdate < 60) {
+          return "Medium";
+        } else {
+          return "High";
+        }
+      }
+
+      // Function to create a row for the non-compliant student
+      function createNonCompliantRow(data) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td><input type="checkbox" class="select-student" value="${
+          data.studentID
+        }"></td>
+        <td>${data.studentName}</td>
+        <td>${data.missingDocuments.join(", ")}</td>
+        <td>${data.daysSinceUpdate} days</td>
+        <td class="${data.severity.toLowerCase()}-risk">${data.severity}</td>
+    `;
+        return row;
+      }
+
+      // Function to handle the mass reminder for selected students
+      function remindSelectedStudents() {
+        const selectedStudents = Array.from(
+          document.querySelectorAll(".select-student:checked")
+        ).map((checkbox) => checkbox.value);
+
+        if (selectedStudents.length > 0) {
+          selectedStudents.forEach((studentID) => remindStudent(studentID));
+          alert("Reminder sent to selected students.");
+        } else {
+          alert("Please select at least one student.");
+        }
+      }
+
+      // Function to handle individual reminders for non-compliant students
+      function remindStudent(studentID) {
+        alert(`Reminder sent to student ID: ${studentID}`);
+        // Additional code to send the reminder (e.g., API call or notification)
+      }
+
+      // Add a button to remind selected students
+      const remindButton = document.createElement("button");
+      remindButton.textContent = "Remind Selected";
+      remindButton.onclick = remindSelectedStudents;
+      remindButton.className = "remind-button";
+      document.body.appendChild(remindButton);
+
+      // Call the fetch function once the page has loaded
+      fetchNonCompliantStudents();
+    </script>
+  </body>
+</html>

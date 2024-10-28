@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Allowance Payment Summary Report</title>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js" type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js" type="module"></script>
+    <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+ 
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+  
+      body {
+        background-color: #f8f8f8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        margin: 0;
+      }
+  
+  
+      h1 {
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+        margin-top: 50px;
+      }
+  
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        margin: 20px 0 30px;
+        text-align: center;
+      }
+  
+      button {
+        border-radius: 20px;
+        border: 1px solid #3f62af;
+        background-color: #3f62af;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        cursor: pointer;
+      }
+  
+      button.ghost {
+        background-color: transparent;
+        border-color: #ffffff;
+      }
+  
+      button:focus {
+        outline: none;
+      }
+  
+      button:active {
+        transform: scale(0.95);
+      }
+  
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #f8f8f8;
+        
+      }
+  
+      footer p {
+        margin: 5px 0;
+      }
+  
+      footer a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3f62af;
+      }
+  
+      table {
+        width: 90%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 2px 5px #3f62af;
+      margin-left: 50px;
+      }
+      
+      th, td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+      
+      th {
+        background-color: #3f62af;
+        color: white;
+      }
+      
+      td {
+        word-wrap: break-word;
+      }
+  
+      .message-column {
+        width: 40%;
+      }
+  
+      .action-btn {
+        background-color: #3f62af;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+  
+      .action-btn:hover {
+        background-color: #2e4b87;
+      }
+  
+      @media (max-width: 768px) {
+        main.container {
+          width: 90%;
+        }
+      }
+    </style>
+</head>
+<body>
+ 
+  <div>
+    <!--Start Navigation-->   
+    <style>
+     .navigation-container {
+       position: absolute;
+       right: 40px;
+       top: 20px;
+       display: flex;
+       align-items: center;
+       gap: 15px;
+       transition: all 0.3s ease;
+     
+     }
+     
+     .nav-buttons {
+       display: flex;
+       gap: 15px;
+       opacity: 0;
+       width: 0;
+       overflow: hidden;
+       transition: all 0.3s ease;
+     }
+     
+     .nav-arrow {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 40px;
+       height: 40px;
+       background-color: #3f62af;
+       border-radius: 5px;
+       color: white;
+       text-decoration: none;
+       font-size: 24px;
+     }
+     
+     .nav-button {
+       position: relative;
+       z-index: none;
+     }
+     
+     .nav-button img {
+      
+       width: 60px;
+       height: 60px;
+       border-radius: 10px;
+       object-fit: cover;
+       cursor: pointer;
+       transition: transform 0.3s ease;
+     }
+     
+     .nav-button:hover img {
+       transform: scale(1.1);
+     }
+     
+     .navigation-container:hover .nav-buttons {
+       opacity: 1;
+       width: 110px; /* Width for two buttons + gap */
+     }
+     
+     .popover {
+       display: none;
+       position: absolute;
+       background: white;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       padding: 15px;
+       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       z-index: 1000;
+       text-align: center;
+       right: 0;
+       top: 70px;
+     }
+     
+     .popover-buttons {
+       display: flex;
+       gap: 10px;
+       justify-content: center;
+     }
+     
+     .popover button {
+       background-color: #3f62af;
+       color: #fff;
+       width: 70px;
+       padding: 8px 0;
+       border: none;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.2s;
+     }
+     
+     .popover button:hover {
+       background-color: #2d4b8f;
+     }
+     </style>
+   
+     <div class="navigation-container">
+       <div class="nav-buttons">
+         <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
+           <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+         </a>
+         <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+           <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+
+         </a>
+       </div>
+       
+       <div class="nav-button" id="homeButton">
+         <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+         <div class="popover" id="homePopover">
+           <p>Want to go to the report page?</p>
+           <div class="popover-buttons">
+             <button class="confirm" onclick="goHome()">Yes</button>
+             <button class="cancel" onclick="closePopover('homePopover')">No</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       const homeButton = document.getElementById('homeButton');
+       const homePopover = document.getElementById('homePopover');
+       
+       function showPopover(button, popover) {
+         const rect = button.getBoundingClientRect();
+         popover.style.display = 'block';
+       }
+     
+       homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
+       
+       window.closePopover = function(id) {
+         document.getElementById(id).style.display = 'none';
+       };
+     
+       window.goHome = function() {
+         window.location.href = 'Reports.html';
+       };
+     
+       window.goBack = function() {
+         window.history.back();
+       };
+       
+       window.goForward = function() {
+         window.history.forward();
+       };
+     
+       document.addEventListener('click', function(event) {
+         if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+           closePopover('homePopover');
+         }
+       });
+     });
+     </script>
+     <!--End Navigation-->
+    </div>
+
+  <main style="margin-top: 50px;">
+    <h1>Full Student Allowance Disbursement</h1><br>
+    <table id="reportTable">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>External Funding Name</th>
+                <th>External Funding Amount</th>
+                <th>Calculated Allowance</th>
+                <th>External Funding Type</th>
+                <th>External Funding Date</th>
+                <th>NSFAS Status</th>
+             
+            </tr>
+        </thead>
+        <tbody id="reportBody">
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+  </main>
+  <footer>
+    <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
+    <p>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </p>
+  </footer>
+  </footer>
+
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+  apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+  authDomain: "mmmma-c2403.firebaseapp.com",
+  projectId: "mmmma-c2403",
+  storageBucket: "mmmma-c2403.appspot.com",
+  messagingSenderId: "133407121519",
+  appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+  measurementId: "G-NBSGM52XGG"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            loadAllowanceData();  // Call data loading function if a user is logged in
+        } else {
+            console.log("No user is logged in.");
+            // Handle the case for unauthenticated users, such as redirecting to a login page
+        }
+    });
+
+    function calculateAllowance(annualAmount) {
+        const fixedAmount = 100000; // Example fixed amount for calculation
+        const remainingAmount = fixedAmount - annualAmount;
+        return Math.round(remainingAmount / 9); // Monthly allowance (adjust as needed)
+    }
+
+    async function loadAllowanceData() {
+        const reportBody = document.getElementById('reportBody');
+        // No clearing of existing data (appends new data if required)
+
+        try {
+            const querySnapshot = await getDocs(collection(db, "ExternalFunding"));
+
+            if (querySnapshot.empty) {
+                if (reportBody.innerHTML.trim() === '') {
+                    reportBody.innerHTML = '<tr><td colspan="8">No data available</td></tr>';
+                }
+                return;
+            }
+
+            // Object to store the number of fundings per date
+            const fundingDataByDate = {};
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const calculatedAllowance = calculateAllowance(data.ExtFunding_Amt);
+
+                const fundingDate = data.ExtFunding_Date;  // Capture funding date
+
+                // Group fundings by date
+                if (fundingDataByDate[fundingDate]) {
+                    fundingDataByDate[fundingDate]++;
+                } else {
+                    fundingDataByDate[fundingDate] = 1;
+                }
+
+                // Create table row for each funding
+                const row = reportBody.insertRow();
+                row.insertCell(0).textContent = data.Student_ID;
+                row.insertCell(1).textContent = data.ExtFunding_Name;
+                row.insertCell(2).textContent = data.ExtFunding_Amt;
+                row.insertCell(3).textContent = calculatedAllowance;
+                row.insertCell(4).textContent = data.ExtFunding_Type;
+                row.insertCell(5).textContent = fundingDate;
+                row.insertCell(6).textContent = data.NSFAS_Status;
+
+            });
+
+            console.log("Funding Data by Date:", fundingDataByDate);  // Log to check date accuracy
+
+        } catch (error) {
+            console.error("Error loading allowance data:", error);
+            if (reportBody.innerHTML.trim() === '') {
+                reportBody.innerHTML = '<tr><td colspan="8">Error loading data</td></tr>';
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

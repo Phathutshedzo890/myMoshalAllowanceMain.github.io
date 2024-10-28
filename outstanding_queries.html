@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Data</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+</head>
+<body>
+  <title>Report</title>
+</head>
+<body>
+ 
+  <div>
+    <!--Start Navigation-->   
+    <style>
+     .navigation-container {
+       position: absolute;
+       right: 40px;
+       top: 20px;
+       display: flex;
+       align-items: center;
+       gap: 15px;
+       transition: all 0.3s ease;
+     
+     }
+     
+     .nav-buttons {
+       display: flex;
+       gap: 15px;
+       opacity: 0;
+       width: 0;
+       overflow: hidden;
+       transition: all 0.3s ease;
+     }
+     
+     .nav-arrow {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 40px;
+       height: 40px;
+       background-color: #3f62af;
+       border-radius: 5px;
+       color: white;
+       text-decoration: none;
+       font-size: 24px;
+     }
+     
+     .nav-button {
+       position: relative;
+       z-index: none;
+     }
+     
+     .nav-button img {
+      
+       width: 60px;
+       height: 60px;
+       border-radius: 10px;
+       object-fit: cover;
+       cursor: pointer;
+       transition: transform 0.3s ease;
+     }
+     
+     .nav-button:hover img {
+       transform: scale(1.1);
+     }
+     
+     .navigation-container:hover .nav-buttons {
+       opacity: 1;
+       width: 110px; /* Width for two buttons + gap */
+     }
+     
+     .popover {
+       display: none;
+       position: absolute;
+       background: white;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       padding: 15px;
+       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       z-index: 1000;
+       text-align: center;
+       right: 0;
+       top: 70px;
+     }
+     
+     .popover-buttons {
+       display: flex;
+       gap: 10px;
+       justify-content: center;
+     }
+     
+     .popover button {
+       background-color: #3f62af;
+       color: #fff;
+       width: 70px;
+       padding: 8px 0;
+       border: none;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.2s;
+     }
+     
+     .popover button:hover {
+       background-color: #2d4b8f;
+     }
+     </style>
+   
+     <div class="navigation-container">
+       <div class="nav-buttons">
+         <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
+           <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+         </a>
+         <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+           <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+
+         </a>
+       </div>
+       
+       <div class="nav-button" id="homeButton">
+         <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+         <div class="popover" id="homePopover">
+           <p>Want to go to the report page?</p>
+           <div class="popover-buttons">
+             <button class="confirm" onclick="goHome()">Yes</button>
+             <button class="cancel" onclick="closePopover('homePopover')">No</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       const homeButton = document.getElementById('homeButton');
+       const homePopover = document.getElementById('homePopover');
+       
+       function showPopover(button, popover) {
+         const rect = button.getBoundingClientRect();
+         popover.style.display = 'block';
+       }
+     
+       homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
+       
+       window.closePopover = function(id) {
+         document.getElementById(id).style.display = 'none';
+       };
+     
+       window.goHome = function() {
+         window.location.href = 'Reports.html';
+       };
+     
+       window.goBack = function() {
+         window.history.back();
+       };
+       
+       window.goForward = function() {
+         window.history.forward();
+       };
+     
+       document.addEventListener('click', function(event) {
+         if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+           closePopover('homePopover');
+         }
+       });
+     });
+     </script>
+     <!--End Navigation-->
+    </div>
+ 
+  <div class="report-container">
+    <h1 class="title"> Oustanding Student Queries Report</h1>
+      <p class="report-date">Report Date: <span id="currentDate"></span></p>
+      <p class="generated">Generated: Weekly </p>
+   
+        <section class="key-metrics"> 
+          <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Key Metrics</h2>
+          <div class="cards-container">
+            <div class="card">
+              <h3 style="font-size: 13px;">Peak Week</h3>
+              <p> <br>Week 4</p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Query Turnover </h3>
+              <p>Average</p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Response Rate</h3>
+              <p id="responseRate"></p> Normal</div>
+          <div class="chart-container">
+            <canvas id="queryChart" width="410" height="230" style="margin-left: -90px;"></canvas>
+          </div>
+          <p><span id="studentCount"></span></p>
+        </section>
+  </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-error-warning-line"></i> Decisions To Consider
+              </div>
+              <div class="accordion-content">
+                <section class="decisions-made">
+                  <ul>
+                  <li>Respond to queries urgently to reduce backlog and avoid potential delays in allowances.</li>
+                  <li>Identify and address students who persistently query to offer direct support on the platforms, preventing repeat queries.</li>
+                  </ul>
+                </section>
+              </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-bar-chart-box-line"></i> Key Insights
+            </div>
+            <div class="accordion-content">
+              <section class="key-insights">
+                <ul>
+                  <li><strong>Query Turnover Rate:</strong>
+                    <ul>
+                      <li>The average turnover rate is approximately <i>n</i> days, but high-severity queries have been unanswered for over  <i>n</i> days, requiring prioritization.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Admin Responsiveness:</strong>
+                    <ul>
+                      <li> <i>n</i> % of queries are resolved within the first  <i>n</i> days, but  <i>n</i> % remain unresolved, indicating the need for better prioritization of high-severity issues.</li>
+                    </ul>
+                  </li>
+                  <li><strong>High Query Count Students:</strong>
+                    <ul>
+                      <li>Students have submitted multiple queries, signaling a need for deeper investigation to prevent recurring issues.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </section>
+            </div>
+        </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-alert-line"></i> Query Severity and Escalation
+              </div>
+              <div class="accordion-content">
+                <section class="query-severity">
+                  <ul>
+                    <li><strong>Severity of Queries:</strong>
+                      <ul>
+                        <li>High-severity cases (unanswered for more than 7 days) must be addressed urgently.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Escalation of Queries:</strong>
+                      <ul>
+                        <li>If queries remain unresolved beyond the admin’s scope, they should be escalated to senior Moshal staff for further investigation.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-calendar-check-line"></i> Query Submission Trends
+            </div>
+            <div class="accordion-content">
+              <section class="query-trends">
+                <ul>
+                  <li><strong>Submission Patterns:</strong>
+                    <ul>
+                      <li>There are identifiable spikes in query submissions, often tied to key events like funding updates. As admin prepare for these peak times by allocating more resources in advance.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </section>
+            </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <i class="ri-line-chart-line"></i> Impact on Student Satisfaction
+          </div>
+          <div class="accordion-content">
+            <section class="student-satisfaction">
+              <ul>
+                <li><strong>Impact of Delayed Responses:</strong>
+                  <ul>
+                    <li>Prolonged unresolved queries can lead to frustration and decreased trust in the system, particularly when related to financial issues.</li>
+                    <li>By reducing the time taken to resolve queries, the admin can improve the overall student experience and reduce repeat queries.</li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+          </div>
+      </div>
+
+        </div>
+      
+            <script>
+              // Wait for the DOM to be fully loaded before executing the script
+              document.addEventListener('DOMContentLoaded', function () {
+                    // Set the current date into the span
+                    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+                });
+                //Accordian
+      
+                    function toggleAccordion(header) {
+                    const content = header.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.padding = "0 15px";
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.padding = "15px";
+                    }
+                }
+                function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.accordion-header');
+
+    // Close all other accordion sections
+    allHeaders.forEach(h => {
+        const c = h.nextElementSibling;
+        if (c !== content) {
+            c.style.maxHeight = null;
+            c.style.padding = "0 20px";
+            h.classList.remove('active');
+        }
+    });
+
+    // Toggle the clicked section
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 20px";
+        header.classList.remove('active');
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px 20px";
+        header.classList.add('active');
+    }
+}
+
+            </script>
+            
+            <script type="module">
+              function goToPage(pageUrl) {
+                  window.location.href = pageUrl;
+              }
+
+              import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+              import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+              const firebaseConfig = {
+  apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+  authDomain: "mmmma-c2403.firebaseapp.com",
+  projectId: "mmmma-c2403",
+  storageBucket: "mmmma-c2403.appspot.com",
+  messagingSenderId: "133407121519",
+  appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+  measurementId: "G-NBSGM52XGG"
+};
+              const app = initializeApp(firebaseConfig);
+              const db = getFirestore(app);
+
+              // Function to calculate severity based on the time the query has been unanswered
+              function calculateSeverity(timestamp) {
+                  const currentTime = new Date();
+                  const queryTime = new Date(timestamp);
+                  const timeDiff = currentTime - queryTime;
+
+                  const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+
+                  if (daysDiff >= 7) {
+                      return { severity: "High", days: daysDiff };
+                  } else if (daysDiff >= 3) {
+                      return { severity: "Medium", days: daysDiff };
+                  } else {
+                      return { severity: "Low", days: daysDiff };
+                  }
+              }
+
+              async function displayQueryStats() {
+                  const unansweredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "==", null)));
+                  const answeredQuerySnapshot = await getDocs(query(collection(db, "Create_Query"), where("adminResponse", "!=", null)));
+
+                  const unansweredCount = unansweredQuerySnapshot.size;
+                  const answeredCount = answeredQuerySnapshot.size;
+
+                  // Prepare data for bar chart
+                  const ctx = document.getElementById('queryChart').getContext('2d');
+                  new Chart(ctx, {
+                      type: 'bar',
+                      data: {
+                          labels: ['Answered', 'Unanswered'],
+                          datasets: [{
+                              label: 'Query Count',
+                              data: [answeredCount, unansweredCount],
+                              backgroundColor: ['green', 'red'],
+                              borderColor: ['darkgreen', 'darkred'],
+                              borderWidth: 1
+                          }]
+                      },
+                      options: {
+                          onClick: function (e) {
+                              const activePoints = this.getElementsAtEventForMode(e, 'nearest', { intersect: true }, false);
+                              if (activePoints.length > 0) {
+                                  const index = activePoints[0].index;
+                                  if (index === 0) {
+                                      goToPage('answered_queries.html'); // Redirect to answered queries page
+                                  } else {
+                                      goToPage('not_updated_students.html'); // Redirect to unanswered queries page
+                                  }
+                              }
+                          },
+                          scales: {
+                              y: { beginAtZero: true }
+                          }
+                      }
+                  });
+              }
+
+              async function displayStudentData() {
+                  const q = query(collection(db, "Create_Query"), where("adminResponse", "==", null));
+                  const querySnapshot = await getDocs(q);
+                  const tableBody = document.getElementById('studentTableBody');
+
+                  const studentQueries = {};
+
+                  querySnapshot.forEach((doc) => {
+                      const data = doc.data();
+                      const { severity, days } = calculateSeverity(data.timestamp);
+
+                      if (!studentQueries[data.userName]) {
+                          studentQueries[data.userName] = {
+                              queries: [],
+                              severity,
+                              days
+                          };
+                      }
+                      studentQueries[data.userName].queries.push({
+                          date: new Date(data.timestamp).toLocaleDateString(),
+                          message: data.userMessage,
+                          docId: doc.id,
+                          severity,
+                          days
+                      });
+                  });
+
+                  const rows = [];
+                  for (const student in studentQueries) {
+                      const studentData = studentQueries[student];
+                      const queryCount = studentData.queries.length;
+                      const latestQuery = studentData.queries[0];
+
+                      const messagePreview = latestQuery.message.split(" ").slice(0, 6).join(" ") + (latestQuery.message.split(" ").length > 6 ? "..." : "");
+
+                      const row = document.createElement('tr');
+                      const dateCell = document.createElement('td');
+                      const nameCell = document.createElement('td');
+                      const countCell = document.createElement('td');
+                      const messageCell = document.createElement('td');
+                      const severityCell = document.createElement('td');
+                      const actionCell = document.createElement('td');
+
+                      dateCell.textContent = latestQuery.date;
+                      nameCell.textContent = student;
+                      countCell.textContent = queryCount;
+                      messageCell.textContent = messagePreview;
+                      severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
+
+                      const button = document.createElement('button');
+                      button.textContent = 'Respond';
+                      button.className = 'action-btn';
+                      button.onclick = () => {
+                          goToPage(`response_details.html?docId=${latestQuery.docId}`);
+                      };
+
+                      actionCell.appendChild(button);
+                      row.appendChild(dateCell);
+                      row.appendChild(nameCell);
+                      row.appendChild(countCell);
+                      row.appendChild(messageCell);
+                      row.appendChild(severityCell);
+                      row.appendChild(actionCell);
+
+                      rows.push(row);
+                  }
+
+                  rows.forEach(row => tableBody.appendChild(row));
+              }
+
+              displayQueryStats();
+              displayStudentData();
+            </script>
+
+            
+            <footer>
+              <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
+              <p>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+              </p>
+            </footer>
+
+</body>
+</html>
+
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .report-container {
+    max-width: 794px; /* A4 width for print */
+    margin: 20px auto  ;
+    margin-top: 100px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px #3f62af;
+  }
+  
+  .chart-container {
+    width: 250%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+    margin-right: 60px;
+  }
+  
+  .title {
+    text-align: center;
+    color: #34495e;
+  }
+  
+  #studentCount{
+    margin-top: 50px;
+    margin-left: -110px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+  }
+  .report-date,
+  .generated {
+    text-align: center;
+    color: #7f8c8d;
+    margin: 5px 0;
+  }
+  
+  .section-title {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 20px;
+    display: flex;
+  }
+  
+  .section-title i {
+    margin-right: 10px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
+  .cards-container {
+    display: flex;
+    
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-left: 180px;
+  }
+  
+  .card {
+    background-color: #fff;
+    padding: 10px;
+    width: 20%;
+    height: 85px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .card h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  section:not(.key-metrics) {
+    margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    background-color: #f8f8f8;
+    margin: 0;
+  }
+  
+  .details {
+    margin-left: 25%;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .details h2 {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  
+  .details ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .details li {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 5px;
+  }
+  
+  .download-section {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .download-button {
+    border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: transparent;
+    color: #3f62af;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 25px;
+    letter-spacing: 1px;
+    margin-left: -620px;
+  }
+  .accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  margin-left: 362px;
+    width: 52%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px #3f62af;
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #fff;
+    color: #3f62af;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
+.accordion-header:hover {
+    background: #3f62af;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+    
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+  
+body::-webkit-scrollbar {
+    display: none;
+}
+  footer {
+    margin-top: 11px;
+    text-align: center;
+    padding: 20px;
+    background: #f8f8f8;
+  }
+  
+  footer p {
+    margin: 5px 0;
+  }
+  
+  footer a {
+    text-decoration: none;
+    color: #3f62af;
+  }
+  
+  /* A4 Print Styling */
+  @media print {
+    body {
+      width: 210mm;
+      height: 297mm;
+      margin: 0;
+    }
+  
+    .report-container {
+      page-break-after: auto;
+      page-break-inside: avoid;
+      width: 100%;
+      margin: 0;
+      padding: 15mm;
+      box-shadow: none;
+    }
+  
+    .chart-container {
+      page-break-inside: avoid;
+      width: 100%;
+      padding: 0;
+    }
+  
+    .cards-container {
+      width: 100%;
+    }
+  
+    .card {
+      width: calc(100% / 4 - 20px); /* Adjust for A4 print */
+      margin-bottom: 10px;
+    }
+  }
+  </style>
+

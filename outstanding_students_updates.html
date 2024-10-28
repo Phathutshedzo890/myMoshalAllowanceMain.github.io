@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Data</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+  <!--=============== REMIXICONS ===============-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+</head>
+<body>
+  <title>Report</title>
+</head>
+<body>
+  
+  <div>
+    <!--Start Navigation-->   
+    <style>
+     .navigation-container {
+       position: absolute;
+       right: 40px;
+       top: 20px;
+       display: flex;
+       align-items: center;
+       gap: 15px;
+       transition: all 0.3s ease;
+     
+     }
+     
+     .nav-buttons {
+       display: flex;
+       gap: 15px;
+       opacity: 0;
+       width: 0;
+       overflow: hidden;
+       transition: all 0.3s ease;
+     }
+     
+     .nav-arrow {
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       width: 40px;
+       height: 40px;
+       background-color: #3f62af;
+       border-radius: 5px;
+       color: white;
+       text-decoration: none;
+       font-size: 24px;
+     }
+     
+     .nav-button {
+       position: relative;
+       z-index: none;
+     }
+     
+     .nav-button img {
+      
+       width: 60px;
+       height: 60px;
+       border-radius: 10px;
+       object-fit: cover;
+       cursor: pointer;
+       transition: transform 0.3s ease;
+     }
+     
+     .nav-button:hover img {
+       transform: scale(1.1);
+     }
+     
+     .navigation-container:hover .nav-buttons {
+       opacity: 1;
+       width: 110px; /* Width for two buttons + gap */
+     }
+     
+     .popover {
+       display: none;
+       position: absolute;
+       background: white;
+       border: 1px solid #ddd;
+       border-radius: 8px;
+       padding: 15px;
+       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+       z-index: 1000;
+       text-align: center;
+       right: 0;
+       top: 70px;
+     }
+     
+     .popover-buttons {
+       display: flex;
+       gap: 10px;
+       justify-content: center;
+     }
+     
+     .popover button {
+       background-color: #3f62af;
+       color: #fff;
+       width: 70px;
+       padding: 8px 0;
+       border: none;
+       border-radius: 20px;
+       cursor: pointer;
+       transition: background-color 0.2s;
+     }
+     
+     .popover button:hover {
+       background-color: #2d4b8f;
+     }
+     </style>
+   
+     <div class="navigation-container">
+       <div class="nav-buttons">
+         <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
+           <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+         </a>
+         <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+           <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+
+         </a>
+       </div>
+       
+       <div class="nav-button" id="homeButton">
+         <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+         <div class="popover" id="homePopover">
+           <p>Want to go to the report page?</p>
+           <div class="popover-buttons">
+             <button class="confirm" onclick="goHome()">Yes</button>
+             <button class="cancel" onclick="closePopover('homePopover')">No</button>
+           </div>
+         </div>
+       </div>
+     </div>
+     
+     <script>
+     document.addEventListener('DOMContentLoaded', function() {
+       const homeButton = document.getElementById('homeButton');
+       const homePopover = document.getElementById('homePopover');
+       
+       function showPopover(button, popover) {
+         const rect = button.getBoundingClientRect();
+         popover.style.display = 'block';
+       }
+     
+       homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
+       
+       window.closePopover = function(id) {
+         document.getElementById(id).style.display = 'none';
+       };
+     
+       window.goHome = function() {
+         window.location.href = 'Reports.html';
+       };
+     
+       window.goBack = function() {
+         window.history.back();
+       };
+       
+       window.goForward = function() {
+         window.history.forward();
+       };
+     
+       document.addEventListener('click', function(event) {
+         if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+           closePopover('homePopover');
+         }
+       });
+     });
+     </script>
+     <!--End Navigation-->
+    </div>
+
+    <div class="report-container">
+        <h1 class="title"> Outstanding Student Funding Report</h1>
+        <p class="report-date">Report Date: 31 May 2024</p>
+        <p class="generated">Generated: Annual</p>
+        <br>
+
+        <section class="key-metrics"> 
+          <h2 class="section-title"><i class="ri-bar-chart-box-line"></i> Key Metrics</h2>
+          <div class="cards-container">
+            <div class="card">
+              <h3 style="font-size: 13px;">Total Students</h3>
+              <p><span id="totalStudents"></span></p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Compliant</h3>
+              <p><span id="compliantCount"></span></p>
+            </div>
+            <div class="card">
+              <h3 style="font-size: 13px;">Non-Compliant</h3>
+              <p><span id="nonCompliantCount"></span></p>
+            </div>
+            
+          </div>
+          
+          <div class="chart-container">
+            <canvas id="documentStatusChart" width="400" height="200"></canvas>
+        </div>
+        </section>
+      </div>
+
+        <div class="accordion">
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-error-warning-line"></i> Analysis of Non-Compliance
+              </div>
+              <div class="accordion-content">
+                <section class="non-compliance-analysis">
+                  <ul>
+                    <li><strong>Root Causes:</strong>
+                      <ul>
+                        <li>Lack of awareness among students about document submission deadlines.</li>
+                        <li>Confusion due to unclear instructions or technical issues with the submission portal.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-alert-line"></i> Risks and Impact
+            </div>
+            <div class="accordion-content">
+              <section class="risks-impact"  >
+                <ul>
+                  <li><strong>Potential Delays:</strong>
+                    <ul>
+                      <li>Financial aid processing is at risk for the non-compliant students, potentially affecting their ability to attend classes or purchase necessary materials.</li>
+                  <li>Budget planning complications may arise due to incomplete or missing data.</li>
+                    </ul>
+                  </li>
+                  <li><strong>Budget Impact:</strong>
+                    <ul>
+                      <li>The program faces challenges in planning accurate budget allocations due to incomplete financial information.</li>
+                    </ul>
+                  </li>
+                </ul>
+              </section>
+            </div>
+        </div>
+
+            <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-lightbulb-line"></i> Recommendations & Actions
+              </div>
+              <div class="accordion-content">
+                <section class="recommendations-actions">
+                  <ul>
+                    <li><strong>Immediate Actions:</strong>
+                      <ul>
+                        <li>Send Targeted Reminders: Directly contact the non-compliant students with clear instructions and deadlines.</li>
+                        <li>Review Compliant Students: Confirm that all necessary documents have been submitted for the students marked compliant.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Campaign for Compliance:</strong>
+                      <ul>
+                        <li>Offer incentives such as priority funding or recognition for early compliance.</li>
+                      </ul>
+                    </li>
+                    <li><strong>Process Improvements:</strong>
+                      <ul>
+                        <li>Simplify submission forms and offer direct support to guide students through the process.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </section>
+              </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-timer-line"></i> Compliance Monitoring Plan
+            </div>
+            <div class="accordion-content">
+              <section class="compliance-monitoring-plan" >
+                <ul>
+                  <li>Continuous Tracking: Implement a system to track the status of student submissions and flag those approaching deadlines.</li>
+                  <li>Trend Analysis: Monitor submission patterns to identify high-risk periods or groups.</li>
+                </ul>
+              </section>
+            </div>
+        </div>
+        
+        </div>
+      
+            <script>
+              // Wait for the DOM to be fully loaded before executing the script
+              document.addEventListener('DOMContentLoaded', function () {
+                    // Set the current date into the span
+                    document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+                });
+                //Accordian
+      
+                    function toggleAccordion(header) {
+                    const content = header.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.padding = "0 15px";
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        content.style.padding = "15px";
+                    }
+                }
+                function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.accordion-header');
+
+    // Close all other accordion sections
+    allHeaders.forEach(h => {
+        const c = h.nextElementSibling;
+        if (c !== content) {
+            c.style.maxHeight = null;
+            c.style.padding = "0 20px";
+            h.classList.remove('active');
+        }
+    });
+
+    // Toggle the clicked section
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 20px";
+        header.classList.remove('active');
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px 20px";
+        header.classList.add('active');
+    }
+    }
+                // Wait for the DOM to be fully loaded before executing the script
+                document.addEventListener('DOMContentLoaded', function () {
+                // Set the current date into the span
+                document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+            });
+            </script>
+        <!-- Include the Chart.js CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+      <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+  authDomain: "mmmma-c2403.firebaseapp.com",
+  projectId: "mmmma-c2403",
+  storageBucket: "mmmma-c2403.appspot.com",
+  messagingSenderId: "133407121519",
+  appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+  measurementId: "G-NBSGM52XGG"
+};
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let totalStudents = 0;
+        let compliantCount = 0;
+        let nonCompliantCount = 0;
+
+        // Function to fetch students and check their document status
+        async function getDocumentStatus() {
+          const studentsSnapshot = await getDocs(collection(db, 'Student'));
+          let updatedCount = 0;
+          let notUpdatedCount = 0;
+
+          for (const studentDoc of studentsSnapshot.docs) {
+            const studentID = studentDoc.id;
+            const missingDocuments = await checkMissingDocuments(studentID);
+
+            if (missingDocuments.length >= 2) {
+              notUpdatedCount++;
+            } else {
+              updatedCount++;
+            }
+          }
+          return { updatedCount, notUpdatedCount };
+        }
+
+        // Function to check if a student is missing required documents
+        async function checkMissingDocuments(studentID) {
+          const missingDocs = [];
+          const docTypes = ['feeStatements', 'proofOfFunding', 'ExternalFunding'];
+
+          for (let docType of docTypes) {
+            const snapshot = await getDocs(collection(db, docType));
+            const docExists = snapshot.docs.some(doc => doc.id === studentID);
+            if (!docExists) {
+              missingDocs.push(docType);
+            }
+          }
+
+          return missingDocs;
+        }
+
+        // Function to create the bar chart
+async function createChart() {
+  const { updatedCount, notUpdatedCount } = await getDocumentStatus();
+
+  const ctx = document.getElementById('documentStatusChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Updated', 'Not Updated'],
+      datasets: [{
+        label: '',
+        data: [updatedCount, notUpdatedCount],
+        backgroundColor: ['green', 'red'],  // Green for updated, Red for not updated
+        borderColor: ['darkgreen', 'darkred'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      onClick: (e) => {
+        const activePoints = chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+        if (activePoints.length > 0) {
+          const chartIndex = activePoints[0].index;
+          if (chartIndex === 1) {  // Not Updated bar clicked
+            window.location.href = 'noncompliant.html';  // Redirect to noncompliant page
+          }
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
+
+        // Function to fetch student counts for cards
+        async function fetchStudentCounts() {
+          const studentsSnapshot = await getDocs(collection(db, 'Student'));
+
+          for (const studentDoc of studentsSnapshot.docs) {
+            totalStudents++; // Increment total students
+            const studentID = studentDoc.id;
+            
+            // Check for missing documents
+            const missingDocuments = await checkMissingDocuments(studentID);
+
+            // Update counts based on missing documents
+            if (missingDocuments.length >= 2) {
+              nonCompliantCount++; // 2 or more missing docs = non-compliant
+            } else {
+              compliantCount++; // Less than 2 missing docs = compliant
+            }
+          }
+
+          // Set the values directly in the respective cards or spans
+          document.getElementById('totalStudents').textContent = totalStudents;
+          document.getElementById('compliantCount').textContent = compliantCount;
+          document.getElementById('nonCompliantCount').textContent = nonCompliantCount;
+        }
+
+        // Initialize the chart and fetch student counts when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+          await fetchStudentCounts();
+          await createChart(); // Ensure the chart is created after the data is fetched
+        });
+      </script>
+
+  <footer>
+    <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
+    <p>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </p>
+  </footer>
+
+</body>
+</html>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.report-container {
+  max-width: 794px; /* A4 width for print */
+  margin: 20px auto;
+  margin-top: 100px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px #3f62af;
+}
+
+.chart-container {
+  width: 100%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: -10px;
+    margin-bottom: -20px;
+    margin-right: 60px;
+}
+
+.title {
+  text-align: center;
+  color: #34495e;
+}
+
+.report-date,
+.generated {
+  text-align: center;
+  color: #7f8c8d;
+  margin: 5px 0;
+}
+
+.section-title {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 20px;
+  display: flex;
+}
+
+.section-title i {
+  margin-right: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.card {
+  background-color: #fff;
+  padding: 10px;
+  width: 20%;
+  height: 85px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card p {
+  font-size: 1rem;
+  color: #555;
+}
+
+section:not(.key-metrics) {
+  margin-bottom: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: #f8f8f8;
+  margin: 0;
+}
+
+.details {
+  margin-left: 25%;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.details h2 {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.details ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.details li {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.download-section {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.download-button {
+  border-radius: 20px;
+  border: 1px solid #3f62af;
+  background-color: transparent;
+  color: #3f62af;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 25px;
+  letter-spacing: 1px;
+}
+.accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  margin-left: 362px;
+    width: 52%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px #3f62af;
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #fff;
+    color: #3f62af;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
+.accordion-header:hover {
+    background: #3f62af;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+    
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+  
+body::-webkit-scrollbar {
+    display: none;
+}
+
+footer {
+  margin-top: 11px;
+  text-align: center;
+  padding: 20px;
+  background: #f8f8f8;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: #3f62af;
+}
+
+/* A4 Print Styling */
+@media print {
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+  }
+
+  .report-container {
+    page-break-after: auto;
+    page-break-inside: avoid;
+    width: 100%;
+    margin: 0;
+    padding: 15mm;
+    box-shadow: none;
+  }
+
+  .chart-container {
+    page-break-inside: avoid;
+    width: 100%;
+    padding: 0;
+  }
+
+  .cards-container {
+    width: 100%;
+  }
+
+  .card {
+    width: calc(100% / 4 - 20px); /* Adjust for A4 print */
+    margin-bottom: 10px;
+  }
+}
+</style>
+
+

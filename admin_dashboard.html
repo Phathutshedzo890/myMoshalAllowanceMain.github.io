@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css" />
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  </head>
+  <body> 
+    <div class="container">
+      <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
+                
+        <div class="sidebar-menu-content">
+           
+            <ul class="nav nav-sidebar-menu sidebar-toggle-view">
+               
+               <li class="nav-item">
+                   <a href="#" class="nav-link"><i class="ri-menu-line"></i></a>
+               </li> 
+               <li class="nav-item">
+                   <a href="admin_dashboard.html" class="nav-link"><i class="ri-currency-line"></i><span>Dashboard</span></a>
+               </li>
+  
+               <li class="nav-item">
+                   <a href="admin-documents.html" class="nav-link"><i class="ri-book-2-line"></i><span>Document</span></a>
+               </li>
+                <li class="nav-item ">
+                   <a href="admin_query_response.html" class="nav-link"><i class="ri-file-copy-2-line"></i><span>Message</span></a>
+               </li>
+                <li class="nav-item">
+                    <a href="Reports.html" class="nav-link"><i class="ri-file-chart-line"></i><span>Reports</span></a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="useless.html" class="nav-link"><i class="ri-settings-5-line"></i><span>Settings</span></a>
+                </li>
+
+                <li class="nav-item">
+                  <a href="#" class="nav-link" id="logoutLink">
+                      <i class="ri-logout-box-line"></i>
+                      <span>Logout</span>
+                  </a>
+              </li>
+              
+              <style>
+              .logout-popover {
+                display: none;
+          margin-left: 50px;
+          position: absolute;
+          background-color: white;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000; /* Ensure this is above other content */
+                 
+              }
+              
+              .logout-popover .buttons {
+                  display: flex;
+                  gap: 10px;
+                  margin-top: 10px;
+                  justify-content: center;
+              }
+              
+              .logout-popover button {
+                background-color: #3f62af;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+              }
+              
+              </style>
+              <div class="logout-popover" id="logoutPopover">
+                  <p>Are you sure you want to log out?</p>
+                  <div class="buttons">
+                      <button class="confirm" onclick="logout()">Yes</button>
+                      <button class="cancel" onclick="closePopover()">No</button>
+                  </div>
+              </div>
+              <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                  const logoutLink = document.getElementById('logoutLink');
+                  const logoutPopover = document.getElementById('logoutPopover');
+              
+                  // Show the popover near the logout link
+                  logoutLink.onclick = function(event) {
+                      event.preventDefault();
+                      const rect = logoutLink.getBoundingClientRect();
+                      logoutPopover.style.display = 'block';
+                      logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+                      logoutPopover.style.top = `${rect.bottom + window.scrollY + 5}px`;
+                  };
+              
+                  // Close the popover
+                  function closePopover() {
+                      logoutPopover.style.display = 'none';
+                  }
+                  window.closePopover = closePopover;
+              
+                  // Handle logout logic
+                  function logout() {
+                      window.location.href = 'admin_login.html'; // Redirect to index.html or your desired page
+                  }
+                  window.logout = logout;
+              
+                  // Close popover if clicking outside of it
+                  document.addEventListener('click', function(event) {
+                      if (!logoutLink.contains(event.target) && !logoutPopover.contains(event.target)) {
+                          closePopover();
+                      }
+                  });
+              });
+              </script>
+               
+            </ul>
+            
+        </div>
+        
+           <script>
+           document.addEventListener('DOMContentLoaded', function() {
+          const sidebar = document.querySelector('.sidebar-main');
+  
+          sidebar.addEventListener('mouseenter', () => {
+          sidebar.classList.add('expanded');
+          sidebar.classList.remove('collapsed');
+          });
+  
+          sidebar.addEventListener('mouseleave', () => {
+          sidebar.classList.remove('expanded');
+          sidebar.classList.add('collapsed');
+          });
+          });
+           </script>
+          <style>
+            /* Sidebar collapsed style */
+              .sidebar-main {
+                width: 70px; 
+                background-color: #3f62af;
+                transition: width 0.3s;
+                margin-top: 20px;
+                margin-left: 10px;
+                border-radius: 10px;
+              
+            }
+            
+            .sidebar-main.expanded {
+                width: 250px; /* Expanded width */
+            }
+            .sidebar-main.expanded .nav-sidebar-menu li a:hover {
+                background-color: rgba(255, 255, 255, 0.2); 
+                color: #ffffff; 
+                border-radius: 10px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            
+            .nav-sidebar-menu li a {
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                text-decoration: none;
+                color: #fff;
+                margin-left: -25px;
+                margin-top: 30px;
+            }
+            
+            .nav-sidebar-menu li a i {
+                font-size: 24px; /* Icon size */
+                margin-left: 30px;
+                background: #3f62af;
+            }
+            
+            .nav-sidebar-menu li a span {
+                display: none; /* Hide text by default */
+                transition: all 0.3s;
+            }
+            
+            ul {
+                list-style-type: none; 
+            }
+            
+            /* Show only icons when collapsed */
+            .sidebar-main.collapsed .nav-sidebar-menu li span {
+                display: none; /* Ensure text is hidden */
+                
+            }
+            
+            /* Hide the first menu item when expanded */
+            .sidebar-main.expanded .nav-sidebar-menu li:first-child {
+                display: none; /* Hides the entire first menu item (icon + text) */
+            }
+            
+            /* When expanded, show the text */
+            .sidebar-main.expanded .nav-sidebar-menu li a span {
+                display: inline; /* Show text when expanded */
+            }
+            
+            /* Center the first item icon when collapsed */
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a {
+                justify-content: center; /* Center icon in collapsed state */
+            }
+            
+            .sidebar-main.collapsed .nav-sidebar-menu li:first-child a i {
+                margin-right: 0;
+            }
+            .message-board {
+              padding: 20px;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #adminMessageHistory {
+              padding: 20px;
+            }
+
+            #adminMessageHistory div {
+              margin-bottom: 10px;
+              padding: 10px;
+              border-bottom: 1px solid #ddd;
+            }
+
+            #adminMessageHistory div:last-child {
+              border-bottom: none;
+            }
+
+            #adminMessageHistory div button {
+              margin-top: 0px;
+            }
+
+            #adminMessageHistory div input[type="text"] {
+              width: 100%;
+              padding: 10px;
+              margin-bottom: 10px;
+              border: 1px solid #ddd;
+              border-radius: 10px;
+            }
+            </style>
+            
+      </div>
+      
+        <div class="main-content">
+      
+              <!-- Page Content Area Start Here -->
+              <div class="content">
+            <div class="container">
+              <div class="flex-col">
+                <div class="flex-row">
+                    <!-- Welcome section -->
+                    <div class="welcome-section">
+                        <div class="welcome-container">
+                          <h1>Welcome Back!</h1><br>
+                          <ul>
+                            <li>
+                              <i class="ri-star-smile-line"></i>
+                              <strong>Message: </strong>Hope you're having a productive day. Here's a quick overview of the system.
+                          </li>
+                              <li>
+                                  <i class="ri-file-chart-line"></i> 
+                                  <strong>Reports Available: </strong>  We've generated new reports; review them to stay informed about key metrics.
+                              </li>
+                              <li>
+                                <i class="ri-book-2-line"></i>
+                                <strong>Student Docs: </strong> Students have submitted their docs; review them to stay informed about key metrics.
+                            </li>
+                          </ul>
+                          <br>
+                      </div>
+                      
+                        <div class="actions">
+                          <button onclick="window.location.href='Reports.html';">View Reports</button>
+                          <button onclick="window.location.href='admin-documents.html';">View Documents</button>
+                          <button onclick="window.location.href='useless.html';">Admin Settings</button>
+                        </div>
+                    </div>
+                    <!-- Overview cards section -->
+                    <div class="overview-cards">
+                        <div class="card">
+                            <div class="icon students-icon"> <i class="ri-team-line"></i></div>
+                            <h3>600+</h3>
+                            <p>Students</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon universities-icon"><i class="ri-school-line"></i></div>
+                            <h3>10+</h3>
+                            <p>Universities</p>
+                        </div>
+                        <div class="card">
+                            <div class="icon expenses-icon"><i class="ri-layout-grid-line"></i></div>
+                            <h3>5+</h3>
+                            <p>Expenses</p>
+                        </div>
+                    </div>
+                </div>
+                    <!-- Message board section -->
+              <div class="message-board">
+                <h3>Message Board</h3>
+
+                <div class="search">
+                  <input type="text" id="studentSearch" style="width: 50%;margin-left:30px;margin-right:120px;" placeholder="Search by Student ..." />
+                  <button class="message-searchbtn">Find</button>
+                </div>
+                <div id="adminMessageHistory"></div>
+              </div>
+
+              <!-- Messages list -->
+              <!-- <div class="messages">
+                            <div class="message">
+                              <div class="avatar">
+                                  <img src="https://images.pexels.com/photos/17904661/pexels-photo-17904661/free-photo-of-beautiful-girl.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Profile Picture">
+                              </div>
+                              <div class="message-details">
+                                  <p><strong>Stacy</strong> <span>02:35</span></p>
+                                  <p>Everything is okay, I agree.</p>
+                                  <button class="message-chatbtn">Message</button>
+                              </div>
+                          </div>
+                          
+                              <div class="message">
+                                  <div class="avatar">
+                                    <img src="https://images.pexels.com/photos/20029554/pexels-photo-20029554/free-photo-of-studio-shot-of-a-young-fashionable-woman.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                                  </div>
+                                  <div class="message-details">
+                                      <p><strong>Blessing</strong> <span>10:35</span></p>
+                                      <p>I disagree with my allowance.</p>
+                                      <button class="message-chatbtn">Message</button>
+                                  </div>
+                              </div>
+  
+                              <div class="message">
+                                  <div class="avatar">
+                                    <img src="https://images.pexels.com/photos/19231316/pexels-photo-19231316/free-photo-of-smiling-woman-with-long-black-hair.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                                  </div>
+                                  <div class="message-details">
+                                      <p><strong>Simfumene</strong> <span>02:35</span></p>
+                                      <p>Everything is okay, I agree.</p>
+                                      <button class="message-chatbtn">Message</button>
+                                  </div>
+                              </div>
+                              <div class="message">
+                                  <div class="avatar">
+                                      <img src="https://images.pexels.com/photos/6784850/pexels-photo-6784850.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                                  </div>
+                                  <div class="message-details">
+                                      <p><strong>Thando</strong> <span>02:35</span></p>
+                                      <p>I'm not sure, can I get back to you on this?</p>
+                                      <button class="message-chatbtn">Message</button>
+                                  </div>
+                              </div>
+                              <div class="message">
+                                  <div class="avatar">
+                                      <img src="https://images.pexels.com/photos/14440780/pexels-photo-14440780.jpeg?auto=compress&cs=tinysrgb&w=600" alt="">
+                                  </div>
+                                  <div class="message-details">
+                                      <p><strong>Luthando</strong> <span>02:35</span></p>
+                                      <p>Yes, I recieved the stationary allowance.</p>
+                                      <button class="message-chatbtn">Message</button>
+                                  </div>
+                              </div> -->
+
+              <!-- </div>
+                      </div> -->
+                    </div>
+            </div>
+        
+            <!-- Student List -->
+            <div class="student-list">
+            
+              <h3>List of All Students</h3>
+
+              <div class="search-container">
+  <input class="search-input"
+    type="text"
+    id="searchFirstName"
+    placeholder="Search First Name..."
+  />
+  <input class="search-input"
+    type="text"
+    id="searchLastName"
+    placeholder="Search by Last Name..."
+  />
+  <input class="search-input"
+    type="text"
+    id="searchEmail"
+    placeholder="Search by Email..."
+  />
+  <button id="searchBtn" class="table-searchbtn">Search</button>
+</div>
+
+
+              <table id="studentTable">
+                <thead>
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>University</th>
+                  </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                  <!-- Dynamic student rows will be added here -->
+                </tbody>
+              </table>
+              
+            </div>
+  
+      <!-- Footer -->
+            <footer>
+                <p>&copy; Moshal Scholarship Program 2024 <br> Developed by INFOSYNC <br> All rights reserved</p>
+                <p>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </p>
+            </footer>
+          
+              </div>
+        </div>
+      </div>
+      
+    <script type="module" src="admin-dashboard.js"></script>
+  </body>
+</html>

@@ -5,87 +5,426 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Documents</title>
     <link rel="stylesheet" href="document.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  
   </head>
   <body>
     <header class="header">
-      <nav class="navbar">
-        <div class="logo-container">
-          <span class="menu-btn" onclick="toggleNav()">&#9776;</span>
-          <img src="images/Morshal.jpg" alt="Moshal Logo" class="logo" />
+        <div class="logout-moshal-logo">
+          <img src="https://i.ibb.co/vs7K75q/e2726a36d9c9.png" alt="Moshal Logo" id="homeButton" style="width: 180px; height: 80px; object-fit: cover; object-position: center; position: relative; right: 58%; border-radius: 10px;" />
+      
+          <div class="popover" id="homePopover">
+            <p style="font-size: 16px;color: #000;">Want to go to the home page?</p>
+            <button style="width: 70px;" onclick="goHome()">Yes</button>
+            <button style="width: 70px;" onclick="closePopover('homePopover')">No</button>
+          </div>
         </div>
-        <ul class="nav-links">
-          <li class="nav-item"><a href="#">Home</a></li>
-          <li class="nav-item"><a href="#">About Us</a></li>
-          <li class="nav-item"><a href="#">Our Services</a></li>
-          <li class="nav-item"><a href="#">Contact Us</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"
-          >&times;</a
-        >
-        <a href="calc.html">Home</a>
-        <a href="profile.html">Profile</a>
-        <a href="documents.html">Documents</a>
-        <a href="student.html">Query</a>
-        <!-- <a href="#">Notification</a>
-        <a href="#">Browse</a> -->
-      </div>
-      <section class="documents-section">
-        <h1>Documents</h1>
-        <p class="subtitle">Submit your respective documents</p>
-        <div class="document-cards">
+      
+        <div class="header-container">
+          <div class="header-items" style="margin-left: 700px; margin-top: 35px;">
+            <!-- Profile Section -->
+            <div class="header-profile">
+              <a href="profile.html" id="profile-icon">
+                <i class="ri-user-line"></i> Profile
+              </a>
+            </div>
+      
+            <!-- Allowance Section -->
+            <div class="header-allowance">
+              <a href="calculate_allowance.html" id="allowance-icon">
+                <i class="ri-wallet-line"></i> Allowance
+              </a>
+            </div>
+      
+            <!-- Query Section -->
+            <div class="header-query">
+              <a href="student_Query.html" id="query-icon">
+                <i class="ri-question-line"></i> Queries
+              </a>
+            </div>
+      
+            <!-- Documents Section -->
+            <div class="header-documents">
+              <a href="documents.html" id="documents-icon">
+                <i class="ri-file-line"></i> Documents
+              </a>
+            </div>
+      
+            <!-- Logout Section -->
+            <div class="header-logout">
+              <a href="#" id="logout-icon">
+                <i class="ri-logout-box-line"></i> Logout
+              </a>
+      
+              <div class="popover" id="logoutPopover" style="width: 170px;">
+                <p style="color: #000;">Are you sure you want to log out?</p>
+                <button onclick="logout()" style="width: 70px;">Yes</button>
+                <button onclick="closePopover('logoutPopover')" style="width: 70px;">No</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <style>
+          .header {
+            background-color: #3f62af;
+            color: #fff;
+            padding: 0;
+            text-align: center;
+            border-radius: 10px;
+            width: 85%;
+            height: 80px;
+            margin: 10px 0 50px 200px;
+          }
+      
+          .header-container {
+            margin-top: -100px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: flex-start;
+          }
+      
+          .header-items {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 15px;
+            padding: 0 20px;
+            background-color: #3f62af;
+            color: #fff;
+            width: 40%;
+          }
+      
+          .header-items a {
+            font-family: Arial,  sans-serif;
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+          }
+      
+          .popover {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+          }
+      
+          .popover button {
+            background-color: #3f62af;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+          }
+        </style>
+      
+        <script>
+          // Show and position the Home popover
+          const homeButton = document.getElementById('homeButton');
+          const homePopover = document.getElementById('homePopover');
+          homeButton.onclick = function() {
+            const rect = homeButton.getBoundingClientRect();
+            homePopover.style.display = 'block';
+            homePopover.style.left = `${rect.left + window.scrollX}px`;
+            homePopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+          };
+      
+          // Show and position the Logout popover
+          const logoutButton = document.getElementById('logout-icon');
+          const logoutPopover = document.getElementById('logoutPopover');
+          logoutButton.onclick = function(event) {
+            event.preventDefault();
+            const rect = logoutButton.getBoundingClientRect();
+            logoutPopover.style.display = 'block';
+            logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+            logoutPopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+          };
+      
+          // Close popovers
+          function closePopover(id) {
+            document.getElementById(id).style.display = 'none';
+          }
+      
+          // Go to home page
+          function goHome() {
+            window.location.href = 'first.html'; // Replace with actual home page URL
+          }
+      
+          // Log out function
+          function logout() {
+            window.location.href = 'index.html'; // Replace with actual log out logic
+          }
+      
+          // Close popovers when clicking outside
+          window.onclick = function(event) {
+            if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+              closePopover('homePopover');
+            }
+            if (!logoutButton.contains(event.target) && !logoutPopover.contains(event.target)) {
+              closePopover('logoutPopover');
+            }
+          };
+        </script>
+      </header>
+
+    <section class="documents-section"> 
+        <div class="navigation" style="margin-left: -180px; margin-top: -55px; margin-bottom: 25px; display: flex; gap: 20px; align-items: center;">
+            <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;">
+                <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+            </a>
+            <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
+              <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+            </a>
+          </div>
+          <script>
+            function goBack() {
+                window.history.back();
+            }
+            
+            function goForward() {
+                window.history.forward();
+            }
+            </script>
+          
+      <h2>Please submit your respective documents</h2>
+      <div class="document-cards">
           <div class="card">
-            <h2>Submit your fee statement</h2>
-            <h3>Select a File</h3>
-            <input type="file" id="fileInput1" accept=".pdf" required />
-            <div id="fileInfo1"></div>
-            <button class="submit-button" type="submit">Submit</button>
+            <p class="subtitle"><strong>Submit your fee statement </strong></p>
+              <div id="fileInfo1"></div>
+              <img id="thumbnailImage1" class="card__img" alt="PDF Thumbnail" src="https://complyan.com/wp-content/uploads/2022/09/Frameworks.png" />
+              <div class="card__data">
+                  <h3>Select a File</h3>
+                  <input type="file" id="fileInput1" accept=".pdf" required />
+                  <button class="submit-button" type="button" onclick="submitPDF(1)">Submit</button>
+              </div>
           </div>
-          <div class="card2">
-            <h2>Submit proof of Funding</h2>
-            <h3>Select a File</h3>
-            <input type="file" id="fileInput2" accept=".pdf" />
-            <div id="fileInfo2"></div>
-            <button class="submit-button" type="submit">Submit</button>
+  
+          <div class="card card2">
+            <p class="subtitle"><strong>Submit proof of Funding</strong></p>
+              <div id="fileInfo2"></div>
+              <img id="thumbnailImage2" class="card__img" alt="PDF Thumbnail" src="https://complyan.com/wp-content/uploads/2022/09/COMPLYAN-Controls-Entry.png" />
+              <div class="card__data">
+                  <h3>Select a File</h3>
+                  <input type="file" id="fileInput2" accept=".pdf" />
+                  <button class="submit-button" type="button" onclick="submitPDF(2)">Submit</button>
+              </div>
           </div>
-        </div>
-        <div class="notice">
+      </div>
+      <div class="notice">
           <h3>Important Notice:</h3>
           <p>
-            It is essential that you submit a document that's up to date and
-            valid. Documents that are not valid or not up to date will result in
-            miscalculation of allowance.
+              It is essential that you submit a document that's up to date and valid. Documents that are not valid or not up to date will result in miscalculation of allowance.
           </p>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <div class="social-links">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
       </div>
-      <p>
-        Designed and Developed by INFOSYNC &copy; Moshal program 2024 All rights
-        reserved
-      </p>
-    </footer>
-    <script>
-      function toggleNav() {
-        const sidenav = document.getElementById("mySidenav");
-        const body = document.body;
-        if (sidenav.style.width === "250px") {
-          sidenav.style.width = "0";
-          body.style.marginLeft = "0";
-        } else {
-          sidenav.style.width = "250px";
-          body.style.marginLeft = "250px";
-        }
+  </section>
+
+  <footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+        </div>
+        <div class="footer-right">
+          <!-- GitHub Icon -->
+          <a href="https://github.com/Phathutshedzo890/myMoshalAllowanceMain.github.io" class="social-icon" style="margin-top: 10px;text-decoration: none;">
+            <i class="ri-github-fill" style="font-size: 25px; color:#3f62af;margin-left: 15px;"></i>
+          </a>
+
+          <!-- Moshal Logo Icon -->
+          <a href="https://moshalprogram.org/" class="social-icon" style="margin-bottom: 10px;text-decoration: none;">
+            <img src="https://moshalprogram.org/wp-content/uploads/2021/08/cropped-favicon-1.png" 
+                alt="Moshal Logo" 
+                style="width: 25px; height: 25px; object-fit: contain; margin-bottom: -3px;margin-left: 15px;" />
+          </a>
+
+          <!-- INFOSYNC Logo Icon -->
+          <a href="#" class="social-icon" style="margin-top: 10px;">
+            <img src="https://i.ibb.co/DfMG7hG/9e6ddb57455f.jpg" 
+                alt="INFOSYNC Logo" 
+                style="width: 35px; height: 35px; object-fit: contain; margin-bottom: -6px; margin-left: 15px;" />
+          </a>
+        </div>
+    </div>
+</footer>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+          <script>
+            async function renderPDF(fileInputId, thumbnailImageId) {
+                const fileInput = document.getElementById(fileInputId);
+                const thumbnailImage = document.getElementById(thumbnailImageId);
+    
+                const file = fileInput.files[0];
+                if (file && file.type === 'application/pdf') {
+                    const fileReader = new FileReader();
+    
+                    fileReader.onload = async function () {
+                        const typedarray = new Uint8Array(this.result);
+                        const pdf = await pdfjsLib.getDocument(typedarray).promise;
+    
+                        // Get the first page
+                        const page = await pdf.getPage(1);
+                        const viewport = page.getViewport({ scale: 1 });
+    
+                        const canvas = document.createElement('canvas');
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+    
+                        const context = canvas.getContext('2d');
+                        await page.render({ canvasContext: context, viewport: viewport }).promise;
+    
+                        // Convert canvas to image and display
+                        thumbnailImage.src = canvas.toDataURL();
+                    };
+    
+                    fileReader.readAsArrayBuffer(file);
+                } else {
+                    alert('Please upload a valid PDF file.');
+                    // Reset to default image if invalid
+                    thumbnailImage.src = 'https://complyan.com/wp-content/uploads/2022/09/Frameworks.png';
+                }
+            }
+    
+            // Attach change event listeners to both file inputs
+            document.getElementById('fileInput1').addEventListener('change', () => renderPDF('fileInput1', 'thumbnailImage1'));
+            document.getElementById('fileInput2').addEventListener('change', () => renderPDF('fileInput2', 'thumbnailImage2'));
+    
+            
+        </script>
+          
+        <style>
+        body {
+          position: relative;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 20px;
+          background-color: #fff;
       }
-    </script>
+      body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+      .documents-section {
+       
+          width: 70%;
+          margin: auto;
+          padding: 20px;
+          background: #fff;
+          box-shadow: 0 14px 18px #3f62af;
+          border-radius: 8px;
+          
+      }
+      
+      h2 {
+          font-size: 30px;
+          margin-bottom: 10px;
+          margin-left: 30px;
+      }
+      
+      .subtitle {
+        margin-left: 30px;
+          font-size: 30px;
+          margin-bottom: 20px;
+          color: #000;
+      }
+      
+      .document-cards {
+          display: flex; /* Use flex to align cards side by side */
+          flex-direction: row; /* Align items in a row */
+          gap: 40px; /* Space between cards */
+      }
+      
+      .card, .card2 {
+          position: relative; /* For absolute positioning of card__data */
+          overflow: hidden; /* Prevents overflow */
+          background: #fff;
+          border-radius: 8px;
+          transition: background 0.3s; /* Smooth transition */
+          flex: 1; /* Ensure cards take equal space */
+      }
+      .card__img {
+        width: 500px;
+          height: 550px; /* Maintain aspect ratio */
+          border-radius: 1.5rem; /* Rounded corners */
+          margin: 10px; /* Adjust margin */
+          transition: transform 0.3s; /* Smooth transition */
+      }
+      
+      .card:hover .card__img, .card2:hover .card__img {
+          transform: scale(1.05); /* Slight zoom effect on hover */
+      }
+      
+      .card__data {
+          width: 400px; 
+          font-size: 20px;
+          background-color: #ffffff;
+          padding: 1.5rem 2rem;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+          border-radius: 1rem;
+          position: absolute;
+          bottom: 1rem; /* Position above the bottom */
+          left: 50%; /* Center horizontally */
+          transform: translateX(-50%); /* Center the data */
+          opacity: 0; /* Initially hidden */
+          transition: opacity 0.3s ease; 
+      }
+      
+      .card:hover .card__data, .card2:hover .card__data {
+          opacity: 1;
+      }
+      
+      .submit-button{
+        background-color: #3f62af;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                margin: 0 5px;
+                border-radius: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: bold;
+                transition: background-color 0.3s;
+}
+      .notice {
+          margin-top: 15px;
+          margin-bottom: 20px;
+          padding: 15px;
+          background: #fff3cd;
+          border: 1px solid #ffeeba;
+          border-radius: 5px;
+          color: #856404;
+      }
+       /* Footer container styling */
+/* Footer container styling */
+   
+.footer {
+  margin-top: 10px;
+    margin-top: 30px;
+    background-color: #fff;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+  
+}
+      </style>
+      
     <script type="module" src="documents.js"></script>
   </body>
 </html>

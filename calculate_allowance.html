@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Allowance Calculation</title>
+    <link rel="stylesheet" href="documents_page.css" />
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+    <style>
+      /* Main Content */
+    
+      body{
+        font-family: Arial, sans-serif;
+    background-color: #ffff;
+    margin: 0;
+    padding: 20px;
+}
+      
+      .container {
+        background-color: #ffff;
+        margin-top: 10px;
+        padding: 20px;
+        transition: margin-left 0.5s;
+      }
+
+      h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
+        margin-left: 180px;
+        margin-top: -80px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      input,
+      button {
+        padding: 8px;
+        margin-top: 5px;
+      }
+
+      button {
+        margin-left: 750px;
+        width: 9%;
+        border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: #3f62af;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+}
+.submit-button {
+         margin-left: 150px;
+         margin-top:-100px ;
+        width: 9%;
+        border-radius: 20px;
+    border: 1px solid #3f62af;
+    background-color: #3f62af;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 15px 50px 15px 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in;
+}
+
+.table-container {
+  margin-left: 195px;
+    width: 85%;
+    overflow-x: auto; /* Allow horizontal scrolling if necessary */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin-top: 35px;
+    box-shadow: 0 4px 10px #3f62af;
+}
+
+table {
+  box-shadow: 0 4px 10px #3f62af;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+  
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+thead th {
+    background-color: #fff;
+    color: #3f62af;
+    font-size: 20px;
+    
+}
+
+tbody td {
+    background-color: #fff;
+    color: #333;
+    font-size: 20px;
+    
+}
+
+tbody tr:hover {
+    background-color: #ffe6e6;
+}
+
+#message {
+    font-size: 1.2rem;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+.accordion {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  margin-left: 180px;
+    width: 87%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px #3f62af;
+    background-color:  #3f62af;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #fff;
+}
+
+.accordion-header {
+    background: #fff;
+    color: #3f62af;
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background 0.3s, transform 0.2s;
+}
+.accordion-header.active {
+    background: #45C041;
+    
+    color: #fff;
+}
+.accordion-header:hover {
+    background: #3f62af;
+    transform: scale(1.02);
+    color: #fff;
+}
+
+.accordion-header i {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Larger icon size */
+    transition: transform 0.3s;
+}
+
+.accordion-header.active i {
+    transform: rotate(180deg); /* Rotate icon when active */
+    
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+    padding: 0 20px;
+    background: #fff;
+}
+
+.accordion-content p {
+    margin: 15px 0;
+    font-size: 1rem;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+.form-group label {
+    font-size: 1.1rem;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border 0.2s;
+}
+
+.form-group input:focus {
+    border: 1px solid #f78da7;
+} 
+      /* Footer container styling */
+   
+      .footer {
+  margin-top: 20px;
+    margin-bottom: -30px;
+    background-color: #fff;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
+}
+      
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        h1 {
+          font-size: 20px;
+        }
+        .container {
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="header">
+      <div class="logout-moshal-logo">
+        <img src="https://i.ibb.co/vs7K75q/e2726a36d9c9.png" alt="Moshal Logo" id="homeButton" style="width: 190px; height: 80px; object-fit: cover; object-position: center; position: relative; right: 59%; border-radius: 10px;" />
+    
+        <div class="popover" id="homePopover">
+          <p style="font-size: 16px;color: #000;">Want to go to the home page?</p>
+          <button style="width: 70px;" onclick="goHome()">Yes</button>
+          <button style="width: 70px;" onclick="closePopover('homePopover')">No</button>
+        </div>
+      </div>
+    
+      <div class="header-container">
+        <div class="header-items" style="margin-left: 700px; margin-top: 35px;">
+          <!-- Profile Section -->
+          <div class="header-profile">
+            <a href="profile.html" id="profile-icon">
+              <i class="ri-user-line"></i> Profile
+            </a>
+          </div>
+    
+          <!-- Allowance Section -->
+          <div class="header-allowance">
+            <a href="calculate_allowance.html" id="allowance-icon">
+              <i class="ri-wallet-line"></i> Allowance
+            </a>
+          </div>
+    
+          <!-- Query Section -->
+          <div class="header-query">
+            <a href="student_Query.html" id="query-icon">
+              <i class="ri-question-line"></i> Queries
+            </a>
+          </div>
+    
+          <!-- Documents Section -->
+          <div class="header-documents">
+            <a href="documents.html" id="documents-icon">
+              <i class="ri-file-line"></i> Documents
+            </a>
+          </div>
+    
+          <!-- Logout Section -->
+          <div class="header-logout">
+            <a href="#" id="logout-icon">
+              <i class="ri-logout-box-line"></i> Logout
+            </a>
+    
+            <div class="popover" id="logoutPopover" style="width: 170px;">
+              <p style="color: #000;">Are you sure you want to log out?</p>
+              <button onclick="logout()" style="width: 70px;">Yes</button>
+              <button onclick="closePopover('logoutPopover')" style="width: 70px;">No</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <style>
+        .header {
+          background-color: #3f62af;
+          color: #fff;
+          padding: 0;
+          text-align: center;
+          border-radius: 10px;
+          width: 85%;
+          height: 80px;
+          margin: 10px 0 50px 200px;
+        }
+    
+        .header-container {
+          margin-top: -100px;
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+    
+        .header-items {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 15px;
+          padding: 0 20px;
+          background-color: #3f62af;
+          color: #fff;
+          width: 40%;
+        }
+    
+        .header-items a {
+          font-family: Arial,  sans-serif;
+          font-size: 20px;
+          color: #fff;
+          text-decoration: none;
+          padding: 10px 15px;
+          transition: color 0.3s ease;
+        }
+    
+        .popover {
+          display: none;
+          position: absolute;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 10px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+        }
+    
+        .popover button {
+          background-color: #3f62af;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          margin: 0 5px;
+          border-radius: 20px;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: bold;
+          transition: background-color 0.3s;
+        }
+      </style>
+    
+      <script>
+        // Show and position the Home popover
+        const homeButton = document.getElementById('homeButton');
+        const homePopover = document.getElementById('homePopover');
+        homeButton.onclick = function() {
+          const rect = homeButton.getBoundingClientRect();
+          homePopover.style.display = 'block';
+          homePopover.style.left = `${rect.left + window.scrollX}px`;
+          homePopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        };
+    
+        // Show and position the Logout popover
+        const logoutButton = document.getElementById('logout-icon');
+        const logoutPopover = document.getElementById('logoutPopover');
+        logoutButton.onclick = function(event) {
+          event.preventDefault();
+          const rect = logoutButton.getBoundingClientRect();
+          logoutPopover.style.display = 'block';
+          logoutPopover.style.left = `${rect.left + window.scrollX}px`;
+          logoutPopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
+        };
+    
+        // Close popovers
+        function closePopover(id) {
+          document.getElementById(id).style.display = 'none';
+        }
+    
+        // Go to home page
+        function goHome() {
+          window.location.href = 'first.html'; // Replace with actual home page URL
+        }
+    
+        // Log out function
+        function logout() {
+          window.location.href = 'index.html'; // Replace with actual log out logic
+        }
+    
+        // Close popovers when clicking outside
+        window.onclick = function(event) {
+          if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
+            closePopover('homePopover');
+          }
+          if (!logoutButton.contains(event.target) && !logoutPopover.contains(event.target)) {
+            closePopover('logoutPopover');
+          }
+        };
+      </script>
+    </header>
+    
+    <!-- Navigation Container -->
+    <div class="navigation-container" style="margin-left: 35px; margin-top: -25px; margin-bottom: 25px; display: flex; gap: 20px; align-items: center;">
+
+      <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;">
+        <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+      </a>
+
+      <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color: transparent; display: flex; align-items: center;">
+        <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
+      </a>
+    </div>
+    <script>
+      function goBack() {
+          window.history.back();
+      }
+      
+      function goForward() {
+          window.history.forward();
+      }
+      </script>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>Allowance Calculation</h1>
+      <form id="allowanceForm">
+        <div class="accordion">
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-arrow-down-wide-line"></i> External Funder
+              </div>
+              <div class="accordion-content">
+                  <!-- External Funding Details -->
+        <!-- Update the Funding Type selection to a dropdown -->
+        <label for="ExtFunding_Name">External Funding Source:</label>
+        <select id="ExtFunding_Name" name="ExtFunding_Name" required>
+          <option value="" disabled selected>Select External Funder</option>
+          <option value="GCRA">GCRA</option>
+          <option value="NSFAS">NSFAS</option>
+          <option value="PG">PG</option>
+          <option value="Other">Other</option>
+        </select>
+              </div>
+          </div>
+
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-arrow-down-wide-line"></i> External Funding Amount
+              </div>
+              <div class="accordion-content">
+                <label for="annual_amount"
+                >Annual Living Allowance Provided by External Funder:</label
+              >
+              <input
+                type="number"
+                id="annual_amount"
+                name="annual_amount"
+                placeholder="Enter the amount"
+                required
+              />
+              </div>
+          </div>
+
+          <div class="accordion-item">
+              <div class="accordion-header" onclick="toggleAccordion(this)">
+                  <i class="ri-arrow-down-wide-line"></i> Moshal Funding Status
+              </div>
+              <div class="accordion-content">
+                  <!-- Funding Type Selection -->
+        <label>Funding Type:</label>
+        <div>
+          <input
+            type="radio"
+            id="ExtFunding_Type"
+            name="ExtFunding_Type"
+            value="Partial Funding"
+            required
+          />
+          <label for="Partial Funding">Partial Funding</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="ExtFunding_Type"
+            name="ExtFunding_Type"
+            value="Full Funding"
+            required
+          />
+          <label for="Full Funding">Full Funding</label>
+        </div>
+              </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <i class="ri-arrow-down-wide-line"></i> Date Recieve Allowance
+            </div>
+            <div class="accordion-content">
+                 <!-- Funding Date -->
+        <label for="ExtFunding_Date"
+        >When Did You Receive Your First Allowance From Your External Funder?</label
+      >
+      <input
+        type="date"
+        id="ExtFunding_Date"
+        name="ExtFunding_Date"
+        required
+      />
+            </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+              <i class="ri-arrow-down-wide-line"></i> NSFAS Status
+          </div>
+          <div class="accordion-content">
+              <!-- NSFAS Status -->
+        <label>Are you funded by NSFAS?</label>
+        <div>
+          <input
+            type="radio"
+            id="NSFAS_Status"
+            name="NSFAS_Status"
+            value="Yes"
+            required
+          />
+          <label for="nsfas_yes">Yes</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="NSFAS_Status"
+            name="NSFAS_Status"
+            value="No"
+            required
+          />
+          <label for="nsfas_no">No</label>
+        </div>
+          </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <i class="ri-arrow-down-wide-line"></i> Proof of Funding
+        </div>
+
+          <div class="accordion-content">
+              <!-- Upload Proof of Funding Document -->
+            <div class="card">
+              <label for="fileInput">Upload Proof of Funding Document:</label>
+                    <input
+              type="file"
+              id="fileInput"
+              name="fileInput"
+              accept="application/pdf"
+              required
+            />
+                    <button  class="submit-button" type="button" onclick="submitPDF(1)">Upload</button>
+                </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+        <!-- <label for="ExtFunding_Name"
+          >External Funding Source Name(write "N/A" if not applicable):</label
+        >
+        <input
+          type="text"
+          id="ExtFunding_Name"
+          name="ExtFunding_Name"
+          placeholder="Enter the name of the funding source"
+          required
+        /> -->
+        <br>
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="calculate-button"
+          onclick="calculateAllowance()"
+        >
+          Submit
+        </button>
+      </form>
+
+     <!-- Message Display -->
+      <p id="message"></p>
+
+      <div class="table-container">
+          <table id="allowanceTable">
+              <thead>
+                  <tr>
+                      <th>Category</th>
+                      <th>May</th>
+                      <th>June</th>
+                      <th>July</th>
+                      <th>August</th>
+                      <th>September</th>
+                      <th>October</th>
+                      <th>November</th>
+                      <th>December</th>
+                      <th>January</th>
+                      <th>Total</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>Allowance</td>
+                      <td id="may"></td>
+                      <td id="june"></td>
+                      <td id="july"></td>
+                      <td id="august"></td>
+                      <td id="september"></td>
+                      <td id="october"></td>
+                      <td id="november"></td>
+                      <td id="december"></td>
+                      <td id="january"></td>
+                      <td id="totalRemaining"></td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+
+      <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+            </div>
+            <div class="footer-right">
+              <!-- GitHub Icon -->
+              <a href="https://github.com/Phathutshedzo890/myMoshalAllowanceMain.github.io" class="social-icon" style="margin-top: 10px;text-decoration: none;">
+                <i class="ri-github-fill" style="font-size: 25px; color:#3f62af;margin-left: 15px;"></i>
+              </a>
+  
+              <!-- Moshal Logo Icon -->
+              <a href="https://moshalprogram.org/" class="social-icon" style="margin-bottom: 10px;text-decoration: none;">
+                <img src="https://moshalprogram.org/wp-content/uploads/2021/08/cropped-favicon-1.png" 
+                    alt="Moshal Logo" 
+                    style="width: 25px; height: 25px; object-fit: contain; margin-bottom: -3px;margin-left: 15px;" />
+              </a>
+  
+              <!-- INFOSYNC Logo Icon -->
+              <a href="#" class="social-icon" style="margin-top: 10px;">
+                <img src="https://i.ibb.co/DfMG7hG/9e6ddb57455f.jpg" 
+                    alt="INFOSYNC Logo" 
+                    style="width: 35px; height: 35px; object-fit: contain; margin-bottom: -6px; margin-left: 15px;" />
+              </a>
+            </div>
+        </div>
+    </footer>
+      
+
+    <script>
+function calculateAllowance() {
+    const annualAmountInput = document.getElementById("annual_amount").value;
+    const annualAmount = parseFloat(annualAmountInput);
+    const fixedAmount = 100000; // Fixed amount for calculation
+    const remainingAmount = fixedAmount - annualAmount;
+    const monthlyAllowance = remainingAmount / 9;
+
+    // Create a formatter for South African Rands
+    const formatter = new Intl.NumberFormat('en-ZA', {
+        style: 'currency',
+        currency: 'ZAR',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    // Display the monthly allowance in each month
+    const months = [
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+        "january",
+    ];
+    months.forEach((month) => {
+        const cell = document.getElementById(month);
+        cell.textContent = formatter.format(monthlyAllowance);
+    });
+
+    // Display the total remaining amount
+    const totalRemainingCell = document.getElementById("totalRemaining");
+    totalRemainingCell.textContent = formatter.format(remainingAmount);
+}
+
+      //Accordian
+      
+    function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 15px";
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px";
+    }
+}
+function toggleAccordion(header) {
+    const content = header.nextElementSibling;
+    const allHeaders = document.querySelectorAll('.accordion-header');
+
+    // Close all other accordion sections
+    allHeaders.forEach(h => {
+        const c = h.nextElementSibling;
+        if (c !== content) {
+            c.style.maxHeight = null;
+            c.style.padding = "0 20px";
+            h.classList.remove('active');
+        }
+    });
+
+    // Toggle the clicked section
+    if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        content.style.padding = "0 20px";
+        header.classList.remove('active');
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+        content.style.padding = "15px 20px";
+        header.classList.add('active');
+    }
+}
+
+    </script>
+    <script type="module" src="calc.js"></script>
+  </body>
+</html>

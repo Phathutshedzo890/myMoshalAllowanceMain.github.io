@@ -4,14 +4,20 @@
     padding: 0;
     font-family: Arial, sans-serif;
 }
+.element {
+    z-index: 0; /* Resets z-index */
+}
 
 body {
-    background-color: #f6f5f7;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
     margin: 0;
+}
+body::-webkit-scrollbar {
+    display: none; /* Hide scrollbar */
 }
 
 header {
@@ -21,7 +27,6 @@ header {
     box-shadow: 0 4px 2px -2px gray;
     position: sticky;
     top: 0;
-    z-index: 1000;
     display: flex;
     align-items: center;
     height: 70px;
@@ -40,15 +45,12 @@ header {
     color: #ffffff;
 }
 
-h1.main-title {
-    color: #ffffff;
-}
 
 .sidenav {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    
     top: 0;
     left: 0;
     background-color: #ffffff; /* Changed from #3f62af to #ffffff (white) */
@@ -79,25 +81,22 @@ h1.main-title {
 }
 
 
-main.container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-    overflow: hidden;
-    margin: 20px auto;
-    padding: 20px;
-}
-
 .profile-section {
+   
+    margin-left: 200px;
+    border-radius: 10px;
+    width: 85%;
+    background-color: #ffffff;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .profile-info {
+    
+    border-bottom: 500px;
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -105,11 +104,14 @@ main.container {
 }
 
 .profile-picture {
+    
     flex: 1;
     text-align: center;
 }
 
 .profile-picture img {
+    margin-top: 100px;
+    margin-left: -1350px;
     border-radius: 50%;
     width: 150px;
     height: 150px;
@@ -122,10 +124,10 @@ main.container {
 
 .profile-details p {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
-.edit-profile-btn {
+.edit-profile-btn, .save-profile-btn, .cancel-profile-btn  {
     border-radius: 20px;
     border: 1px solid #3f62af;
     background-color: #3f62af;
@@ -143,23 +145,7 @@ main.container {
     transform: scale(0.95);
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background:  #3f62af;
-    border-top: 1px solid #ddd;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-footer a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #ffffff;
-}
-
+ 
 @media (max-width: 768px) {
     main.container {
         width: 90%;
