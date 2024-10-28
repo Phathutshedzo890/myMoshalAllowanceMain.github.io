@@ -7,7 +7,10 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
     <!--=============== REMIXICONS ===============-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
 
     <style>
       body {
@@ -69,37 +72,66 @@
     </style>
   </head>
   <body>
-<!-- Navigation Container -->
-<div class="navigation-container" style="margin-left: 15px; margin-top: 20px; display: flex; gap: 20px; align-items: center;">
-  
-  <a href="not_updated_students.html" class="go-back" style="color:transparent; display: flex; align-items: center;">
-    <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
-  </a>
+    <!-- Navigation Container -->
+    <div
+      class="navigation-container"
+      style="
+        margin-left: 15px;
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      "
+    >
+      <a
+        href="not_updated_students.html"
+        class="go-back"
+        style="color: transparent; display: flex; align-items: center"
+      >
+        <i
+          class="ri-arrow-left-s-line"
+          style="
+            font-size: 36px;
+            margin-right: 5px;
+            color: #fff;
+            background-color: #3f62af;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+          "
+        ></i>
+      </a>
+    </div>
 
-</div>
-
-    <h1 >Respond to Student Query</h1>
+    <h1>Respond to Student Query</h1>
     <form id="responseForm">
       <div id="studentQueryDetails" class="message-box"></div>
       <label for="adminResponse">Your Response:</label>
       <textarea id="adminResponse" rows="5" required></textarea>
-      <button type="submit" style="display: inline-block;
-      margin-top: 5px;
-      margin-left: 240px;
-      padding: 13px 35px;
-      background-color: #3f62af;
-      border: #3f62af;
-      color: white;
-      border-radius: 20px;
-      width: 20%;
-      font-size: 12px;
-      text-transform: uppercase;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-      letter-spacing: 1px;
-      transition: transform 80ms ease-in, background-color 0.3s ease;
-      cursor: pointer;">Submit</button>
+      <button
+        type="submit"
+        style="
+          display: inline-block;
+          margin-top: 5px;
+          margin-left: 240px;
+          padding: 13px 35px;
+          background-color: #3f62af;
+          border: #3f62af;
+          color: white;
+          border-radius: 20px;
+          width: 20%;
+          font-size: 12px;
+          text-transform: uppercase;
+          text-align: center;
+          text-decoration: none;
+          font-weight: bold;
+          letter-spacing: 1px;
+          transition: transform 80ms ease-in, background-color 0.3s ease;
+          cursor: pointer;
+        "
+      >
+        Submit
+      </button>
     </form>
 
     <script type="module">
@@ -112,13 +144,13 @@
       } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
       const firebaseConfig = {
-        apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-        authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-        projectId: "mymoshalallowance-34e68",
-        storageBucket: "mymoshalallowance-34e68.appspot.com",
-        messagingSenderId: "387609738002",
-        appId: "1:387609738002:web:38cf56b731375650d751cb",
-        measurementId: "G-5E13X2QNFC",
+        apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+        authDomain: "mmmma-c2403.firebaseapp.com",
+        projectId: "mmmma-c2403",
+        storageBucket: "mmmma-c2403.appspot.com",
+        messagingSenderId: "133407121519",
+        appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+        measurementId: "G-NBSGM52XGG",
       };
 
       const app = initializeApp(firebaseConfig);

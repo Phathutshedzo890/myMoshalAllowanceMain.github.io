@@ -1,305 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Data</title>
-  <link rel="stylesheet" href="admin-documents.html" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
-   <!--=============== REMIXICONS ===============-->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Data</title>
+    <link rel="stylesheet" href="admin-documents.html" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    <!--=============== REMIXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      
-    }
-
-    body {
-      background-color: #f8f8f8;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100vh;
-      margin: 0;
-      position: sticky;
-      overflow-y: hidden;
-    }
-
-
-    h1 {
-      font-weight: bold;
-      margin: 0;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    p {
-      font-size: 14px;
-      font-weight: 100;
-      line-height: 20px;
-      margin: 20px 0 30px;
-      text-align: center;
-    }
-
-    button {
-      border-radius: 20px;
-      border: 1px solid #3f62af;
-      background-color: #3f62af;
-      color: #ffffff;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 12px 45px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      transition: transform 80ms ease-in;
-      cursor: pointer;
-    }
-
-    button.ghost {
-      background-color: transparent;
-      border-color: #ffffff;
-    }
-
-    button:focus {
-      outline: none;
-    }
-
-    button:active {
-      transform: scale(0.95);
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #f8f8f8;
-      
-    }
-
-    footer p {
-      margin: 5px 0;
-    }
-
-    footer a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: #3f62af;
-    }
-
-    table {
-      position: absolute;
-      width: 90%;
-    border-collapse: collapse;
-    background-color: white;
-    box-shadow: 0 2px 5px #3f62af;
-    margin-left: 50px;
-    }
-    
-    th, td {
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-    }
-    
-    th {
-      background-color: #3f62af;
-      color: white;
-    }
-    
-    td {
-      word-wrap: break-word;
-    }
-
-    .message-column {
-      width: 40%;
-    }
-
-    .action-btn {
-      background-color: #3f62af;
-      color: white;
-      padding: 5px 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    .action-btn:hover {
-      background-color: #2e4b87;
-    }
-
-    @media (max-width: 768px) {
-      main.container {
-        width: 90%;
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
       }
-    }
-  </style>
-</head>
 
-<body>
-
-  <section>
-     <!--Start Navigation-->   
-     <style>
-      .navigation-container {
-        position: absolute;
-        right: 40px;
-        top: 20px;
+      body {
+        background-color: #f8f8f8;
         display: flex;
-        align-items: center;
-        gap: 15px;
-        transition: all 0.3s ease;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100vh;
+        margin: 0;
+        position: sticky;
+        overflow-y: hidden;
       }
-      
-      .nav-buttons {
-        display: flex;
-        gap: 15px;
-        opacity: 0;
-        width: 0;
-        overflow: hidden;
-        transition: all 0.3s ease;
-      }
-      
-      .nav-arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: #3f62af;
-        border-radius: 5px;
-        color: white;
-        text-decoration: none;
-        font-size: 24px;
-      }
-      
-      .nav-button {
-        position: relative;
-        z-index: none;
-      }
-      
-      .nav-button img {
-        width: 60px;
-        height: 60px;
-        border-radius: 10px;
-        object-fit: cover;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-      
-      .nav-button:hover img {
-        transform: scale(1.1);
-      }
-      
-      .navigation-container:hover .nav-buttons {
-        opacity: 1;
-        width: 110px; /* Width for two buttons + gap */
-      }
-      
-      .popover {
-        display: none;
-        position: absolute;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        z-index: 1000;
+
+      h1 {
+        font-weight: bold;
+        margin: 0;
         text-align: center;
-        right: 0;
-        top: 70px;
+        margin-top: 50px;
       }
-      
-      .popover-buttons {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
+
+      p {
+        font-size: 14px;
+        font-weight: 100;
+        line-height: 20px;
+        margin: 20px 0 30px;
+        text-align: center;
       }
-      
-      .popover button {
-        background-color: #3f62af;
-        color: #fff;
-        width: 70px;
-        padding: 8px 0;
-        border: none;
+
+      button {
         border-radius: 20px;
+        border: 1px solid #3f62af;
+        background-color: #3f62af;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
         cursor: pointer;
-        transition: background-color 0.2s;
       }
-      
-      .popover button:hover {
-        background-color: #2d4b8f;
+
+      button.ghost {
+        background-color: transparent;
+        border-color: #ffffff;
       }
+
+      button:focus {
+        outline: none;
+      }
+
+      button:active {
+        transform: scale(0.95);
+      }
+
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #f8f8f8;
+      }
+
+      footer p {
+        margin: 5px 0;
+      }
+
+      footer a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: #3f62af;
+      }
+
+      table {
+        position: absolute;
+        width: 90%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 2px 5px #3f62af;
+        margin-left: 50px;
+      }
+
+      th,
+      td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #3f62af;
+        color: white;
+      }
+
+      td {
+        word-wrap: break-word;
+      }
+
+      .message-column {
+        width: 40%;
+      }
+
+      .action-btn {
+        background-color: #3f62af;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+
+      .action-btn:hover {
+        background-color: #2e4b87;
+      }
+
+      @media (max-width: 768px) {
+        main.container {
+          width: 90%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section>
+      <!--Start Navigation-->
+      <style>
+        .navigation-container {
+          position: absolute;
+          right: 40px;
+          top: 20px;
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          transition: all 0.3s ease;
+        }
+
+        .nav-buttons {
+          display: flex;
+          gap: 15px;
+          opacity: 0;
+          width: 0;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .nav-arrow {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          background-color: #3f62af;
+          border-radius: 5px;
+          color: white;
+          text-decoration: none;
+          font-size: 24px;
+        }
+
+        .nav-button {
+          position: relative;
+          z-index: none;
+        }
+
+        .nav-button img {
+          width: 60px;
+          height: 60px;
+          border-radius: 10px;
+          object-fit: cover;
+          cursor: pointer;
+          transition: transform 0.3s ease;
+        }
+
+        .nav-button:hover img {
+          transform: scale(1.1);
+        }
+
+        .navigation-container:hover .nav-buttons {
+          opacity: 1;
+          width: 110px; /* Width for two buttons + gap */
+        }
+
+        .popover {
+          display: none;
+          position: absolute;
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          padding: 15px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+          text-align: center;
+          right: 0;
+          top: 70px;
+        }
+
+        .popover-buttons {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+        }
+
+        .popover button {
+          background-color: #3f62af;
+          color: #fff;
+          width: 70px;
+          padding: 8px 0;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .popover button:hover {
+          background-color: #2d4b8f;
+        }
       </style>
-    
+
       <div class="navigation-container">
         <div class="nav-buttons">
-          <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;"> 
-            <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+          <a
+            href="javascript:void(0);"
+            class="nav-arrow"
+            id="prev"
+            onclick="goBack()"
+            style="color: transparent; display: flex; align-items: center"
+          >
+            <i
+              class="ri-arrow-left-s-line"
+              style="
+                font-size: 36px;
+                margin-right: 5px;
+                color: #fff;
+                background-color: #3f62af;
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+              "
+            ></i>
           </a>
-          <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
-            <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i> 
-
+          <a
+            href="javascript:void(0);"
+            class="nav-arrow"
+            id="next"
+            onclick="goForward()"
+            style="color: transparent; display: flex; align-items: center"
+          >
+            <i
+              class="ri-arrow-right-s-line"
+              style="
+                font-size: 36px;
+                margin-right: 5px;
+                color: #fff;
+                background-color: #3f62af;
+                border-radius: 5px;
+                width: 40px;
+                height: 40px;
+              "
+            ></i>
           </a>
         </div>
-        
+
         <div class="nav-button" id="homeButton">
-          <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home">
+          <img src="https://i.ibb.co/pzsT9VX/7682b627f850.png" alt="Home" />
           <div class="popover" id="homePopover">
             <p>Want to go to the report page?</p>
             <div class="popover-buttons">
               <button class="confirm" onclick="goHome()">Yes</button>
-              <button class="cancel" onclick="closePopover('homePopover')">No</button>
+              <button class="cancel" onclick="closePopover('homePopover')">
+                No
+              </button>
             </div>
           </div>
         </div>
       </div>
-      
+
       <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const homeButton = document.getElementById('homeButton');
-        const homePopover = document.getElementById('homePopover');
-        
-        function showPopover(button, popover) {
-          const rect = button.getBoundingClientRect();
-          popover.style.display = 'block';
-        }
-      
-        homeButton.addEventListener('click', () => showPopover(homeButton, homePopover));
-        
-        window.closePopover = function(id) {
-          document.getElementById(id).style.display = 'none';
-        };
-      
-        window.goHome = function() {
-          window.location.href = 'Reports.html';
-        };
-      
-        window.goBack = function() {
-          window.history.back();
-        };
-        
-        window.goForward = function() {
-          window.history.forward();
-        };
-      
-        document.addEventListener('click', function(event) {
-          if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
-            closePopover('homePopover');
+        document.addEventListener("DOMContentLoaded", function () {
+          const homeButton = document.getElementById("homeButton");
+          const homePopover = document.getElementById("homePopover");
+
+          function showPopover(button, popover) {
+            const rect = button.getBoundingClientRect();
+            popover.style.display = "block";
           }
+
+          homeButton.addEventListener("click", () =>
+            showPopover(homeButton, homePopover)
+          );
+
+          window.closePopover = function (id) {
+            document.getElementById(id).style.display = "none";
+          };
+
+          window.goHome = function () {
+            window.location.href = "Reports.html";
+          };
+
+          window.goBack = function () {
+            window.history.back();
+          };
+
+          window.goForward = function () {
+            window.history.forward();
+          };
+
+          document.addEventListener("click", function (event) {
+            if (
+              !homeButton.contains(event.target) &&
+              !homePopover.contains(event.target)
+            ) {
+              closePopover("homePopover");
+            }
+          });
         });
-      });
       </script>
       <!--End Navigation-->
-  </section>
- 
-  <main style="margin-top: -300px;">
-    <h1>Outstanding Student Queries</h1><br>
-    <table>
+    </section>
+
+    <main style="margin-top: -300px">
+      <h1>Outstanding Student Queries</h1>
+      <br />
+      <table>
         <thead>
           <tr>
             <th>Date</th>
@@ -310,143 +351,154 @@
             <th>Action</th>
           </tr>
         </thead>
-        <tbody id="studentTableBody">
-        </tbody>
+        <tbody id="studentTableBody"></tbody>
       </table>
-  </main>
-  <footer>
-    <p>&copy; Moshal Scholarship Program 2024 <br> Developed by InfoSync <br> All rights reserved</p>
-    <p>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-    </p>
-  </footer>
+    </main>
+    <footer>
+      <p>
+        &copy; Moshal Scholarship Program 2024 <br />
+        Developed by InfoSync <br />
+        All rights reserved
+      </p>
+      <p>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </p>
+    </footer>
 
-  <script type="module">
-    function goToPage(pageUrl) {
-      window.location.href = pageUrl;
-    }
-  
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-  
-    const firebaseConfig = {
-  apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
-  authDomain: "mymoshalallowance.firebaseapp.com",
-  databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
-  projectId: "mymoshalallowance",
-  storageBucket: "mymoshalallowance.appspot.com",
-  messagingSenderId: "607619034226",
-  appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
-  measurementId: "G-NCTW2CSPR8"
-};
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-  
-    // Function to calculate severity based on the time the query has been unanswered
-    function calculateSeverity(timestamp) {
-      const currentTime = new Date();
-      const queryTime = new Date(timestamp);
-      const timeDiff = currentTime - queryTime; // time difference in milliseconds
-  
-      const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert to days
-  
-      if (daysDiff >= 7) {
-        return { severity: "High", days: daysDiff };
-      } else if (daysDiff >= 3) {
-        return { severity: "Medium", days: daysDiff };
-      } else {
-        return { severity: "Low", days: daysDiff };
+    <script type="module">
+      function goToPage(pageUrl) {
+        window.location.href = pageUrl;
       }
-    }
-  
-    async function displayStudentData() {
-      const q = query(collection(db, "Create_Query"), where("adminResponse", "==", null));
-      const querySnapshot = await getDocs(q);
-      const tableBody = document.getElementById('studentTableBody');
-  
-      const studentQueries = {};
-  
-      // Group queries by student
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        const { severity, days } = calculateSeverity(data.timestamp);
-  
-        if (!studentQueries[data.userName]) {
-          studentQueries[data.userName] = {
-            queries: [],
-            severity,
-            days
-          };
+
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyC9dZ0tqvqLw5GE2WthGrY2qgdwwPcDyhM",
+        authDomain: "mmmma-c2403.firebaseapp.com",
+        projectId: "mmmma-c2403",
+        storageBucket: "mmmma-c2403.appspot.com",
+        messagingSenderId: "133407121519",
+        appId: "1:133407121519:web:3a7868efcfc2f7aba82d9a",
+        measurementId: "G-NBSGM52XGG",
+      };
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // Function to calculate severity based on the time the query has been unanswered
+      function calculateSeverity(timestamp) {
+        const currentTime = new Date();
+        const queryTime = new Date(timestamp);
+        const timeDiff = currentTime - queryTime; // time difference in milliseconds
+
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert to days
+
+        if (daysDiff >= 7) {
+          return { severity: "High", days: daysDiff };
+        } else if (daysDiff >= 3) {
+          return { severity: "Medium", days: daysDiff };
+        } else {
+          return { severity: "Low", days: daysDiff };
         }
-        studentQueries[data.userName].queries.push({ 
-          date: new Date(data.timestamp).toLocaleDateString(),
-          message: data.userMessage,
-          docId: doc.id,
-          severity,
-          days
-        });
-      });
-  
-      // Create rows for each student and count their queries
-      const rows = [];
-      for (const student in studentQueries) {
-        const studentData = studentQueries[student];
-        const queryCount = studentData.queries.length;
-        const latestQuery = studentData.queries[0];  // Sorting by the first query for severity
-  
-        // Extracting the first 6 words from the message
-        const messagePreview = latestQuery.message.split(" ").slice(0, 6).join(" ") + (latestQuery.message.split(" ").length > 6 ? "..." : "");
-  
-        const row = document.createElement('tr');
-        const dateCell = document.createElement('td');
-        const nameCell = document.createElement('td');
-        const countCell = document.createElement('td');
-        const messageCell = document.createElement('td');
-        const severityCell = document.createElement('td');
-        const actionCell = document.createElement('td');
-  
-        dateCell.textContent = latestQuery.date;
-        nameCell.textContent = student;
-        countCell.textContent = queryCount;
-        messageCell.textContent = messagePreview;
-        severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
-  
-        const button = document.createElement('button');
-        button.textContent = 'Respond';
-        button.className = 'action-btn';
-        button.onclick = () => {
-          goToPage(`response_details.html?docId=${latestQuery.docId}`);
-        };
-  
-        actionCell.appendChild(button);
-        row.appendChild(dateCell);
-        row.appendChild(nameCell);
-        row.appendChild(countCell); // Added count column
-        row.appendChild(messageCell);
-        row.appendChild(severityCell);
-        row.appendChild(actionCell);
-  
-        rows.push(row);
       }
-  
-      // Sort rows by severity (longest unanswered first)
-      rows.sort((a, b) => {
-        const aSeverity = a.children[4].textContent.split(" ")[0]; // Get severity level
-        const bSeverity = b.children[4].textContent.split(" ")[0];
-  
-        const severityOrder = { "High": 3, "Medium": 2, "Low": 1 };
-  
-        return severityOrder[bSeverity] - severityOrder[aSeverity];
-      });
-  
-      // Append sorted rows to table
-      rows.forEach(row => tableBody.appendChild(row));
-    }
-  
-    displayStudentData();
-  </script>
-  
-</body>
-</html>
 
+      async function displayStudentData() {
+        const q = query(
+          collection(db, "Create_Query"),
+          where("adminResponse", "==", null)
+        );
+        const querySnapshot = await getDocs(q);
+        const tableBody = document.getElementById("studentTableBody");
+
+        const studentQueries = {};
+
+        // Group queries by student
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          const { severity, days } = calculateSeverity(data.timestamp);
+
+          if (!studentQueries[data.userName]) {
+            studentQueries[data.userName] = {
+              queries: [],
+              severity,
+              days,
+            };
+          }
+          studentQueries[data.userName].queries.push({
+            date: new Date(data.timestamp).toLocaleDateString(),
+            message: data.userMessage,
+            docId: doc.id,
+            severity,
+            days,
+          });
+        });
+
+        // Create rows for each student and count their queries
+        const rows = [];
+        for (const student in studentQueries) {
+          const studentData = studentQueries[student];
+          const queryCount = studentData.queries.length;
+          const latestQuery = studentData.queries[0]; // Sorting by the first query for severity
+
+          // Extracting the first 6 words from the message
+          const messagePreview =
+            latestQuery.message.split(" ").slice(0, 6).join(" ") +
+            (latestQuery.message.split(" ").length > 6 ? "..." : "");
+
+          const row = document.createElement("tr");
+          const dateCell = document.createElement("td");
+          const nameCell = document.createElement("td");
+          const countCell = document.createElement("td");
+          const messageCell = document.createElement("td");
+          const severityCell = document.createElement("td");
+          const actionCell = document.createElement("td");
+
+          dateCell.textContent = latestQuery.date;
+          nameCell.textContent = student;
+          countCell.textContent = queryCount;
+          messageCell.textContent = messagePreview;
+          severityCell.textContent = `${latestQuery.severity} (${latestQuery.days} days unanswered)`;
+
+          const button = document.createElement("button");
+          button.textContent = "Respond";
+          button.className = "action-btn";
+          button.onclick = () => {
+            goToPage(`response_details.html?docId=${latestQuery.docId}`);
+          };
+
+          actionCell.appendChild(button);
+          row.appendChild(dateCell);
+          row.appendChild(nameCell);
+          row.appendChild(countCell); // Added count column
+          row.appendChild(messageCell);
+          row.appendChild(severityCell);
+          row.appendChild(actionCell);
+
+          rows.push(row);
+        }
+
+        // Sort rows by severity (longest unanswered first)
+        rows.sort((a, b) => {
+          const aSeverity = a.children[4].textContent.split(" ")[0]; // Get severity level
+          const bSeverity = b.children[4].textContent.split(" ")[0];
+
+          const severityOrder = { High: 3, Medium: 2, Low: 1 };
+
+          return severityOrder[bSeverity] - severityOrder[aSeverity];
+        });
+
+        // Append sorted rows to table
+        rows.forEach((row) => tableBody.appendChild(row));
+      }
+
+      displayStudentData();
+    </script>
+  </body>
+</html>

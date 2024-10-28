@@ -15,60 +15,82 @@
   <body>
     <header class="header">
       <div class="logout-moshal-logo">
-        <img src="https://i.ibb.co/vs7K75q/e2726a36d9c9.png" alt="Moshal Logo" id="homeButton" style="width: 180px; height: 80px; object-fit: cover; object-position: center; position: relative; right: 106%; border-radius: 10px;" />
-    
+        <img
+          src="https://i.ibb.co/vs7K75q/e2726a36d9c9.png"
+          alt="Moshal Logo"
+          id="homeButton"
+          style="
+            width: 180px;
+            height: 80px;
+            object-fit: cover;
+            object-position: center;
+            position: relative;
+            right: 106%;
+            border-radius: 10px;
+          "
+        />
+
         <div class="popover" id="homePopover">
-          <p style="font-size: 16px;color: #000;">Want to go to the home page?</p>
-          <button style="width: 70px;" onclick="goHome()">Yes</button>
-          <button style="width: 70px;" onclick="closePopover('homePopover')">No</button>
+          <p style="font-size: 16px; color: #000">
+            Want to go to the home page?
+          </p>
+          <button style="width: 70px" onclick="goHome()">Yes</button>
+          <button style="width: 70px" onclick="closePopover('homePopover')">
+            No
+          </button>
         </div>
       </div>
-    
+
       <div class="header-container">
-        <div class="header-items" style="margin-left: 700px; margin-top: 35px;">
+        <div class="header-items" style="margin-left: 700px; margin-top: 35px">
           <!-- Profile Section -->
           <div class="header-profile">
             <a href="profile.html" id="profile-icon">
               <i class="ri-user-line"></i> Profile
             </a>
           </div>
-    
+
           <!-- Allowance Section -->
           <div class="header-allowance">
             <a href="calculate_allowance.html" id="allowance-icon">
               <i class="ri-wallet-line"></i> Allowance
             </a>
           </div>
-    
+
           <!-- Query Section -->
           <div class="header-query">
             <a href="student_Query.html" id="query-icon">
               <i class="ri-question-line"></i> Queries
             </a>
           </div>
-    
+
           <!-- Documents Section -->
           <div class="header-documents">
             <a href="documents.html" id="documents-icon">
               <i class="ri-file-line"></i> Documents
             </a>
           </div>
-    
+
           <!-- Logout Section -->
           <div class="header-logout">
             <a href="#" id="logout-icon">
               <i class="ri-logout-box-line"></i> Logout
             </a>
-    
-            <div class="popover" id="logoutPopover" style="width: 170px;">
-              <p style="color: #000;">Are you sure you want to log out?</p>
-              <button onclick="logout()" style="width: 70px;">Yes</button>
-              <button onclick="closePopover('logoutPopover')" style="width: 70px;">No</button>
+
+            <div class="popover" id="logoutPopover" style="width: 170px">
+              <p style="color: #000">Are you sure you want to log out?</p>
+              <button onclick="logout()" style="width: 70px">Yes</button>
+              <button
+                onclick="closePopover('logoutPopover')"
+                style="width: 70px"
+              >
+                No
+              </button>
             </div>
           </div>
         </div>
       </div>
-    
+
       <style>
         .header {
           background-color: #3f62af;
@@ -78,7 +100,7 @@
           border-radius: 10px;
           width: 85%;
           height: 79px;
-          margin: 10px 0 50px 200px; 
+          margin: 10px 0 50px 200px;
         }
 
         .header-container {
@@ -94,10 +116,10 @@
         .header-items {
           display: flex;
           gap: 15px;
-          margin-bottom: 25px; 
-          margin-left: auto; 
-          margin-right: 0; 
-          align-items: center; 
+          margin-bottom: 25px;
+          margin-left: auto;
+          margin-right: 0;
+          align-items: center;
         }
 
         .header-items a {
@@ -108,7 +130,6 @@
           padding: 10px 15px;
         }
 
-    
         .popover {
           display: none;
           position: absolute;
@@ -119,7 +140,7 @@
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           z-index: 1000;
         }
-    
+
         .popover button {
           background-color: #3f62af;
           color: white;
@@ -133,76 +154,125 @@
           transition: background-color 0.3s;
         }
       </style>
-    
+
       <script>
         // Show and position the Home popover
-        const homeButton = document.getElementById('homeButton');
-        const homePopover = document.getElementById('homePopover');
-        homeButton.onclick = function() {
+        const homeButton = document.getElementById("homeButton");
+        const homePopover = document.getElementById("homePopover");
+        homeButton.onclick = function () {
           const rect = homeButton.getBoundingClientRect();
-          homePopover.style.display = 'block';
+          homePopover.style.display = "block";
           homePopover.style.left = `${rect.left + window.scrollX}px`;
           homePopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
         };
-    
+
         // Show and position the Logout popover
-        const logoutButton = document.getElementById('logout-icon');
-        const logoutPopover = document.getElementById('logoutPopover');
-        logoutButton.onclick = function(event) {
+        const logoutButton = document.getElementById("logout-icon");
+        const logoutPopover = document.getElementById("logoutPopover");
+        logoutButton.onclick = function (event) {
           event.preventDefault();
           const rect = logoutButton.getBoundingClientRect();
-          logoutPopover.style.display = 'block';
+          logoutPopover.style.display = "block";
           logoutPopover.style.left = `${rect.left + window.scrollX}px`;
           logoutPopover.style.top = `${rect.bottom + window.scrollY + 10}px`;
         };
-    
+
         // Close popovers
         function closePopover(id) {
-          document.getElementById(id).style.display = 'none';
+          document.getElementById(id).style.display = "none";
         }
-    
+
         // Go to home page
         function goHome() {
-          window.location.href = 'first.html'; // Replace with actual home page URL
+          window.location.href = "first.html"; // Replace with actual home page URL
         }
-    
+
         // Log out function
         function logout() {
-          window.location.href = 'index.html'; // Replace with actual log out logic
+          window.location.href = "index.html"; // Replace with actual log out logic
         }
-    
+
         // Close popovers when clicking outside
-        window.onclick = function(event) {
-          if (!homeButton.contains(event.target) && !homePopover.contains(event.target)) {
-            closePopover('homePopover');
+        window.onclick = function (event) {
+          if (
+            !homeButton.contains(event.target) &&
+            !homePopover.contains(event.target)
+          ) {
+            closePopover("homePopover");
           }
-          if (!logoutButton.contains(event.target) && !logoutPopover.contains(event.target)) {
-            closePopover('logoutPopover');
+          if (
+            !logoutButton.contains(event.target) &&
+            !logoutPopover.contains(event.target)
+          ) {
+            closePopover("logoutPopover");
           }
         };
       </script>
     </header>
 
-    <div class="navigation" style="margin-left: 25px; margin-top: -55px; margin-bottom: 25px; display: flex; gap: 20px; align-items: center;">
-      <a href="javascript:void(0);" class="nav-arrow" id="prev" onclick="goBack()" style="color:transparent; display: flex; align-items: center;">
-          
-        <i class="ri-arrow-left-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;text-decoration: none;"></i> 
+    <div
+      class="navigation"
+      style="
+        margin-left: 25px;
+        margin-top: -55px;
+        margin-bottom: 25px;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      "
+    >
+      <a
+        href="javascript:void(0);"
+        class="nav-arrow"
+        id="prev"
+        onclick="goBack()"
+        style="color: transparent; display: flex; align-items: center"
+      >
+        <i
+          class="ri-arrow-left-s-line"
+          style="
+            font-size: 36px;
+            margin-right: 5px;
+            color: #fff;
+            background-color: #3f62af;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+            text-decoration: none;
+          "
+        ></i>
       </a>
 
-      <a href="javascript:void(0);" class="nav-arrow" id="next" onclick="goForward()" style="color:transparent; display: flex; align-items: center;">
-        <i class="ri-arrow-right-s-line" style="font-size: 36px; margin-right: 5px;color: #fff; background-color: #3f62af; border-radius: 5px; width: 40px;height: 40px;"></i>
+      <a
+        href="javascript:void(0);"
+        class="nav-arrow"
+        id="next"
+        onclick="goForward()"
+        style="color: transparent; display: flex; align-items: center"
+      >
+        <i
+          class="ri-arrow-right-s-line"
+          style="
+            font-size: 36px;
+            margin-right: 5px;
+            color: #fff;
+            background-color: #3f62af;
+            border-radius: 5px;
+            width: 40px;
+            height: 40px;
+          "
+        ></i>
       </a>
-  </div>
-  <script>
-  function goBack() {
-      window.history.back();
-  }
-  
-  function goForward() {
-      window.history.forward();
-  }
-  </script>
+    </div>
+    <script>
+      function goBack() {
+        window.history.back();
+      }
 
+      function goForward() {
+        window.history.forward();
+      }
+    </script>
 
     <section class="profile-section">
       <div class="profile-info">
@@ -306,41 +376,66 @@
           </div>
         </div>
       </div>
-<<<<<<< HEAD
+
       <br />
       <a href="#" id="forgotPasswordLink">Change Password?</a>
       <br />
-=======
->>>>>>> ccd63d0fb9ef14401f77c6859067112371747504
     </section>
 
     <footer class="footer">
       <div class="footer-container">
-          <div class="footer-left">
-              <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
-          </div>
-          <div class="footer-right">
-            <!-- GitHub Icon -->
-            <a href="https://github.com/Phathutshedzo890/myMoshalAllowanceMain.github.io" class="social-icon" style="margin-top: 10px;text-decoration: none;">
-              <i class="ri-github-fill" style="font-size: 25px; color:#3f62af;margin-left: 15px;"></i>
-            </a>
+        <div class="footer-left">
+          <p>© InfoSync. 2024 Moshal Scholarship Program.</p>
+        </div>
+        <div class="footer-right">
+          <!-- GitHub Icon -->
+          <a
+            href="https://github.com/Phathutshedzo890/myMoshalAllowanceMain.github.io"
+            class="social-icon"
+            style="margin-top: 10px; text-decoration: none"
+          >
+            <i
+              class="ri-github-fill"
+              style="font-size: 25px; color: #3f62af; margin-left: 15px"
+            ></i>
+          </a>
 
-            <!-- Moshal Logo Icon -->
-            <a href="https://moshalprogram.org/" class="social-icon" style="margin-bottom: 10px;text-decoration: none;">
-              <img src="https://moshalprogram.org/wp-content/uploads/2021/08/cropped-favicon-1.png" 
-                  alt="Moshal Logo" 
-                  style="width: 25px; height: 25px; object-fit: contain; margin-bottom: -3px;margin-left: 15px;" />
-            </a>
+          <!-- Moshal Logo Icon -->
+          <a
+            href="https://moshalprogram.org/"
+            class="social-icon"
+            style="margin-bottom: 10px; text-decoration: none"
+          >
+            <img
+              src="https://moshalprogram.org/wp-content/uploads/2021/08/cropped-favicon-1.png"
+              alt="Moshal Logo"
+              style="
+                width: 25px;
+                height: 25px;
+                object-fit: contain;
+                margin-bottom: -3px;
+                margin-left: 15px;
+              "
+            />
+          </a>
 
-            <!-- INFOSYNC Logo Icon -->
-            <a href="#" class="social-icon" style="margin-top: 10px;">
-              <img src="https://i.ibb.co/DfMG7hG/9e6ddb57455f.jpg" 
-                  alt="INFOSYNC Logo" 
-                  style="width: 35px; height: 35px; object-fit: contain; margin-bottom: -6px; margin-left: 15px;" />
-            </a>
-          </div>
+          <!-- INFOSYNC Logo Icon -->
+          <a href="#" class="social-icon" style="margin-top: 10px">
+            <img
+              src="https://i.ibb.co/DfMG7hG/9e6ddb57455f.jpg"
+              alt="INFOSYNC Logo"
+              style="
+                width: 35px;
+                height: 35px;
+                object-fit: contain;
+                margin-bottom: -6px;
+                margin-left: 15px;
+              "
+            />
+          </a>
+        </div>
       </div>
-  </footer>
+    </footer>
 
     <script type="module" src="profile.js"></script>
   </body>
