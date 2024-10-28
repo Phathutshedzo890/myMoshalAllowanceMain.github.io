@@ -2,13 +2,14 @@ import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc } from 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAaqxo2Tyfw2fk-WLTPoFtLBC_cAuvtptc",
-    authDomain: "mymoshalallowance-34e68.firebaseapp.com",
-    projectId: "mymoshalallowance-34e68",
-    storageBucket: "mymoshalallowance-34e68.appspot.com",
-    messagingSenderId: "387609738002",
-    appId: "1:387609738002:web:38cf56b731375650d751cb",
-    measurementId: "G-5E13X2QNFC"
+    apiKey: "AIzaSyDUtGUh3WRQ9ZMpvOm26ZGVP9O_brS4jKg",
+    authDomain: "mymoshalallowance.firebaseapp.com",
+    databaseURL: "https://mymoshalallowance-default-rtdb.firebaseio.com",
+    projectId: "mymoshalallowance",
+    storageBucket: "mymoshalallowance.appspot.com",
+    messagingSenderId: "607619034226",
+    appId: "1:607619034226:web:e9c117dea2ccf9bd59e6eb",
+    measurementId: "G-NCTW2CSPR8"
   };
 
 const app = initializeApp(firebaseConfig);
